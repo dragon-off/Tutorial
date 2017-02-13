@@ -1,0 +1,35 @@
+#loadcache2("EMAIL" true)
+
+#loadcache2("EMAIL_SETTING_1*" false)
+#loadcache2("EMAIL_SETTING_2*" false)
+#loadcache2("EMAIL_SETTING_3*" false)
+#loadcache2("EMAIL_SETTING_4*" false)
+#loadcache2("EMAIL_SETTING_5*" false)
+#loadcache2("EMAIL_SETTING_6*" false)
+#loadcache2("EMAIL_SETTING_7*" false)
+#loadcache2("EMAIL_SETTING_8*" false)
+#loadcache2("EMAIL_SETTING_9*" false)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("emails.generalNodeLabel"))
+
+    #set( $section            = "EMAIL"                                        )
+
+    ##    SECTION  KEY              LABEL_ID              TYPE         HELP_ID               MIN MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"            "emails.max"          "number"     "emails.max"          0   999 "" )
+    #qsys($section "FROM_ADR"       "emails.fromAdress"   "text"       "emails.fromAdress"   0   100 "" )
+    #qsys($section "FROM_NAME"      "emails.fromName"     "text"       "emails.fromName"     0   100 "" )
+    #qsys($section "REPLY_TO"       "emails.replyTo"      "text"       "emails.replyTo"      0   100 "" )
+    #qsys($section "SMTP_SERVER"    "emails.smtpServer"   "text"       "emails.smtpServer"   0   100 "" )
+    #qsys($section "SMTP_PORT"      "emails.smtpPort"     "number"     "emails.smtpPort"     1   65535 "" )
+    #qsys($section "SMTP_USER"      "emails.smtpUser"     "text"       "emails.smtpUser"     0   100 "" )
+    #qsys($section "SMTP_PASSWORD"  "emails.smtpPassword" "text"       "emails.smtpPassword" 0   100 "" )
+    #qsys($section "SMTP_SSL"       "emails.smtpSSL"      "checkbox"   "emails.smtpSSL"      0   1   "" )
+    #qsys($section "QUEUE_LEN"      "emails.queueLen"     "number"     "emails.queueLen"     1   255 "" )
+
+</grid-form>
+
+

@@ -1,0 +1,10 @@
+<%
+	P=(${printer}0)/10
+	IF(P GT 0)
+	BEGIN
+		T = (${print_time}0)/10
+		C = (${print_chel}0)/10
+		SETARRAY(2130+P T)
+		SETARRAY(2135+P C)
+	END
+%>

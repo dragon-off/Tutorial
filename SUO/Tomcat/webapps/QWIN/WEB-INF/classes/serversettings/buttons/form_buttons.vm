@@ -1,0 +1,17 @@
+#loadcache2("BUTTON*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("buttons.SettingsHeading"))
+
+    #set( $section            = "BUTTON"                                        )
+
+    ##     SECTION  KEY                 LABEL_ID             TYPE       HELP_ID           MIN  MAX   REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"              "buttons.max"         "number"   "buttons.max"       0   255   ""         )
+    #qsys($section "BUTTON_LETTERS"   "buttons.letters"     "text"     "buttons.letters"   0   255   "" )
+
+    ##qsysinistring($section "BUTTON_LETTERS"   "Vi måste fixa ticket text kopplingen"     "text"   )
+
+</grid-form>

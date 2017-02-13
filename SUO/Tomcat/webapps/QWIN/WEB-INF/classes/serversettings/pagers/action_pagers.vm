@@ -1,0 +1,33 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+
+    ##       SECTION   KEY        LABEL_ID                SCRIPT_FILE        GROUP  MIN  MAX
+    ##---------------------------------------------------------------------------------------
+
+    #button( $section  "MAX"      "pager.addPager"        "./add_action.vm"  0      0    9999 )
+    #button( $section  "MAX"      "pager.remPager"        "./rem_action.vm"  0      0    9999 )
+
+    #hidden("section2" $section)
+    #hidden("key2" "PRG_MAX")
+    #hidden("limit_max2" "256")
+    #hidden("limit_min2" "0")
+
+
+    <field type  = "button">
+        #cdata("name" "pager.addPagerScript")
+        #cdata("label" $text.getText("pager.addPagerScript"))
+      <params>
+            #param("action-script" "./pagers/add_script_action.vm")
+      </params>
+    </field>
+
+    <field type  = "button">
+           #cdata("label" $text.getText("pager.remPagerScript"))
+           #cdata("name" "pager.remPagerScript")
+      <params>
+            #param("action-script" "./pagers/rem_script_action.vm")               
+      </params>
+    </field>
+
+</grid-form>

@@ -1,0 +1,25 @@
+#loadcache2("WLTERM*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    #set( $section            = "WLTERM"                                        )
+
+    ##    SECTION   KEY                 LABEL_ID               TYPE        HELP_ID                MIN MAX  REGEXP
+    ##----------------------------------------------------------------------------------------------------------
+
+    #qsys($section  "NAME${item}"       "wterminal.name"       "text"      "wterminal.name"       0   40   "" )
+    #qsys($section  "SIGNATURE${item}"  "wterminal.signature"  "text"      "wterminal.signature"  0   100  "" )
+
+    <field type  = "button">
+      <name>Learn</name>
+      #cdata("label" $text.getText("wterminal.learn"))
+      <params>
+              #param("action-script" "./wireless/index.jsp?id=${item}")
+              #param("ref-type" "raw")
+      </params>
+    </field>
+
+
+</grid-form>

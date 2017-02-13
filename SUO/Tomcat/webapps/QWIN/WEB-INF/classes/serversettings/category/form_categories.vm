@@ -1,0 +1,16 @@
+#loadcache2("GROUP" true)
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.SpecialSettingsWriter">
+    #cdata("label" $text.getText("category.generalNodeLabel"))
+
+
+
+    #set( $section            = "GROUP"                                        )
+
+    ##    SECTION  KEY              LABEL_ID              TYPE       HELP_ID               MIN   MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"            "categories.max"      "number"   "categories.max"      0     255  ""           )
+    #qsys($section "GROUP_LETTERS"  "categories.letters"  "text"     "categories.letters"  0     255  ""   )
+
+</grid-form>

@@ -1,0 +1,68 @@
+œ–»Ã≈– Œ¡–¿Ÿ≈Õ»ﬂ!
+
+!setarray.qsp?array="1|2|3|@"&value="11|33|22|@"
+<%
+C=${array}
+V=${value}
+S=(${step}0)/10
+L=" "
+
+
+I=1
+B=""
+J=1
+K=""
+X=1
+A=0
+
+WHILE(STRSUB(C I I) NE "@" AND I LE 2000 AND STRSUB(C I I) NE "")
+BEGIN
+	WHILE(STRSUB(C I I) NE "|" AND I LE 2000 AND STRSUB(C I I) NE "@")
+	BEGIN
+		B=B+STRSUB(C I I)
+		I=I+1
+	END	
+	IF(S EQ 0)
+		WHILE(STRSUB(V J J) NE "|"  AND STRSUB(V J J) NE "@" )
+		BEGIN
+			K=K+STRSUB(V J J)
+			J=J+1
+		END	
+		ELSE
+		BEGIN
+			K=STRSUB(V ((X-1)*304)+X (X*304)+X-1)
+			{"<b>-"K"</b><br>"}
+		END
+	IF((STRSTN(B) EQ 141 OR STRSTN(B) EQ 142) OR (STRSTN(B) GE 601 AND STRSTN(B) LE 700) OR (STRSTN(B) GE 1100 AND STRSTN(B) LE 1200) OR (STRSTN(B) GE 2501 AND STRSTN(B) LE 2590))
+		BEGIN
+			IF((STRSTN(B) GE 601 AND STRSTN(B) LE 700) AND A EQ 0) 
+				A=1
+	
+			IF((STRSTN(B) GE 1100 AND STRSTN(B) LE 1200) AND A EQ 0) 
+				A=2
+			
+				
+				SETARRAY(STRSTN(B) K) 
+				IF(STRSTN(B) GT 1100)
+				BEGIN
+					IF(T EQ 0)
+					BEGIN
+						T=1
+						L=STRNTS(STRSTN(B)-1100)
+					END ELSE
+						L=L+","+STRNTS(STRSTN(B)-1100)
+				END
+				
+		END
+	ELSE
+		SETARRAY(STRSTN(B) STRSTN(K))
+	B=""
+	K=""
+		I=I+1
+	J=J+1
+	X=X+1
+END
+
+
+FUNC_EVENT_SEND(142 1 "PERSONCOMPETENCE logins=\""+L+"\" END")
+%>

@@ -1,0 +1,58 @@
+Thu Feb 09 14:55:21 MSK 2017  [debug] AvalonLogSystem initialized using logfile 'velocity.log'
+Thu Feb 09 14:55:21 MSK 2017   [info] ************************************************************** 
+Thu Feb 09 14:55:21 MSK 2017   [info] Starting Jakarta Velocity v1.3.1
+Thu Feb 09 14:55:21 MSK 2017   [info] RuntimeInstance initializing.
+Thu Feb 09 14:55:21 MSK 2017   [info] Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+Thu Feb 09 14:55:21 MSK 2017   [info] Trying to use logger class org.apache.velocity.runtime.log.AvalonLogSystem
+Thu Feb 09 14:55:21 MSK 2017   [info] Using logger class org.apache.velocity.runtime.log.AvalonLogSystem
+Thu Feb 09 14:55:21 MSK 2017   [info] Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+Thu Feb 09 14:55:21 MSK 2017   [info] Resource Loader Instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Thu Feb 09 14:55:21 MSK 2017   [info] FileResourceLoader : initialization starting.
+Thu Feb 09 14:55:21 MSK 2017   [info] FileResourceLoader : adding path 'tomcat\webapps\QWIN\WEB-INF\classes\serversettings'
+Thu Feb 09 14:55:21 MSK 2017   [info] FileResourceLoader : initialization complete.
+Thu Feb 09 14:55:21 MSK 2017   [info] ResourceCache : initialized. (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+Thu Feb 09 14:55:21 MSK 2017   [info] Default ResourceManager initialization complete.
+Thu Feb 09 14:55:21 MSK 2017   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+Thu Feb 09 14:55:21 MSK 2017   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+Thu Feb 09 14:55:21 MSK 2017   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+Thu Feb 09 14:55:21 MSK 2017   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+Thu Feb 09 14:55:21 MSK 2017   [info] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+Thu Feb 09 14:55:21 MSK 2017   [info] Created: 20 parsers.
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : initialization starting.
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : adding VMs from VM library template : macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #qsysinistring( ns key label type ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #nodestart( label image ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #nodeend( ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #param( key value ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #cdata( tagname value ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #accepteditem( value desc ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #checkbox( ns key label checked helpid ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #qsysinistringh( ns key label type helpid ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #qsys( ns key label type helpid min max regexp ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #comp( type label val ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #separator( str ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #getText( str ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #qsysunitlist( section key list_section label include_None helpid ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #qsyssettingslist( section key list_section label item include_None helpid ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #loadcache2( section clear_cache ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #loadcache( file clear_cache ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #clearcache( ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #button( section key label script group limit_min limit_max ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #move_button( section key btn_label grp_label new_grp_label script item group create ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : added new VM : #perf( ) : source = macros.vm
+Thu Feb 09 14:55:21 MSK 2017  [error] VM #cdata: error : too few arguments to macro. Wanted 2 got 0
+Thu Feb 09 14:55:21 MSK 2017  [error] VM #cdata: error : too few arguments to macro. Wanted 2 got 0
+Thu Feb 09 14:55:21 MSK 2017  [error] VM #param: error : too few arguments to macro. Wanted 2 got 0
+Thu Feb 09 14:55:21 MSK 2017  [error] VM #param: error : too few arguments to macro. Wanted 2 got 0
+Thu Feb 09 14:55:21 MSK 2017  [error] VM #cdata: error : too few arguments to macro. Wanted 2 got 0
+Thu Feb 09 14:55:21 MSK 2017  [error] VM #cdata: error : too few arguments to macro. Wanted 2 got 0
+Thu Feb 09 14:55:21 MSK 2017   [info] ResourceManager : found macros.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro :  VM library template macro registration complete.
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : allowInline = true : VMs can be defined inline in templates
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : messages on  : VM system will output logging messages
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : autoload on  : VM system will automatically reload global library macros
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocimacro : initialization complete.
+Thu Feb 09 14:55:21 MSK 2017   [info] Velocity successfully started.
+Thu Feb 09 14:55:21 MSK 2017   [info] ResourceManager : found ./utilities/form_reset.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader

@@ -1,0 +1,34 @@
+#loadcache2("FONT*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("fonts.mainSettingsHeading"))
+    #set( $section            = "FONT"                                                    )
+
+    ##    SECTION  KEY        LABEL_ID               TYPE        HELP_ID               MIN MAX   REGEXP
+    ##-------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"      "fonts.max"            "number"    "fonts.max"           0   100   "" )
+    #qsys($section "TIMER"    "fonts.timeRefresh"    "number"    "fonts.timeRefresh"   0   1440  "" )
+ 
+    <field type = "list" helpid = "fonts.reduceLang">
+        #cdata("label" $text.getText("fonts.reduceLang"))
+        #cdata("name" "${section}_REDUCED_LANG")
+
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" $section)
+            #param("key" "REDUCED_LANG")
+        </params>
+        #cdata("init-value" $sm.getStringSetting("$section", "REDUCED_LANG"))
+
+        <accepted-values>
+            #accepteditem(" " $text.getText("fonts.none"))
+            #accepteditem("1" $text.getText("fonts.japanese"))
+            #accepteditem("2" $text.getText("fonts.chineseSimp"))
+            #accepteditem("3" $text.getText("fonts.chineseTrad"))
+            #accepteditem("4" $text.getText("fonts.korean"))
+        </accepted-values>
+    </field>
+</grid-form>

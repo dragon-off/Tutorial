@@ -1,0 +1,76 @@
+<%
+{1=change priority to window}
+T=(${type}0)/10
+IF(T EQ 0)
+	T=1
+IF(T EQ 1) {change priority to window BEGIN}
+BEGIN
+	W=(${window}0)/10
+	B=(${button}0)/10
+	O=${obj}
+	P=(${priority}0)/10
+	IF(P EQ 1 OR P EQ 0)
+		P=0
+	ELSE IF(P EQ 2)
+		P=40
+	ELSE IF(P EQ 3)
+		P=60
+	ELSE IF(P EQ 4)
+		P=90
+	ELSE IF(P EQ 5)
+		P=120
+	L=STRSUB(ARRAY(1100+W) B B)
+	
+	IF(0 EQ 0)
+	BEGIN
+		L=(${level}0)/10
+		IF(B EQ 1)
+			SETARRAY(1100+W STRNTS(L)+STRSUB(ARRAY(1100+W) 2 122))
+		ELSE
+			SETARRAY(1100+W STRSUB(ARRAY(1100+W) 1 B-1)+STRNTS(L)+STRSUB(ARRAY(1100+W) B+1 122))
+		{"<form name=loginFormJ id=form1 >"}
+	{	"<input type=hidden name=call_button>"}
+	IF(L EQ "0")
+	BEGIN
+		IF(L EQ "1")
+		BEGIN
+			"<IMG onclick=setget('0','"W"','"B"','0','"G"','"O"');  SRC=yes.png border=0>"
+		END
+		ELSE
+		BEGIN	
+			"<IMG onclick=setget('1','"W"','"B"','1','"G"','"O"');  SRC=no.png border=0>"
+		END
+	END
+	ELSE
+	BEGIN
+		{"<select name=menu1 onchange=\" setget_combo('0','"W"','"B"','1','"G"','"O"',this)\">"}
+		IF(L EQ "1")
+		BEGIN
+			"<IMG onclick=setget('0','"W"','"B"','0','"G"','"O"');  SRC=yes.png border=0>"
+		END
+		ELSE
+		BEGIN
+			"<IMG onclick=setget('1','"W"','"B"','1','"G"','"O"');  SRC=no.png border=0>"
+		END
+	END
+	{	"</form>"	}
+	END ELSE
+	BEGIN
+		IF(L EQ "0")
+			L="1"
+		ELSE
+			L="0"
+		IF(B EQ 1)
+			SETARRAY(1100+W L+STRSUB(ARRAY(1100+W) 2 122))
+		ELSE
+			SETARRAY(1100+W STRSUB(ARRAY(1100+W) 1 B-1)+L+STRSUB(ARRAY(1100+W) B+1 122))
+		{VIVOD}
+	{	IF(L EQ "1")}
+	{		"<IMG SRC=yes.png border=0>"}
+	{	ELSE}
+	{		"<IMG SRC=no.png border=0>"}
+	END
+END
+{change priority to window END}
+
+%>

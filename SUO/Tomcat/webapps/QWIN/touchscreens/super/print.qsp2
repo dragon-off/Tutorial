@@ -1,0 +1,109 @@
+<%
+P=(${printer}0)/10
+B=(${button}0)/10
+R=(${red}0)/10
+
+H=STRSTN(HOUR)
+M=STRSTN(MINUTE)
+S=STRSTN(ARRAY(2700+(DAY_IN_WEEK-1)*4))
+A=STRSTN(ARRAY(2701+(DAY_IN_WEEK-1)*4))
+E=STRSTN(ARRAY(2702+(DAY_IN_WEEK-1)*4))
+N=STRSTN(ARRAY(2703+(DAY_IN_WEEK-1)*4))
+IF((H LT S) OR ((H EQ S) AND (M LT A))) BEGIN  ARRAY(2604)"#"ARRAY(2604)"#bad"  FUNC_PRINTER_EJECT_CARD(P) END
+ELSE BEGIN
+	IF((H GT E) OR ((H EQ E) AND (M GT N))) BEGIN  ARRAY(2605)"#"ARRAY(2605)"#bad" FUNC_PRINTER_EJECT_CARD(P) END
+	ELSE BEGIN
+	C=B
+	IF(C GT 20 AND C LE 40)
+		C=B-20
+	IF(C GT 40 AND C LE 60)
+		C=B-40
+		IF(ARRAY(1000+C) EQ 0) 
+			BEGIN
+			
+			
+			IF(R GT 0 ) {!!!!!!!!!!!!Если включено отображение всп шаговой доступности и проверка еще не производилась!!!!!!!!!!!!! 2608 проверка связи с смсуо}
+				BEGIN
+
+Z=0
+IF(STRSTN(ARRAY(2130+P))*60 GT STRSTN(ARRAY(491)))
+	Z=1
+
+				 IF(Z GT 0 AND STRSTN(ARRAY(2174)) EQ 1) {Красная тактика в офисе}
+					 BEGIN
+					 IF(ARRAY(449) EQ 2)
+						BEGIN
+						FUNC_PRINTER_BUTTON(P B)
+						"GOOD#GOOD"
+						"<br>1<br>" B 
+						S=1
+						WHILE(S LE 2)
+							BEGIN
+							"||"
+							IF(STRSTN(ARRAY(2590+S)) GT 0)
+								BEGIN
+								ARRAY(2593+S) "&&" ARRAY(2596+S)
+								END
+							S=S+1
+							END
+						END
+					ELSE
+						BEGIN
+						
+						" <br>2<br>" B
+						IF((ARRAY(449) EQ 1 OR ARRAY(449) EQ 2) AND ( STRSTN(ARRAY(2608)) EQ 1 AND (STRSTN(ARRAY(2591)) GT 0 OR STRSTN(ARRAY(2592)) GT 0 OR STRSTN(ARRAY(2593)) GT 0))) 
+						BEGIN
+						S=1
+						WHILE(S LE 3)
+							BEGIN
+							M = STRSTN(B)
+
+							IF(STRSTN(M) GT 40)
+								M=B-40
+
+							IF(STRSTN(M) GT 20)
+								M=B-20
+
+							IF(STRSTN(ARRAY(2590+S)) GT 0)
+								BEGIN
+								"||"
+								ARRAY(2593+S) "&&" ARRAY(2596+S) "&&"
+								J=1
+								X=0
+								
+								ARRAY(5630+M) "&&"
+								WHILE(J LT 30)
+									BEGIN
+									ARRAY(2500+J+30*(S-1)) "|*|"
+									{IF(STRSTN(ARRAY(5630+B)) EQ STRSTN(ARRAY(2500+J+30*(S-1))))}
+										
+									J=J+1
+									END
+								
+								END
+							S=S+1
+							END
+						END
+						END
+						"<|>" ARRAY(2130+P)"||"ARRAY(2135+P)
+					 END
+				 ELSE 
+					BEGIN
+					FUNC_PRINTER_BUTTON(P B)
+					"GOOD#GOOD"
+					"<br>0"
+					
+					END
+				
+				END
+			ELSE
+				BEGIN
+				FUNC_PRINTER_BUTTON(P B)
+				"GOOD#GOOD"
+				"<br>0"
+				END
+			END
+		ELSE BEGIN "BAD3#BAD3#bad" FUNC_PRINTER_EJECT_CARD(P) END
+	END
+END
+%>

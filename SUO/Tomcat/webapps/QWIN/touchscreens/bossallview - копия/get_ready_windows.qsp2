@@ -1,0 +1,31 @@
+<%
+N = 1
+WHILE(N LE 30)
+BEGIN
+	IF(ARRAY(400+N) EQ 0)
+	BEGIN
+		J = 1
+		U = 0
+		IF(STRSUB(ARRAY(600+N) 31 31) EQ "F")
+		BEGIN
+			WHILE(J LE 20)
+			BEGIN
+				IF((STRSUB(ARRAY(1100+J) COUNTER_LOGIN_ID(N) COUNTER_LOGIN_ID(N)) NE "0") OR (COUNTER_OPEN(N) EQ 0))
+				BEGIN
+					IF(STRSTN(STRSUB(ARRAY(600+N) J J)) GT 0)
+					BEGIN
+						U = 1
+					END
+				END
+				J = J + 1
+			END
+		END
+		IF(U EQ 1)
+		BEGIN
+			COUNTER_NAME(N)
+			"%"
+		END
+	END	
+	N=N+1
+END
+%>

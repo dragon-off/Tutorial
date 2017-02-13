@@ -1,0 +1,312 @@
+#loadcache2("INTERFACE*" true)
+
+<tree version="1.0"
+           image                   = "images/multiinterfaces.gif">
+    #cdata("label" $text.getText("intf.treeHeading"))
+
+    #set( $top_node_image          = "images/multiinterfaces.gif"                  )
+    #set( $item_node_image         = "images/multiinterfaces.gif"                  )
+
+    #set( $section_main            = "INTERFACE"                                   )
+
+    #set( $top_node_grid           = "./multiinterfaces/form_multiinterfaces.vm"   )
+
+    #set( $MI2166_group_node_grid  = "./multiinterfaces/form_MI2166_group.vm"      )
+    #set( $MI2280_group_node_grid  = "./multiinterfaces/form_MI2280_group.vm"      )
+    #set( $SI2477_group_node_grid  = "./multiinterfaces/form_SI2477_group.vm"      )
+
+    #set( $item_node_grid          = "./multiinterfaces/form_multiinterface.vm"    )
+
+    #set( $MI2166_input_node_grid  = "./multiinterfaces/form_MI2166_input.vm"      )
+    #set( $MI2280_input_node_grid  = "./multiinterfaces/form_MI2280_input.vm"      )
+    #set( $output_node_grid        = "./multiinterfaces/form_MI_output.vm"         )
+
+    #set( $top_node_action         = "./multiinterfaces/action_multiinterfaces.vm" )
+    #set( $MI21xx_node_action      = "./multiinterfaces/action_MI21xx.vm"          )
+    #set( $SI2477_node_action      = "./multiinterfaces/action_SI2477.vm"          )
+    #set( $item_node_action        = "./multiinterfaces/action_multiinterface.vm"  )
+
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+    #nodestart($text.getText("intf.generalNode") $top_node_image)
+        <grid-ref>
+            #cdata("name" $top_node_grid)
+        </grid-ref>
+        <action-ref>
+            #cdata("name" $top_node_action)
+            #param("section" ${section_main})
+            #param("group" "1")
+        </action-ref>
+
+##===========================================================================
+## MI2166/MI2280
+##===========================================================================
+
+          #nodestart($text.getText("intf.typeMI2166") $top_node_image)
+                <grid-ref>
+                    <name></name>
+                </grid-ref>
+                <action-ref>
+                    <name></name>
+                </action-ref>
+
+
+                #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+                #if( $maxitems > 0 )
+                    #foreach($group in [1..$groups])
+
+                        ##is this group of type MI2166
+                        #if( 1 == $sm.getNumericSetting( "INTERFACE_SETTING_$group", "MI_TYPE"))
+                            #set($name=$text.getText("intf.groupNode"))
+                            #nodestart("$name $group" $item_node_image)
+                                  <grid-ref>
+                                    #cdata("name" $MI2166_group_node_grid)
+                                    #param("group" ${group})
+                                  </grid-ref>
+
+                                  <action-ref>
+                                    #cdata("name" $MI21xx_node_action)
+                                    #param("section" ${section_main})
+                                    #param("group" $group)
+                                  </action-ref>
+
+                                  ## List all items that contains in this groups
+                                  #if( $maxitems > 0 )
+                                      #foreach($item in [1..$maxitems])
+                                          #if($sm.isMemberOfGroup($section_main, "SETTINGS", $group, $item))
+                                              #set($name=$sm.getStringSetting($section_main, "NAME$item"))
+                                              #nodestart("$item $name" $item_node_image)
+
+                                                    <grid-ref>
+                                                        #cdata("name" $item_node_grid)
+                                                        #param("item" ${item})
+                                                        #param("group" ${group})
+                                                        #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                                                    </grid-ref>
+                                                    <action-ref>
+                                                        #cdata("name" $item_node_action)
+                                                        #param("item" ${item})
+                                                        #param("group" ${group})
+                                                        #param("section" ${section_main})
+                                                    </action-ref>
+                                              </node>
+          
+                                          #end
+                                          #set($item = $item + 1)
+                                      #end
+                                  #end
+
+                                  ## List all input pins for this interface
+                                  #set($inputs = $sm.getNumericSetting("INTERFACE_SETTING_$group", "INPUTS"))
+
+                                  #if( $inputs > 0 )
+                                     #foreach($input in [1..$inputs])
+                                        #set($name=$text.getText("intf.MI2166input"))
+                                        #nodestart("$name $input" $item_node_image)
+                                               <grid-ref>
+                                                    #cdata("name" $MI2166_input_node_grid)
+                                                    #param("item" ${input})
+                                                    #param("group" $group)
+                                               </grid-ref>
+                                               <action-ref>
+                                                    <name></name>
+                                               </action-ref>
+                                         </node>
+                                         #set($input = $input + 1)
+                                     #end
+                                  #end
+
+                                  ## List all ouput pins for this interface
+                                  #set($outputs = $sm.getNumericSetting( "INTERFACE_SETTING_$group", "OUTPUTS"))
+
+                                  #if( $outputs > 0 )
+                                      #foreach($output in [1..$outputs])
+                                          #set($name=$text.getText("intf.MIoutput"))
+                                          #nodestart("$name $output" $item_node_image)
+
+                                                <grid-ref>
+                                                    #cdata("name" $output_node_grid)
+                                                    #param("item" ${output})
+                                                    #param("group" $group)
+                                                </grid-ref>
+                                                <action-ref>
+                                                    <name></name>
+                                               </action-ref>
+                                          </node>
+                                          #set($output = $output + 1)
+                                      #end
+                                  #end
+
+                            </node>
+                        #end
+                    #end
+                #end
+          </node>
+
+##===========================================================================
+## MI2280
+##===========================================================================
+          #nodestart($text.getText("intf.typeMI2280") $top_node_image)
+                <grid-ref>
+                    <name></name>
+                </grid-ref>
+                <action-ref>
+                    <name></name>
+                </action-ref>
+                #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+                #if( $maxitems > 0 )
+                    #foreach($group in [1..$groups])
+
+                        ##is this group of type MI2166
+                        #if( 2 == $sm.getNumericSetting( "INTERFACE_SETTING_$group", "MI_TYPE"))
+                             #set($name=$text.getText("intf.groupNode"))
+                             #nodestart("$name $group" $item_node_image)
+                                   <grid-ref>
+                                        #cdata("name" $MI2280_group_node_grid)
+                                        #param("group" $group)
+                                   </grid-ref>
+                                   <action-ref>
+                                        #cdata("name" $MI21xx_node_action)
+                                        #param("section" ${section_main})
+                                        #param("group" $group)
+
+                                   </action-ref>
+
+                                   ## List all items that contains in this groups
+                                   #if( $maxitems > 0 )
+                                       #foreach($item in [1..$maxitems])
+                                           #if($sm.isMemberOfGroup($section_main, "SETTINGS", $group, $item))
+                                               #set($name=$sm.getStringSetting($section_main, "NAME$item"))
+                                               #nodestart("$item $name" $item_node_image)
+                                                     <grid-ref>
+                                                        #cdata("name" $item_node_grid)
+                                                        #param("item" ${item})
+                                                        #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                                                     </grid-ref>
+                                                     <action-ref>
+                                                        #cdata("name" $item_node_action)
+                                                        #param("item" ${item})
+                                                        #param("group" ${group})
+                                                        #param("section" ${section_main})
+                                                     </action-ref>
+                                               </node>
+                                           #end
+                                           #set($item = $item + 1)
+                                       #end
+                                   #end
+
+                                   ## List all input pins for this interface
+                                   #set($inputs = $sm.getNumericSetting("INTERFACE_SETTING_$group", "BUTTON_MAX"))
+
+                                   #if( $inputs > 0 )
+                                       #foreach($input in [1..$inputs])
+                                           #set($name=$text.getText("intf.MI2280input"))
+                                           #nodestart("$name $input" $item_node_image)
+                                                 <grid-ref>
+                                                    #cdata("name" $MI2280_input_node_grid)
+                                                    #param("item" ${input})
+                                                    #param("group" $group)
+                                                 </grid-ref>
+                                                 <action-ref>
+                                                    <name></name>
+                                                 </action-ref>
+                                           </node>
+                                           #set($input = $input + 1)
+                                       #end
+                                   #end
+
+                                   ## List all ouput pins for this interface
+                                   #set($outputs = $sm.getNumericSetting( "INTERFACE_SETTING_$group", "OUTPUTS"))
+
+                                   #if( $outputs > 0 )
+                                       #foreach($output in [1..$outputs])
+                                            #set($name=$text.getText("intf.MIoutput"))
+                                            #nodestart("$name $output" $item_node_image)
+                                                 <grid-ref>
+                                                    #cdata("name" $output_node_grid)
+                                                    #param("item" ${output})
+                                                    #param("group" $group)
+                                                 </grid-ref>
+                                                 <action-ref>
+                                                    <name></name>
+                                                 </action-ref>
+                                           </node>
+                                           #set($output = $output + 1)
+                                       #end
+                                   #end
+                             </node>
+                        #end
+                    #end
+                #end
+          </node>
+
+##===========================================================================
+## SI2477
+##===========================================================================
+          #nodestart($text.getText("intf.typeSI2477") $top_node_image)
+                <grid-ref>
+                    <name></name>
+                </grid-ref>
+                <action-ref>
+                    <name></name>
+                </action-ref>
+
+                #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+                #if( $maxitems > 0 )
+                    #foreach($group in [1..$groups])
+
+                        ##is this group of type MI2166
+                        #if( 3 == $sm.getNumericSetting( "INTERFACE_SETTING_$group", "MI_TYPE"))
+                             #set($name=$text.getText("intf.groupNode"))
+                             #nodestart("$name $group" $item_node_image)
+                                   <grid-ref>
+                                        #cdata("name" $SI2477_group_node_grid)
+                                        #param("group" $group)
+                                   </grid-ref>
+                                   <action-ref>
+                                        #cdata("name" $SI2477_node_action)
+                                        #param("section" ${section_main})
+                                        #param("group" $group)
+                                   </action-ref>
+
+                                   ## List all items that contains in this groups
+                                   #if( $maxitems > 0 )
+                                       #foreach($item in [1..$maxitems])
+                                           #if($sm.isMemberOfGroup($section_main, "SETTINGS", $group, $item))
+                                                #set($name=$sm.getStringSetting($section_main, "NAME$item"))
+                                                #nodestart("$item. $name" $item_node_image)
+                                                      <grid-ref>
+                                                            #cdata("name" $item_node_grid)
+                                                            #param("item" ${item})
+                                                            #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                                                      </grid-ref>
+                                                      <action-ref>
+                                                            #cdata("name" $item_node_action)
+                                                            #param("item" ${item})
+                                                            #param("group" ${group})
+                                                            #param("section" ${section_main})
+                                                      </action-ref>
+                                                </node>
+                                           #end
+                                           #set($item = $item + 1)
+                                       #end
+                                   #end
+                             </node>
+                        #end
+                    #end
+                #end
+          </node>
+    </node>
+
+    #perf()
+
+</tree>

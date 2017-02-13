@@ -1,0 +1,63 @@
+<%
+
+  C=0${check}
+  IF(C EQ 1)
+  BEGIN
+    S=0${schedule}
+    IF(S GT 0)
+    BEGIN
+      IF(SCHEDULE(S)) "ON" ELSE "OFF"
+    END
+    ELSE
+      "ON" 
+  END
+  
+  ELSE
+
+  BEGIN
+
+    "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01//EN' 'http://www.w3.org/TR/html4/strict.dtd'>"
+    "<html>"
+    "  <head>"
+    "    <link rel='stylesheet' type='text/css' href='css/style-main.css'>"
+    "    <script type='text/javascript' src='scripts/settings.js'></script>"
+    "    <script type='text/javascript'>"
+    "      // Flag to indicate if screensaver is activated or not\n"
+    "      // to avoid loading the custom stylesheet with background image\n"
+    "      var screenSaverActive = 1;"
+    "    </script>"
+    "    <script type='text/javascript' src='scripts/main.js'></script>"
+    "    <script type='text/javascript' src='scripts/screensaver.js'></script>"
+
+    S=0${schedule}
+    T=0${timer}
+    IF(S GT 0 AND T GT 0)
+    BEGIN
+      IF (SCHEDULE(S) EQ 1)
+      BEGIN 
+        "<meta http-equiv='refresh' content='2;url=index.qsp'>"
+      END
+      ELSE
+      BEGIN
+        "<meta http-equiv='refresh' content='" T ";url=screensaver.qsp?schedule=" S "&timer=" T "'>"
+      END
+    END
+    ELSE
+      "<meta http-equiv='refresh' content='2;url=index.qsp'>"
+
+    "  </head>"
+    "<body bgcolor='#000000'>"
+    "  <img src='images/background-transparent.png' title='' width='480' height='800' onClick='javascript:screenSaver.showSplash();'>"
+    "  <div class='mainOuter'>"
+    "    <div id='splash' class='splashOuter'>"
+    "      <div class='splashInner'>"
+    "        <div id='splashText' class='splash'> </div>"
+    "      </div>"
+    "    </div>"
+    "  </div>"
+    "</body>"
+    "</html>"
+
+  END
+  
+%>

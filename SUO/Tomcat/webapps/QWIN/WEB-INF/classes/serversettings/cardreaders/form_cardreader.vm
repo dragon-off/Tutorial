@@ -1,0 +1,21 @@
+#loadcache2("CARD_READER*" true)
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    #set( $section            = "CARD_READER"                               )
+
+    ##    SECTION    KEY          LABEL_ID       TYPE      HELP_ID      MIN   MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section   "NAME$item"  "card.name"  "text"      "card.name"  0     40    "" )
+
+</grid-form>
+
+
+
+
+
+
+
+

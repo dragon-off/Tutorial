@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" /> 
+<title>Отчёты</title>
+
+ <LINK href="dateselector.css" type=text/css rel=stylesheet>  
+
+<SCRIPT language=JavaScript src="popup_lib.js"></SCRIPT>
+
+<SCRIPT language=JavaScript src="dateselector.js"></SCRIPT>
+
+<script language="JavaScript">
+function setdate() {
+var d = new Date();
+var month = d.getMonth()+1;
+var day = d.getDate();
+
+if (day <= 9) day = "0" + day;
+if (month <= 9) month = "0" + month;
+document.forms["report"].date_from.value=day+"."+month+"."+d.getFullYear();
+document.forms["report"].date_to.value=day+"."+month+"."+d.getFullYear();
+};
+function validate_date(value)
+{
+  var arrD = value.split(".");
+  arrD[1] -= 1;
+  var d = new Date(arrD[2], arrD[1], arrD[0]);
+  if ((d.getFullYear() == arrD[2]) && (d.getMonth() == arrD[1]) && (d.getDate() == arrD[0])) {
+    return true;
+  } else    return false;
+}
+</script>
+
+<script language="Javascript" type="text/javascript">
+function getParameterByName(name)
+{
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.search);
+  if(results == null)
+    return "";
+  else
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function sendit(mpar){
+   result=true;
+
+   var mdate = new Date();
+   if (document.forms["report"].date_from.value <= '')
+//    document.forms["report"].date_from.value = mdate.getDate() + '.' + (mdate.getMonth() + 1) + '.' + mdate.getFullYear();
+    document.forms["report"].date_from.value = padZero(mdate.getDate()) + '.' + padZero(mdate.getMonth() + 1) + '.' + mdate.getFullYear();
+   
+   if (document.forms["report"].date_to.value <= '') 
+//    document.forms["report"].date_to.value = mdate.getDate() + '.' + (mdate.getMonth() + 1) + '.' + mdate.getFullYear();
+    document.forms["report"].date_to.value = padZero(mdate.getDate()) + '.' + padZero(mdate.getMonth() + 1) + '.' + mdate.getFullYear();
+
+   if (! validate_date(document.forms["report"].date_from.value)) 
+      {
+       alert("Ошибка в дате ОТ");
+       result=false; 
+   }
+   if (! validate_date(document.forms["report"].date_to.value) && result) 
+      {
+       alert("Ошибка в дате ДО");
+       result=false; 
+   }
+   var date_from = document.forms["report"].date_from.value.split('.');
+   var date_to = document.forms["report"].date_to.value.split('.');
+   if (  (new Date(date_from[2], date_from[1]-1, date_from[0]) > new Date(date_to[2], date_to[1]-1, date_to[0])  ) && result)
+      {
+       alert("Ошибка в диапазоне дат");
+       result=false; 
+   }
+
+// var inputs = document.getElementsByName("nrep");
+ var inputs = document.forms["report"].nrep;
+ var selectedIndex = -1;
+ var input_len = inputs.length;
+ for (var i = 0; i < input_len; i++) {
+     if (inputs[i].checked)
+     {
+       selectedIndex = i;
+         break; 
+     }
+ }
+ mres = 'result?report=' + inputs[selectedIndex].value + '.fr3&multipage=0';  // по номеру файла
+ //mres = 'result?report=' + inputs[selectedIndex].nextSibling.data + '.fr3&multipage=0';  //по наименованию
+ 
+ mres = mres + '&date_from=' + document.forms["report"].date_from.value + '&date_to=' + document.forms["report"].date_to.value;
+ mres = mres + '&mname_rep=' + inputs[selectedIndex].nextSibling.data;
+ mres = mres + '&muser=' + getParameterByName('muser');
+ if (mpar == 2)
+  mres = mres + '&format=XLSOle'; 
+ 
+ if (result) {
+ 	document.forms["report"].getElementsByTagName("table")[0].innerHTML ="<p>Подождите, пока сформируется отчет...</p>";
+   window.location =mres;
+   };
+  // window.open(mres);
+}
+</script>
+
+</head>
+
+<body onload=setdate();>
+
+<form action="index.html" method=GET name=report enctype="application/x-www-form-urlencoded">
+
+ <table bordercolor="#006400" cellpadding="1" cellspacing="1" border="1" align="left" style="background-color:#ccffad; color:#006400">
+
+ <tr><td  width=400 height="62" background="start_top.gif"></td></tr>
+
+   <tr> <td align="left"><font size="1"><Br></font>
+	&nbsp&nbsp<INPUT TYPE=RADIO NAME=nrep VALUE="1" >Отчет в разрезе категорий операций<Br>
+	&nbsp&nbsp<INPUT TYPE=RADIO NAME=nrep VALUE="2" >Отчет по динамике времени ожидания<Br>
+	&nbsp&nbsp<INPUT TYPE=RADIO NAME=nrep VALUE="3" >Отчет по производительности рабочих станций<Br>
+	&nbsp&nbsp<INPUT TYPE=RADIO NAME=nrep VALUE="4" >Отчет по динамике времени обслуживания<Br>
+	&nbsp&nbsp<INPUT TYPE=RADIO NAME=nrep VALUE="5" >Отчет по СОКОК<Br>
+	&nbsp&nbsp<INPUT TYPE=RADIO NAME=nrep VALUE="6"  checked >Отчет по талонам<font size="1"><Br><Br></font>
+          </td>
+    </tr>
+
+    <tr>
+          <td align="left"> 
+             <table cellpadding="4" cellspacing="1" border="0" align="center">
+               <tr>
+                <td>   Дата от   <INPUT name=date_from " size="10" style="background-color:#ccffad; color:#006400">
+                       <IMG onclick="popUpCalendar(this, report.date_from, 'dd.mm.yyyy');" height=18 hspace=3 src="date_selector.gif" width=16 border=0>
+                </td>
+                <td>
+                        Дата до   <INPUT name=date_to " size="10" style="background-color:#ccffad; color:#006400"> 
+                       <IMG onclick="popUpCalendar(this, report.date_to, 'dd.mm.yyyy');" height=18 hspace=3 src="date_selector.gif" width=16 border=0>
+                </td>
+               </tr>
+            </table>
+           </td>
+         </tr>
+         <tr> 
+          <td align="left"> 
+           <table width=400 cellpadding="4" cellspacing="1" border="0" align="center">
+             <tr>
+          <td height="35" width=220 valign=middle align=right><input type=button value=Показать onclick="sendit(1)" style="background-color:#ccffad; color:#006400"> </td> 
+          <td height="35" valign=middle align=right><input type=button value=xls onclick="sendit(2)" style="background-color:#ccffad; color:#006400"> </td> 
+          </td>
+         </tr> 
+  </table>
+         </tr> 
+
+         <tr> <td height="26" background="start_bottom_left.gif" ondblclick="window.open('error.log')"> </td> </tr>
+
+  </table>
+
+</form>
+
+</body>
+</html>

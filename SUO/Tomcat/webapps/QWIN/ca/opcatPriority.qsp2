@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<%
+"<opcatPriority>\r\n"
+C=${prior}
+I=1
+B=""
+
+A=0
+
+WHILE(STRSUB(C I I) NE "@" AND I LE 2000 AND STRSUB(C I I) NE "")
+BEGIN
+	WHILE(STRSUB(C I I) NE "," AND I LE 2000 AND STRSUB(C I I) NE "@" AND STRSUB(C I I) NE "")
+	BEGIN
+		B=B+STRSUB(C I I)
+		I=I+1
+	END	
+	J=STRSTN(B)
+	IF(J GT 0)
+	BEGIN
+		IF(ARRAY(1000+J) EQ 0)
+		BEGIN
+			"	<op cc=\"" ARRAY(5630+J )"\" uc=\"sberbank/"ARRAY(141)"\"" " df=\"0\">\r\N"
+			K=1
+			WHILE(K LE 30)
+			BEGIN
+				"		<wp cw=\""K"\" vl=\""STRSUB(ARRAY(600+J) K K)"\"/>\r\N"
+				K=K+1
+			END
+			"	</op>\r\N"
+		END
+	END
+	B=""
+	I=I+1
+END
+
+
+"</opcatPriority>\r\n"
+%>

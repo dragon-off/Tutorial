@@ -1,0 +1,73 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+
+<style>
+BODY{
+overflow: hidden;
+}
+</style>
+
+<script type="text/javascript">
+		var updating = false;
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		function rawsend(url,cb) {
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+ 
+		          cb.innerHTML=req.responseText;	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		    
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+	function gogofunc() {
+	var el=document.getElementById('infoqq');
+	rawsend('gindex_192_168_0_2.qsp',el);
+	setTimeout('gogofunc()', 3000);
+	}
+</script>
+</head>
+
+<body bgcolor="4fa340" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" onLoad="gogofunc();" cellpadding=0 cellspacing=0 background='bg.jpg' scroll=no >
+
+<table border=0 leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" height=1366 width=768>
+<tr height=180><td></td></tr>
+<tr height=1016><td valign=top><div id='infoqq' valign=top height=1016></div></td></tr>
+<tr height=170><td>
+
+</td></tr>
+</table>
+
+</body>
+</html>

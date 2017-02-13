@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding='UTF-8' ?>
+<%
+
+C=${logins}
+
+"<opcatPriority>\r\n"
+
+
+
+I=1
+B=""
+
+A=0
+
+WHILE(STRSUB(C I I) NE "@" AND I LE 2000 AND STRSUB(C I I) NE "")
+BEGIN
+	WHILE(STRSUB(C I I) NE "," AND I LE 2000 AND STRSUB(C I I) NE "@" AND STRSUB(C I I) NE "")
+	BEGIN
+		B=B+STRSUB(C I I)
+		I=I+1
+	END	
+	J=STRSTN(B)
+	
+	IF(J GT 0)
+	BEGIN
+L=J {LOGIN_ID???? STAFF_LOGIN_ID}
+		V=STRSUB(ARRAY(1121) J J) {VIP}
+		S=STRSUB(ARRAY(1122) J J) {SPECREG}
+		"	<pc uc=\""ARRAY(142)"\" vf=\""V "\" sr=\""S"\" un=\""LOGIN_NAME(J)"\" df=\"0\">\r\N"
+		K=1
+		WHILE(K LE 20)
+		BEGIN
+			IF((ARRAY(5630+K) GT 0) AND (ARRAY(1000+K) EQ 0)) BEGIN
+			"		<oc cc=\"" ARRAY(5630+K) "\" vl=\"" STRSUB(ARRAY(1100+K) J J) "\"/>\r\N" END
+			K=K+1
+		END
+		"	</pc>\r\N"
+	END
+	B=""
+	I=I+1
+END
+
+
+"</opcatPriority>\r\n"
+%>

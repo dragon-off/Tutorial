@@ -1,0 +1,213 @@
+﻿ <html>
+<head>
+
+	<script type="text/javascript">
+	if (!window.console) console = {log: function() {},info: function() {},error: function() {},warn: function() {}};
+	</script>
+	<script type="text/javascript" src="../js/Browser.js"></script>
+	<script type="text/javascript" src="/touchscreens/lib/ajax.js"></script> 
+	<script type="text/javascript" src="index.js"></script> 
+	<script type="text/javascript" src="pi_fast.js"></script> 
+	<LINK REL="StyleSheet" HREF="../style_messages.css" TYPE="text/css">
+	<title>СберБанк</title>
+	<link href="../default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">	
+	
+	<LINK rel=stylesheet type="text/css" href="../style.css">
+	<script language="Javascript" type="text/javascript">
+
+	function close_salert(el)
+{
+var elem = parent.frames[0].document.getElementById('blockres');
+elem.innerHTML=elem.innerHTML*1-1;
+if(el==2) elem.innerHTML=0;
+var messages = elem.innerHTML*1;
+if(messages<0)
+	{
+	messages=0;
+	elem.innerHTML=0;
+	}
+if(messages==0)
+	parent.frames[0].document.getElementById('block').style.display = 'none';
+parent.frames[1].document.getElementById('message_box_'+el+'_text').innerHTML="";
+if(el==1)
+	parent.frames[1].document.getElementById('message_box_3_text').innerHTML="";
+}
+	</script>
+	<!--<script type="text/javascript" src="window_button_load.qsp2"></script>-->   
+
+
+</head>
+<body link=white alink=white vlink=white scrollwidth=100 onload="hadmin();start_future()">
+<div id="DopElement" style="display:none;"></div>
+
+<form action="">
+<TABLE BORDER=0><TR><TD>
+	
+	
+<table id="doing"></table>
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0 id="doings">
+<tbody>
+<tr><td class=boxTop>Действия</td></tr>
+<tr><td class=boxMain>
+<input onclick="load_pi();future_messages();" type=button value="Рассчитать">
+<input onclick="execute_matrix();" type=button value="Применить">
+<input onclick="document.location.reload()" type=button value="Сбросить">
+
+</td></tr>
+</tbody></table>
+
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+
+
+
+<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<tbody id="MainTableBody">
+<tr><td class=boxTop rowspan=2>№</td>
+<td class=boxTop width=180 rowspan=2>Название операции</td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Кол. ожид. кл.</h3></td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Время ожид.</h3></td>
+<td class="boxTop" id="counters_head" align="center"><h3 class="box">Окна<br>(нажмите на окно, которое хотите изменить)</h3></td>
+</tr>
+
+
+</tbody>
+</table>
+</td></tr>
+<tr><td>
+<table class=borderedbox  style="width:100%" border=0 cellpadding=0 cellspacing=0 id="doing">
+<tbody>
+<tr><td class=boxTop>Сообщения</td></tr>
+<tr><td class=boxMain>
+<table cellpadding=0 cellspacing=0 width='100%' height='100%'>
+	<tbody id="message_place">
+	</tbody>
+</table>
+</td></tr>
+</tbody></table>
+
+</td></tr></table>
+
+<table></table>
+	
+<table width='100%' height='100%' id="message_box_1" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:998; background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" border=0/>
+					</td>
+					
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_1_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<div style="border-top:solid 1px #f43839;height: 38px;background-color: #fccac1;width:100%;text-align:center;">
+			<input type="button" value="OK" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" style="height:35px;width:80%;">
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%' id="message_box_2" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:997;background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(2); document.getElementById('message_box_2').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_2_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%'  style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:999;background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(3); document.getElementById('message_box_3').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

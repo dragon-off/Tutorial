@@ -1,0 +1,18 @@
+<%
+A=${matrix}
+B=${nums}
+C=(${len}0)/10
+I=0
+A
+"\n<br>"
+WHILE(I LT C)
+	BEGIN
+	Y=STRSTN(STRSUB(B I*2+1 (I+1)*2))+600
+	H=STRSUB(A I*32+1 (I+1)*32)
+	H=H+" "
+	SETARRAY(Y H)
+	I*32+1"\t"(I+1)*32"\t" Y " menyaem na " H  "\n<br>"
+	I=I+1
+	END
+FUNC_EVENT_SEND(141 1 "OPCATPRIORITY prior=\"1\" END")
+%>

@@ -1,0 +1,22 @@
+
+  #set( $max   = $sm.getNumericSetting( $section, $key ) + 1)
+  #set( $grp   = 0 )
+  #set( $limit = 0 )
+  #set( $text  = $text.getText("common.defaultName")   )
+
+
+  #if( $max <= $limit.parseInt($limit_max))
+
+     $sm.setNumericSetting($section, $key, ${max})
+     $sm.setStringSetting($section, "NAME$max", "${text}${max}")
+
+     #if( $grp.parseInt($group) > 0 )
+
+        $sm.addMemberToGroup($section, "SETTINGS", $grp.parseInt($group), ${max}, true)     ## add the button to a button settings group
+        $sm.addMemberToGroup($section, "GROUPS",   1,                     ${max}, true)     ## add the button to a group settings
+
+     #end
+
+  #end
+
+

@@ -1,0 +1,29 @@
+#loadcache2("DATABASE" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("database.SettingsHeading"))
+
+    #set( $section            = "DATABASE"                                      )
+
+    ##    SECTION  KEY                   LABEL_ID                   TYPE        HELP_ID                 MIN MAX REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "ODBC_DSN"            "database.odbcDsn"         "text"      "database.odbcDsn"        0 100   "" )
+    #qsys($section "ODBC_USER"           "database.odbcUser"        "text"      "database.odbcUser"       0 40    "" )
+    #qsys($section "ODBC_PSW"            "database.odbcPsw"         "text"      "database.odbcPsw"        0 40    "" )
+    #qsys($section "ODBC_TIME_OUT"       "database.odbcTimeout"     "number"    "database.odbcTimeout"    0 3600  "" )
+    #qsys($section "ODBC_QUERY_TIMEOUT"  "database.odbcQryTimeout"  "number"    "database.odbcQryTimeout" 0 5000  "" )
+    #qsys($section "ODBC_MAX_ROWS"       "database.odbcMaxRows"     "number"    "database.odbcMaxRows"    0 5000  "" )
+
+    #qsys($section "COMPACT_TIME"        "database.compactTime"     "number"    "database.compactTime"    0 43200 "" )
+    #qsys($section "PICT_KEEP_DAYS"      "database.pictKeepDays"    "number"    "database.pictKeepDays"   0 1000  "" )
+
+    #separator("database.backup")
+    #qsys($section "BACKUP_TIME"         "database.backupTime"      "number"    "database.backupTime"     0 43200 "" )
+    #qsys($section "BACKUP_USER"         "database.backupUser"      "text"      "database.backupUser"     0 40    "" )
+    #qsys($section "BACKUP_PSW"          "database.backupPsw"       "text"      "database.backupPsw"      0 40    "" )
+    #qsys($section "BACKUP_DSN"          "database.backupDSN"       "text"      "database.backupDSN"      0 100   "" )
+    #qsys($section "BACKUP_KEEP_DAYS"    "database.backupKeepDays"  "number"    "database.backupKeepDays" 0 1000  "" )
+
+</grid-form>

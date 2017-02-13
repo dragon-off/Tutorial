@@ -1,0 +1,6 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.ResetWriter">
+    #cdata("label" $text.getText("utilities.resetSystem"))
+    #separator("reset.click")
+</grid-form>
+

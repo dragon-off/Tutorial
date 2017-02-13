@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Сбербанк России</title>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1251">
+
+	<script type="text/javascript" src="/js/qevent.js">
+	</script>
+
+	<%
+	
+	%>
+
+	<style>
+		.service {
+			font-size: 32pt;
+			color: #339933;
+		}
+		.button {
+			font-size: 26pt;
+			color: #FFFFFF;
+		}
+		.atakje {
+			font-size: 15pt;
+			color: #FFFFFF;
+		}
+		body {
+			overflow: hidden;
+			
+		}
+	</style>
+
+	<script>
+		
+		
+
+		var month = Array("января","февраля","марта","апреля","мая","июня",
+				"июля","августа","сентября","октября","ноября","декабря");
+
+		<% 
+		"hour="HOUR";"
+		"min="MINUTE";"
+		"sec="SECOND";"
+		"y="YEAR";"
+		"mo="MONTH-1";"
+		"d="DAY";"
+		%>
+
+		function UpdateTime() {
+			var CurrentTime = new Date();
+			var h=CurrentTime.getHours();
+			var m=CurrentTime.getMinutes();
+			var s=CurrentTime.getSeconds();
+			var InputTime = document.getElementById('MyTime');
+			var InputDate = document.getElementById('MyDate');
+
+			if(s > 59) {s=0; m=m+1;}
+			if(m > 59) {m=0; h=h+1;}
+			if(h > 23) {h=0; d=d+1;}
+			if(d > 31) {d=1; mo=mo+1;}
+			if(h < 10) h = "0" + h;
+			if(m < 10) m = "0" + m;
+			if(s < 10) s = "0" + s;
+			outString = h + ":" + m + ":" + s;
+			InputTime.innerHTML = outString;
+			outString = d + " ";
+			outString += month[mo] + " ";
+			outString += y + " г.";
+			InputDate.innerHTML = outString;
+			sec=sec+1;
+			if(sec > 59) sec = 0;
+			setTimeout("UpdateTime()",1000);
+		}
+	</script>
+
+</head>
+
+
+<body onLoad="UpdateTime();"  rightmargin="0" leftmargin="0" bottommargin="0" topmargin="0">
+12345
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>12334
+					<td height="19" colspan="2" align="LEFT" valign="middle">
+						<font color="#339933" size=6>12345
+							<span id="MyDate"></span>
+							&nbsp;&nbsp;&nbsp;
+							<b>
+								<span id="MyTime"></span>
+								&nbsp;
+							</b>
+						</font>
+					</td>
+				</tr>
+</TABLE>
+</BODY>
+
+</HTML>

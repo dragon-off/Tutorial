@@ -1,0 +1,89 @@
+#loadcache2("PAGER" true)
+
+#loadcache2("PAGER_SETTING_1*" false)
+#loadcache2("PAGER_SETTING_2*" false)
+#loadcache2("PAGER_SETTING_3*" false)
+#loadcache2("PAGER_SETTING_4*" false)
+#loadcache2("PAGER_SETTING_5*" false)
+#loadcache2("PAGER_SETTING_6*" false)
+#loadcache2("PAGER_SETTING_7*" false)
+#loadcache2("PAGER_SETTING_8*" false)
+#loadcache2("PAGER_SETTING_9*" false)
+
+
+<tree version="1.0" image = "images/pagers.gif">
+   #cdata("label" $text.getText("pager.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("pager.generalNode")         )
+    #set( $script_node_label       = $text.getText("pager.scriptNode")          )
+
+    #set( $top_node_image          = "images/pagers.gif"                        )
+    #set( $item_node_image         = "images/pager.gif"                         )
+    #set( $script_node_image       = "images/pager_script.gif"                  )
+
+    #set( $top_node_grid           = "./pagers/form_pagers.vm"                  )
+    #set( $item_node_grid          = "./pagers/form_pager.vm"                   )
+    #set( $script_node_grid        = "./pagers/form_pager_script.vm"            )
+
+    #set( $section_main            = "PAGER"                                    )
+
+    #set( $top_node_action         = "./pagers/action_pagers.vm"                )
+
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set( $maxitems  = $sm.getNumericSetting( $section_main, "MAX"))
+    #set( $maxscript = $sm.getNumericSetting( $section_main, "PRG_MAX"))
+
+    <node image = "$top_node_image">
+            #cdata("label" $top_node_label)
+
+            <grid-ref>
+                #cdata("name" $top_node_grid)
+            </grid-ref>
+            <action-ref>
+                #cdata("name" $top_node_action)
+                #param("section" ${section_main})
+            </action-ref>
+
+
+            #if( $maxitems > 0 )
+                ## List all items
+                #foreach($item in [1..$maxitems])
+                    <node image    = "$item_node_image">
+                        #set($itemName = $sm.getStringSetting($section_main, "NAME$item"))
+                        #cdata("label" "$item. $itemName")
+                        <grid-ref>
+                            #cdata("name" $item_node_grid)
+                            #param("item" $item);
+                            #param("name" $itemName);
+                        </grid-ref>
+                    </node>
+                    #set($item = $item + 1)
+                #end
+            #end
+
+            #if( $maxscript > 0 )
+                ## List all items
+                #foreach($item in [1..$maxscript])
+                    <node image= "$script_node_image">
+                          #cdata("label" "$item. $script_node_label")
+                          <grid-ref>
+                            #cdata("name" $script_node_grid)
+                            #param("item" $item)
+                          </grid-ref>
+                    </node>
+                    #set($item = $item + 1)
+                #end
+            #end
+    </node>
+
+    #perf()
+
+</tree>

@@ -1,0 +1,22 @@
+#loadcache2("DATABASE" true)
+
+<tree version="1.0"
+           image="images/activities.gif">
+    #cdata("label" $text.getText("database.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("database.generalNodeLabel") )
+    #set( $top_node_image          = "images/database.gif"                      )
+    #set( $top_node_grid           = "./database/form_database.vm"              )
+
+    #set( $section_main            = "DATABASE"                                 )
+
+##==============================================================================
+    #nodestart($top_node_label $top_node_image)
+        <grid-ref>
+            #cdata("name" $top_node_grid)
+            #param("item" "1")
+            #param("nucm" "100")
+        </grid-ref>
+    </node>
+
+</tree>

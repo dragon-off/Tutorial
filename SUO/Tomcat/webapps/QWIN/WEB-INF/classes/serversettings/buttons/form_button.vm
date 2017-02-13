@@ -1,0 +1,72 @@
+#loadcache2("BUTTON" true)
+#loadcache2("GROUP" false)
+
+<grid-form version="2.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    #set( $section                = "BUTTON"                                       )
+
+    ##     SECTION  KEY           LABEL_ID       TYPE      HELP_ID        MIN   MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section  "NAME$item"   "button.name"  "text"    "button.name"  0     40   "" )
+
+    <field type  = "list"
+         helpid = "button.tickSelection">
+        #cdata("name" "${section}_TICKET_TEXTS")
+        #cdata("label" $text.getText("button.tickSelection"))
+        <params>
+            <param>
+                <name>multiple</name>
+                <value>false</value>
+            </param>
+            <param>
+                <name>size</name>
+                <value>1</value>
+            </param>
+            <param>
+                <name>ns</name>
+                <value><![CDATA[${section}]]></value>
+            </param>
+            <param>
+                <name>key</name>
+                <value>TICKET_TEXTS</value>
+            </param>
+            <param>
+                <name>crazy-list</name>
+                <value>true</value>
+            </param>
+            <param>
+                <name>item</name>
+                <value><![CDATA[$item]]></value>
+            </param>
+
+        </params>
+
+        #set( $list = $sm.getStringSettingAsList("TEXT", "TEXT_NUMBERS", "," ))
+        #set( $item_num = 0 )
+        #set( $tick_num = 0 )
+
+        #foreach($tick in $list)
+            #if($sm.isMemberOfGroup("BUTTON", "TICKET_TEXTS", $tick_num.parseInt($tick) , $item_num.parseInt($item)))
+                <init-value><![CDATA[$tick]]></init-value>
+            #end
+        #end
+
+        <accepted-values>
+            #foreach($tick in $list)
+                #set($name = $sm.getStringSetting("TEXT", "NAME$tick"))
+                #accepteditem($tick "$tick. $name")
+
+            #end
+        </accepted-values>
+
+    </field>
+
+
+    ##                SECTION   KEY         SECTION_LIST   LABEL             ITEM    INCLUDE_NONE HELP_ID
+    ##-------------------------------------------------------------------------------------------------------
+
+    #qsyssettingslist($section  "GROUPS"    "GROUP"        "button.category" $item   0            "button.category"     )
+
+</grid-form>

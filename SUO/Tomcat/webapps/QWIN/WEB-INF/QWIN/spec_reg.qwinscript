@@ -1,0 +1,10 @@
+"msg_top_sr^"
+J=1
+WHILE (J LE 20)
+BEGIN
+	IF((ARRAY(300+J) EQ 0) AND (STRSUB(ARRAY(1100+J) COUNTER_LOGIN_ID(W) COUNTER_LOGIN_ID(W)) NE "0") AND (STRSUB(ARRAY(600+W) J J) NE "0"))
+	BEGIN
+		"<option value="J">"ARRAY(2000+J) "</option>"
+	END
+	J=J+1
+END

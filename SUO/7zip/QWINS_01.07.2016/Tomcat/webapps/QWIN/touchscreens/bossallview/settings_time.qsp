@@ -1,0 +1,152 @@
+ 
+<html>
+    <head>
+        <title>Настройки времени</title>
+        <LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">
+				<script type="text/javascript" src="/lib/ajax.js"></script>  		
+		<script language='javascript'>
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+
+} 		
+		</script>
+    </head>
+<form method="GET" name="workstationInfo">
+<input type="hidden" name="saveData" value="true">
+   <div id="DopElement"></div>
+ <%
+ A=(${change}0)/10
+ IF(A EQ 1)
+ BEGIN
+	A=(${recall_time}0)/10
+ 	IF(A GT 0)
+ 		SETARRAY(500 A)
+ 	B=(${second_time}0)/10
+ 	IF(B GT 0)
+ 		SETARRAY(501 B)
+ 	C=(${third_time}0)/20
+ 	IF(C GT 0)
+ 		SETARRAY(502 C)
+ 	N=(${openh_time}0)/10
+ 	IF(N GT 0)
+ 		SETARRAY(503 N)
+ 	M=(${openm_time}0)/10
+ 
+ 		SETARRAY(504 M)
+ 	O=(${closeh_time}0)/10
+ 	IF(O GT 0)
+ 		SETARRAY(505 O)
+ 	K=(${closem_time}0)/10
+
+ 		SETARRAY(506 K)
+ 	L=(${porog_time}0)/10
+ 	IF(L GT 0) BEGIN
+ 		W=(L*60)/2
+		SETARRAY(791 W)
+ 	END
+ 	J=(${otlog_time}0)/20
+ 	IF(J GT 0)
+ 		SETARRAY(507 J)
+ 	P=(${pereriv_time}0)/10
+ 	IF(P GT 0)
+ 		SETARRAY(508 P*30)
+ 
+ 	Z=(${chered}0)/10
+ 	IF(Z GT 0)
+ 		SETARRAY(509 Z)
+ 	ELSE
+ 		SETARRAY(509 1)
+END
+ 
+ %>
+<table class=tableMain cellpadding=5 cellspacing=0>
+	<tr>
+		<td class=headerBar align=left colspan=2>
+			Настройки времени
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			<table class=tableSection cellpadding=0 cellspacing=0 align=center>
+				<tr>
+					<td nowrap class=tdHeaderSection>Время </td>
+					<td nowrap class=tdHeaderSection colspan=2>Значение</td>
+				</tr>
+ 
+				<input type="HIDDEN" name="change" value="1" size="7">
+								<tr>
+					<td nowrap class=tdDataRow>Доступность кнопки "Повторный вызов"</td>
+					<td nowrap class=tdDataRowC><input type="input" name="recall_time" value="<% ARRAY(500) %>" size="7"></td>
+					<td nowrap class=tdDataRowL>секунд</td>
+				</tr>			
+				<tr>
+					<td nowrap class=tdDataRow>Время сброса клиента</td>
+					<td nowrap class=tdDataRowC><input type="input" name="second_time" value="<% ARRAY(501) %>" size="7"></td>
+					<td nowrap class=tdDataRowL>секунд</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Значение времени, спустя которое, происходит вызов сброшенных клиентов</td>
+					<td nowrap class=tdDataRowC><input type="input" name="third_time" value="<% ARRAY(502)*2 %>" size="7"></td>
+					<td nowrap class=tdDataRowL>секунд</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Значение времени, спустя которое, происходит вызов отложенных клиентов</td>
+					<td nowrap class=tdDataRowC><input type="input" name="otlog_time" value="<% ARRAY(507)*2 %>" size="7"></td>
+					<td nowrap class=tdDataRowL>секунд</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Максимальное время перерыва</td>
+					<td nowrap class=tdDataRowC><input type="input" name="pereriv_time" value="<% ARRAY(508)/30 %>" size="7"></td>
+					<td nowrap class=tdDataRowL>минут</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Пороговый лимит времени ожидания</td>
+					<td nowrap class=tdDataRowC><input type="input" name="porog_time" value="<% (ARRAY(791)*2)/60 %>" size="7"></td>
+					<td nowrap class=tdDataRowL>минут</td>
+				</tr>
+				<tr><td colspan=3><hr></td></tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" name="openh_time" value="<% ARRAY(503) %>" size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" name="openm_time" value="<% ARRAY(504) %>" size="2">мин.</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время окончания работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" name="closeh_time" value="<% ARRAY(505) %>" size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" name="closem_time" value="<% ARRAY(506) %>" size="2">мин.</td>
+				</tr>
+				<tr><td colspan=3><hr></td></tr>
+				<tr>
+					<td nowrap class=tdDataRow>Настройка чередования</td>
+					<td nowrap class=tdDataRowC><input type="input" name="chered" value="<% ARRAY(509)  %>" size="7"></td>
+					<td nowrap class=tdDataRowL>человек</td>
+				</tr>
+					
+						
+				<tr class=trSubmitRow><td class=tdSubmitRow colspan=3><input onClick="javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=19&Comment=0');alert('Изменения были сохранены');"onmouseover="javascript:this.className='submitOver';" onmouseout="javascript:this.className='submitOut';" type=submit value=Сохранить></td></tr>
+			</table>
+		</td>
+	</tr>
+		<tr>
+		<td class=tdCopyright>
+			Ритейл АСП (+7(495)953-05-08, +7(495)951-68-09)
+		</td>
+		<td class=tdVersion>
+			Версия 2.0
+		</td>
+	</tr>
+</table>
+ 
+</form>
+</html>

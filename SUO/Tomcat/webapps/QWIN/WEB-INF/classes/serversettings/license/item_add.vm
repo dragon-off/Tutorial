@@ -1,0 +1,11 @@
+
+  #set( $old_string  = "$sm.getStringSetting($section, $key )")
+
+  #if( $old_string == "" )
+    #set( $new_string  = "$default" )
+  #else
+    #set( $new_string  = "$old_string,$default" )
+  #end
+
+  $sm.setStringSetting($section, $key, $new_string )
+

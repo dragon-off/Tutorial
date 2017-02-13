@@ -1,0 +1,15 @@
+#loadcache2("DISPLAY*" true)
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    ##    SECTION  KEY                 LABEL_ID                    TYPE          HELP_ID                    MIN MAX   REGEXP
+    ##----------------------------------------------------------------------------------------------------------------------
+
+    #qsys("DISPLAY" "NAME${item}"      "dispmain.name"             "text"        "dispmain.name"             0  40    "" )
+
+</grid-form>
+
+

@@ -1,0 +1,49 @@
+#loadcache2("CARD" true)
+#loadcache2("CARD_SETTING*" false)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+
+    #set( $main_section = "CARD")
+    #set( $item_section = "CARD_SETTING_$item")
+
+    ##    SECTION    KEY            LABEL_ID                     TYPE        HELP_ID                      MIN   MAX  REGEXP
+    ##---------------------------------------------------------------------------------------------------------------------
+
+    #qsys($main_section   "NAME$item"    "cardvalidItem.name"         "text"      "cardvalidItem.name"         0     40   ""  )
+    #qsys($item_section   "START"        "cardvalidItem.start"        "number"    "cardvalidItem.start"        0     255  ""  )
+    #qsys($item_section   "STOPP"        "cardvalidItem.stopp"        "number"    "cardvalidItem.stopp"        0     255  ""  )
+    #qsys($item_section   "VALID"        "cardvalidItem.validString"  "text"      "cardvalidItem.validString"  0     255  ""  )
+
+    <field type  = "list"
+         helpid = "cardvalidItem.track">
+        #cdata("name" "${section}_VERIFY_TRACK")
+        #cdata("label" $text.getText("cardvalidItem.track"))
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" $item_section)
+            #param("key" "VERIFY_TRACK")
+        </params>
+        #cdata("init-value" $sm.getStringSetting($item_section, "VERIFY_TRACK"))
+        <accepted-values>
+            #accepteditem("1" $text.getText("cardvalidItem.track1"))
+            #accepteditem("2" $text.getText("cardvalidItem.track2"))
+            #accepteditem("3" $text.getText("cardvalidItem.track3"))
+        </accepted-values>
+    </field>
+
+    #qsysunitlist ($item_section   "BUTTON"                "BUTTON"    "cardvalidItem.button"    0      "cardvalidItem.button")
+
+    #separator("cardvalidItem.cardDataProg")
+    #qsys($item_section   "STRIP_PRG1"   "cardvalidItem.stripProg1"   "script"    "cardvalidItem.stripProg1"   0     0    ""  )
+    #qsys($item_section   "STRIP_PRG2"   "cardvalidItem.stripProg2"   "script"    "cardvalidItem.stripProg2"   0     0    ""  )
+    #qsys($item_section   "STRIP_PRG3"   "cardvalidItem.stripProg3"   "script"    "cardvalidItem.stripProg3"   0     0    ""  )
+
+    #qsys($item_section   "USE_CUSTINFO"   "cardvalidItem.useCustInfo" "checkbox" "cardvalidItem.useCustInfo"  0     1    ""   )
+    #qsys($item_section   "VALID_CUSTINFO" "cardvalidItem.validCust"   "checkbox" "cardvalidItem.validCust"    0     1    ""   )
+</grid-form>
+
+

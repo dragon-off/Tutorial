@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%
+W=(${workstation}0)/10
+IF(W EQ 0)
+	W=1
+
+%>
+
+
+<SCRIPT LANGUAGE="javascript"> 
+function startTimeout()
+{
+setTimeout('reloadFunc()',3 * 1000 )
+}
+function reloadFunc()
+{
+ <%
+   IF(Q GT 0 AND Q LT 50)
+ 	BEGIN
+		 "location.href='?workstation="W"&matter="Q"&event="A"';"
+	END
+	ELSE
+	BEGIN
+		"location.href='?workstation="W"&event="A"';"
+	END
+	%>
+}
+function openPage(p) 
+{
+    parent.contents.location.href=p;
+}
+</SCRIPT>
+<script type="text/JavaScript">
+<!--
+function insert_last(targ,selObj,restore){ //v3.0
+  <% "eval(targ+\".location='?insert_last=\"+selObj.options[selObj.selectedIndex].value+\"&workstation="W"'\");"
+  %>
+  if (restore) selObj.selectedIndex=0;
+}
+function insert_first(targ,selObj,restore){ //v3.0
+  <% "eval(targ+\".location='?insert_first=\"+selObj.options[selObj.selectedIndex].value+\"&workstation="W"'\");"
+  %>
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+function show_div(name)
+{
+
+    name.style.display='block';
+
+}
+
+
+function alert1()
+ {
+  if(insert_msg.style.display=='none')
+   {
+    insert_msg.style.display='block';
+    setTimeout('close()', 5000);
+   }
+  else 
+   {
+   insert_msg.style.display='none';
+   }
+ }
+function alert2()
+ {
+  if(next.style.display=='none')
+   {
+    next.style.display='block';
+   
+   }
+  else 
+   {
+   next.style.display='none';
+   }
+ }
+
+function close()
+ {
+  insert_msg.style.display='none';
+  next.style.display='none';
+ }
+
+</script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Веб Пульт для того кто всегда рядом</title>
+<style>
+
+
+BODY { 
+}
+table_razdel {
+background:#77B618;
+background:#33CC66;
+}
+table.table_button {
+background-color:#CCCCCC;
+border-right-color:#00FF33;
+text-align:center;
+border-bottom-color:#006633;
+}
+table.table_button_select {
+background-image: url('img/b1.gif');
+text-align:center;
+}
+table.table_button_select2 {
+background-image: url('img/b2.gif');
+text-align:center;
+}
+table.table_button_select3 {
+background-image: url('img/b3.gif');
+text-align:center;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Фоновый рисунок</title>
+		<style type="text/css">
+			.fon {
+				width: 100%;
+				border: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: -1;
+			}
+		</style>
+		
+			
+		
+</head>
+
+<body onLoad="startTimeout()">
+
+
+<table border=0 cellspacing=1 cellpadding=0 style="border:medium; border-bottom:medium; border-left:none; border-right:none; border-top:medium; text-align:left;" width=100%>
+	<tr>
+	<td>
+	Время обсл. клиента</td><td> <%  PRINT_CLOCK_SEC(COUNTER_TRANSACTION_TIME_NOW(W)) %> </td>
+	</tr><tr>
+	<td>Пользователь:</font></td><td>
+	<%
+	IF(COUNTER_LOGIN_ID(W) GT 0)
+		LOGIN_NAME(COUNTER_LOGIN_ID(W))
+	%>	
+	</td>
+<tr>
+<td>Оценка:</td><td>
+<% 
+IF(ARRAY(100+W) EQ 1)
+	MATTER_NAME(ARRAY(200+W))
+ELSE
+"Нет"
+
+%>
+</td>
+
+</tr>
+
+	</tr><tr>
+	<%
+	IF(COUNTER_CUSTOMER_PRESENT(W) EQ 1)
+		BEGIN
+		
+	"<td>Операция: </td><td>"
+		 BUTTON_NAME(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON)) "</td>"
+		 IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) NE COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON))
+		 BEGIN
+	"</tr><tr><td>Талон по операции: </td><td>"
+		 BUTTON_NAME(COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON)) "</td>"
+		END
+	END
+	%>	
+	</tr><tr><td>Кол. обсл. клиентов: </td><td>
+		<% COUNTER_SERVED_TODAY(W) %>
+	
+	
+	</td></tr></table>
+
+
+</body></html>

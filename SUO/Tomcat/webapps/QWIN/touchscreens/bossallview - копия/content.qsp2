@@ -1,0 +1,684 @@
+ <html>
+    <head>
+        <title>Монитор</title>
+        <LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">		
+    </head>
+    <body onLoad="startTimeout()">
+	<!-- ver. 2.2-->
+<script type="text/javascript" src="/lib/ajax.js"></script>  
+<SCRIPT LANGUAGE="javascript"> 
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+
+} 
+function startTimeout()
+{
+    setTimeout('reloadFunc()',50 * 1000 )
+}
+function reloadFunc()
+{
+    location.reload()
+}
+function openPage(p) 
+{
+    parent.contents.location.href=p;
+}
+function nextlevel()
+{
+el = document.getElementById('lvlchk1');
+i=1;
+if(el.checked==true)
+i=2;
+else i=1;
+
+location.replace('content.qsp2?level='+i+'&wlvl=3');
+
+}
+function nextlevell()
+{
+el = document.getElementById('lvlchk2');
+i=1;
+if(el.checked==true)
+i=2;
+else i=1;
+
+location.replace('content.qsp2?levell='+i+'&wlvll=3');
+
+}
+</SCRIPT>
+ 
+ 
+<form method="GET" name="changeList">
+<input type="hidden" name="useCategory" value="true">
+<input type="hidden" name="useWorkstation" value="true">
+ 
+<!-- Place this at the top
+ 
+ 
+ 
+-->
+ 
+<%
+
+B=(${button}0)/10
+C=(${change}0)/10
+D=(${wlvl}0)/10
+
+J=(${level}0)/10
+IF((D EQ 3) AND (J GT 0)) BEGIN
+  SETARRAY(521 J-1) 
+END
+E=(${wlvll}0)/10
+Z=(${levell}0)/10
+IF((E EQ 3) AND (Z GT 0)) BEGIN
+  SETARRAY(522 Z-1) 
+END
+
+
+
+A=10
+X=0 {GREEN CLIENT}
+Y=0 {YELLOW CLIENT}
+Z=0 {RED CLIENT}
+M=0 {MAX wt}
+N=1
+WHILE(N LE A)
+BEGIN
+J=0
+IF(ARRAY(9900+N) EQ 0) BEGIN
+	WHILE(J LE (GROUP_QUEUE(N)-1))
+	BEGIN
+	
+	T=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(N J ITEM_START)
+	IF(T LE ARRAY(490))
+		X=X+1
+	ELSE IF(T LE ARRAY(491))
+		Y=Y+1
+	ELSE
+		Z=Z+1
+	J=J+1
+	
+	END
+END
+N=N+1
+END
+
+ S=X+Y+Z {VSEGO OGIDAET}
+ 		"</TD><TD valign=bottom>"
+		E="000000000000000000000000000000 "
+				
+		
+		
+		"<table cellpadding="0" cellspacing="0" border=0 width=66% ><tr><td><b>Всего в очереди: " 
+					I=1 
+					J=0
+					WHILE(I LE 20) BEGIN 
+					J=J+BUTTON_QUEUE(I)
+					I=I+1 
+					END
+					J"</b></td><td align=center>Тактика обслуживания</td></tr><tr><td>"
+		"<table cellpadding="0" cellspacing="0" border=0><tr height=30><td bgcolor=red width="(Z*200)/S"><center><b>"IF(Z GT 0) Z"</b></center></td><td bgcolor=yellow width="(Y*200)/S"><center><b>"IF(Y GT 0) Y"</b></center></td><td bgcolor=green width="(X*200)/S"><center><b>"IF(X GT 0) X"</b></center></td></tr></table>"
+ "</td><td align=center width=100px>"
+ IF((Z EQ 0) AND (Y EQ 0)) 
+ "<img border=0 src='big_g.jpg'>"
+ IF((Z EQ 0) AND (Y GT 0))
+ "<img border=0 src='big_y.jpg'>"
+ IF(Z GT 0)
+ "<img border=0 src='big_r.jpg'>"
+ 
+ 
+ "</td></tr></table>"
+		
+		{"<table><tr height=20><td>Кол. клиентов с вр. ожид. >"ARRAY(492)/30" мин: <b>"Z" ("(Z*100)/S"%)</b></td><td bgcolor=red width="10"></td></tr>"
+		"<tr height=20><td>Кол. клиентов с вр. ожид. <"ARRAY(491)/30" мин: <b>"Y" ("(Y*100)/S"%)</b></td><td bgcolor=yellow width="10"></td></tr>"
+		"<tr height=20><td>Кол. клиентов с вр. ожид. <"ARRAY(490)/30" мин: <b> ("(X*100)/S"%)</b></td><td bgcolor=green width="10"></td></tr></table><br>"
+ "</td></tr></table>"}
+ 
+ %>
+ <div id="DopElement"></div>
+<table class=tableMain cellpadding=5 cellspacing=0 width=10>
+	<tr>
+		<td class=headerBar align=left>
+			Информация по категориям
+		</td>
+		<td class=headerBar>
+			Клиенты
+		</td>
+	</tr>
+ 
+	<tr>
+		<td valign="top">
+			<table class=tableSection cellpadding=0 cellspacing=0 >
+				<tr><td nowrap colspan=9 class=tdHeaderSection><%  "<input onchange=\"DoScript('lib/1.jsp?TypeId=2&ComIndex=15');nextlevel();\" id=lvlchk1 type=checkbox value=1" IF(ARRAY(521) GT 0)BEGIN " checked" END ">\n"%> <FONT COLOR=BLACK><B>Повышение уровня интенсивности</FONT></td></tr>
+				<tr><td nowrap colspan=9 class=tdHeaderSection><%  "<input onchange=\"DoScript('lib/1.jsp?TypeId=2&ComIndex=15');nextlevell();\" id=lvlchk2 type=checkbox value=1" IF(ARRAY(522) GT 0)BEGIN " checked" END ">\n"%> <FONT COLOR=BLACK><B>Отмена чередования</FONT></td></tr>
+				
+				<tr>
+					<td nowrap class=tdHeaderSection>Операция</td>
+					<td nowrap class=tdHeaderSection>Вр. ожид.</td>
+					<td nowrap class=tdHeaderSection>Кол-во<br> ожид.</td>
+					<td nowrap class=tdHeaderSection>Обслуж.<br> сегодня</td>
+					<td nowrap class=tdHeaderSection>Среднее<br> вр. обсл.</td>
+					<td nowrap class=tdHeaderSection>Макс. прогнозное<br> время ожидания</td>
+					<td nowrap class=tdHeaderSection>Выдача<br> талонов</td>
+					<td nowrap class=tdHeaderSection>Окна</td>
+					<td nowrap class=tdHeaderSection>Просмотр</td>
+					
+				</tr>
+				
+				<%
+				O=(${showtickets}0)/10
+A=10 {колличество операций}
+I=0 {summ ogid kl}
+J=0 {summ obsl kl}
+M=0 {MAX wt}
+N=1
+
+WHILE(N LE A)
+BEGIN
+IF(ARRAY(300+N) EQ 0)
+	IF(GROUP_RWT(N) GT M)
+		M=GROUP_RWT(N)
+N=N+1
+END
+N=1
+
+WHILE (N LE A)
+BEGIN
+IF(ARRAY(300+N) EQ 0)
+BEGIN
+	IF(N EQ ((N/2)*2)) BEGIN
+		"<tr id='strok"N"' class=trDataRow1>" END
+	ELSE BEGIN
+		"<tr id='strok"N"' class=trDataRow0>" END
+	"<td nowrap class=tdDataRow>"
+	IF(N LE 30)
+	GROUP_LETTER(N) " " GROUP_NAME(N) "<br>"
+	
+	J=0
+	X=0
+	Y=0
+	Z=0
+	WHILE(J LE (GROUP_QUEUE(N)-1))
+	BEGIN
+		T=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(N J ITEM_START)
+		IF(T LE ARRAY(490))
+			X=X+1
+		ELSE IF(T LE ARRAY(491))
+			Y=Y+1
+		ELSE
+			Z=Z+1
+		J=J+1
+	END
+	S=Z+Y+X
+	"<table border=0 cellspacing=0 cellpadding=0><tr>"
+			"<td height=7 width="(X*220)/S" bgcolor=green></td>"
+			"<td height=7 width="(Y*220)/S" bgcolor=yellow></td>"
+			"<td height=7 width="(Z*220)/S" bgcolor=red></td>"
+		
+		
+		"</tr></table>"
+	"</td><td nowrap class=tdDataRowC>" 
+PRINT_CLOCK_SEC(GROUP_RWT(N))
+	"</td><td nowrap class=tdDataRowC>"
+ GROUP_QUEUE(N)
+ I=GROUP_QUEUE(N)+I
+	"</td><td nowrap class=tdDataRowC>" 
+ 
+GROUP_SERVED_TODAY(N)
+	"</td>"
+	"<td nowrap class=tdDataRowC>"PRINT_CLOCK_SEC(GROUP_TOTAL_SERVING_TIME(N 1)/GROUP_TOTAL_SERVING_TIME_COUNT(N 1))"</td>" {Среднее время обслуживания}
+	"<td nowrap class=tdDataRowC>"
+	{ЭТО МАКСИМАЛЬНОЕ ПРОГНОЗНОЕ ВРЕМЯ ОЖИДАНИЯ!!!!}
+	Z=BUTTON_ESTW(N)
+	IF(Z LE 150) PRINT_CLOCK_SEC(150) ELSE PRINT_CLOCK_SEC(Z)
+	"</td>"
+	{"<td nowrap class=tdDataRowC>00:00:00</td>" а ЭТО ерунда какая-то >_< 	}
+	"<td>" 
+	IF(ARRAY(1000+N) EQ 0)
+	BEGIN
+		"<center><img border=0 src=yes.png></center>"
+	END ELSE
+	BEGIN
+		"<center><img border=0 src=no.png></center>"
+	END
+	
+	"</td><td>"
+	
+B=N {OPERATION}
+J=1
+U=0
+WHILE(J LE 30)
+BEGIN
+	IF(STRSUB(ARRAY(600+J) 31 31) EQ "F")
+		IF(STRSTN(STRSUB(ARRAY(600+J) N N)) GT 0)
+		BEGIN
+			IF(N EQ 1)
+				E="1"+STRSUB(E 2 31)
+			ELSE
+				E=STRSUB(E 1 N-1)+"1"+STRSUB(E N+1 31)
+			IF(U GT 0) ","
+			J
+			
+			U=U+1
+		END
+	J=J+1
+END
+IF((U EQ 0) AND(N NE 39)) BEGIN "<div width=100% height=100% style=\"background-color:#ff0000\" >&nbsp</div>" 
+IF(BUTTON_QUEUE(N) GT 0) BEGIN
+"<script type='text/javascript'>"
+"function pinkfunc() {"
+"el=document.getElementById('strok"N"');"
+"el.style.backgroundColor='#ff9999'; }"
+
+"pinkfunc();</script>"
+END
+END
+
+	"<td nowrap class=tdDataRowC><input " IF(N EQ O) "checked" ELSE "" " type=radio   name=showtickets value="N" onClick=changeList.submit();></td></tr>\n"
+	
+END
+
+	
+
+N=N+1
+END
+{========================================}
+
+I=1 {knopka}
+J=0
+WHILE(I LE 10) BEGIN
+IF(ARRAY(300+I) EQ 0)
+BEGIN
+U=0
+N=1 {okno}
+	WHILE(N LE 30) BEGIN
+	IF((COUNTER_OPEN(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) LE 221)) 
+		BEGIN
+			IF((STRSUB(ARRAY(1100+I) COUNTER_LOGIN_ID(N) COUNTER_LOGIN_ID(N)) NE "0") AND (STRSUB(ARRAY(600+N) I I) NE "0")) U=1
+		END
+	N=N+1
+	END
+	IF(U EQ 0) BEGIN
+		IF(J EQ 0) BEGIN
+			"<div style='background-color:#FF3333; font-size:14px;'><B>!!!</B>«Дальнейшее выполнение операции <<b>" "("BUTTON_LETTER(I)")"BUTTON_NAME(I) " - " BUTTON_QUEUE(I) " чел."
+			J=1
+		END
+		ELSE BEGIN
+			"," "("BUTTON_LETTER(I)")"BUTTON_NAME(I) " - " BUTTON_QUEUE(I) " чел."
+		END
+END
+IF((I EQ 10)AND(J EQ 1)) BEGIN
+"</B>> невозможно ни в одном окне»</div>"
+END
+END
+I=I+1
+END
+{========================================}
+%>
+
+								<tr>
+					<td nowrap class=tdTotalRow>Всего:</td>
+					<td nowrap class=tdTotalRow>&nbsp;</td>
+					<td nowrap class=tdTotalRowC>
+					<% 
+					I=1 
+					J=0
+					WHILE(I LE 20) BEGIN 
+					J=J+BUTTON_QUEUE(I)
+					I=I+1 
+					END
+					J %></td>
+					<td nowrap class=tdTotalRowC><% 
+					I=1 
+					J=0
+					WHILE(I LE 20) BEGIN 
+					J=J+GROUP_SERVED_TODAY(I)
+					I=I+1 
+					IF(I EQ 11) I=39
+					END J %></td>
+					<td nowrap class=tdTotalRow>&nbsp;</td>
+					<td nowrap class=tdTotalRow>&nbsp;</td>
+					<td nowrap class=tdTotalRow>&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+ 
+		<td valign=top align=left>
+			<table class=tableSection cellpadding=0 cellspacing=0>
+				<tr>
+					<td nowrap class=tdHeaderSection>№</td>
+					<td nowrap class=tdHeaderSection>Талон</td>
+					<td nowrap class=tdHeaderSection>Время</td>
+				</tr>	
+				<%
+				IF(O GT 0)
+				BEGIN
+			A=0
+WHILE(A LE (GROUP_QUEUE(BUTTON_GROUP(O))-1))
+BEGIN
+IF(GROUP_QUEUE_CUSTOMER_ITEM(O A ITEM_BUTTON) EQ O)
+BEGIN
+L=GROUP_QUEUE_CUSTOMER_ITEM(O A ITEM_NUMBER)/1000
+R=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(O A ITEM_START)
+IF(R LE ARRAY(490))
+BEGIN
+	"<tr bgcolor=green>"
+END
+ELSE IF(R LE ARRAY(491))
+	"<tr bgcolor=yellow>"
+ELSE
+	"<tr bgcolor=red>"
+
+"<td nowrap class=tdDataRowC>" A+1 "</td>"
+"<td nowrap class=tdDataRow>"
+GROUP_LETTER(O) GROUP_QUEUE_CUSTOMER_ITEM(O A ITEM_NUMBER) LEN(3) "</td>"
+"<td nowrap class=tdDataRowC>"PRINT_CLOCK_SEC(R)"</td></tr>"
+END
+
+A=A+1
+END
+END
+%>
+</table>
+ 
+		</td>
+	</tr>
+	</form>
+	<tr>
+		<td class=headerBar colspan=2>
+			Информация по рабочим станциям
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			<table cellspacing=0>
+				<tr>
+					<td class=tdSection>
+						<table class=tableSection cellpadding=0 cellspacing=0>
+						<% N=1
+						   A=30
+						   V=0
+							WHILE(N LE A) BEGIN
+							 IF((COUNTER_OPEN(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) EQ 221+N)) BEGIN
+							IF((ARRAY(508)-COUNTER_TRANSACTION_TIME_NOW(N)) LE 0 )
+								BEGIN 
+									IF(V EQ 0) BEGIN
+										"<div style='background-color:#FF3333;  font-size:18px;'><B>!!!</B>В <<b>"
+										V=1 
+										END 
+									COUNTER_NAME(N)
+									"," 
+								END
+								END
+							 IF(V EQ 1 AND N EQ A)
+								BEGIN 
+									"</b>> превышено время перерыва!!</div>" 
+								END
+								
+								N=N+1
+								END
+								
+						%>
+							<tr>
+								<td nowrap class=tdHeaderSection>Окно</td>
+								<td nowrap class=tdHeaderSection>Сотрудник</td>
+								<td nowrap class=tdHeaderSection>Алгоритм</td>
+								<td nowrap class=tdHeaderSection>Тактика<br> обсл.</td>
+								<td nowrap class=tdHeaderSection>Статус</td>
+								<td nowrap class=tdHeaderSection>Время <br>простоя</td>
+								<td nowrap class=tdHeaderSection>Время <br>перерыва</td>
+								<td nowrap class=tdHeaderSection>Время ТАКТ <br>фактическое</td>
+								<td nowrap class=tdHeaderSection><center>Клиент</center></td>
+								<td nowrap class=tdHeaderSection>Сред. <br>вр. обсл.</td>
+								<td nowrap class=tdHeaderSection>Сумма <br>вр. обсл.</td>
+								<td nowrap class=tdHeaderSection>Кол. <br>обсл.</td>
+							</tr>
+<%
+
+{========================================}
+
+N=1 {okno}
+V=0
+
+WHILE(N LE 30) BEGIN
+IF(ARRAY(400+N) EQ 0) BEGIN	
+	J=1
+	I=0
+	U=0
+	IF(STRSUB(ARRAY(600+N) 31 31) EQ "F")
+	BEGIN
+		X=""
+		WHILE(J LE 20)
+		BEGIN
+			IF((STRSUB(ARRAY(1100+J) COUNTER_LOGIN_ID(N) COUNTER_LOGIN_ID(N)) NE "0") OR(COUNTER_OPEN(N) EQ 0))
+			BEGIN
+				IF(STRSTN(STRSUB(ARRAY(600+N) J J)) GT 0)
+				BEGIN
+					
+					U=1
+				END
+			END
+			J=J+1
+		END
+		
+	END
+	IF((V EQ 0) AND (U EQ 0)) BEGIN
+	"<div style='background-color:#FF3333; font-size:14px;'><B>!!!</B>«В <<b>" COUNTER_NAME(N) V=1
+	END
+	ELSE IF((V EQ 1) AND (U EQ 0)) BEGIN
+	"," COUNTER_NAME(N)
+	END
+	
+END	
+IF((N EQ 40) AND (V EQ 1)) BEGIN
+		"</B>> невозможно выполнять ни одну операцию с текущем пользователем»</div>"
+		END
+N=N+1
+END
+{========================================}
+
+ A=30
+M=0
+N=1
+V=0
+WHILE (N LE A)
+BEGIN
+IF(ARRAY(400+N) EQ 0)
+BEGIN
+IF(N EQ ((N/2)*2))
+"<tr class=trDataRow1 valign=middle>"
+ELSE
+"<tr class=trDataRow0 valign=middle>"
+"<td nowrap class=tdDataRow>" COUNTER_NAME(N) "</td><td nowrap class=tdDataRowC>" 
+IF(COUNTER_LOGIN_ID(N))
+	LOGIN_NAME(COUNTER_LOGIN_ID(N))
+ELSE
+	"-"
+ "</td><td nowrap class=tdDataRowC>"
+ 
+ 
+  	J=N
+	{p1 BEGIN}
+	{===========================================}
+	J=1
+	I=0
+	V=1
+	U=0
+	IF(STRSUB(ARRAY(600+N) 31 31) EQ "F")
+	BEGIN
+		X=""
+		WHILE(J LE 10)
+		BEGIN
+			IF((STRSUB(ARRAY(1100+J) COUNTER_LOGIN_ID(N) COUNTER_LOGIN_ID(N)) NE "0") OR(COUNTER_OPEN(N) EQ 0))
+			BEGIN
+				IF(STRSTN(STRSUB(ARRAY(600+N) J J)) GT 0)
+				BEGIN
+					IF(I EQ 1) BEGIN ","  END
+					IF(BUTTON_RWT(J) LE ARRAY(490)) BEGIN
+						"<FONT size=+1  style='background: #009900; color:#ffffff;'>"
+						IF(U EQ 0) BEGIN V=1 U=1 END
+						END
+					ELSE IF(BUTTON_RWT(J) LE ARRAY(491)) BEGIN
+						"<FONT size=+1 style='background: #ffff00; color:#000000;'>"
+						IF((U EQ 0) OR (V LE 1)) BEGIN V=2 U=1 END
+						END
+					ELSE BEGIN
+						"<FONT size=+1 style='background: #ff0000; color:#ffffff;'>"  IF((U EQ 0) OR (V LE 2)) BEGIN V=3 U=1 END END	
+										BUTTON_LETTER(J) I=1 "</FONT>"
+				END
+			END
+			J=J+1
+		END
+		
+	END	
+	{===========================================}
+
+ "&nbsp;</td><td nowrap class=tdDataRowC>" 
+A=30
+X=0 {GREEN CLIENT}
+Y=0 {YELLOW CLIENT}
+Z=0 {RED CLIENT}
+
+Q=1
+WHILE(Q LE A)
+BEGIN
+J=0
+IF(ARRAY(9900+Q) EQ 0) BEGIN
+	WHILE(J LE (GROUP_QUEUE(Q)-1))
+	BEGIN
+	
+	T=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(Q J ITEM_START)
+	IF(T LE ARRAY(490))
+		X=X+1
+	ELSE IF(T LE ARRAY(491))
+		Y=Y+1
+	ELSE
+		Z=Z+1
+	J=J+1
+	
+	END
+END
+Q=Q+1
+END
+
+
+ IF((Z EQ 0) AND (Y EQ 0)) 
+"<img src=green.png width=20>" 
+ IF((Z EQ 0) AND (Y GT 0))
+"<img src=yellow.png width=20>"
+ IF(Z GT 0)
+ "<img src=red.png width=20>"
+	"</td><td nowrap class=tdDataRowC>" 
+{===========================================}
+ IF((COUNTER_OPEN(N) EQ 1) AND ((COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) NE 221+N) OR((COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) EQ 221+N) AND (COUNTER_CUSTOMER_PRESENT(N) EQ 0))))
+ "<font style=\"background:#009900;color:#ffffff;\">Открыто</font>"
+ IF(COUNTER_OPEN(N) NE 1)
+ "<font style=\"background:#ff0000;color:#ffffff;\">Закрыто</font>"
+  IF((COUNTER_OPEN(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) EQ 221+N) AND (COUNTER_CUSTOMER_PRESENT(N) EQ 1))
+   "<font style=\"background:orange\">Перерыв</font>"
+ "</td><td nowrap class=tdDataRowC>"
+ IF(TIME_NO GT COUNTER_CUSTOMER_ITEM(N  ITEM_END) AND COUNTER_CUSTOMER_ITEM(N  ITEM_END) GT 0 AND COUNTER_OPEN(N) EQ 1)
+ PRINT_CLOCK_SEC(TIME_NO-COUNTER_CUSTOMER_ITEM(N  ITEM_END))
+ ELSE
+ "-"
+ "</td><td nowrap class=tdDataRowC>"
+ IF((COUNTER_OPEN(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) EQ 221+N)) BEGIN
+ PRINT_CLOCK_SEC(COUNTER_TRANSACTION_TIME_NOW(N))
+ 
+ END
+ ELSE
+ "-"
+ 
+ "</td>"
+
+ "<td nowrap class=tdDataRowC>"
+ 
+  T=COUNTER_TRANSACTION_TIME_NOW(N)
+  IF((Z EQ 0) AND (Y EQ 0)) 
+  BEGIN
+	IF((COUNTER_OPEN(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) NE 221+N) AND (T GT 0)) 
+	BEGIN  
+		IF(T LE ARRAY(800+COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON)))
+			"<img src=green.png width=20>" 
+		ELSE 
+			"<img src=red.png width=20>"
+	PRINT_CLOCK_SEC(COUNTER_TRANSACTION_TIME_NOW(N))
+	END
+  END
+ELSE
+IF((Z EQ 0) AND (Y GT 0))
+BEGIN
+	IF((COUNTER_OPEN(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) NE 221+N) AND (T GT 0)) 
+	BEGIN  
+		IF(T LE ARRAY(830+COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON)))
+			"<img src=green.png width=20>" 
+		ELSE 
+			"<img src=red.png width=20>"
+	PRINT_CLOCK_SEC(COUNTER_TRANSACTION_TIME_NOW(N))
+	END
+  END
+ELSE
+ IF(Z GT 0)	
+BEGIN
+	IF((COUNTER_OPEN(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) NE 221+N) AND (T GT 0)) 
+	BEGIN  
+		IF(T LE ARRAY(860+COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON)))
+			"<img src=green.png width=20>" 
+		ELSE 
+			"<img src=red.png width=20>"
+	PRINT_CLOCK_SEC(COUNTER_TRANSACTION_TIME_NOW(N))
+	END
+  
+  END	
+  
+
+ ELSE 
+" "
+ "</td><td nowrap class=tdDataRowC><B>"
+ IF((COUNTER_CUSTOMER_PRESENT(N) EQ 1) AND (COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON) NE 221+N))
+ BEGIN
+	BUTTON_LETTER(COUNTER_CUSTOMER_ITEM(N ITEM_ENTER_BUTTON)) COUNTER_CUSTOMER_ITEM(N ITEM_NUMBER) LEN(3)
+
+  "</B><BR>" BUTTON_NAME(COUNTER_CUSTOMER_ITEM(N ITEM_BUTTON))
+   END
+  " &nbsp;</td><td nowrap class=tdDataRowC>"
+   PRINT_CLOCK_SEC((COUNTER_TOTAL_TRANSACTION_TIME_TODAY(N)/COUNTER_SERVED_TODAY(N))) 
+    "</td><td nowrap class=tdDataRowC>" 
+	 PRINT_CLOCK_SEC(COUNTER_TOTAL_TRANSACTION_TIME_TODAY(N))
+	"</td><td nowrap class=tdDataRowC>"
+	COUNTER_SERVED_TODAY(N)-GROUP_SERVED_TODAY(50+N) "</td></tr>"
+ "\n"
+ END
+N=N+1
+END
+
+%>
+</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class=tdCopyright>
+			Ритейл АСП (+7(495)953-05-08, +7(495)951-68-09)
+		</td>
+		<td class=tdVersion>
+			Версия 4.2.2
+		</td>
+	</tr>
+</table>
+ 
+ 
+</html>

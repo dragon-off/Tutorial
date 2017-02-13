@@ -1,0 +1,15 @@
+#loadcache2("PRINTER*" true )
+
+<grid-form version="1.0"
+
+  writer="com.qmatic.web.serversettings.DefaultWriter">
+  #cdata("label" "$item $name")
+  #set( $section            = "PRINTER"                        )
+
+  ##    SECTION  KEY             LABEL_ID                 TYPE      HELP_ID                 MIN MAX  REGEXP
+  ##---------------------------------------------------------------------------------------------------------------
+
+  #qsys($section "NAME$item"     "printer.printerName"    "text"    "printer.printerName"   0   40   "" )
+  #qsys($section "HOSTNAME$item"   "printer.printerHostName"   "text"    "printer.printerHostName"  0   40   "" )
+  
+</grid-form>

@@ -1,0 +1,16 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.writer.DefaultWriter">
+    #cdata("label" "")
+
+    <field name="btnAddActivity" type="button">
+        <name>btnAddActivity</name>
+        #cdata("label" $text.getText("activity.addItem"))
+        <params>
+            #param("action-script" "schedule/scheduler.createTimeSet.action?itemId=${item}")
+            #param("ref-type" "raw")
+        </params>
+        <accepted-values>
+        </accepted-values>
+    </field>
+
+</grid-form>

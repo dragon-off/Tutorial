@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<title>СУО</title>
+		<style type="text/css">
+			iframe { 
+				margin: 0; 
+				left: 0px;
+				top:22px;
+				position: absolute;
+			}
+			div.top_div {
+				text-align:right;
+				width:280px;
+				left: 0px;
+				margin: 0; 
+				top: 0px;
+				background:grey;
+				position: absolute;
+			}
+			div.check {
+				text-align:right;
+				width:0px;
+				left: 0px;
+				margin: 0; 
+				top: 0px;
+				background:grey;
+				display:none;
+				position: absolute;
+			}
+		</style>
+		<meta HTTP-EQUIV="MSThemeCompatible" content="yes">
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+		<HTA:APPLICATION
+		APPLICATIONNAME="suo"
+		id="suopanel"
+		SCROLL="no"
+		MAXIMIZEBUTTON="no"
+		SHOWINTASKBAR="yes"
+		BORDER = "thin"
+		NAVIGABLE="yes"
+		SingleInstance="yes"
+		SysMenu="no"
+		contextmenu="no"
+		>
+		<SCRIPT Language="VBScript">
+			Sub SetLink(server)
+				
+				Dim oWNet : Set oWNet = CreateObject("WScript.Network")
+				Dim suo_server
+			
+				window.resizeTo 300,570
+				'MsgBox oWNet.UserName
+				document.getElementById("noiwin").innerHTML = "<iframe name='pult' application='yes' frameBorder='0' width='280' height='540' src='/login/login.action?username=defaultuser&page=/login/open_queue_operator.jsp?username="+oWNet.UserName+"'></iframe>"
+				set_url()
+			End Sub
+			Sub window_onLoad()
+				'
+
+				SetLink("192.168.0.1")
+			End Sub
+		</SCRIPT>
+		<script language="javascript">
+		function createXMLHttpRequest() {
+		  try { return new XMLHttpRequest(); } catch(e) {}
+		  try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) {}
+		  try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
+		  throw 'XMLHttpRequest not supported';
+		}
+		var HTTP_TIMEOUT = 10; 
+		function httpRequest(url, onSuccess, onFail, postData, timeout) {
+
+		 alert(url);
+		  var req = createXMLHttpRequest();
+		  var method = postData ? 'POST' : 'GET';
+		  req.open(method, url, true);
+		 // req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
+		  if (postData) {
+			req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+		  }
+
+		  var timer = null;
+		  if (!timeout) timeout = HTTP_TIMEOUT;
+		  if (timeout != -1) {
+			timer = setTimeout(httpTimeoutClosure(req, onFail), timeout);
+		  }
+
+		  req.onreadystatechange = httpStatusChangeClosure(req, onSuccess, onFail, timer);
+			req.send(postData);
+		}
+		  
+		function httpTimeoutClosure(req, onFail) {
+		  return function() {
+		   req.onreadystatechange = null;
+			try {req.abort()}
+		   finally {if (onFail) onFail(req)}
+		  }
+		}
+
+		function httpStatusChangeClosure(req, onSuccess, onFail, timer) {
+		  return function() {
+			if (req.readyState != 4) return;
+			if (timer) clearTimeout(timer);
+			if (req.status != 200 && req.status != 304) {
+			 
+			  if (onFail) onFail(req);
+			  return;
+			}    
+			if (onSuccess) onSuccess(req);
+		  }
+		}
+		
+		
+			var url="";//выход из станции
+			function document.onkeydown() {
+				var alt=window.event.altKey; 
+				if ((alt && event.keyCode==115) ) {
+					alert('Нажмите кнопку выхода');
+					event.keyCode=0; 
+					event.cancelBubble=true; 
+					return false; 
+				}
+				if( event.keyCode == 116){
+					event.keyCode=0; 
+					event.cancelBubble=true; 
+					return false; 
+				}
+			}
+			function check_bufer(req) {
+			alert(req.responseText);
+				eval(req.responseText);
+			}
+			function set_url(){
+				document.getElementById("exit").disabled = true;
+				setTimeout(function t(){url=(document.getElementById("pult").contentWindow.location.href).replace("logincod","close"); document.getElementById("exit").disabled = false; }, 4000);
+			}
+			function logoff(){
+				//document.getElementById("noiwin").innerHTML = "<iframe name='pult' application='yes' frameBorder='0' width='280' height='530' src='"+url+"'></iframe>";
+				
+				httpRequest((document.getElementById("pult").contentWindow.location.href).replace("logincod","close").replace("pult.qsp","close.jsp"), function(req) { check_bufer(req); }, function(req) { }, null, 20000);
+		
+				//document.getElementById("check").innerHTML = "<iframe name='check1' src='"+(document.getElementById("pult").contentWindow.location.href).replace("logincod","close").replace("pult.qsp","close.jsp")+"'></iframe>";
+				//window.close();
+			}
+			function exit_window(){
+				window.close();
+			}
+		</script>
+	</head>
+	<body>
+		<div class="check" id="check"></div>
+		<div class="top_div" height="40px"><input id='exit' type='button' style='float: right;' onclick='logoff()' value='Выход'></input></div>
+		<div class="content_div" id="noiwin"></div>
+	</body>
+</html>

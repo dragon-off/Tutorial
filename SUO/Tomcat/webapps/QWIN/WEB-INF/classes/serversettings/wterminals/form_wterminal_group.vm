@@ -1,0 +1,21 @@
+#loadcache2("WLTERM*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #set($name=$text.getText("wterminal.groupNodeLabel"))
+
+    #cdata("label" "$name $item")
+
+    #set( $section            = "WLTERM_SETTING_$item"                         )
+
+    ##    SECTION   KEY                 LABEL_ID             TYPE        HELP_ID              MIN MAX   REGEXP
+    ##---------------------------------------------------------------------------------------------------------
+
+    #qsys($section  "TIME_BETWEEN_KEY"  "wterminal.timeKey"  "number"    "wterminal.timeKey"  0   1000  "" )
+    #qsys($section  "BUTTON_PROG1"      "wterminal.prog1"    "script"    "wterminal.prog1"    0   0     "" )
+    #qsys($section  "BUTTON_PROG2"      "wterminal.prog2"    "script"    "wterminal.prog2"    0   0     "" )
+    #qsys($section  "BUTTON_PROG3"      "wterminal.prog3"    "script"    "wterminal.prog3"    0   0     "" )
+
+</grid-form>
+
+

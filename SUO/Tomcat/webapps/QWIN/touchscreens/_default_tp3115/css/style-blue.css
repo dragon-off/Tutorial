@@ -1,0 +1,50 @@
+/* -------------------------------------- */
+/*                                        */
+/* Custom css for blue demo page          */
+/*                                        */
+/* -------------------------------------- */
+
+/* -------------------------------------- */
+/* Main                                   */
+/* -------------------------------------- */
+
+body {
+  background: url(../images/background-blue.png) no-repeat;
+}
+td.mainOuter {
+  vertical-align: bottom;
+}
+
+/* -------------------------------------- */
+/* Buttons                                */
+/* -------------------------------------- */
+
+table.mainButtons {
+  height: 700px;
+}
+div.buttonOuter {
+  background: url(../images/button-blue.png) no-repeat;
+}
+
+/* -------------------------------------- */
+/* Logo                                   */
+/* -------------------------------------- */
+
+div.logo {
+  background: url(../images/logo-blue.png) no-repeat;
+  top: 10px;
+  left: 40px;
+  width: 400px;
+  height: 60px;
+}
+
+/* -------------------------------------- */
+/* Ticket splash                          */
+/* -------------------------------------- */
+
+div.splash {
+  border: solid 3px #005EB7;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */

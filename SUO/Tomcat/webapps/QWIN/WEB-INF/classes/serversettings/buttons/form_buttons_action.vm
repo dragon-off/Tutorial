@@ -1,0 +1,15 @@
+#loadcache2("BUTTON*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    <label></label>
+
+    #set( $section            = "BUTTON"                                         )
+
+    ##       SECTION   KEY    LABEL_ID             SCRIPT_FILE        GROUP MIN  MAX
+    ##-------------------------------------------------------------------------------
+
+    #button( $section  "MAX"  "buttons.addButton"  "./add_action.vm"  1     0    8 )
+    #button( $section  "MAX"  "buttons.remButton"  "./rem_action.vm"  1     0    8 )
+
+</grid-form>

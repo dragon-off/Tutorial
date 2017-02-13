@@ -1,0 +1,13 @@
+<html>
+<head>
+<title>
+1
+</title>
+<meta HTTP-EQUIV="REFRESH" content="3">
+</head>
+<body><%
+W=8
+IF(COUNTER_CUSTOMER_PRESENT(W) EQ 1)
+COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON)
+%></body>
+</html>

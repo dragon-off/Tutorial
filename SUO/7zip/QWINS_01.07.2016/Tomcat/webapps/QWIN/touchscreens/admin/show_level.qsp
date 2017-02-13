@@ -1,0 +1,233 @@
+<html>
+<head>
+	<title>СберБанк</title>
+	<link href="default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<LINK rel=stylesheet type="text/css" href="style.css">
+	<script language="Javascript" type="text/javascript">
+	function alert1()
+	{
+  		if(q.style.display=='none')
+		{
+			q.style.display='block';
+			setTimeout('close()', 5000);
+		}
+  		else 
+   		{
+			q.style.display='none';
+   		}
+ 	}
+
+	function close()
+ 	{
+		q.style.display='none';
+		qq.style.display='none';
+	}
+	</script>
+
+<%
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+IF(G EQ 1)
+	Q=0
+IF(G EQ 2)
+	Q=30
+IF(G EQ 3)
+	Q=60
+IF(G EQ 4)
+	Q=90
+IF(G EQ 5)
+	Q=120
+W=(${window}0)/10
+B=(${button}0)/10
+V=(${level}0)/10
+W=STRSTN(W)
+IF(W GT 0 AND B GT 0)
+	IF(B EQ 1)
+		SETARRAY(600+Q+W STRNTS(V)+STRSUB(ARRAY(600+Q+W) 2 32))
+	ELSE
+		SETARRAY(600+Q+W STRSUB(ARRAY(600+Q+W) 1 B-1)+STRNTS(V)+STRSUB(ARRAY(600+Q+W) B+1 32))
+
+
+
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+
+R=(${reset}0)/10
+IF(R EQ 0)
+	R=0
+
+IF(R EQ 1)
+BEGIN
+	I=1
+	WHILE(I LE 30)
+	BEGIN
+		SETARRAY(600+I "000000000000000000000000000000F0")
+		SETARRAY(630+I "000000000000000000000000000000F0")
+		SETARRAY(660+I "000000000000000000000000000000F0")
+		SETARRAY(690+I "000000000000000000000000000000F0")
+		SETARRAY(720+I "000000000000000000000000000000F0")
+		I=I+1
+	END
+END
+
+Z=P
+%>
+</head>
+<body link=white alink=white vlink=white scrollwidth=100>
+
+<form action="info_buttons_p.qsp">
+<TABLE><TR><TD>
+	<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+		<tbody>
+		<tr><td class=boxTop>Пороговый лимит времени ожидания</td></tr>
+		<tr><td class=boxMain><div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);>
+<%
+W=(${time}0)/10
+IF(W GT 0)
+BEGIN
+	W=(W*60)/2
+	SETARRAY(700 W)
+END
+"<input type=Text size=4 name=time value="(ARRAY(700)*2)/60"> минут. <input type=Submit value=Сохранить>"
+%>
+</td></tr></tbody></table>
+</form>
+</TD><TD>
+	<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+	<tr><td class=boxTop>Выберите режим для изменения</td></tr>
+	<tr><td class=boxMain><table border=1><tr><TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=1';><div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 1) BEGIN "style='background-color: Aqua;'" END %> size=+1>P1</FONT></B></DIV>
+</TD><TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=2';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 2) BEGIN "style='background-color: Aqua;'" END %> size=+1>P2</FONT></B></DIV></TD>
+<TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=3';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 3) BEGIN "style='background-color: Aqua;'" END %> size=+1>P3</FONT></B></DIV></TD>
+<TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=4';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 4) BEGIN "style='background-color: Aqua;'" END %> size=+1>P4</FONT></B></DIV></TD>
+<TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=5';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 5) BEGIN "style='background-color: Aqua;'" END %> size=+1>P5</FONT></B></DIV>
+</TD>
+	</tr></table>
+</td></tr></tbody></table>
+</TD><TD>
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+<tr><td class=boxTop>Сброс всех настроек</td></tr>
+<tr><td class=boxMain><a href="/touchscreens/admin/info_buttons_p.qsp?reset=1"><FONT size=+1 color=black>Сброс всех настроек</font></a></td></tr>
+</tbody></table>
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+	<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<tbody><tr><td class=boxTop rowspan=2>№</td>
+<td class=boxTop width=180 rowspan=2>Название операции</td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Кол. ожид. кл.</h3></td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Время ожид.</h3></td>
+<%
+W=25
+
+"<td class=boxTop colspan="W" align=center><h3 class=box>Окна<BR>(нажмите на окно которое хотите изменить)</h3></td></tr>"
+I=1
+"<TR>"
+WHILE(I LE W)
+BEGIN
+	IF(ARRAY(400+I) EQ 0)
+	BEGIN
+		"<TD class=boxMain  align=center onclick=location.href='/touchscreens/admin/change_window.qsp?window="I"&priority="G"';><div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B><FONT size=+1>"
+		I
+		"</FONT></B></DIV></TD>"
+	END
+	I=I+1
+END
+"</TR>"
+M=30 {MAX GROUPS}
+I=1
+WHILE(I LE M)
+BEGIN
+	IF(ARRAY(300+I) EQ 0)
+	BEGIN
+		IF(((I/2)*2) EQ I)
+		BEGIN
+			"<TR bgcolor=#E2E2E2>"
+		END
+		ELSE
+			"<TR>"
+	"<TD align=center>"I"</TD><TD>"BUTTON_LETTER(I)" "BUTTON_NAME(I)"</TD><TD align=center>"BUTTON_QUEUE(I)"</TD><TD align=center>" 
+	PRINT_CLOCK_SEC(BUTTON_RWT(I))"</TD>"
+	P=1
+	{+prior to array}
+	IF(G EQ 1)
+		H=0
+	IF(G EQ 2)
+		H=30
+	IF(G EQ 3)
+		H=60
+	IF(G EQ 4)
+		H=90
+	IF(G EQ 5)
+		H=120
+	
+	WHILE(P LE W)
+	BEGIN
+		K=ARRAY(600+H+P)
+		{PROVERKA STROKI}
+		IF(STRSUB(K 31 31) NE "F")
+		BEGIN
+			SETARRAY(600+H+P "000000000000000000000000000000F0") {31=F}
+			K=ARRAY(600+H+P)
+		END
+		L=STRSUB(K I I)
+		IF(ARRAY(400+P) EQ 0)
+		BEGIN
+		IF(L EQ "1")
+		BEGIN
+			"<TD align=center title='" BUTTON_NAME(I)" (Окно №" P")'>"
+		END
+		ELSE IF(L EQ "2")
+		BEGIN
+			"<TD align=center title='" BUTTON_NAME(I)" (Окно №" P")'>"
+		END
+		ELSE IF(L EQ "3" )
+		BEGIN
+			"<TD align=center title='" BUTTON_NAME(I)" (Окно №" P")'>"
+		END
+		ELSE
+		BEGIN
+			"<TD align=center title='" BUTTON_NAME(I)" (Окно №" P")'>"
+		END
+		IF(L NE "0")
+		BEGIN
+			L
+		END
+		ELSE
+		BEGIN
+			"-"
+		END
+		"</TD>"
+	END
+	P=P+1
+	END
+	"</TR>"
+	T=0
+	H=0
+	C=0
+	
+	END {IF VIEW BUTTON}
+	I=I+1
+END
+""
+
+"</table></TD><TD>"
+%>
+</TD></TD></TABLE><table></table>
+</body>
+</html>

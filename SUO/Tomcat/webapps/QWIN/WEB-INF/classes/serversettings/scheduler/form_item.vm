@@ -1,0 +1,9 @@
+<grid-form version="1.0"
+  writer="com.qmatic.web.serversettings.DefaultWriter">
+  #cdata("label" $text.getText("scheduler.treeHeading"))
+
+
+  ##macro(qsys $ns $key $label $type $helpid $min $max $regexp)
+
+  #qsys("SCHEDULER" "NAME${id}" "scheduler.scheduleName" "text" "help.id" 0 128 "")
+</grid-form>

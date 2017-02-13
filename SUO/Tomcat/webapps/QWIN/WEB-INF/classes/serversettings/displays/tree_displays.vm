@@ -1,0 +1,230 @@
+#loadcache2("DISPLAY*" true)
+#loadcache2("MONITOR*" false)
+#loadcache2("FONT*" false)
+
+<tree version="1.0" image = "images/displays.gif">
+    #cdata("label" $text.getText("display.treeName"))
+
+
+##===========================================================================
+## Main Displays
+
+    #set( $top_node_label          = $text.getText("dispmain.generalNodeLabel") )
+    #set( $group_node_label        = $text.getText("dispmain.groupNodeLabel") )
+
+    #set( $top_node_image          = "images/main_displays.gif"                 )
+    #set( $item_node_image         = "images/main_display.gif"                  )
+
+    #set( $section_main            = "DISPLAY"                                  )
+
+    #set( $top_node_grid           = "./displays/form_main_displays.vm"         )
+    #set( $group_node_grid         = "./displays/form_main_display_group.vm"    )
+    #set( $item_node_grid          = "./displays/form_main_display.vm"          )
+
+    #set( $top_node_action         = "./displays/action_main_displays.vm"       )
+    #set( $group_node_action       = "./displays/action_main_display_group.vm"  )
+    #set( $item_node_action        = "./displays/action_main_display.vm"        )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    <node image = "$top_node_image">
+        #cdata("label" $top_node_label)
+        <grid-ref>
+            #cdata("name"  $top_node_grid)
+        </grid-ref>
+        <action-ref>
+            #cdata("name" $top_node_action)
+            #param("section" ${section_main})
+            #param("group" ${maxitems})
+        </action-ref>
+
+            #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+            #if( $maxitems > 0 )
+                 #foreach($group in [1..$groups])
+                     <node image = "images/printer-group.gif">
+                        #cdata("label" "$group. $group_node_label $group")
+                             <grid-ref>
+                                #cdata("name" $group_node_grid)
+                                #param("item" ${group})
+                                #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                             </grid-ref>
+                             <action-ref>
+                                #cdata("name" $group_node_action)
+                                #param("group" ${group})
+                                #param("section" ${section_main})
+                             </action-ref>
+
+
+                             ## List all items that contains in this groups
+                             #foreach($item in [1..$maxitems])
+                                 #if($sm.isMemberOfGroup($section_main, "SETTINGS", $group, $item))
+                                    <node image = "$item_node_image">
+                                        #set($itemName = $sm.getStringSetting($section_main, "NAME$item"))
+                                        #cdata("label" "$item. $itemName")
+                                            <grid-ref>
+                                                #cdata("name" $item_node_grid)
+                                                #param("item" ${item})
+                                                #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                                            </grid-ref>
+                                            <action-ref>
+                                                #cdata("name"  $item_node_action)
+                                                #param("item"  ${item})
+                                                #param("group" ${group})
+                                            </action-ref>
+                                    </node>
+                                 #end
+                                 #set($item = $item + 1)
+                             #end
+                     </node>
+                     #set($group = $group + 1)
+                 #end
+            #end
+    </node>
+
+##===========================================================================
+## Information Displays
+
+    #set( $top_node_label          = $text.getText("dispinfo.generalNodeLabel") )
+    #set( $group_node_label        = $text.getText("dispinfo.groupNodeLabel") )
+
+    #set( $top_node_image          = "images/info_displays.gif"                 )
+    #set( $item_node_image         = "images/info_display.gif"                  )
+
+    #set( $section_main            = "MONITOR"                                  )
+
+    #set( $top_node_grid           = "./displays/form_info_displays.vm"         )
+    #set( $group_node_grid         = "./displays/form_info_display_group.vm"    )
+    #set( $item_node_grid          = "./displays/form_info_display.vm"          )
+
+    #set( $top_node_action         = "./displays/action_info_displays.vm"       )
+    #set( $group_node_action       = "./displays/action_info_display_group.vm"  )
+    #set( $item_node_action        = "./displays/action_info_display.vm"        )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    <node image = "$top_node_image">
+        #cdata("label" $top_node_label)
+        <grid-ref>
+            #cdata("name" $top_node_grid)
+        </grid-ref>
+
+        <action-ref>
+            #cdata("name" $top_node_action)
+            #param("section" ${section_main})
+            #param("group" ${maxitems})
+        </action-ref>
+
+          #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+          #if( $maxitems > 0 )
+                #foreach($group in [1..$groups])
+                     <node image = "images/printer-group.gif">
+                        #cdata("label" "$group. $group_node_label $group")
+                        <grid-ref>
+                            #cdata("name" $group_node_grid)
+                            #param("item" ${group})
+                            #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                        </grid-ref>
+                        <action-ref>
+                            #cdata("name" $group_node_action)
+                            #param("group" ${group})
+                            #param("section" ${section_main})
+                        </action-ref>
+
+                             ## List all items that contains in this groups
+                             #foreach($item in [1..$maxitems])
+                                 #if($sm.isMemberOfGroup($section_main, "SETTINGS", $group, $item))
+
+                                    <node image = "$item_node_image">
+                                        #set($itemName = $sm.getStringSetting($section_main, "NAME$item"))
+                                        #cdata("label" "$item. $itemName")
+                                        <grid-ref>
+                                            #cdata("name" $item_node_grid)
+                                            #param("item" ${item})
+                                            #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                                        </grid-ref>
+                                        <action-ref>
+                                            #cdata("name" $item_node_action)
+                                            #param("item" ${item})
+                                            #param("group" ${group})
+                                        </action-ref>
+                                    </node>
+                                 #end
+                                 #set($item = $item + 1)
+                             #end
+                     </node>
+                     #set($group = $group + 1)
+                #end
+          #end
+    </node>
+
+##===========================================================================
+## Display Fonts
+
+    #set( $top_node_label          = $text.getText("fonts.generalNodeLabel")    )
+    #set( $top_node_image          = "images/displayfonts.gif"                  )
+    #set( $item_node_image         = "images/displayfont.gif"                   )
+
+    #set( $section_main            = "FONT"                                     )
+
+    #set( $top_node_grid           = "./displays/form_fonts.vm"                 )
+    #set( $item_node_grid          = "./displays/form_font.vm"                  )
+
+    #set( $top_node_action         = "./displays/action_fonts.vm"               )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    <node image = "$top_node_image">
+        #cdata("label" $top_node_label)
+           <grid-ref>
+                #cdata("name" $top_node_grid)
+           </grid-ref>
+           <action-ref>
+                #cdata("name" $top_node_action)
+                #param("section" ${section_main})
+                #param("group" ${maxitems})
+           </action-ref>
+
+           #if( $maxitems > 0 )
+                ## List all items
+                #foreach($item in [1..$maxitems])
+                    <node image = "$item_node_image">
+                        #cdata("label" $sm.getStringSetting($section_main, "NAME$item"))
+                        <grid-ref>
+                            #cdata("name" $item_node_grid)
+                            #param("item" $item)
+                        </grid-ref>
+                    </node>
+                    #set($item = $item + 1)
+                #end
+           #end
+    </node>
+
+    #perf()
+
+</tree>

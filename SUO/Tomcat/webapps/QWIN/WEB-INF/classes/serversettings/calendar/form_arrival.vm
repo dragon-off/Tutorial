@@ -1,0 +1,34 @@
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("calendar.arrivalNotifyHeading"))
+    #set( $section            = "APPOINTMENT"                                   )
+
+    <field helpid = "calendar.usePrinter" type="list">
+         #cdata("name" "${section}_ARV_OFFICE_PRN")
+         #cdata("label" $text.getText("calendar.usePrinter"))
+
+        <params>
+            #param("ns" "APPOINTMENT")
+            #param("key" "ARV_OFFICE_PRN")
+            #param("multiple" "false")
+            #param("size" "1")
+        </params>
+        #cdata("init-value" $sm.getStringSetting($section, "ARV_OFFICE_PRN"))
+
+        <accepted-values>
+            #accepteditem(" " $text.getText("calendar.noOfficePrn"))
+            #accepteditem("1" $text.getText("calendar.staffOfficePrn"))
+            #accepteditem("2" $text.getText("calendar.defaultOfficePrn"))
+        </accepted-values>
+    </field>
+
+    ##    SECTION  KEY               LABEL_ID                 TYPE          HELP_ID                  MIN  MAX   REGEXP
+    ##-----------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "ARV_EMAIL"       "calendar.sendEmail"     "checkbox"    "calendar.sendEmail"     0    1     ""     )
+    #qsys($section "ARV_KT_ALARM"    "calendar.sendWSAlarm"   "checkbox"    "calendar.sendWSAlarm"   0    1     ""     )
+    #qsys($section "ARV_PAGER"       "calendar.sendPager"     "checkbox"    "calendar.sendPager"     0    1     ""     )
+    #qsys($section "ARV_EMAIL_PRG"   "calendar.emailScript"   "script"      "calendar.emailScript"   0    30000 ""     )
+    #qsys($section "ARV_PAGER_PRG"   "calendar.pagerScript"   "script"      "calendar.pagerScript"   0    30000 ""     )
+    #qsys($section "ARV_LAYOUT_PRG"  "calendar.layoutScript"  "script"      "calendar.layoutScript"  0    30000 ""     )
+
+</grid-form>

@@ -1,0 +1,40 @@
+<%
+{VER. 5.0 21.08.2013}
+W=(${workstation}0)/10
+IF(W EQ 0)
+W=1
+L=(${logincod}0)/10
+IF(L GT 0)
+BEGIN
+	FUNC_COUNTER_CLOSE(W)
+	FUNC_LOGON(W L 0 0 0)
+	FUNC_NEXT(W 1 0 0 0)
+END
+P=(${close}0)/10
+IF(P EQ 1)
+BEGIN
+	FUNC_COUNTER_CLOSE(W)
+	"<meta HTTP-EQUIV=\"REFRESH\" content=\"0; url=/logout.action\">"
+END
+IF(COUNTER_LOGIN_ID(W) EQ 0)
+BEGIN
+	"<meta HTTP-EQUIV=\"REFRESH\" content=\"0; url=/sber/index.qsp?loginerror=1&logincod="L"&workstation="W"\">"
+
+END
+%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

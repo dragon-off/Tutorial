@@ -1,0 +1,11 @@
+<tree version="1.0"
+        image="images/printers.gif">
+    #cdata("label" "Web Terminal")
+
+    #nodestart("Recycle options" "images/printers.gif")
+            <grid-ref>
+                <name>./web_terminal/form_webterminal.vm</name>
+
+            </grid-ref>
+    </node>
+</tree>

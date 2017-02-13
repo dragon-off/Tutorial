@@ -1,0 +1,61 @@
+var month = Array("€нвар€","феврал€","марта","апрел€","ма€","июн€","июл€","августа","сент€бр€","окт€бр€","но€бр€","декабр€");
+	var utcday = Array("понедельник","вторник","среда","четверг","п€тница","суббота","воскресенье");
+	<% 
+		"hour="HOUR";"
+		"min="MINUTE";"
+		
+		"y="YEAR";"
+		"mo="MONTH-1";"
+		"d="DAY";"
+		"diw="DAY_IN_WEEK";"
+
+		P=(${printer}0)/10
+		IF(P EQ 0)
+		P=1
+		"prin="P";"
+		"var today = new Date();"
+		"var rhour = hour-today.getHours();"
+		"var rmin = min-today.getMinutes();"
+"var rd = d-today.getDate();"
+"var rm = mo-today.getMonth();"
+		
+	%>
+	function UpdateTime() {
+	    var today2 = new Date();
+		var InputTime = document.getElementById('MyTime');
+		var InputDate = document.getElementById('MyDate');
+		
+		
+		hour=today2.getHours()+rhour;
+		min=today2.getMinutes()+rmin;
+		sec=today2.getSeconds();
+		if(sec < 0) {sec=60-sec;}
+		if(min < 0) {min=60-min;}
+		if(hour < 0) {hour=24-hour;}
+		if(sec >=60){sec=sec-60;}
+		if(min>=60){min=min-60;}
+		if(hour>=24){hour=hour-24;}
+		h = hour;
+		if(h < 10)
+			h = "0" + h;
+		m = min;
+		if(m < 10)
+			m = "0" + m;
+		s = sec;
+		if(s < 10)
+			s = "0" + s;
+
+md=today2.getDate() + rd;
+mm=today2.getMonth() + rm;
+		outString = md + " ";
+		outString += month[mm] + " ";
+		outString += y + " года   ";
+		InputDate.innerHTML = outString;
+
+		outString =  h + ":" + m + ":" + s;
+		InputTime.innerHTML = outString;
+		outString = utcday[diw - 1];
+		
+		setTimeout("UpdateTime()",1000);
+	}
+	

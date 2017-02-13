@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>СУО</title>
+		<style type="text/css">
+			iframe { 
+				margin: 0; 
+				left: 0px;
+				top:22px;
+				position: absolute;
+			}
+			div.top_div {
+				text-align:right;
+				width:280px;
+				left: 0px;
+				margin: 0; 
+				top: 0px;
+				background:grey;
+				position: absolute;
+			}
+		</style>
+		<meta HTTP-EQUIV="MSThemeCompatible" content="yes">
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
+		<HTA:APPLICATION
+		APPLICATIONNAME="suo"
+		id="suopanel"
+		SCROLL="no"
+		MAXIMIZEBUTTON="no"
+		SHOWINTASKBAR="yes"
+		BORDER = "thin"
+		NAVIGABLE="yes"
+		SingleInstance="yes"
+		SysMenu="no"
+		contextmenu="no"
+		>
+		<SCRIPT Language="VBScript">
+			Sub SetLink(server)
+				
+				Dim oWNet : Set oWNet = CreateObject("WScript.Network")
+				Dim suo_server
+			
+				window.resizeTo 300,570
+				'MsgBox oWNet.UserName
+				document.getElementById("noiwin").innerHTML = "<iframe name='pult' application='yes' frameBorder='0' width='280' height='540' src='/login/login.action?username=defaultuser&page=/login/open_queue_all.jsp?username="+oWNet.UserName+"'></iframe>"
+				set_url()
+			End Sub
+			Sub window_onLoad()
+				'
+
+				SetLink("192.168.0.1")
+			End Sub
+		</SCRIPT>
+		<script language="javascript">
+			var url="";//выход из станции
+			function document.onkeydown() {
+				var alt=window.event.altKey; 
+				if ((alt && event.keyCode==115) ) {
+					alert('Нажмите кнопку выхода');
+					event.keyCode=0; 
+					event.cancelBubble=true; 
+					return false; 
+				}
+				if( event.keyCode == 116){
+					event.keyCode=0; 
+					event.cancelBubble=true; 
+					return false; 
+				}
+			}
+			function set_url(){
+				document.getElementById("exit").disabled = true;
+				setTimeout(function t(){url=(document.getElementById("pult").contentWindow.location.href).replace("logincod","close"); document.getElementById("exit").disabled = false; }, 4000);
+			}
+			function logoff(){
+				document.getElementById("noiwin").innerHTML = "<iframe name='pult' application='yes' frameBorder='0' width='280' height='530' src='"+url+"'></iframe>";
+				window.close();
+			}
+		</script>
+	</head>
+	<body>
+		<div class="top_div" height="40px"><input id='exit' type='button' style='float: right;' onclick='logoff()' value='Выход'></input></div>
+		<div class="content_div" id="noiwin"></div>
+	</body>
+</html>

@@ -1,0 +1,12 @@
+
+  #set( $max3   = $sm.getNumericSetting( $section3, $key3 ) + 1)
+  #set( $limit3 = 0 )
+
+
+  #if( $max3 <= $limit3.parseInt($limit_max3))
+
+     $sm.setNumericSetting($section3, $key3, ${max3})
+
+  #end
+
+

@@ -1,0 +1,412 @@
+<html>
+<head>
+<LINK REL="StyleSheet" HREF="style_messages.css" TYPE="text/css">
+<%
+R=(${reset}0)/10
+IF(R EQ 0)
+	R=0
+
+IF(R EQ 1)
+BEGIN
+	I=1
+	WHILE(I LE 40)
+	BEGIN				
+		SETARRAY(600+I "000000000000000000000000000000F0")
+
+		I=I+1
+	END
+END
+%>
+	<title>СберБанк</title>
+	<link href="default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">	
+	<script type="text/javascript" src="/lib/ajax.js"></script>   
+	<LINK rel=stylesheet type="text/css" href="style.css">
+	<script language="Javascript" type="text/javascript">
+	
+			function setCookie(c_name, value, expiredays){
+				var exdate = new Date();
+				exdate.setDate(exdate.getDate() + expiredays);
+				document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toUTCString());
+			}
+			function getCookie(name){
+				var cookie = " " + document.cookie;
+				var search = " " + name + "=";
+				var setStr = null;
+				var offset = 0;
+				var end = 0;
+				if (cookie.length > 0) {
+					offset = cookie.indexOf(search);
+					if (offset != -1) {
+						offset += search.length;
+						end = cookie.indexOf(";", offset)
+						if (end == -1) {
+							end = cookie.length;
+						}
+						setStr = unescape(cookie.substring(offset, end));
+					}
+				}
+				return(setStr);
+			}
+					
+			<%
+			V=(${user}0)/10	
+			IF(V LE 0)
+			 V=1
+			"var moder = " V ";"
+			%>	
+			function change_kletka(adres,value) {
+				
+				if(moder==2)
+				{
+					counter=adres.substring(4,adres.length);
+					counter=counter.split('-');		// 0 - counter
+													// 1 - button
+					len=getCookie('operation_'+counter[0]);
+					counter[1]=counter[1]*1;
+					setCookie('operation_'+counter[0], len.substring(0,(counter[1]-1))+value+len.substring(counter[1],len.length),900);
+					len=getCookie('operation_'+counter[0]);
+					kletka(adres,value);
+				} else {
+					alert("Нет прав. Для изменения Вы должны быть модератором.");
+				};
+			}
+			//отображение содержимого клетки
+			function kletka(adres,value) {
+			
+					value=value*1;
+					var str="";
+					if(value==0) {
+						str+="<IMG SRC=no.png border=0 onclick=change_kletka('"+adres+"',1)>"
+					} else {
+						str+="<select name=menu1 onchange=change_kletka('"+adres+"',this.options[this.selectedIndex].value)>";
+						for(var i=0	; i<3; i++) {
+							if(i==value) {
+								str+="<option selected value="+i+">"+i+"</option>";
+							} else {
+								str+="<option value="+i+">"+i+"</option>"
+							};
+						};
+						str+="</select>";
+						};
+						document.getElementById(adres).innerHTML=str;
+				return str;
+			}
+				function DoScript(href)
+				{
+				 var PrintedDiv;
+				 PrintedDiv = document.getElementById("DopElement");
+				 PrintedDiv.innerHTML = '';
+				 AddHTMLAjax(PrintedDiv,href);
+
+				}
+			
+			function save_prior() {
+				var i=0;
+				var array="";
+				var value="";
+				while (len=getCookie('operation_'+show_window[i])) {
+					value+=""+len+"|";
+					array+=""+(600+show_window[i]*1)+"|";	
+					i++;
+				};
+				array+="@"
+				value+="@"	
+				rawsend('/ca/!setarray.qsp2?array="'+array+'"&value="'+value+'"');
+				return;
+			}
+	function load_prior() {
+		var i=0;
+		while (len=getCookie('operation_'+show_window[i])) {
+	//alert(len.charAt(1));
+				for (var j = 0; j < show_button.length; j++) {
+				//alert("win_"+show_window[i]+"-"+show_button[j]+"    "+show_button[j]);
+					kletka("win_"+show_window[i]+"-"+show_button[j],len.charAt(show_button[j]-1));
+				}
+		
+			i += 1;
+		} ;
+	
+		return;
+	}
+	function close_salert(el)
+{
+var elem = parent.frames[0].document.getElementById('blockres');
+elem.innerHTML=elem.innerHTML*1-1;
+if(el==2) elem.innerHTML=0;
+var messages = elem.innerHTML*1;
+if(messages<0)
+	{
+	messages=0;
+	elem.innerHTML=0;
+	}
+if(messages==0)
+	parent.frames[0].document.getElementById('block').style.display = 'none';
+parent.frames[1].document.getElementById('message_box_'+el+'_text').innerHTML="";
+if(el==1)
+	parent.frames[1].document.getElementById('message_box_3_text').innerHTML="";
+}
+	</script>
+	<script type="text/javascript" src="window_button_load.qsp2"></script>   
+
+
+</head>
+<body link=white alink=white vlink=white scrollwidth=100 onload="load_prior()">
+<div id="DopElement" style="display:none;"></div>
+
+<form action="">
+<TABLE BORDER=0><TR><TD>
+	
+	
+<%
+IF(V EQ 2) BEGIN
+"<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>"
+"<tbody>"
+"<tr><td class=boxTop>Действия</td></tr>"
+"<tr><td class=boxMain>"
+"<input onclick=\"location.href='/settings_admin/priority/window_button.qsp2?reset=1&user=2';\" type=button value=\"Сброс всех настроек\">"
+"<input onclick=\"save_prior();DoScript('/lib/1.jsp?TypeId=6&ComIndex=13&Comment=0'); alert('Изменения приняты!');\" type=button value=\"Применить изменения\">"
+"</td></tr>"
+"</tbody></table>"
+END
+%>
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+
+<form action="window_button.qsp2">
+<TABLE><TR><TD>
+	</TD></TR></TABLE>
+</form>
+
+	<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<tbody><tr><td class=boxTop rowspan=2>№</td>
+<td class=boxTop width=180 rowspan=2>Название операции</td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Кол. ожид. кл.</h3></td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Время ожид.</h3></td>
+<%
+W=30
+"<td class=boxTop colspan=15 align=center><h3 class=box>Окна<BR>(нажмите на окно, которое хотите изменить)</h3></td></tr>"
+I=1
+"<TR>"
+WHILE(I LE W)
+BEGIN
+	IF(ARRAY(400+I) EQ 0)
+	BEGIN
+			"<TD class=boxTopBlue align=center><center>"
+		"<div id=link_1_1 class=listItem style='width:100%;'><B><FONT size=+1>"
+		I
+		"</FONT></B></DIV></center></TD>\n"
+	END
+	I=I+1
+END
+"</TR>"
+M=10 {MAX GROUPS}
+I=1
+WHILE(I LE M)
+BEGIN
+	IF(ARRAY(1000+I) EQ 0)
+	BEGIN
+		IF(((I/2)*2) EQ I)
+			"<TR bgcolor=#E2E2E2>"
+		ELSE
+			"<TR>"
+	"<TD align=center>"I"</TD><TD>"BUTTON_LETTER(I)" "ARRAY(2000+I)"</TD><TD align=center>"BUTTON_QUEUE(I)+BUTTON_QUEUE(20+I)+BUTTON_QUEUE(40+I)"</TD><TD align=center>" 
+	PRINT_CLOCK_SEC(BUTTON_RWT(I))"</TD>"
+	P=1
+	WHILE(P LE W)
+	BEGIN
+		K=ARRAY(600+P)
+		{PROVERKA STROKI}
+		L=STRSUB(K 31 31)+"F"
+		
+		IF(L NE "FF")
+		BEGIN
+			SETARRAY(600+P "000000000000000000000000000000F0") {31=F}
+			K=ARRAY(600+P)
+		END
+		L=STRSUB(K I I)
+		IF(ARRAY(400+P) EQ 0)
+		BEGIN
+			"<TD id=win_"P"-"I" align=center>"
+		"</TD>"
+	END
+	P=P+1
+	END
+	"</TR>\n"
+	T=0
+	C=0
+	END 
+	I=I+1
+END
+%></table></TD><TD>
+</TD></TD></TABLE><table></table><script type="text/javascript">
+		var updating = false;
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		function rawsend(url,cb) {
+		
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+
+		          if(cb!=null) cb(req.responseText);	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		     
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+		
+		function getInt(arg) {
+		  var n=parseInt(arg);
+		  if(isNaN(n)) return 0; else return n;
+		}
+	</script>
+	
+<table width='100%' height='100%' id="message_box_1" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:998; background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" border=0/>
+					</td>
+					
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_1_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<div style="border-top:solid 1px #f43839;height: 38px;background-color: #fccac1;width:100%;text-align:center;">
+			<input type="button" value="OK" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" style="height:35px;width:80%;">
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%' id="message_box_2" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:997;background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(2); document.getElementById('message_box_2').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_2_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%'  style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:999;background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(3); document.getElementById('message_box_3').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

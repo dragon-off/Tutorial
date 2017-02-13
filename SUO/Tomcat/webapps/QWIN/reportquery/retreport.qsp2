@@ -1,0 +1,9 @@
+<%
+"openh_time=" ARRAY(503) "<br>"
+"openm_time=" ARRAY(504) "<br>"
+"closeh_time=" ARRAY(505) "<br>"
+"closem_time=" ARRAY(506) "<br>"
+"AddressVSP=" ARRAY(2600) "<br>"
+"green_t=" ARRAY(490) "<br>"
+"red_t=" ARRAY(491) "<br>"
+%>

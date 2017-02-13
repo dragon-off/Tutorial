@@ -1,0 +1,40 @@
+<%
+T=(${type}0)/10
+IF(T EQ 1)
+BEGIN
+	"TIME¤" TIME_NO 
+	"#"
+	"TIME_NO¤" TIME_NO 
+END
+IF(T EQ 2)
+BEGIN
+	"TIME¤" TIME_NO 
+	"#"
+	"TIME_NO¤" TIME_NO 
+END
+IF(T EQ 3)
+BEGIN
+	"TIME¤" TIME_NO 
+	"#"
+	"TIME_NO¤" TIME_NO 
+END
+IF(T EQ 4)
+BEGIN
+	"TIME¤" TIME_NO 
+	"#"
+	"TIME_NO¤" TIME_NO 
+END
+IF(T EQ 5)
+BEGIN
+	"TIME¤" TIME_NO 
+	"#"
+	"TIME_NO¤" TIME_NO 
+END
+IF(T EQ 6)
+BEGIN
+	"TIME¤" TIME_NO 
+	"#"
+	"TIME_NO¤" TIME_NO 
+END
+
+%>

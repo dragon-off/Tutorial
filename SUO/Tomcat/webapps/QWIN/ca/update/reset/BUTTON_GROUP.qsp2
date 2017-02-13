@@ -1,0 +1,14 @@
+<TABLE>
+<%
+
+X=1
+WHILE(X LE 20)
+BEGIN
+"<TR>"
+	"<TD>" BUTTON_LETTER(X) "</TD><TD>" GROUP_LETTER(BUTTON_GROUP(X)) "</TD><TD>" BUTTON_NAME(X) "</TD></TR>"
+
+	X=X+1
+END
+
+
+%>

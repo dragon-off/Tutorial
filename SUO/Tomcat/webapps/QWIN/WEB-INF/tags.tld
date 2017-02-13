@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+
+  <tlib-version>1.1</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <short-name>mole</short-name>
+
+  <uri>qw</uri>
+
+  <info>
+    Mole taglibs
+  </info>
+
+
+
+
+
+    <tag>
+        <name>setting</name>
+        <tagclass>com.qmatic.web.tags.Setting</tagclass>
+        <attribute>
+          <name>namespace</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>key</name>
+          <required>true</required>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <name>bse</name>
+        <tag-class>com.qmatic.web.tags.BSEscape</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+
+
+    <tag>
+        <name>textformat</name>
+        <tag-class>com.qmatic.web.tags.ui.TextFormat</tag-class>
+        <attribute>
+          <name>length</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>value</name>
+          <required>true</required>
+        </attribute>
+
+    </tag>
+
+
+    <tag>
+        <name>format</name>
+        <tag-class>com.qmatic.web.tags.Format</tag-class>
+        <attribute>
+          <name>format</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>value</name>
+          <required>true</required>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <name>nbsp</name>
+        <tag-class>com.qmatic.web.tags.ui.Nbsp</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+
+    <tag>
+        <name>button</name>
+        <tag-class>com.qmatic.web.tags.ui.ButtonTag</tag-class>
+        <attribute>
+          <name>label</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>onClick</name>
+          <required>false</required>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>datepicker</name>
+        <tag-class>com.qmatic.web.serversettings.scheduler.DatePicker</tag-class>
+        <attribute>
+          <name>year</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>month</name>
+          <required>true</required>
+        </attribute>
+
+        <attribute>
+          <name>selectedYear</name>
+          <required>true</required>
+        </attribute>
+
+        <attribute>
+          <name>selectedMonth</name>
+          <required>true</required>
+        </attribute>
+
+        <attribute>
+          <name>selectedDate</name>
+          <required>true</required>
+        </attribute>
+
+    </tag>
+
+
+
+    <tag>
+        <name>vstext</name>
+        <tag-class>com.qmatic.web.i18n.ValueStackTextTag</tag-class>
+        <attribute>
+          <name>key</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>default</name>
+          <required>false</required>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>text</name>
+        <tag-class>com.qmatic.web.i18n.TextTag</tag-class>
+        <attribute>
+          <name>key</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>default</name>
+          <required>false</required>
+        </attribute>
+    </tag>
+
+
+
+    <tag>
+        <name>xsl</name>
+        <tag-class>com.qmatic.utils.XslTag</tag-class>
+        <attribute>
+          <name>xsl</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>src</name>
+          <required>true</required>
+        </attribute>
+
+    </tag>
+
+
+    <tag>
+        <name>path</name>
+        <tag-class>com.qmatic.web.tags.Path</tag-class>
+        <attribute>
+          <name>src</name>
+          <required>true</required>
+        </attribute>
+    </tag>
+
+
+    <tag>
+        <name>tree</name>
+        <tag-class>com.qmatic.web.tree.TreeTag</tag-class>
+        <attribute>
+          <name>model</name>
+          <required>true</required>
+        </attribute>
+        <attribute>
+          <name>toolbar</name>
+          <required>true</required>
+        </attribute>
+
+        <attribute>
+          <name>decoratorName</name>
+          <required>false</required>
+        </attribute>
+
+    </tag>
+
+
+
+    <tag>
+        <name>crc32</name>
+        <tag-class>com.qmatic.web.tags.CRC32Tag</tag-class>
+        <attribute>
+          <name>value</name>
+          <required>true</required>
+        </attribute>
+    </tag>
+
+
+    <tag>
+        <name>jtree</name>
+        <tag-class>com.qmatic.web.tags.TreeTag</tag-class>
+        <attribute>
+          <name>treeName</name>
+          <required>true</required>
+        </attribute>
+
+        <attribute>
+          <name>reloadActivePage</name>
+          <required>true</required>
+        </attribute>
+
+    </tag>
+
+
+    <tag>
+        <name>sstree</name>
+        <tag-class>com.qmatic.web.serversettings.TreeTag</tag-class>
+        <attribute>
+          <name>treeName</name>
+          <required>true</required>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>settings-tree</name>
+        <tag-class>com.qmatic.web.serversettings.TreeTag</tag-class>
+        <attribute>
+          <name>nodes</name>
+          <required>true</required>
+        </attribute>
+
+        <attribute>
+          <name>id</name>
+          <required>true</required>
+        </attribute>
+
+    </tag>
+
+  <tag>
+    <name>test</name>
+    <tag-class>mole.tags.Test</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+
+
+    <tag>
+      <name>Iterator</name>
+      <tag-class>mole.tags.Iterator</tag-class>
+      <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+
+    <tag>
+      <name>bean</name>
+      <tag-class>mole.tags.BeanTag</tag-class>
+      <body-content>JSP</body-content>
+
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+        </attribute>
+
+    </tag>
+
+
+    <tag>
+      <name>param</name>
+      <tag-class>mole.tags.Param</tag-class>
+      <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+        </attribute>
+
+    </tag>
+
+    <tag>
+      <name>Property</name>
+      <tag-class>mole.tags.Property</tag-class>
+      <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+
+    </tag>
+
+
+  <tag>
+    <name>script</name>
+    <tag-class>mole.tags.Script</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+
+
+  <tag>
+    <name>setting</name>
+    <tag-class>mole.tags.Setting</tag-class>
+        <attribute>
+            <name>ns</name>
+            <required>true</required>
+        </attribute>
+      <attribute>
+          <name>param</name>
+          <required>true</required>
+      </attribute>
+  </tag>
+
+  <tag>
+    <name>bool-control</name>
+    <tag-class>mole.tags.BooleanSettingControl</tag-class>
+        <attribute>
+            <name>ns</name>
+            <required>true</required>
+        </attribute>
+      <attribute>
+          <name>param</name>
+          <required>true</required>
+      </attribute>
+
+      <attribute>
+          <name>type</name>
+          <required>true</required>
+      </attribute>
+
+      <attribute>
+          <name>name</name>
+          <required>false</required>
+      </attribute>
+
+  </tag>
+
+
+</taglib>

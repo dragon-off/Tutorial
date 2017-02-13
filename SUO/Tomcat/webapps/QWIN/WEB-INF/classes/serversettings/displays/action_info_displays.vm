@@ -1,0 +1,14 @@
+<grid-form version="1.0"
+    label=""
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    #set( $grp = 0 )
+    #set( $grp = 1 + $grp.parseInt($group))
+
+    ##       SECTION   KEY    LABEL_ID                SCRIPT_FILE        GROUP  MIN  MAX
+    ##------------------------------------------------------------------------------------
+
+    #button( $section  "MAX"  "dispinfo.addInfoDisp"  "./add_action.vm"  $grp   0    99 )
+    #button( $section  "MAX"  "dispinfo.remInfoDisp"  "./rem_action.vm"  1      0    99 )
+
+</grid-form>

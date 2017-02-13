@@ -1,0 +1,207 @@
+.navigationHeader{
+    background: #EEEEEE;
+    font-weight: bold;
+}
+
+
+select {
+    background-color: #EEEEEE;
+}
+body
+{
+    font-size: 10px;
+    font-family: verdana;
+	background-color: #F4F4F5;
+}
+table
+{
+}
+
+td {
+    font-size: 10px;
+}
+
+a {
+    color: #0000EE;
+    font-family: verdana;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.header {
+    background: #D6D7D6;
+    font-family: arial;
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-left: 0px;
+}
+th {
+
+    font-size: 10px;
+    text-align: left;
+}
+
+a:link {
+    font-family; verdana;
+}
+a:visited {
+}
+
+a:hover {
+    text-decoration: underline;
+    background: #EEEEEE;
+}
+
+a:active {
+    color: #000000;
+}
+
+h1{
+    background: #EEEEFF;
+    font-family: verdana;
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+}
+input {
+    border-width: 1px;
+    border-color: #BDBDBE;
+    background: #F6F6F6;
+    font-family: verdana;
+    font-size: 12px;
+    text-align: center;
+}
+
+.tableMain {
+	background: #F4F4F5;
+	padding-bottom: 5px;
+	border: solid 1px #404040;
+}
+
+.tableSection {
+	background: #F4F4F5;
+	border: solid 1px #BDBDBE;
+}
+
+.tdSection {
+	padding-right: 4px;
+	vertical-align: top;
+}
+
+.tdHeaderSection, .tdTotalRow, .tdTotalRowC, .tdDataRow, .tdDataRowL, .tdDataRowC, .tdDataRow_Disabled, .tdDataRowC_Disabled , .tdDataRowOver{
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	font-family: verdana;
+	font-size: 11px;
+}
+
+.tdHeaderSection {
+	background: #E0E0E1;
+	padding-left: 8px;
+	border-top: solid 1px #ffffff;
+	border-left: solid 1px #ffffff;
+	border-bottom: solid 1px #BDBDBE;
+	border-right: solid 1px #BDBDBE;
+	color: #808080;
+}
+
+.tdMenuItem, .tdMenuItemOver {
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	font-family: verdana;
+	font-size: 10px;
+	color: #000080;
+	border-top: 0px;
+	border-left: 0px;
+	border-bottom: 0px;
+	border-right: 0px;
+}
+
+.tdMenuItem {
+	background:  #F4F4F5;
+}
+.tdMenuItemOver {
+	background: #ffffff;
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.tdTotalRow, .tdTotalRowC {
+	border-top: solid 1px #BDBDBE;
+	font-weight: bold;
+	color: #000080;
+}
+.tdTotalRowC {
+	text-align: center;
+}
+
+.trDataRow0 {
+	background: #F4F4F5;
+}
+.trDataRow1 {
+	background: #EEEEEE;
+}
+
+.tdDataRow, .tdDataRowL, .tdDataRowC , .tdDataRowOver{
+	color: #000080;
+}
+.tdDataRowC, .tdDataRowC_Disabled {
+	text-align: center;
+}
+.tdDataRowL {
+	text-align: left;
+}
+.tdDataRow_Disabled, .tdDataRowC_Disabled {
+	color: #aaaaaa;
+}
+
+.tdDataRowOver {
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.tdCopyright {
+	font-family: verdana;
+	font-size: 11px;
+	color: #808080;
+}
+.tdVersion {
+	font-family: verdana;
+	font-size: 9px;
+	color: #e0e0e0;
+	text-align: right;
+}
+
+.headerBar {
+	background-image:url('/images/headerBar.gif');
+	font-family: verdana;
+	font-size: 14px;
+	color: #000080;
+	height: 36;
+}
+
+.trSubmitRow {
+	background: #EEEEEE;
+}
+.tdSubmitRow {
+	border-top: solid 1px #BDBDBE;
+	padding-left: 2px;
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	text-align: right;
+}
+.submitOver {
+	background: #ffffff;
+	cursor: pointer;
+	cursor: hand;
+}
+.submitOut {
+}

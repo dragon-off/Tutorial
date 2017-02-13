@@ -1,0 +1,17 @@
+#loadcache2("TERMINAL" true)
+#loadcache2("TERMINAL_TYPE*" false)
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    #cdata("label" $text.getText("termseqs.SettingsHeading"))
+    #set( $section        = "TERMINAL_TYPE_$group"                     )
+
+    ##    SECTION    KEY         LABEL_ID          TYPE        HELP_ID          MIN MAX   REGEXP
+    ##-------------------------------------------------------------------------------------------
+
+    #qsys("$section" "FUNC_MAX"  "termseqs.max"    "number"    "termseqs.max"   0   255   ""    )
+
+
+</grid-form>

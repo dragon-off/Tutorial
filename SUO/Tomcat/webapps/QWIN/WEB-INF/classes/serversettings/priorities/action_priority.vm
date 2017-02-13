@@ -1,0 +1,20 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "")
+
+    <field type  = "button">
+          <name>addLine</name>
+          <label>Add line</label>
+          <params>
+              #param("action-script" "./priority/priority.createline.action?priorityNo=$priorityNo")
+              #param("ref-type" "raw")
+          </params>
+    </field>
+
+
+    <field type = "hidden">
+        <label></label>
+        <name>priorityNo</name>
+        #cdata("init-value" $priorityNo)
+    </field>
+</grid-form>

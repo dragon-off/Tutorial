@@ -1,0 +1,153 @@
+<%
+P=(${printer}0)/10
+B=(${button}0)/10
+R=(${red}0)/10
+H=STRSTN(HOUR)
+M=STRSTN(MINUTE)
+S=STRSTN(ARRAY(2700+(DAY_IN_WEEK-1)*4))
+A=STRSTN(ARRAY(2701+(DAY_IN_WEEK-1)*4))
+E=STRSTN(ARRAY(2702+(DAY_IN_WEEK-1)*4))
+N=STRSTN(ARRAY(2703+(DAY_IN_WEEK-1)*4))
+IF((H LT S) OR ((H EQ S) AND (M LT A))) BEGIN  ARRAY(2604)"#"ARRAY(2604) END
+ELSE BEGIN
+	IF((H GT E) OR ((H EQ E) AND (M GT N))) BEGIN  ARRAY(2605)"#"ARRAY(2605) END
+	ELSE BEGIN
+		IF(ARRAY(1000+B) EQ 0) 
+			BEGIN
+			
+			
+			IF(STRSTN(ARRAY(2608)) EQ 1 AND (ARRAY(449) EQ 1 OR ARRAY(449) EQ 2) AND R GT 0 AND (STRSTN(ARRAY(2591)) GT 0 OR STRSTN(ARRAY(2592)) GT 0 OR STRSTN(ARRAY(2593)) GT 0)) {!!!!!!!!!!!!Если включено отображение всп шаговой доступности и проверка еще не производилась!!!!!!!!!!!!! 2608 проверка связи с смсуо}
+				BEGIN
+				A=10
+				X=0 {GREEN CLIENT}
+				Y=0 {YELLOW CLIENT}
+				Z=0 {RED CLIENT}
+				M=0 {MAX wt}
+				N=1
+				WHILE(N LE A)
+					BEGIN
+					J=0
+					WHILE(J LE (GROUP_QUEUE(N)-1))
+					BEGIN
+					T=(TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(N J ITEM_START))*2
+					IF(T LE (ARRAY(490)))
+						X=X+1
+					ELSE IF(T LE (ARRAY(491)))
+						Y=Y+1
+					ELSE
+						Z=Z+1
+					J=J+1
+					END
+						J=0
+					WHILE(J LE (GROUP_QUEUE(N+40)-1))
+					BEGIN
+						T=(TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(N+40 J ITEM_START))*2
+						IF(T LE (ARRAY(490)))
+							X=X+1
+						ELSE IF(T LE (ARRAY(491)))
+							Y=Y+1
+						ELSE
+							Z=Z+1
+						J=J+1
+					END
+					J=0
+					WHILE(J LE (GROUP_QUEUE(22)-1))
+					BEGIN
+						IF(GROUP_QUEUE_CUSTOMER_ITEM(22 J ITEM_BUTTON) EQ N+40)
+						BEGIN
+							T=(TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(22 J ITEM_START))*2
+							IF(T LE (ARRAY(490)))
+								X=X+1
+							ELSE IF(T LE (ARRAY(491)))
+								Y=Y+1
+							ELSE
+								Z=Z+1
+						END
+						J=J+1	
+					END
+				N=N+1
+				END
+				J=0
+				WHILE(J LE (GROUP_QUEUE(31)-1))
+					BEGIN
+					T=(TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(31 J ITEM_START))*2
+					IF(T LE (ARRAY(490)))
+						X=X+1
+					ELSE IF(T LE (ARRAY(491)))
+						Y=Y+1
+					ELSE
+						Z=Z+1
+					J=J+1
+					END
+				J=0
+
+
+				{ perevod na operaciu }
+				WHILE(J LE (GROUP_QUEUE(34)-1)) 
+					BEGIN
+					T=(TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(34 J ITEM_START))*2
+					IF(T LE (ARRAY(490)))
+						X=X+1
+					ELSE IF(T LE (ARRAY(491)))
+						Y=Y+1
+					ELSE
+						Z=Z+1
+					J=J+1
+					END
+
+				 S=X+Y+Z {VSEGO OGIDAET}
+
+				 IF(Z GT 0) {Красная тактика в офисе}
+					 BEGIN
+					 IF(ARRAY(449) EQ 2)
+						BEGIN
+						FUNC_PRINTER_BUTTON(P B)
+						"GOOD#GOOD"
+						"<br>1<br>" B 
+						S=1
+						WHILE(S LE 2)
+							BEGIN
+							"||"
+							IF(STRSTN(ARRAY(2590+S)) GT 0)
+								BEGIN
+								ARRAY(2593+S) "&&" ARRAY(2596+S)
+								END
+							S=S+1
+							END
+						END
+					ELSE
+						BEGIN
+						
+						" <br>2<br>" B
+						S=1
+						WHILE(S LE 2)
+							BEGIN
+							
+							IF(STRSTN(ARRAY(2590+S)) GT 0)
+								BEGIN
+								"||"
+								ARRAY(2593+S) "&&" ARRAY(2596+S) "&&" ARRAY(2500+B+(S-1)*30) "&&" ARRAY(2510+B+(S-1)*30)
+								END
+							S=S+1
+							END
+						END
+					 END
+				 ELSE 
+					BEGIN
+					FUNC_PRINTER_BUTTON(P B)
+					"GOOD#GOOD"
+					"<br>0"
+					END
+				
+				END
+			ELSE
+				BEGIN
+				FUNC_PRINTER_BUTTON(P B)
+				"GOOD#GOOD"
+				"<br>0"
+				END
+			END
+		ELSE "BAD3#BAD3"
+	END
+END
+%>

@@ -1,0 +1,3 @@
+#set($max = $sm.getNumericSetting("PRIORITY", "MAX"))
+#set($max = $max + 1)
+$sm.setNumericSetting("PRIORITY", "MAX", $max)

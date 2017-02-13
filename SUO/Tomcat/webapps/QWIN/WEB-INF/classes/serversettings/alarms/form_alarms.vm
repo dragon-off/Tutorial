@@ -1,0 +1,27 @@
+#loadcache2("ALARM*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("alarms.generalNodeLabel"))
+    #set( $section            = "ALARM"                                                                         )
+
+    ##     SECTION  KEY                 LABEL_ID                   TYPE      HELP_ID                 MIN MAX REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"               "alarms.maxTypes"          "number"  "alarms.maxTypes"          0 99   "" )
+    #qsys($section "TIME_UPDATE"       "alarms.updateTime"        "number"  "alarms.updateTime"        0 999  "" )
+
+    #separator("alarms.newAlarms")
+    #qsys($section "TIME_DELAY"        "alarms.minActiveTime"     "number"  "alarms.minActiveTime"     0 60   "" )
+    #qsys($section "TIME_CYCLE_DELAY"  "alarms.maxActiveTime"     "number"  "alarms.maxActiveTime"     0 999  "" )
+    #qsys($section "QUEUE_LEN"         "alarms.maxSimultan"       "number"  "alarms.maxSimultan"       0 100  "" )
+
+    #separator("alarms.oldAlarms")
+    #qsys($section "CYCLING_ITEMS"     "alarms.oldAlarmsAlt"      "number"  "alarms.oldAlarmsAlt"      0 100  "" )
+    #qsys($section "TIME_CYCLING"      "alarms.timeAlternate"     "number"  "alarms.timeAlternate"     0 999  "" )
+    #qsys($section "TIME_IN_CYCLING"   "alarms.maxTimeAlternate"  "number"  "alarms.maxTimeAlternate"  0 999  "" )
+
+    #separator("alarms.messageAlarms")
+    #qsys($section "MESSAGE_MIN_NO"    "alarms.minMessageNo"      "number"  "alarms.minMessageNo"      0 9999 "" )
+    #qsys($section "MESSAGE_MAX_NO"    "alarms.maxMessageNo"      "number"  "alarms.maxMessageNo"      0 9999 "" )
+</grid-form>

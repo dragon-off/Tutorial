@@ -1,0 +1,174 @@
+<%
+U=(${update}0)/10
+IF(U EQ 1)
+BEGIN
+	G=1
+	WHILE(G LE 10 AND G LE MAX_BUTTONS)
+	BEGIN
+		 "¤" BUTTON_QUEUE(G) "¤" PRINT_CLOCK_SEC(BUTTON_RWT(G)) "¤¤"
+		G=G+1
+	END	
+END
+ELSE
+BEGIN
+
+%>
+
+<html>
+<head>
+	<script type="text/javascript" src="/js/qevent.js"></script>    
+	<link type="text/css" rel="stylesheet" href="css/dash.css"></link>
+</head>
+<body>
+<table class='branch' cellpadding='0' cellspacing='0'>
+	<tr>
+	<% "<td class='category'>" TEXT(2) "</td>" %>
+	<% "<td class='waitcust' colspan='2'><table cellspacing='0' cellpadding='0' align='center'><tr><td>&nbsp;</td><td><img src='images/dash_wc.png'></td><td class='waitcust_text'>&nbsp; TEXT(73) </td><td>&nbsp;</td></tr></table></td>" %>
+	<% "<td class='waittime' colspan='2'><table cellspacing='0' cellpadding='0' align='center'><tr><td>&nbsp;</td><td><img src='images/dash_wt.png'></td><td class='waittime_text'>&nbsp; TEXT(74) </td><td>&nbsp;</td></tr></table></td>" %>
+	</tr>
+<%
+	G=1
+	WHILE(G LE 10 AND G LE MAX_BUTTONS)
+	BEGIN
+		"<tr>"
+		"<td class='b_category' id='category_" G "'></td>"
+		
+		"<tr>"
+		G=G+1
+	END	
+%>
+</table>
+</body>
+</html>
+
+<script type="text/javascript">
+
+		var updating = false;
+
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+		
+		// ---------------------------------------------------------------------
+		
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		function rawsend(url,cb) {
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+		          //alert("ok resp:"+req.responseText+" cb:"+cb);
+		          if(cb!=null) cb(req.responseText);	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		          // alert("Error: status:" + req.status+" url:"+url+" resp:"+req.responseText);
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+		
+		function getInt(arg) {
+		  var n=parseInt(arg);
+		  if(isNaN(n)) return 0; else return n;
+		}
+
+		function update() {
+			parseQwinInfo = function(resp) {
+				var respArray = resp.split('¤¤');
+				var line_split;
+				var el_g;
+				var el_c;
+				var el_w;
+				
+				// ba = true means BA system, check number of customers
+				// ba = false means RETURNS system, check waiting time
+				<% "var system_type = 'BA';" %>
+				system_type = system_type.toUpperCase();
+				var ba = (system_type == 'BA' ? true : false);
+				
+				<% "var limit1 = getInt('15');" %>
+				<% "var limit2 = getInt('10');" %>
+				<% "var text_minutes = ' TEXT';" %>
+				var limit_title;
+				var value_check;
+				
+				if(ba) {
+					// waiting customers
+					<% "limit_title = 'waiting customers';" %>
+					limit_unit = '';
+				} else {
+					// waiting time
+					<% "limit_title = 'waiting time';" %>
+					limit_unit = text_minutes;
+				}
+
+				for (var r=1; r <= respArray.length-1; r++) {
+					line_split = respArray[r-1].split('¤');
+					el_g = document.getElementById('category_'+r);
+				}	
+			
+				updating = false;
+				updateTimer_reset();
+			}
+			getStandardInfo = function() {
+			  var url = 'znach.qsp';
+			  return rawsend(url,parseQwinInfo);
+			}
+			if(!updating) {
+				updating = true;
+				getStandardInfo();
+			}
+		}
+
+
+		qwin_event.trig = function(eventType, unit, payload) {
+			update();
+		}
+
+		qwin_event.setEvents = function() {
+			// set which events we should listen to
+			// this function needs to be called manually to set up which events to listen to
+			// this function is also called once when server is up
+			qwin_event.waitForEventTrig("2.3.4.8");
+		}
+		
+		// the following call should be put at the end of the page/javascript
+		qwin_event.setEvents();
+
+		var updateTimer;
+		updateTimer_reset = function() {
+			clearTimeout(updateTimer);
+			updateTimer = setTimeout(function() {update(); },30000);
+		}
+		update();
+		
+</script>
+
+<%
+
+END
+
+%>

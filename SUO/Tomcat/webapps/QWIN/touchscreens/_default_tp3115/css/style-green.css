@@ -1,0 +1,50 @@
+/* -------------------------------------- */
+/*                                        */
+/* Custom css for green demo page         */
+/*                                        */
+/* -------------------------------------- */
+
+/* -------------------------------------- */
+/* Main                                   */
+/* -------------------------------------- */
+
+body {
+  background: url(../images/background-green.png) no-repeat;
+}
+td.mainOuter {
+  vertical-align: bottom;
+}
+
+/* -------------------------------------- */
+/* Buttons                                */
+/* -------------------------------------- */
+
+table.mainButtons {
+  height: 660px;
+}
+div.buttonOuter {
+  background: url(../images/button-green.png) no-repeat;
+}
+
+/* -------------------------------------- */
+/* Logo                                   */
+/* -------------------------------------- */
+
+div.logo {
+  background: url(../images/logo-green.png) no-repeat;
+  top: 10px;
+  left: 40px;
+  width: 400px;
+  height: 120px;
+}
+
+/* -------------------------------------- */
+/* Ticket splash                          */
+/* -------------------------------------- */
+
+div.splash {
+  border: solid 3px #24A26A;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */

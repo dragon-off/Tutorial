@@ -1,0 +1,388 @@
+Loaded date 2016.02.11 21:00:02
+Sended version: 
+ Dic 1 ver 117
+Dic 2 ver 10193
+Dic 3 ver 10099
+Dic 4 ver 10038
+Dic 5 ver 10002
+Dic 6 ver 28
+Dic 7 ver 10000
+Dic 8 ver 10000
+Dic 9 ver 10000
+Dic 10 ver 10001
+Dic 11 ver 10000
+Dic 12 ver 10008
+Dic 17 ver 6
+DictionaryID:1 Version 120
+Field:OPCAT_ID || Value:1
+Field:OPCAT_NAME || Value:Вклады / Металлические счета / НПФ
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Е
+Field:PREFIX_NP || Value:У
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:2
+Field:OPCAT_NAME || Value:Банковские / Кредитные карты
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Г
+Field:PREFIX_NP || Value:Н
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:3
+Field:OPCAT_NAME || Value:Оформление Кредитов
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Т
+Field:PREFIX_NP || Value:Э
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:4
+Field:OPCAT_NAME || Value:Оформление Ипотеки
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Ш
+Field:PREFIX_NP || Value:Ф
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:5
+Field:OPCAT_NAME || Value:Индивидуальные сейфы
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:П
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:6
+Field:OPCAT_NAME || Value:Платежи
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:А
+Field:PREFIX_NP || Value:К
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:7
+Field:OPCAT_NAME || Value:Прием и выдача наличных, пенсии
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Б
+Field:PREFIX_NP || Value:Л
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:8
+Field:OPCAT_NAME || Value:Денежные переводы
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:В
+Field:PREFIX_NP || Value:М
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:9
+Field:OPCAT_NAME || Value:Валютно-обменные операции
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:И
+Field:PREFIX_NP || Value:Р
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:10
+Field:OPCAT_NAME || Value:Компенсация
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:С
+Field:PREFIX_NP || Value:Д
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:11
+Field:OPCAT_NAME || Value:Обслуживание юр.лиц
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Ю
+Field:PREFIX_NP || Value:К
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:12
+Field:OPCAT_NAME || Value:Карты открыть новую
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>К</b>арты</div><div class="option_description"><b>О</b>ткрыть новую,<br /></div><div class="option_misc"><b>И</b>нтернет-банк<br /><b>М</b>обильный банк</div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 33px/1 "Arial",sans-serif;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;}.option_description{font:21px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:9px;}.option_misc{font:19px/1.3 "Arial",sans-serif;text-transform:uppercase;color:#444444;letter-spacing:1px;}}
+Field:PREFIX || Value:Л
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:2
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:13
+Field:OPCAT_NAME || Value:Карты забрать готовую, перевыпустить
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>К</b>арты</div><div class="option_description"><b>З</b>абрать готовую<br /><br />Перевыпуск</div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 33px/1 "Arial",sans-serif;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px;}.option_description{font:21px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:12px;}.option_misc{font:19px/1.3 "Arial",sans-serif;text-transform:uppercase;color:#444444;letter-spacing:1px;}}
+Field:PREFIX || Value:Т
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:3
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:14
+Field:OPCAT_NAME || Value:Переводы
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>Д</b>енeжные<br /> переводы</div><div class="option_description"><b>П</b>олучить или отправить</div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 30px/1.2 "Arial",sans-serif;text-transform:uppercase;letter-spacing:5px;margin-bottom:2px;}.option_description{font:21px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:4px;}.option_misc{font:bold 29px/1.7 "Arial",sans-serif;text-transform:uppercase;color:#444444;letter-spacing:4px;position:absolute;right:28px;bottom:12px;z-index:2;}}
+Field:PREFIX || Value:П
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:6
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:15
+Field:OPCAT_NAME || Value:Наличные, пенсии
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>Н</b>аличные</div><div class="option_description"><b>С</b>нять или положить</div><div class="option_misc"><b>П</b>енсии</div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 30px/1 "Arial",sans-serif;text-transform:uppercase;letter-spacing:3px;margin-bottom:4px;}.option_description{font:21px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:4px;}.option_misc{font:bold 29px/1.7 "Arial",sans-serif;text-transform:uppercase;color:#444444;letter-spacing:4px;position:absolute;right:28px;bottom:12px;z-index:2;}}
+Field:PREFIX || Value:Б
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:5
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:16
+Field:OPCAT_NAME || Value:Вклады
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>B</b>клады,</div><div class="option_description"><b>С</b>берегательные сертификаты</div><div class="option_misc"><b>О</b>формить,<br />закрыть</div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 22px/1 "Arial",sans-serif;text-transform:uppercase;letter-spacing:4px;margin-bottom:4px;}.option_description{font:18px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:4px;}.option_misc{font:bold 12px/1.7 "Arial",sans-serif;text-transform:uppercase;color:#444444;letter-spacing:3px;}}
+Field:PREFIX || Value:В
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:4
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:17
+Field:OPCAT_NAME || Value:Кредит оформить
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>К</b>редит</div><div class="option_description"><b>К</b>онсультация, <br />Оформить, Выдача</div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 22px/1.2 "Arial",sans-serif;text-transform:uppercase;letter-spacing:3px;margin-bottom:2px;}.option_description{font:18px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:4px;}.option_misc{display:none;}}
+Field:PREFIX || Value:К
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:0
+Field:POSITION || Value:7
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:18
+Field:OPCAT_NAME || Value:Кредит ежемесячный платеж
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Р
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:19
+Field:OPCAT_NAME || Value:Выписки, обращения
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>С</b>правки</div><div class="option_description">Выписки, обращения</div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 22px/1.2 "Arial",sans-serif;text-transform:uppercase;letter-spacing:3px;margin-bottom:2px;}.option_description{font:18px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:4px;}.option_misc{display:none;}}
+Field:PREFIX || Value:С
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:10
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:20
+Field:OPCAT_NAME || Value:Ипотека оформить
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>И</b>потека</div><div class="option_description"><b>К</b>онсультация, <br />Оформить, Выдача</div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 22px/1.2 "Arial",sans-serif;text-transform:uppercase;letter-spacing:3px;margin-bottom:2px;}.option_description{font:18px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:4px;}.option_misc{display:none;}}
+Field:PREFIX || Value:И
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:0
+Field:POSITION || Value:8
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:21
+Field:OPCAT_NAME || Value:Ипотека ежемесячный платеж
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Н
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:22
+Field:OPCAT_NAME || Value:Обмен валюты
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:М
+Field:PREFIX_NP || Value:К
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:23
+Field:OPCAT_NAME || Value:Монеты, чеки
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:М
+Field:PREFIX_NP || Value:К
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:24
+Field:OPCAT_NAME || Value:Сейфы
+Field:OPCAT_NAME_ADD || Value:
+Field:OPCAT_NAME_CSS || Value:
+Field:PREFIX || Value:Е
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:0
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:0
+Field:OPCAT_ID || Value:25
+Field:OPCAT_NAME || Value:Компенсации, доверенности
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>К</b>омпенсации, доверенности</div><div class="option_description"></div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:normal 16px/1.3 "Arial",sans-serif;letter-spacing:2px;}.option_description{display:none;}.option_misc{display:none;}}
+Field:PREFIX || Value:Д
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:12
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:26
+Field:OPCAT_NAME || Value:Платежи, квартплата, телефон, ГИБДД
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>П</b>латежи</div><div class="option_description">Квартплата, телефон, <br />ГИБДД и другие</div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 40px/1 "Arial",sans-serif;letter-spacing:6px;text-transform:uppercase;}.option_description{font:32px/1.15 "Arial",sans-serif;color:#666666;text-transform:none;letter-spacing:1px;}.option_misc{font:19px/1.3 "Arial",sans-serif;text-transform:uppercase;color:#444444;letter-spacing:1px;}}
+Field:PREFIX || Value:А
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:1
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:72
+Field:OPCAT_NAME || Value:Обмен валюты
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"></div><div class="option_description"></div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:normal 16px/1.3 "Arial",sans-serif;letter-spacing:2px;}.option_description{display:none;}.option_misc{display:none;}}
+Field:PREFIX || Value:А
+Field:PREFIX_NP || Value:А
+Field:PREFIX_P || Value:А
+Field:ACTIVE_FLG || Value:0
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:15
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:30
+Field:OPCAT_NAME || Value:Выплаты Агентства по страхованию вкладов
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>В</b>ыплаты Агентства по страхованию вкладов</div><div class="option_description"></div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:normal 16px/1.3 "Arial",sans-serif;letter-spacing:2px;}.option_description{display:none;}.option_misc{display:none;}}
+Field:PREFIX || Value:Ф
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:11
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:31
+Field:OPCAT_NAME || Value:Монеты, Обмен
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>М</b>онеты<br />Обмен валюты</div><div class="option_description"></div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:normal 16px/1.3 "Arial",sans-serif;letter-spacing:2px;}.option_description{display:none;}.option_misc{display:none;}}
+Field:PREFIX || Value:М
+Field:PREFIX_NP || Value:Ш
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:0
+Field:POSITION || Value:13
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:52
+Field:OPCAT_NAME || Value:Кредит/Ипотека ежемесячный платеж
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>К</b>редит/Ипотека</div><div class="option_description"><b>Е</b>жемесячный платеж,<br />досрочно погасить</div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:bold 22px/1.2 "Arial",sans-serif;text-transform:uppercase;letter-spacing:3px;margin-bottom:2px;}.option_description{font:18px/1.1 "Arial",sans-serif;color:#666;letter-spacing:1px;text-transform:none;margin-bottom:4px;}.option_misc{display:none;}}
+Field:PREFIX || Value:Р
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:1
+Field:POSITION || Value:9
+Field:OPCAT_TYPE || Value:1
+Field:SERV_FLG || Value:1
+Field:OPCAT_ID || Value:51
+Field:OPCAT_NAME || Value:Услуги для бизнеса
+Field:OPCAT_NAME_ADD || Value:<div class="option_title"><b>У</b>слуги для бизнеса</div><div class="option_description"></div><div class="option_misc"></div>
+Field:OPCAT_NAME_CSS || Value:#div_№{.option_title{font:normal 16px/1.3 "Arial",sans-serif;letter-spacing:2px;}.option_description{display:none;}.option_misc{display:none;}}
+Field:PREFIX || Value:У
+Field:PREFIX_NP || Value:Ю
+Field:PREFIX_P || Value:Я
+Field:ACTIVE_FLG || Value:1
+Field:CALCULATION_FLG || Value:0
+Field:POSITION || Value:14
+Field:OPCAT_TYPE || Value:0
+Field:SERV_FLG || Value:0

@@ -1,0 +1,16 @@
+#loadcache2("GROUP*" true)
+#loadcache2("BUTTON*" false )
+
+
+#set( $top_node_image          = "images/printers.gif"                      )
+
+<tree version="1.0" image = "images/categories.gif">
+   #cdata("label" $text.getText("tree.qwinClient"))
+
+   #nodestart($text.getText("client.policy") $top_node_image)
+       <grid-ref>
+           #cdata("name" "./client/form_policy.vm")
+       </grid-ref>
+    #nodeend()
+
+</tree>

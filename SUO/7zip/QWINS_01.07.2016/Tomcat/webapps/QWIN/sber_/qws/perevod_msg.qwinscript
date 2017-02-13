@@ -1,0 +1,83 @@
+Z=STRSTN(ARRAY(3000+COUNTER_CUSTOMER_ITEM(W ITEM_TRACK)))
+"msg_top^"
+IF(COUNTER_CUSTOMER_PRESENT(W) EQ 1)
+BEGIN
+	"Выберите операцию или окно<form name=form1 id=form1 style='margin-top:0; padding-top:0; margin-bottom:0; margin-bottom:0;'>"
+	"<hr>Перевод клиента в другое окно:<br>  <select name=menu1 onchange=\" check_counter(this,'" BUTTON_LETTER(COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON)) COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) LEN(3)"'); \"><option selected disabled>Выберите окно</option>"
+	I=1
+	WHILE(I LE 30)
+	BEGIN
+		IF(I NE W)
+		BEGIN
+			IF(STRSTN(ARRAY(400+I)) EQ 0 AND STRSTN(ARRAY(700+I)) EQ 0)
+			BEGIN
+				IF(COUNTER_OPEN(I) EQ 0)
+				BEGIN
+					"<option value="I+2080">"
+				END ELSE IF(COUNTER_CUSTOMER_PRESENT(I) EQ 1 AND COUNTER_CUSTOMER_ITEM(I ITEM_BUTTON) EQ 143)
+				BEGIN
+					"<option value="I+1080">"
+				END ELSE IF(COUNTER_CUSTOMER_PRESENT(I) EQ 1 AND COUNTER_CUSTOMER_ITEM(I ITEM_BUTTON) EQ 145)
+				BEGIN
+					"<option value="I+580">"
+				END ELSE
+				BEGIN
+					"<option value="I+80">"
+				END
+				COUNTER_NAME(I)
+				IF(COUNTER_OPEN(I) EQ 1)
+				BEGIN
+					IF(COUNTER_CUSTOMER_ITEM(I ITEM_BUTTON) EQ 143)
+						"(перерыв)"
+					ELSE IF(COUNTER_CUSTOMER_ITEM(I ITEM_BUTTON) EQ 145)
+						"(вн. работа)"
+					ELSE IF(COUNTER_CUSTOMER_PRESENT(I) EQ 1)
+						"(в работе) "
+					ELSE IF(COUNTER_CUSTOMER_PRESENT(I) EQ 0)
+						"(простой) "
+					ELSE
+						"(открыто) "
+				END
+				ELSE
+					"(закрыто)"
+				IF(COUNTER_LOGIN_ID(I) GE 1)
+					LOGIN_NAME(COUNTER_LOGIN_ID(I))
+				"</option>"
+			END
+		END
+		I=I+1
+	END
+	"</select></form><!--не переносить на новую строку!!!-->"
+	IF(Z NE 141)
+	BEGIN
+		"<form name=form1 id=form1 style='margin-top:0; padding-top:0; margin-bottom:0; margin-bottom:0;'>Перевод клиента на другую операцию:<br>  <select style='width:220px;' name=menu1 onchange=\"run_qwin('perevod',this.options[this.selectedIndex].value); sd('" BUTTON_LETTER(COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON)) COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) LEN(3)"',this.options[this.selectedIndex].innerHTML.substr(0,1),0);\"><option selected disabled>Выберите операцию</option>"
+		I=1 {knopka}
+		J=0
+		L=COUNTER_LOGIN_ID(W)
+		X=ARRAY(600+W)
+		WHILE(I LE 20) BEGIN { buttons}
+			Q=STRSTN(STRSUB(X I I))*STRSTN(STRSUB(ARRAY(1100+I) L L)) {knopki ne obslugivaemie}
+			IF((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) NE I)  AND (Q EQ 0)) 
+			BEGIN
+				U=0
+				N=1 {okno}
+				WHILE(N LE 30) BEGIN
+				IF(COUNTER_OPEN(N) EQ 1) {AND (STRSTN(ARRAY(1200+N)) EQ 0)}
+					BEGIN
+						IF((STRSUB(ARRAY(1100+I) COUNTER_LOGIN_ID(N) COUNTER_LOGIN_ID(N)) NE "0") AND (STRSUB(ARRAY(600+N) I I) NE "0")) 
+							U=1
+					END
+				N=N+1
+				END
+				IF(U NE 0) BEGIN
+					"<option value="I+60">"BUTTON_LETTER(I)"&nbsp"ARRAY(2000+I) "</option>"
+				END
+			END
+			I=I+1
+		END
+		"</select></form>"
+	END
+END
+ELSE 
+	"<center>У вас сейчас нет клиентов!</center>"
+"<p><center><table class=table_button_select  width=127 height=36 cellspacing=0 cellpadding=0  onclick=><tr height=17 style='border:none;'><td><input type=button class=button id='otlozh1' onClick=hide_top_msg(0); value='Отмена'/></td></tr></table></center>"

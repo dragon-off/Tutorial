@@ -1,0 +1,109 @@
+/* -------------------------------------- */
+/*                                        */
+/* DO NOT CHANGE ANY VALUES IN THIS FILE! */
+/*                                        */
+/* Use the custom css file to overide the */
+/* values in this file.                   */
+/*                                        */
+/* -------------------------------------- */
+
+/* -------------------------------------- */
+/* Main                                   */
+/* -------------------------------------- */
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+table.mainOuter {
+  width: 480px;
+  height: 800px;
+}
+td.mainOuter {
+  vertical-align: top;
+}
+
+/* -------------------------------------- */
+/* Buttons                                */
+/* -------------------------------------- */
+
+table.mainButtons {
+  height: 740px;
+}
+div.buttonOuter {
+  position: relative;
+  background: url(../images/button-qmatic.png) no-repeat;
+  display: table;
+  width: 428px;
+  height: 104px;
+}
+div.buttonInner {
+  display: table-cell;
+  vertical-align: middle;
+}
+div.buttonText, div.buttonWaiting {
+  font-family: Arial;
+  text-decoration: none;
+  text-align: left;
+  color: #FFFFFF;
+  padding-left: 42px;
+  padding-right: 110px;
+}
+div.buttonText {
+  font-size: 22pt;
+  font-weight: bold;
+}
+div.buttonWaiting {
+  font-size: 14pt;
+}
+
+/* -------------------------------------- */
+/* Logo                                   */
+/* -------------------------------------- */
+
+div.logo {
+  position: absolute;
+  background: url(../images/logo-qmatic.png) no-repeat;
+  top: 740px;
+  left: 250px;
+  width: 212px;
+  height: 47px;
+}
+
+/* -------------------------------------- */
+/* Ticket splash                          */
+/* -------------------------------------- */
+
+div.splashOuter {
+  position: absolute;
+  visibility: hidden;
+  display: table;
+  top: 0px;
+  left: 0px;
+  width: 480px;
+  height: 800px;
+}
+div.splashInner {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+div.splash, div.splashError {
+  background-color: #FFFFFF;
+  font-family: Arial;
+  font-size: 22pt;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  border: solid 3px #555555;
+}
+div.splashError {
+	background-color: #FFFF99;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */

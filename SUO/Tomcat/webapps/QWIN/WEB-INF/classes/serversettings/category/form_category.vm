@@ -1,0 +1,37 @@
+#loadcache2("GROUP" true)
+#loadcache2("GROUP_SETTING_$item" true)
+
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    #set( $section            = "GROUP_SETTING_$setting"                      )
+
+    ##    SECTION  KEY                LABEL_ID                    TYPE          HELP_ID                 MIN  MAX   REGEXP
+    ##-------------------------------------------------------------------------------------------------------------------
+
+    #qsys("GROUP"  "NAME$item"        "category.name"             "text"        "category.name"           0  40    "" )
+    #qsys($section "START_NUMBER"     "category.startNum"         "number"      "category.startNum"       1  9999  "" )
+    #qsys($section "END_NUMBER"       "category.endNum"           "number"      "category.endNum"         1  9999  "" )
+
+    #separator("category.appointment")
+    #qsys($section "GROUP_SIZE"       "category.groupSize"        "number"      "category.groupSize"      1  10000 "" )
+    #qsys($section "APPOINT_SIZE"     "category.appointsize"      "number"      "category.appointsize"    0  1000  "" )
+    #qsys($section "APPOINT_PERIOD"   "category.appointPeriod"    "time"        "category.appointPeriod"  30 21600 "" )
+
+    #qsys($section "CHECK_DOUBLE"     "category.allowDouble"      "checkbox"    "category.allowDouble"    0  1     "" )
+    #qsys($section "COPY_NOTES"       "category.copyNotes"        "checkbox"    "category.copyNotes"      0  1     "" )
+
+    #separator("category.waitingTime")
+
+    #qsys($section "ESTW_LEN"         "category.estwTickLen"      "number"      "category.estwTickLen"    1  10000 "" )
+    #qsys($section "ESTW_FILTER_VAL"  "category.exclude"          "time"        "category.exclude"        0  21600 "" )
+
+    #qsys($section "ESTW_WEIGHT_AVG"  "category.useWeighted"      "checkbox"    "category.useWeighted"    0  1     "" )
+    #qsys($section "ESTW_ESTW_PCENT"  "category.estwIncluded"     "number"      "category.estwIncluded"   0  200   "" )
+    #qsys($section "ESTW_RWT_PCENT"   "category.readIncluded"     "number"      "category.readIncluded"   0  200   "" )
+    #qsys($section "ESTW_FIXED_PCENT" "category.fixedIncluded"    "number"      "category.fixedIncluded"  0  100   "" )
+    #qsys($section "ESTW_FIXED_VALUE" "category.fixedValue"       "number"      "category.fixedValue"     0  20000 "" )
+
+</grid-form>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding='UTF-8' ?><%
+
+"<opcatPriority>\n"
+J=1
+WHILE(J LE 20)
+BEGIN
+"	<op cc=\"" ARRAY(5630+J )"\" uc=\"Installadmin\"" " df=\"0\">\N"
+	I=1
+	WHILE(I LE 30)
+	BEGIN
+		"		<wp cw=\""I"\" vl=\""STRSUB(ARRAY(600+I) J J)"\"/>\N"
+		I=I+1
+	END
+	"	</op>\N"
+	J=J+1
+END
+"</opcatPriority>\n"
+
+"<personCompetence>\n"
+J=1
+WHILE(J LE MAX_LOGINS)
+BEGIN
+	L=J {LOGIN_ID???? STAFF_LOGIN_ID}
+	V=STRSUB(ARRAY(1111) L L) {VIP}
+	S=STRSUB(ARRAY(1112) L L) {SPECREG}
+	"	<pc un=\"Installadmin\" vf=\""V "\" sr=\""S"\" uc=\""LOGIN_NAME(J)"\" df=\"0\">\N"
+	I=1
+	WHILE(I LE 20)
+	BEGIN
+		IF(ARRAY(5630+I) GT 0) BEGIN
+		"		<oc cñ=\"" ARRAY(5630+I) "\" vl=\"" STRSUB(ARRAY(1100+I) L L) "\"/>\N" END
+		I=I+1
+	END
+	"	</pc>\N"
+	J=J+1
+END
+"</personCompetence>"
+%>

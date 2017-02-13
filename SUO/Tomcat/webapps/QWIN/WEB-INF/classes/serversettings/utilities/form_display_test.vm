@@ -1,0 +1,15 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DisplayTestWriter">
+    #cdata("label" $text.getText("utilities.displayTest"))
+
+    <field type="number"
+           helpid="disptest.seconds">
+        <name>seconds</name>
+        #cdata("label" $text.getText("disptest.seconds"))
+        <params>
+        </params>
+        <init-value>10</init-value>
+    </field>
+
+</grid-form>
+

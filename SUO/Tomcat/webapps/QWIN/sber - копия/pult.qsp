@@ -1,0 +1,492 @@
+﻿<%@ page contentType='text/html;charset=utf-8'%>
+<%@ page language="java" import="com.qmatic.web.staff.Utils,com.qmatic.ConnectionContext,javax.servlet.http.*,javax.servlet.*,com.qmatic.QwinFactory.QWinFactory,com.qmatic.scripting.Script,com.qmatic.scripting.ScriptManager,webwork.action.ActionSupport" %>
+<%
+if(request.getParameter("close")!= null) {
+    ScriptManager sm = ConnectionContext.getQWinFactory().getScriptManager();
+    try
+    {
+		Script s = sm.createScript("run", "W="+request.getParameter("workstation")+"IF(COUNTER_CUSTOMER_PRESENT(W) EQ 1) BEGIN U=TIME_NO-COUNTER_CUSTOMER_ITEM(W ITEM_NEXT) IF(((U*2) LE ((ARRAY(501)+ARRAY(500))))  AND COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) NE 183) BEGIN SETARRAY(5870+W 1) FUNC_INSERT_LAST(W 5 COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) 182 0) END END FUNC_COUNTER_CLOSE(W) SETARRAY(2900+W 0)");
+		s.execute();
+		sm.killScript(s);
+    } catch (Exception e) {
+    }
+	}
+	%>
+<!DOCTYPE html>
+<!-- VER 5.9 20.12.2016 -->
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+<title>Пульт операциониста ФЛ</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script  language=javascript>
+
+var ticket_alert="";
+var auto_next=5000;
+var sbros_call;
+function createXMLHttpRequest() {
+  try { return new XMLHttpRequest(); } catch(e) {}
+  try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) {}
+  try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
+  throw 'XMLHttpRequest not supported';
+}
+ 
+var HTTP_TIMEOUT = 10;
+
+function httpRequest(url, onSuccess, onFail, postData, timeout) {
+
+  var req = createXMLHttpRequest();
+  var method = postData ? 'POST' : 'GET';
+  req.open(method, url, true);
+  req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
+  if (postData) {
+    req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+  }
+
+  var timer = null;
+  if (!timeout) timeout = HTTP_TIMEOUT;
+  if (timeout != -1) {
+    timer = setTimeout(httpTimeoutClosure(req, onFail), timeout);
+  }
+
+  req.onreadystatechange = httpStatusChangeClosure(req, onSuccess, onFail, timer);
+    req.send(postData);
+}
+  
+function httpTimeoutClosure(req, onFail) {
+  return function() {
+   req.onreadystatechange = null;
+    try {req.abort()}
+   finally {if (onFail) onFail(req)}
+  }
+}
+
+function httpStatusChangeClosure(req, onSuccess, onFail, timer) {
+  return function() {
+    if (req.readyState != 4) return;
+    if (timer) clearTimeout(timer);
+    if (req.status != 200 && req.status != 304) {
+      if (onFail) onFail(req);
+      return;
+    }    
+    if (onSuccess) onSuccess(req);
+  }
+}
+
+
+function page2() {
+	document.innerHTML='sdfsdfsdfsdf';
+}
+
+</script>
+
+<script type="text/javascript" src="/js/qevent.js">
+
+</script>
+<script src=ajax.js language=javascript></script>
+<script src=script.js language=javascript></script>
+
+<script language="javascript">
+var img=new Array();
+img[0]=new Image();
+img[0].src='images/button_d.gif';
+img[1]=new Image();
+img[1].src='images/next_d.gif';
+img[2]=new Image();
+img[2].src='images/button_a.gif';
+img[3]=new Image();
+img[3].src='images/next_a.gif';
+image_1='url('+img[0].src+')';
+image_2='url('+img[1].src+')';
+image_3='url('+img[2].src+')';
+image_4='url('+img[3].src+')';
+
+image2_1='url("'+img[0].src+'")';
+image2_2='url("'+img[1].src+'")';
+image2_3='url("'+img[2].src+'")';
+image2_4='url("'+img[3].src+'")';
+	
+function getVarValueFromURL(url, varName) { //для получение значений из URL
+	var query = url.substring(url.indexOf('?') + 1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if (pair[0] == varName) {
+			return pair[1];
+		}
+	}
+	return null;
+} ;
+var no_event=false;
+var ws=getVarValueFromURL(document.URL ,'workstation')*1;
+var logincod=getVarValueFromURL(document.URL ,'logincod')*1;
+var pereriv_work=false;
+var in_work_work=false;
+var error_state=0;
+var customer_present=0;
+var counter_open=0;
+var counter_item_button=0; //номер кнопки обсл. клиента
+var counter_transaction_time=0;
+var taktika=0;
+var takt_array_=new Array();
+var taktika_norma=1;
+var loginname="user";
+var waiting_call;
+var start_time;
+
+
+var t; 
+var timer_is_on=0; 
+
+function timedCount() 
+{ 
+	run_qwin('next',1);
+	t=setTimeout("timedCount()",3000); 
+} 
+
+function wait_next() 
+{ 
+	if (!timer_is_on) 
+	{ 
+		timer_is_on=1; 
+		t=setTimeout("timedCount()",3000); 
+		//timedCount(); 
+	} 
+} 
+
+function stopCount() 
+{ 
+//console.log("end nexter");
+	clearTimeout(t); 
+	timer_is_on=0; 
+} 
+
+
+
+
+
+
+
+
+
+var array_495=30;	//{время обсл. клиента более которого красный}
+var array_500=7; 	//{доступность повторного вызова} 
+var array_501=20; 	//{доступность сброса вызова} 
+var array_7000_w=0; //{доступность кнопки спец. рег.} 
+
+qwin_event.trig = function(eventType, unit, payload){
+
+if(eventType==5) {
+		if(unit==ws) 
+			stopCount();
+		if(unit==ws & no_event==false) {
+			start_time=new Date(); //сохраняем начало времени обслуживания
+			sbrf.log("Событие вызов payload="+payload);
+			alert("Событие вызов payload="+payload);
+			run_qwin('update',0);
+			};
+		};
+		if(eventType==143 && vip==true) {
+			if(payload>=41 && payload<=60)
+			if(prior.charAt(payload-41) == "1")
+				alert("В зале VIP-клиент");
+		};
+}
+qwin_event.setEvents = function(){
+	qwin_event.waitForEventTrig("5.143");
+}
+qwin_event.setEvents();
+var blink_a=0;
+blink_b=0; //Мигалки
+function checkTime(i)
+{
+	if (i<10) 
+	{
+		i="0" + i;
+	}
+	return i;
+};
+function loadButtons() { //Первичная загрузка кнопок
+	setInterval(function(){
+		var now = new Date();
+		var clock = document.getElementById('clock');
+		clock.innerHTML = now.toLocaleTimeString();
+		
+	}, 1000);
+	var d=new Date();
+	var day=d.getDate();
+	var month=d.getMonth() + 1;
+	var year=d.getFullYear();
+	//document.write(day + "." + month + "." + year);
+
+	
+	document.getElementById('clock_date').innerHTML=day + "." + month + "." + year;
+	document.getElementById('counter').innerHTML="Окно "+ws;
+	var close=getVarValueFromURL(document.URL ,'close')*1;
+	if(close==1) {
+		run_qwin('close',0);
+};
+
+
+	type_avalible(0); //кнопки по умолчанию
+	run_qwin('update_logon',0); //обновляем содержимое пульта...
+
+	update();
+
+
+} //end loadButtons()
+
+
+function sbros()
+{
+	document.getElementById("next").value="Следующий";
+	change_avalible('otlozh',1);
+	change_avalible('number_call',1);
+	if(array_7000_w==0)
+		change_avalible('registration',0)
+	else
+		change_avalible('registration',1);
+	change_avalible('pereadres',1);
+	change_avalible('pereriv',1);
+	change_avalible('in_work',1);
+	document.getElementById('msg_log').style.display='none';
+}
+
+function blink() { //Мигание номера
+	el=document.getElementById("display")
+	if(blink_a==0) 
+	{
+		if(blink_b==1)	el.style.display='block';
+		if(customer_present==1) {
+			type_avalible(1); //После мигания номера окно переходит в режим обслуживания
+			//console.log(123123);
+		} else{
+			type_avalible(3);
+			};
+		}
+	if(blink_a>0)
+	{
+		if(blink_b==1) {el.style.display='block'; blink_b=0;}
+		else {el.style.display='none'; blink_b=1;}
+		blink_a=blink_a-1;
+		setTimeout('blink()', 500);
+	}
+}
+
+function sd(ticket,to,type) //отображение А101 переведе в .... val=ticket number,type=window or operation
+{
+	type_avalible(4);
+	if(type==1) //to window
+	{
+	if(to>1000 && to<2000)
+		to=to-1000;
+	if(to>2000)
+		to=to-2000;
+		document.getElementById('msg_log').innerHTML="<table topmargin=0 cellpadding=0 align=center cellspacing=0 background='images/display.gif' width=252 height=66><tr><td><font color='#00ff00'><b><center>"+ticket+"<br>переадресован<br>в окно "+to+"</center><b></font></td></tr></table>";
+	} else {//to operation
+		document.getElementById('msg_log').innerHTML="<table topmargin=0 cellpadding=0 align=center cellspacing=0 background='images/display.gif' width=252 height=66><tr><td><font color='#00ff00'><b><center>"+ticket+"<br>переадресован на<br> операцию "+to+"</center><b></font></td></tr></table>";
+	};
+	document.getElementById('msg_log').style.display='block';
+	hide_top_msg(0); //скрытие дива top_msg
+}
+
+
+function svetofor() { //progreess bar obsl customer
+
+	el=document.getElementById('svet2');
+	if(customer_present== 1 && ((counter_item_button)!=183) && ((counter_item_button)!=185))
+	{
+		counter_transaction_time+=1;
+		if(taktika_norma>0) {
+			if(counter_transaction_time>=taktika_norma+2)
+			{
+				el.style.backgroundColor='red';
+				el.style.width='126px';
+			} else {
+				el.style.background='rgb(119,161,23)';
+				if(taktika_norma!=0) {
+					el.style.width=Math.round((126/taktika_norma)*counter_transaction_time)+'px';
+				};
+			};
+		} else {
+			el.style.width='0px';;
+		};
+	} else {
+			el.style.width='0px';;
+	};
+	minut=Math.round(((counter_transaction_time*2)/60)-0.5);
+	second=Math.round(((counter_transaction_time*2-(minut*60)))-0.5);
+	if(minut<10)
+		minut="0"+minut;
+	if(second<10)
+		second="0"+second;
+	time_obsl=new Date(new Date()-start_time);
+	document.getElementById('obsl').innerHTML =minut+":"+second;
+	//document.getElementById('obsl').innerHTML=time_obsl.getMinutes()+":"+time_obsl.getSeconds();
+	setTimeout('svetofor()', 2000);
+};
+function getChar(event) {
+if (event.keyCode == 27 || event.which == 27) { 
+	hide_top_msg(0); 
+} else // спец. символ
+	return false;
+}
+</script>
+</head>
+<body id="body_content" onload="loadButtons(); svetofor();" style="overflow:hidden" scroll="no" onkeypress="getChar(event);">
+<div id='msg_log' class=div_log style="display:none;"></div>
+<div class=div_msg id='msg_top'></div>
+<div class=div_msg id='msg_timeout'><br><br><center><img src="images/loading.gif"><br><br><font color=white size=+2><b>ЗАГРУЗКА...</b></font></center></div>
+<table width=277 height=418 cellspacing=0 cellpadding=0>
+<tr>
+		<td colspan=2 height='15px' class="titletext" align=center>
+		<a id='clock_date' align=right>12:23:33</a>
+					<a id='clock' align=right>12:23:33</a>
+		</td>
+	</tr>
+	<!--
+<tr>
+		<td colspan=2 height='20px' align=center>
+			<table width=153 height=20 cellspacing=0 cellpadding=0 class="info_top">
+				<tr>
+					<td width=45px align=center>
+			
+					<a id='clock_date' align=right>12:23:33</a>
+					<a id='clock' align=right>12:23:33</a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>-->
+	<tr height=66 align=center>
+		<td colspan=2>
+		<div class="tdisplay">
+			<div id='display' width=252 height=66>	</div>
+		</div>
+		</td>
+	</tr>
+	<tr align=center>
+		<td colspan=2 height='13px'>
+		<div id='custitemcard' class="card_text"></div>
+		</td>
+	</tr>
+	<!--<tr>
+		<td colspan=2 height='15px' class="titletext">
+		Время
+		</td>
+	</tr>-->
+	<tr>
+		<td colspan=2 height='40px' align=center>
+			<table width=253 height=40 cellspacing=0 cellpadding=0 border=0 class="info1">
+				<tr>
+					<td rowspan=2 width=90px>
+					Такт/норм.<br>время: <a id='takt'></a>
+					</td>
+					<td>
+					Обслуживание: <a  id='obsl'></a>
+					</td>
+				</tr>
+				<tr height=17px>
+					<td valign=top align=left>
+						<table cellspacing=0 cellpadding=0 id='svet2'><tr><td></td></tr></table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<!--<tr>
+		<td colspan=2 height='15px' class="titletext">
+		Количество ожидающих
+		</td>
+	</tr>-->
+	<tr>
+		<td colspan=2 height='40px' align=center>
+			<table width=253 height=40 cellspacing=0 cellpadding=0 class="info2" table=1>
+				<tr>
+					<td width=50%>
+					Всего: <a id='vseg'></a>
+					</td>
+					<td>
+					&nbsp;Операции: 
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2 id='oper' align=center style="font-size:7pt;">
+					
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 height='36px' align=center>
+			<table  cellspacing=0 cellpadding=0 ><tr><td><input type="button" class="next" id='next' onClick="doSomething(this);" value='Следующий'/></td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td height='36px' width=50% align=center class="bleft">
+			<table  cellspacing=0 cellpadding=0><tr><td><input type="button" class="button" id='recall' onClick="doSomething(this);" value='Повторный вызов'/></td></tr></table>
+		</td>
+		<td height='36px' width=50% align=center class="bright">
+			<table cellspacing=0 cellpadding=0><tr><td><input type="button" class="button" id='otlozh' onClick="doSomething(this);" value='Отложить клиента'/></td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td height='36px' width=50% align=center class="bleft">
+			<table cellspacing=0 cellpadding=0><tr><td><input type="button" class="button" id='number_call' onClick="doSomething(this);" value='Вызов по номеру'/></td></tr></table>
+		</td>
+		<td height='36px' width=50% align=center class="bright">
+			<table cellspacing=0 cellpadding=0><tr><td><button class="button" id='registration' onClick="doSomething(this);">Специальная<br>регистрация</button></td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td height='36px' width=50% align=center class="bleft">
+			<table cellspacing=0 cellpadding=0><tr><td><input type="button" class="button" id='pereadres' onClick="doSomething(this);" value='Переадресация'/></td></tr></table>
+		</td>
+		<td height='36px' width=50% align=center class="bright" >
+			<table cellspacing=0 cellpadding=0><tr><td><input type="button" class="button" id='pereriv' onClick="doSomething(this);" value='Перерыв'/></td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 height='36px' align=center>
+			<table  style="visible:hidden;" cellspacing=0 cellpadding=0 ><tr><td><input type="button" class="next" id='in_work' onClick="doSomething(this);" value='Внутренние работы'/></td></tr></table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 height='15px' class="titletext">
+		Статистика за день
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 height='40px' align=center>
+			<table width=253 height=40 cellspacing=0 cellpadding=0 class="info3">
+				<tr>
+					<td width=65px>
+					Талонов: <a id='cst'></a>
+					</td>
+					<td>
+					Сред. время обслуж.: <a id='att'></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		</td>
+	</tr><tr>
+		<td colspan=2 height='40px' align=center>
+			<table width=253 height=40 cellspacing=0 cellpadding=0 class="info3">
+				<tr>
+					<td width=65px align=center>
+					<a id='counter' align=left>Окно 12</a> (<a id='login' align=right>логин</a>)
+			
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

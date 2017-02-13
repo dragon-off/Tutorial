@@ -1,0 +1,15 @@
+;создание таблицы takt_day
+CREATE TABLE [dbo].[takt_day](
+[MDATE] [datetime] NOT NULL,
+[value] [int] NOT NULL,
+CONSTRAINT [PK_takt_day] PRIMARY KEY CLUSTERED 
+(
+[MDATE] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+;обновление таблицы по пользователям 
+UPDATE tab1 SET tab1.login_name = tab2.comments from msqms_db.dbo.login_name as tab1 inner join qwin.dbo.stafinfo as tab2 on tab1.login_name=tab2.name

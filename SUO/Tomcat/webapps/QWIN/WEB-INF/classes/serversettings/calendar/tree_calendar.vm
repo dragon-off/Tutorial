@@ -1,0 +1,26 @@
+<tree version   = "1.0" image  = "images/calendar.gif">
+      #cdata("label" $text.getText("calendar.treeHeading"))
+
+    <node image = "images/calendar.gif">
+
+            #cdata("label" $text.getText("calendar.generalNodeLabel"))
+            <grid-ref>
+                #cdata("name" "./calendar/form_calendar.vm")
+            </grid-ref>
+
+            <node image= "images/calendar.gif">
+                #cdata("label" $text.getText("calendar.arrivalNotifyLabel"))
+                <grid-ref>
+                    #cdata("name" "./calendar/form_arrival.vm")
+                </grid-ref>
+            </node>
+
+            <node image= "images/calendar.gif">
+                #cdata("label" $text.getText("calendar.newNotifyLabel"))
+                <grid-ref>
+                    #cdata("name" "./calendar/form_new.vm")
+                </grid-ref>
+
+            </node>
+    </node>
+</tree>

@@ -1,0 +1,165 @@
+<html>
+<head>
+<script language=javascript>
+var AJAXDebug = false;
+
+function createXMLHttpRequest() {
+  try { return new XMLHttpRequest(); } catch(e) {}
+  try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) {}
+  try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
+  throw 'XMLHttpRequest not supported';
+}
+ var updating = false;
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+
+		function rawsend(url,cb) {
+		
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+
+		          if(cb!=null) cb(req.responseText);	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		     
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+var HTTP_TIMEOUT = 5; // default to 20s
+function httpRequest(url, onSuccess, onFail, postData, timeout) {
+  if(AJAXDebug==true)
+	{
+	var dt = new Date();
+	console.log("["+dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds()+"] "+"AJAX: "+url);
+	}
+  
+  var req = createXMLHttpRequest();
+  var method = postData ? 'POST' : 'GET';
+  req.open(method, url, true);
+ // req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
+  if (postData) {
+    req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+  }
+  
+  // Set up a timeout monitor if requested
+  var timer = null;
+  if (!timeout) timeout = HTTP_TIMEOUT;
+  if (timeout != -1) {
+    timer = setTimeout(httpTimeoutClosure(req, onFail), timeout);
+  }
+
+  // Hook status change event
+  req.onreadystatechange = httpStatusChangeClosure(req, onSuccess, onFail, timer);
+  
+  req.send(postData);
+}
+  
+function httpTimeoutClosure(req, onFail) {
+  return function() {
+    req.onreadystatechange = null;
+    try {req.abort()}
+    finally {if (onFail) onFail(req)}
+  }
+}
+
+
+function httpStatusChangeClosure(req, onSuccess, onFail, timer) {
+  return function() {
+    if (req.readyState != 4) return;
+    if (timer) clearTimeout(timer);
+    if ((req.status != 200 && req.status != 304)) { //|| req.responseText.search("Please wait")!=-1
+      if (onFail) onFail(req);
+      return;
+    }    
+    if (onSuccess) onSuccess(req);
+  }
+}
+
+
+var login_qwin,login_db;
+var oper=[];
+for(var j=0;j<31; j++)
+{
+	oper[j]="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000F000";
+};
+//получаем список логинов из кусис
+login_qwin = '{ "logins":["InstallAdmin","Administrator","DefaultUser","DistManagement","6056-serova-la","0007-uchuvatova-ea","ustinova","sedelkina","cibulskaya","6056-falina-ms","0042-Tarankov-AL","tugina","6056-Isupova-yv","0007-Syrtseva-NS","krasnova","6056-lazovskaya-dn","0007-Sinichkina-OS1","0007-kvashennikov-NN","6056-kalinkina-oe","0007-yakubova-yui","0042-khineva-dyu","0042-reutova-dv","0042-shirshova-in","0042-Sinitsina-MM","0007-Strakhova-AV","6056-chugunova-on","0007-egorova-yua","0042-artyukhova-oa","irapes","0042-Kapranova-AI","0042-Zimina-EV","0007-Smirnova-EA","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","0007-Karnavskaya-MA","New Staff Member","New Staff Member","New Staff Member","0042-rudometova-ev","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","0042-egorov-in1","0007-Kaurkina-SA","0042-shvetsov-yuv","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","0042-silova-oi","0042-fedulov-yaa1","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","0007-bogomolova-ev","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","0042-tamarovskaya-ev","New Staff Member","New Staff Member","0007-zhabrova-ea","0007-kozlova-ea","New Staff Member","New Staff Member","New Staff Member","6652-kuimova-gp","0042-Makhrov-OA","6056-Minina-VYu","0007-kolkina-sv","New Staff Member","New Staff Member","New Staff Member","0042-Platonova-IR","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","New Staff Member","0042-Pryamilova-MA","0007-kokarev-vs","New Staff Member","New Staff Member","New Staff Member","New Staff Member","0042-Osokina-AS","0007-Akinina-NP","New Staff Member","0007-Romanova-IV","0007-Toropova-MA","0007-remizova-oa","6056-Perova-LI","New Staff Member","New Staff Member","New Staff Member","0007-markova-ts","6652-zabrodina-ev","4342-lartseva-sv","6056-yakimova-mv","0007-krasilnikova-ki","su"]}';//
+//получаем список логинов и логику из БД
+login_db = '{ "logins":["ivanov","petrov"],"logic":["1011101010","0011000101"] }';
+function print(mes) {
+
+document.getElementById("message").innerHTML += mes;
+}
+function load_data() {
+	httpRequest('import_logins.qsp2', function(req) { login_qwin = JSON.parse(req.responseText); print("Загружен список пользователей из Qwin S (<b>2 из 2</b>)<br>"); }, null, null, 20000);
+	httpRequest('import_db.jsp', function(req) { login_db = JSON.parse(req.responseText); print("Загружен список пользователей из MSSQL(<b>1 из 2</b>) <br>"); }, null, null, 20000);
+	
+};
+
+function import_logic() {
+
+	//идем по всему списку логинов из кусис, находим тот же логин в списке из бд и формируем массим для кувина по операциям
+	for (var i = 0; i < login_qwin.logins.length; i++) {
+		str=login_db.logic[login_db.logins.indexOf(login_qwin.logins[i])];
+		for(var j=0;j<str.length; j++)
+		{
+			oper[j]=oper[j].substr(0,i)+str.substr(j,1)+oper[j].substr(i+1,304-i);
+		};
+	};
+	array="";
+	value="";
+	for(var j=0;j<20; j++)
+	{
+		if(j>0) {
+			array+="|"+(1101+j);
+			value+="|"+oper[j];
+		} else {
+			array+=(1101+j);
+			value+=oper[j];
+		};
+		console.log(oper[j].length);
+	};
+	rawsend('/ca/setprior.jsp?array="'+array+'|142|@"&value="'+value+'|USERNAME|@"&step=10&items="30|@"');
+	print("Востоновление матрицы компетенции: <b>выполнено</b><br>");
+};
+function del_logins() {
+	rawsend('logins_del.jsp');
+	print("Удаление не отображаемых пользователей: <b>выполнено (! подождите 10 секунд, пока QWin S сервис загрузит обновленный список пользоватлей)</b><br>");
+};
+function save_matix() {
+	rawsend('export_db.jsp');
+	print("Сохранить матрицу кмпетенцию в БД: <b>выполнено</b><br>");
+};
+
+</script>
+</head>
+<body>
+<button value="Сохранить матрицу кмпетенцию в БД" onclick="save_matix()">1. Сохранить матрицу кмпетенцию в БД</button><br><br>
+<button value="Удалить не отображаемых пользователей" onclick="del_logins()">2. Удалить не отображаемых пользователей</button><br><br>
+<button value="Загрузка актуального списка пользователей" onclick="load_data();">3. Загрузка актуального списка пользователей</button><br><br>
+<button value="Востановление матрицы компентенции" onclick="import_logic()">4. Востановление матрицы компентенции</button><br><br>
+<div id="message"></div>
+
+
+</body>
+</html>

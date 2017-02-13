@@ -1,0 +1,317 @@
+<%
+{"<TABLE border=1>"}
+{L=1}
+{WHILE(L LE MAX_LOGINS)}
+{BEGIN}
+{	"<TR><TD>" LOGIN_NAME(L) "</td>"}
+{	C=1}
+{	WHILE(C LE 8)}
+{	BEGIN}
+{		"<td>1</td>"}
+{		C=C+1}
+{	END}
+{	"</TR>"}
+{	L=L+1}
+{END}
+%>
+
+
+<html>
+<head>
+	<title>СберБанк</title>
+	<link href="default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<script type="text/javascript" src="/lib/ajax.js"></script>   
+	<LINK rel=stylesheet type="text/css" href="style.css">
+	<script language="Javascript" type="text/javascript">
+	
+	// массив картинок
+img= new Array();
+img[0]=new Image();   // каринка 1
+img[1]=new Image();   // каринка 2
+ 
+//сами картинки, не ошибитесь с путем...
+img[0].src='yes.png';
+img[1].src='no.png';
+
+	function alert1()
+	{
+  		if(q.style.display=='none')
+		{
+			q.style.display='block';
+			setTimeout('close()', 5000);
+		}
+  		else 
+   		{
+			q.style.display='none';
+   		}
+ 	}
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+
+}
+	function close()
+ 	{
+		q.style.display='none';
+		qq.style.display='none';
+	}
+	</script>
+
+<%
+	
+W=(${window}0)/10
+B=(${button}0)/10
+V=(${level}0)/10
+W=STRSTN(W)
+IF(W GT 0 AND B GT 0)
+	IF(B EQ 1)
+		SETARRAY(1100+Q+W STRNTS(V)+STRSUB(ARRAY(1100+Q+W) 2 32))
+	ELSE
+		SETARRAY(1100+Q+W STRSUB(ARRAY(1100+Q+W) 1 B-1)+STRNTS(V)+STRSUB(ARRAY(1100+Q+W) B+1 32))
+
+
+
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+
+R=(${reset}0)/10
+IF(R EQ 0)
+	R=0
+
+IF(R EQ 1)
+BEGIN
+	I=1
+	WHILE(I LE 30)
+	BEGIN
+		SETARRAY(1100+I "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000F0")
+		I=I+1
+	END
+END
+
+Z=P
+%>
+</head>
+<body link=white alink=white vlink=white scrollwidth=100>
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+<tr><td class=boxTop>Сброс всех настроек</td></tr>
+<tr><td class=boxMain><input onclick="location.href='/settings_admin/priority/login_button.qsp2?reset=1';" type=button value="Сброс всех настроек"></td></tr>
+</tbody></table>
+
+<TABLE><TR VALIGN=TOP><TD>
+
+
+<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+	<tbody><tr><td class=boxTop rowspan=2>№</td>
+	<td class=boxTop width=180 rowspan=2>Название операции</td>
+
+<%
+
+U=11
+"<td class=boxTop colspan="U" align=center><h3 class=box>Операции<BR>(нажмите на поле которое хотите изменить)</h3></td></tr>"
+I=1
+"<TR>"
+
+WHILE(I LE U)
+BEGIN
+	{IF(ARRAY(400+I) EQ 0)BEGIN}
+
+			"<TD width=70 class=boxMain style='background-color:#0099FF;' align=center >"
+		"<div ><B><FONT size=-1>"
+		IF(I LT U) BEGIN
+			BUTTON_NAME(I)  END
+		ELSE
+			"VIP"
+		"</FONT></B></DIV></TD>"
+	{END}
+	I=I+1
+END
+"</TR>"
+M=MAX_LOGINS {MAX GROUPS}
+IF(M GT 50)
+	I=50
+ELSE
+	I=1
+WHILE(I LE M)
+BEGIN
+	IF(0 EQ 0)
+	BEGIN
+		IF(((I/2)*2) EQ I)
+		BEGIN
+			"<TR bgcolor=#E2E2E2>"
+		END
+		ELSE
+			"<TR>"
+	"<TD align=center>"I"</TD><TD> "LOGIN_NAME(I)"</TD>"
+	P=1
+	{+prior to array}
+
+	WHILE(P LE U)
+	BEGIN
+		K=ARRAY(1100+P)
+		{PROVERKA STROKI}
+		L=STRSUB(K 121 121)+"F"
+		IF(L NE "FF")
+		BEGIN
+			SETARRAY(1100+P "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000F0") {31=F}
+			K=ARRAY(1100+P)
+		END
+		L=STRSUB(K I I)
+		{IF(ARRAY(400+P) EQ 0)		BEGIN}
+		IF(STRSUB(K 32 32) EQ "1")
+		BEGIN
+			"<TD id=win_"P"-"I" align=center title='" LOGIN_NAME(I)"'>"
+		END
+		ELSE
+		BEGIN
+			"<TD id=win_"P"-"I" align=center title='" LOGIN_NAME(I)"'>" 
+		END
+		" "
+	
+		{jacheyko!!!!!!!!!!!!!!!!!!!!!}
+	
+		IF(L NE "0")
+		BEGIN
+			"<IMG onclick=setget('1','"P"','"I"','0','"G"','win_"P"-"I"') SRC=yes.png border=0>"
+		END
+		ELSE
+		BEGIN
+			"<IMG onclick=setget('1','"P"','"I"','1','"G"','win_"P"-"I"') SRC=no.png border=0>"
+		END
+		"</TD>"
+	{END}
+	P=P+1
+	END
+	"</TR>"
+	T=0
+	{H=0}
+	C=0
+	
+	END {IF VIEW BUTTON}
+	I=I+1
+END
+""
+
+"</table></TD><TD>"
+%>
+</TD></TD></TABLE><table></table>
+<div id="DopElement"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+		var updating = false;
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		function rawsend(url,cb) {
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+
+		          if(cb!=null) cb(req.responseText);	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		     
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+		
+		function getInt(arg) {
+		  var n=parseInt(arg);
+		  if(isNaN(n)) return 0; else return n;
+		}
+
+		function update(url,obj) {
+			parseQwinInfo = function(resp) {
+				var line_split;
+				var el_g;
+				var system_type = '';
+				system_type = system_type.toUpperCase();
+				el_g = document.getElementById(obj);
+				el_g.innerHTML = resp;
+				updating = false;
+				updateTimer_reset();
+			}
+			
+			
+			getStandardInfo = function() {
+			// var url = 'getinfo.qsp2?type=1';
+			///////// alert("ok resp:"+urll);
+			  return rawsend(url,parseQwinInfo);
+			}
+
+			if(!updating) {
+				updating = true;
+				getStandardInfo();
+			}
+		}
+		
+		var updateTimer;
+		updateTimer_reset = function() {
+			clearTimeout(updateTimer);
+			//updateTimer = setTimeout(function() {update(); },500);
+		}
+	
+			function setget(type,win,button,level,priority,obj) {
+			url="/settings_admin/priority/setget_login.qsp2?type="+type+"&window="+win+"&button="+button+"&level="+level+"&priority="+priority+"&obj=\""+obj+"\"";
+			//alert(url);
+			
+			var dopElementDiv = document.getElementById('DopElement');
+			var StrComment = "Operation_id="+win+" Login_id="+button+" priority="+level;
+			rawsend('/lib/1.jsp?TypeId=6&ComIndex=14&Comment='+StrComment,dopElementDiv);
+			
+			update(url,obj);
+		};
+		function setget_combo(type,win,button,level,priority,obj,selObj) {
+			url="/settings_admin/priority/setget_login.qsp2?type="+type+"&window="+win+"&button="+button+"&level="+selObj.options[selObj.selectedIndex].value+"&priority="+priority+"&obj=\""+obj+"\"";
+			//url=eval(url);
+			//alert(url);
+			update(url,obj);
+			
+		};
+function call_customer(type,win,button,level,priority,obj,selObj){ //v3.0
+ eval("parent"+".content.location='?type=1&window="+win+"&button="+button+"&priority="+priority+"&level="+selObj.options[selObj.selectedIndex].value+"'&obj=\""+obj+"\"'");
+}
+	</script>

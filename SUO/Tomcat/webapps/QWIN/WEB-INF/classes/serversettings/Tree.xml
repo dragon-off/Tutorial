@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<server-settings>
+    <group display-name="tree.serverGroup">
+        <item policy-rule="SERVER_EDITOR" display-name="tree.alarms"               name="./alarms/tree_alarms.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.buttons"              name="./buttons/tree_buttons.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.cardReaders"          name="./cardreaders/tree_cardreaders.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.cardValidation"       name="./cardvalidation/tree_cardvalidation.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.categories"           name="./category/tree_category.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.database"             name="./database/tree_database.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.displays"             name="./displays/tree_displays.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.email"                name="./email/tree_email.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.host"                 name="./host/tree_host.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.license"              name="./license/tree_license.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.multiInterfaces"      name="./multiinterfaces/tree_multiinterfaces.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.matterCodes"          name="./mattercodes/tree_matters.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.pagerInterfaces"      name="./pagers/tree_pagers.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.printers"             name="./printers/tree_printers.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.priorities"           name="./priorities/tree_priorities.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.scheduledActivities"  name="./scheduler/tree_scheduler.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.security"             name="./security/tree_security.vm"/> tree_activity.vm
+        <item policy-rule="SERVER_EDITOR" display-name="tree.terminals"            name="./terminals/tree_terminals.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.transfers"            name="./transfers/tree_transfers.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.voice"                name="./voice/tree_voice.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.wirelessTerminals"    name="./wterminals/tree_wterminal.vm"/>
+
+    </group>
+
+    <group display-name="tree.utilitiesGroup">
+		<item policy-rule="SERVER_EDITOR" display-name="tree.utilities" name="./utilities/tree_utils.vm"/>
+
+    </group>
+
+    <group display-name="tree.applicationGroup">
+        <item policy-rule="SERVER_EDITOR" display-name="tree.calendar"             name="./calendar/tree_calendar.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.qwinClient"           name="./client/tree_client.vm"/>
+        <item policy-rule="SERVER_EDITOR" display-name="tree.qwinApiClient"           name="./apiclient/tree_apiclient.vm"/>
+        <!-- <item policy-rule="SERVER_EDITOR" display-name="tree.webTerminal"          name="./web_terminal/tree_webterminal.vm"/> -->
+    </group>
+</server-settings>

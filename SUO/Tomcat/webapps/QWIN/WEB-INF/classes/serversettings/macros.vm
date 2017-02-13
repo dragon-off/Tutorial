@@ -1,0 +1,371 @@
+##======================================================================================================================================
+## Macros used in server editor velocity scripts
+##
+##======================================================================================================================================
+
+#macro(qsysinistring $ns $key $label $type)
+        <field type="$type">
+        #cdata("name" "${ns}_${key}")
+        #cdata("label" "$text.getText("$label")")
+        <params>
+            #param("ns" $ns)
+            #param("key" $key)
+        </params>
+        #set ($script = "script")
+
+        #cdata("init-value" $sm.getScriptSetting($ns, $key))
+    </field>
+#end
+
+#macro(nodestart $label $image)
+    <node>
+        <image>${image}</image>
+        #cdata("label" $label)
+#end
+
+#macro(nodeend)
+    </node>
+#end
+
+#macro(param $key $value)
+<param>
+    <name>$key</name>
+    <value><![CDATA[$value]]></value>
+</param>
+#end
+
+#macro(cdata $tagname $value)
+    <$tagname><![CDATA[$value]]></$tagname>
+#end
+
+#macro(accepteditem $value $desc)
+    <item>
+        #cdata("value" $value)
+        #cdata("desc" $desc)
+    </item>
+ #end
+
+##======================================================================================================================================
+
+#macro(checkbox $ns $key $label $checked $helpid)
+        <field type="checkbox"
+            helpid="$helpid">
+        #cdata("name" "${ns}_${key}")
+        #cdata("label" $text.getText("$label"))
+        <params>
+            #param("ns" $ns)
+            #param("key" $key)
+        </params>
+
+        #if( $checked == true )
+           <init-value>1</init-value>
+        #else
+           <init-value>0</init-value>
+        #end
+
+    </field>
+#end
+
+##======================================================================================================================================
+
+#macro(qsysinistringh $ns $key $label $type $helpid)
+        <field type="$type"
+            helpid="$helpid">
+        #cdata("name" "${ns}_${key}")
+        #cdata("label" $text.getText("$label"))
+        <params>
+            #param("ns" $ns)
+            #param("key" $key)
+        </params>
+        #set ($script = "script")
+        #cdata("init-value" $sm.getScriptSetting($ns, $key))
+
+    </field>
+#end
+ ##======================================================================================================================================
+
+#macro(qsys $ns $key $label $type $helpid $min $max $regexp)
+        <field type   = "$type"
+               helpid = "$helpid">
+               #cdata("name" "${ns}_${key}")
+               #cdata("label" $text.getText("$label"))
+               <params>
+                      #param("ns" $ns)
+                      #param("key" $key)
+                      #set($script = "script")
+                      #set($number = "number")
+                      #set($time = "time")
+
+                       #if( $type == $number || $type == $time )
+                            #param("min" $min)      ## Anger min numeric value
+                            #param("max" $max)      ## Anger max numeric value
+                       #else
+                            #param("min_length" $min)   ## Anger minimala längden på strängen
+
+                            #param("max_length" $max)   ## Anger maximala längden på strängen
+                       #end
+                       #param("regexp" $regexp)   ## Regular expression
+               </params>
+
+               #if( $type == $number )
+                    #set( $val_text = "$sm.getStringSetting($ns, $key)")
+
+                    #if( !$val_text )
+                         #set( $val_text = "0" )
+                    #end
+
+                    ##if($val_text == "")
+                        ##set($val_text = $min)
+                    #cdata("init-value" $val_text)
+
+               #else
+                    #cdata("init-value" $sm.getScriptSetting($ns, $key))
+               #end
+
+    </field>
+#end
+##======================================================================================================================================
+#macro(comp $type $label $val)
+        <field type  = "${type}">
+            #cdata("name" ${label})
+            #cdata("label" $text.getText("$label"))
+            #cdata("init-value" ${val})
+        </field>
+#end
+
+##======================================================================================================================================
+
+#macro(separator $str)
+        <field type="separator">
+            <name>separator</name>
+            #cdata("label" $text.getText("$str"))
+        </field>
+#end
+
+##======================================================================================================================================
+
+#macro(getText $str)
+    $text.getText("$str")
+#end
+
+##======================================================================================================================================
+
+#macro(qsysunitlist  $section $key $list_section $label $include_None $helpid)
+
+  <field type   = "list"
+         helpid = "$helpid">
+         <label><![CDATA[$text.getText("$label")]]> </label>
+         <name><![CDATA[${section}_${key}]]></name>
+
+         <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" $section)
+            #param("key" $key)
+         </params>
+         #cdata("init-value" $sm.getStringSetting("${section}", "${key}"))
+
+         <accepted-values>
+            #if(${include_None}==1)
+                #accepteditem("0" "None")
+            #end
+
+            #set($maxitem = $sm.getNumericSetting("${list_section}", "MAX"))
+            #if($maxitem > 0)
+                #foreach($item in [1..$maxitem])
+                    #set($itemName = $sm.getStringSetting("${list_section}", "NAME$item"))
+                    #accepteditem($item "$item. $itemName")
+                    #set($item = $item + 1)
+                #end
+            #end
+         </accepted-values>
+  </field>
+#end
+
+##======================================================================================================================================
+
+ #macro(qsyssettingslist  $section $key $list_section $label $item $include_None $helpid)
+
+  <field type   = "list"
+         helpid = "$helpid">
+         #cdata("name" "${section}_${key}")
+         #cdata("label" $text.getText("$label"))
+         <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" $section)
+            #param("key" $key)
+            #param("crazy-list" "true")
+            #param("item" $item)
+
+         </params>
+
+         #set($i   = 0)
+         #set($grp = "$sm.getGroupByMember($section, $key, $i.parseInt($item)).getGroup()")
+         #cdata("init-value" $grp)
+
+         <accepted-values>
+            #if(${include_None}==1)
+                #accepteditem("0" "None")
+            #end
+
+            #set($maxitem = $sm.getNumericSetting("${list_section}", "MAX"))
+            #if($maxitem > 0)
+                #foreach($item in [1..$maxitem])
+                    #set($itemName = $sm.getStringSetting("${list_section}", "NAME$item"))
+                    #accepteditem($item "$item. $itemName")
+                    #set($item = $item + 1)
+                #end
+            #end
+         </accepted-values>
+  </field>
+#end
+
+##======================================================================================================================================
+#macro(loadcache2 $section $clear_cache )
+    #if($clear_cache)
+      $sm.clearCache()
+    #end
+
+    #set($scriptManager = $qf.getScriptManager())
+    $sm.loadCache($scriptManager, $section)
+#end
+
+##======================================================================================================================================
+
+#macro(loadcache $file $clear_cache )
+    #if($clear_cache)
+      $sm.clearCache()
+    #end
+
+    #set($scriptManager = $qf.getScriptManager())
+    #set($script = $scriptManager.createScript($file))
+    $sm.cacheIniPart($script.execute())
+#end
+
+##======================================================================================================================================
+
+#macro(clearcache)
+    $sm.clearCache()
+#end
+
+##        ScriptManager s = f.getScriptManager();
+##        SettingsManager sm = f.getSettingsManager();
+##        Script sc = s.createScript("/cachescript.script");
+##        sm.cacheIniPart(sc.execute());
+##        String v = sm.getStringSetting("GROUP_SETTING_8", "CORR_ESTW_TIME");
+
+
+##======================================================================================================================================
+
+#macro(button $section $key $label $script $group $limit_min $limit_max )
+    <field type  = "button">
+      #cdata("name" $label)
+      #cdata("label" $text.getText("$label"))
+      <params>
+           #param("action-script" $script)
+      </params>
+    </field>
+
+    <field type  = "hidden">
+        #cdata("name" "section")
+        <label></label>
+        #cdata("init-value" $section)
+    </field>
+    <field type  = "hidden">
+        #cdata("name" "key")
+        <label></label>
+        #cdata("init-value" $key)
+    </field>
+    <field type  = "hidden">
+        #cdata("name" "group")
+        <label></label>
+        #cdata("init-value" $group)
+    </field>
+    <field type  = "hidden">
+        #cdata("name" "limit_max")
+        <label></label>
+        #cdata("init-value" $limit_max)
+    </field>
+    <field type  = "hidden">
+        #cdata("name" "limit_min")
+        <label></label>
+        #cdata("init-value" $limit_min)
+    </field>
+
+#end
+
+##======================================================================================================================================
+
+#macro(move_button $section $key $btn_label $grp_label $new_grp_label $script $item $group $create )
+
+    <field type="hidden">
+        <name>item</name>
+        <label></label>
+        #cdata("init-value" $item)
+    </field>
+    <field type="hidden">
+        <name>section</name>
+        <label></label>
+        #cdata("init-value" $section)
+    </field>
+    <field type="hidden">
+        <name>key</name>
+        <label></label>
+        #cdata("init-value" $key)
+    </field>
+
+    <field type= "list">
+          #cdata("label" "")
+          <name>list</name>
+          #cdata("init-value" $group)
+          <params>
+            #param("multiple" "false")
+            #param("size" "1")
+          </params>
+
+           #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section, $key ))
+
+           <accepted-values>
+               #set($new_grp = 1)
+
+               #foreach( $grp in [1..$groups])
+                   #set($desc = $text.getText("$grp_label"))
+                   #accepteditem($grp "$desc $grp")
+                   #set($new_grp = $new_grp + 1)
+               #end
+
+               #if( $create )
+                    #accepteditem($new_grp $text.getText("$new_grp_label"))
+               #end
+           </accepted-values>
+    </field>
+
+    <field type="button">
+          #cdata("label" $text.getText("$btn_label"))
+          #cdata("name" $btn_label)
+          <params>
+                #param("action-script" $script)
+          </params>
+    </field>
+
+#end
+
+##======================================================================================================================================
+## For debugging speed of loading settings from Q-WIN
+##   total time / number of total calls ( number of calls to Q-WIN )   time/calls
+#macro(perf)
+
+    #if( 0 )  ## Set to 1 to enable debugging
+
+        <node   label    = "$sm.getTime() ms"
+                image    = "None"
+                grid-ref = "allan.vm">
+        </node>
+        $sm.resetTime();
+    #end
+
+#end
+
+##======================================================================================================================================
+

@@ -1,0 +1,82 @@
+#loadcache2("DEDICATED_LICS" true)
+
+<tree version="1.0" image = "images/license.gif">
+    #cdata("label" $text.getText("license.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("license.generalNodeLabel")  )
+    #set( $item_node_label         = $text.getText("license.slotNodeLabel")     )
+
+    #set( $top_node_image          = "images/license.gif"                       )
+    #set( $item_node_image         = "images/slot.gif"                          )
+
+    #set( $top_node_grid           = "./license/form_license.vm"                )
+    #set( $item_node_grid          = "./license/form_slot.vm"                   )
+
+    #set( $section_main            = "DEDICATED_LICS"                           )
+
+    #set( $slot_node_action        = "./license/action_slot.vm"                 )
+    #set( $item_node_action        = "./license/action_item.vm"                 )
+
+##------------------------------------------------------------------------------
+
+    #foreach($slot in [3..6])
+        <node image = "$item_node_image">
+            #cdata("label" $text.getText("license.SlotLabel${slot}"))
+              <grid-ref>
+                #cdata("name" "")
+              </grid-ref>
+              <action-ref>
+                #cdata("name" $slot_node_action)
+                #param("slot" $slot)
+              </action-ref>
+
+                  #set( $clients = $sm.getStringSettingAsList($section_main, "${slot}", "," ))
+                  #set( $pos = 0)
+                  #foreach($client in $clients)
+                      <node image      = "$item_node_image">
+                        #cdata("label" ${client})
+                        <grid-ref>
+                            #cdata("name" $item_node_grid)
+                            #param("client" $client)
+                            #param("slot" $slot)
+                            #param("pos" $pos)
+                        </grid-ref>
+                        <action-ref>
+                            #cdata("name" $item_node_action)
+                            #param("client" $client)
+                            #param("slot" $slot)
+                        </action-ref>
+                      </node>
+                      #set($pos = $pos + 1)
+                  #end
+        </node>
+    #end
+
+    #foreach($slot in [15..15])
+        <node image= "$item_node_image">
+            <grid-ref/>
+            <action-ref/>
+            #cdata("label" $text.getText("license.SlotLabel${slot}"))
+                  #set( $clients = $sm.getStringSettingAsList($section_main, "${slot}", "," ))
+
+                  #foreach($client in $clients)
+                      <node image      = "$item_node_image">
+                            #cdata("label" ${client})
+                            <grid-ref>
+                                #cdata("name" $item_node_grid)
+                                #param("client" $client)
+                                #param("slot" $slot)
+                            </grid-ref>
+                            <action-ref>
+                                #cdata("name" $item_node_action)
+                                #param("client" $client)
+                                #param("slot" $slot)
+                            </action-ref>
+                      </node>
+                  #end
+        </node>
+    #end
+
+    #perf()
+
+</tree>

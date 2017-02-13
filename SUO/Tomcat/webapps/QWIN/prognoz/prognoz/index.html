@@ -1,0 +1,371 @@
+<html>
+<head>
+<script language="javascript">
+
+
+var HTTP_TIMEOUT = 5; 
+function createXMLHttpRequest() {
+	try { return new XMLHttpRequest(); } catch(e) {}
+	try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) {}
+	try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
+	throw 'XMLHttpRequest not supported';
+}
+ 
+function httpRequest(url, onSuccess, onFail, postData, timeout) {
+	var req = createXMLHttpRequest();
+	var method = postData ? 'POST' : 'GET';
+	req.open(method, url, true);
+	if (postData) {
+		req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	}
+	var timer = null;
+	if (!timeout) timeout = HTTP_TIMEOUT;
+	if (timeout != -1) {
+		timer = setTimeout(httpTimeoutClosure(req, onFail), timeout);
+	}
+	req.onreadystatechange = httpStatusChangeClosure(req, onSuccess, onFail, timer);
+	req.send(postData);
+}
+  
+function httpTimeoutClosure(req, onFail) {
+	return function() {
+		req.onreadystatechange = null;
+		try {req.abort()}
+		finally {if (onFail) onFail(req)}
+	}
+}
+
+function httpStatusChangeClosure(req, onSuccess, onFail, timer) {
+	return function() {
+		if (req.readyState != 4) return;
+		if (timer) clearTimeout(timer);
+		if (req.status != 200 && req.status != 304) {
+			if (onFail) onFail(req);
+				return;
+		}    
+		if (onSuccess) onSuccess(req);
+	}
+}
+
+
+
+
+var TIME_NO=90000;
+var TRACK_NO=3000;
+var DEBUG=true; //отоладка, вывод в консоль
+
+var array_data=new Array();
+var queue=new Array();
+var l_name=new Array();
+l_name[1]="VIP pereved";
+l_name[2]="VIP";
+l_name[3]="UL pereved";
+l_name[4]="PK pereved";
+l_name[5]="PK";
+l_name[6]="prostoy pereved";
+l_name[7]="prostoy";
+
+
+var oper_name=new Array();
+
+oper_name[1]='Карты оформить, перевыпустить';
+oper_name[2]='Карты получить';
+oper_name[3]='Переводы';
+oper_name[4]='Наличные, пенсии';
+oper_name[5]='Вклады';
+oper_name[6]='Кредит ежемесячный платеж';
+oper_name[7]='Выписки, обращения';
+oper_name[8]='Ипотека оформить';
+oper_name[9]='Обмен валюты';
+oper_name[10]='Монеты, чеки';
+oper_name[11]='Сейфы';
+oper_name[12]='Компенсации, доверенности';
+oper_name[13]='Платежи, квартплата, телефон, ГИБДД';
+oper_name[14]='Платежи, квартплата, телефон, ГИБДД';
+oper_name[15]='Платежи, квартплата, телефон, ГИБДД!';
+oper_name[16]='Обслуживание юр. лиц';
+var counter=new Array();
+var operation_takt=new Array();
+var button_run=new Array();
+var prognoz_wt=new Array();
+var prognoz_queue=new Array();
+//задаем 0 значение по прогнозу операций
+for (var r=1; r <= 7; r++) {
+	prognoz_wt[""+r.toString()]=new Array();
+	prognoz_queue[""+r.toString()]=new Array();
+	for (var t=1; t <= 20; t++) {
+		prognoz_queue[""+r.toString()][t]=0;
+		prognoz_wt[""+r.toString()][t]=0;
+	};
+}
+
+function create_last(button,level) { //добавляем клиентов в конец очерди каждой операции (140 так как 7 уровне и 20 операций) для расчета прогнозного времени
+	queue[TRACK_NO]=new Array();
+	queue[TRACK_NO]["ITEM_START"]="89999"; //наименьшее время ожидания
+	queue[TRACK_NO]["ITEM_TRACK"]=TRACK_NO.toString();
+	queue[TRACK_NO]["ITEM_BUTTON"]=button.toString();
+	button_run[button]=true;
+	queue[TRACK_NO]["LEVEL"]=level.toString();
+	queue[TRACK_NO]["LAST"]=true;
+	TRACK_NO++;
+	return true;
+};
+
+function load_queue(resp) //загружаем очередь
+{
+	TRACK_NO=3000;
+	var queue_len;
+	var counter_len;
+	var but_takt;
+	var str_type;
+	var last_ticket=new Array();
+	last_ticket["1"]=new Array();
+	last_ticket["2"]=new Array();
+	last_ticket["3"]=new Array();
+	last_ticket["4"]=new Array();
+	last_ticket["5"]=new Array();
+	last_ticket["6"]=new Array();
+	last_ticket["7"]=new Array();
+	
+	str_type = resp.split('@@');
+	queue_len=str_type[0].split('#'); //клиенты
+	counter_len=str_type[1].split('#'); //окна
+	but_takt=str_type[2].split('#'); //такт нормативные по окнопкам
+	TIME_NO=str_type[3];
+	for (var r=0; r <= queue_len.length-2; r++) {
+		items=queue_len[r].split('^');
+		queue[items[1]]=new Array();
+		queue[items[1]]["ITEM_START"]=items[2];
+		queue[items[1]]["ITEM_TRACK"]=items[1];
+		queue[items[1]]["ITEM_BUTTON"]=items[3];
+		button_run[items[3]]=true;
+		queue[items[1]]["LEVEL"]=items[5];
+	};
+	for(var r=1; r <= 20; r++) {
+		for(var l=1; l <= 7; l++) {
+			create_last(r,l);
+		};
+		
+	};
+	
+	for (var r=0; r <= counter_len.length-2; r++) {
+		//0-counter; 1-stroka prioriteta; 2-vip
+		items=counter_len[r].split('^');
+		
+		counter[items[0]]=new Array();
+		counter[items[0]]["VIP"]=items[2]; //вип
+		counter[items[0]]["COUNTER"]=items[3]; //номер окна
+		counter[items[0]]["QUEUE"]=0; //ОБСЛ. КЛИЕНТОВ
+		counter[items[0]]["TT"]=0;    //ВРЕМЯ ОБСЛ.
+		counter[items[0]]["RUN"]=1;    //для станции есть клиенты
+		for (var j=0; j <= items[1].length-1; j++) {
+			if(items[1][j]!="0")
+				counter[items[0]][j+1]=items[1][j];
+		};
+	};
+	
+	for (var r=0; r <= but_takt.length-1; r++) {
+		//0-counter; 1-stroka prioriteta; 2-vip
+		items=but_takt[r].split('^');
+		operation_takt[items[0]]=new Array();
+		operation_takt[items[0]]["id"]=items[0];
+		operation_takt[items[0]]["takt"]=items[1];
+		operation_takt[items[0]]["rwt"]=items[2];
+		
+	};
+};
+
+
+//load_queue(строка)-- загрузка очереди, окон, такт нормативного...
+//run_prognoz() 	--расчет прогнозного времени ожидания
+//					по итогам мы получим 2 двумерных массива prognoz_wt и prognoz_queue
+
+function load() {
+	httpRequest('load_queue.qsp2', function(req) { load_queue(req.responseText); run_prognoz(); print_result();}, function(req) {  }, null, 20000);
+	return true;
+};
+
+
+
+function BUTTON_QUEUE(i) {
+	var count=0;
+	for(var j in queue) {
+		if (!queue.hasOwnProperty(j)) continue;
+		if(queue[j]["ITEM_BUTTON"] == i)
+			count++;
+	};
+	return count;
+};
+
+function BUTTON_RWT(i,vip) {
+
+if(!button_run[i])
+	return null;
+	var max=0;
+	var level="7";
+	var ticket=null;
+	for(var j in queue) {
+		if (!queue.hasOwnProperty(j)) continue;
+		max_if=(TIME_NO-queue[j]["ITEM_START"]);
+	//	console.log(queue[j]["ITEM_TRACK"]);
+		if((queue[j]["ITEM_BUTTON"] == i.toString()) &&
+			((max_if>=max  && level==queue[j]["LEVEL"]) || (level>queue[j]["LEVEL"])) && 
+			((queue[j]["LEVEL"]!=1 && queue[j]["LEVEL"]!=2) || "1"==vip.toString())) {
+				level=queue[j]["LEVEL"];
+				max=max_if;
+				ticket=j;
+		};
+	};
+	if(ticket!=null) {
+		return queue[ticket];
+		}
+	else
+		return null;
+};
+
+
+
+
+
+function del_ticket(ticket,ws) {
+	if(ticket) {
+		if(ticket["LAST"]==true) {
+			prognoz_wt[ticket["LEVEL"]][ticket["ITEM_BUTTON"]]=counter[ws]["TT"];
+			log_debug("НАЙДЕНО прог. вр. ожид. опер. №"+ticket["ITEM_BUTTON"]+"   клиентов:"+counter[ws]["QUEUE"]+"  рас. вр. ожид.:"+counter[ws]["TT"]+" приор. клиента:"+l_name[ticket["LEVEL"]]);
+			prognoz_queue[ticket["LEVEL"]][ticket["ITEM_BUTTON"]]=counter[ws]["QUEUE"];
+			delete queue[ticket["ITEM_TRACK"]];
+		} else {
+			counter[ws]["QUEUE"]++;
+			counter[ws]["TT"]+=(operation_takt[(ticket["ITEM_BUTTON"]*1)]["takt"]*1);
+			delete queue[ticket["ITEM_TRACK"]];
+		};
+	} else {
+		//console.log("ошибка удаления ");
+	};
+};
+
+function call_ticket_counter(ws_с,i) {
+	ws=counter[ws_с];
+	var next_level=new Array();
+	var max_if=0;
+	next_level["1"]=new Array();
+	next_level["2"]=new Array();
+	next_level["1"]["max_rwt"]=0;
+	next_level["1"]["LEVEL"]=7;
+	next_level["1"]["ticket"]=null;
+	next_level["2"]["max_rwt"]=0;
+	next_level["2"]["LEVEL"]=7;
+	next_level["2"]["ticket"]=null;
+	for(var j in ws) {
+		if (!ws.hasOwnProperty(j)) continue;
+		l=ws["COUNTER"];
+		if(j>0 && j<21) {
+			ticket=BUTTON_RWT(j, ws["VIP"]);
+
+			if(ticket) {
+				max_if=(TIME_NO-ticket["ITEM_START"]);
+				if((ticket["LEVEL"]<next_level[ws[j]]["LEVEL"]) ||
+				((ticket["LEVEL"]==next_level[ws[j]]["LEVEL"]) && next_level[ws[j]]["max_rwt"]<=max_if)) {
+					next_level[ws[j]]["ticket"]=ticket;
+					next_level[ws[j]]["LEVEL"]=ticket["LEVEL"];
+					next_level[ws[j]]["max_rwt"]=max_if;
+				};
+			};
+		};
+	};
+	if((next_level["1"]["ticket"]) && ((next_level["1"]["ticket"] && !next_level["2"]["ticket"]) || 
+	(next_level["1"]["LEVEL"]<next_level["2"]["LEVEL"]) || 
+	(next_level["1"]["LEVEL"]==next_level["2"]["LEVEL"] ))) {
+		del_ticket(next_level["1"]["ticket"],ws_с);	
+		log_debug("вызов в окно "+ws["COUNTER"]+" по приор. в окно 1 "+next_level["1"]["LEVEL"]+" операция "+next_level["1"]["ticket"]["button"]);
+		return i;
+	} else if(next_level["2"]["ticket"]) {
+			log_debug("вызов в окно "+ws["COUNTER"]+" по приор. в окне 2 "+next_level["2"]["LEVEL"]+" операция "+next_level["2"]["ticket"]["button"]);
+			del_ticket(next_level["2"]["ticket"],ws_с);
+		return i;
+	} else {
+		counter[ws["COUNTER"]]["RUN"]=0;
+		var ws_work=0;
+		for(var j in counter) {
+			if (!counter.hasOwnProperty(j)) continue;
+			if(counter[j]["RUN"]==1)
+				ws_work=1;
+		};
+		if(ws_work==1)
+			return i+1;
+		else
+			return i;
+	};
+	return ;
+}
+
+function queue_count() {
+	var count=0;
+	for(var j in queue) {
+		if (!queue.hasOwnProperty(j)) continue;
+		count++;
+	};
+	return count;
+}
+
+function run_prognoz() {
+ 
+	var counter_min_tt;
+	var count=1;
+	i=queue_count();
+ 
+		while(i>0 && count <1000 ) { //идем по всей очереди
+		min_tt=99999999;
+		counter_min_tt=null;
+		count=count+1;
+		for(var j in counter) {
+			if (!counter.hasOwnProperty(j)) continue;
+			if(((counter[j]["TT"]*1) <= min_tt) && (counter[j]["RUN"]==1)) {
+				min_tt=counter[j]["TT"]; 
+				counter_min_tt=j;
+			};
+		};
+
+		if(!counter_min_tt)
+			continue; //если окно для клиента не найдено, идем дальше
+		i=call_ticket_counter(counter[counter_min_tt]["COUNTER"],i);
+		i=i-1;
+	
+	
+	};
+	queue=new Array();
+};
+function log_debug(text) {
+	if(DEBUG)
+		console.log(text);
+	return;
+};
+function print_result() {
+document.getElementById("monitor").innerHTML="<table>";
+	for (var r in prognoz_queue) {
+		if (!prognoz_queue.hasOwnProperty(r)) continue;
+		for (var e in prognoz_queue[r]) {
+			if (!prognoz_queue[r].hasOwnProperty(e)) continue;
+			document.getElementById("monitor").innerHTML+="<BR><TR><TD>"+l_name[r]+"	</TD><TD>"+oper_name[e]+"	</TD><TD>"+prognoz_queue[r][e]+"	</TD><TD>"+prognoz_wt[r][e]+"</TD></TR>";
+		};
+	};
+document.getElementById("monitor").innerHTML+="</table>";
+	
+};
+
+
+</script>
+</head>
+<body>
+<a onclick=load()>Выполнить </a><br>
+
+<div id="monitor">
+
+
+</div>
+<div id="monitor1">
+
+
+</div>
+</body>
+</html>

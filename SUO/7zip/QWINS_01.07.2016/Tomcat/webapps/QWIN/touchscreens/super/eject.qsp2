@@ -1,0 +1,6 @@
+<% 
+P=(${printer}0)/10
+IF(P EQ 0) P=1
+FUNC_PRINTER_EJECT_CARD(P)
+
+%>

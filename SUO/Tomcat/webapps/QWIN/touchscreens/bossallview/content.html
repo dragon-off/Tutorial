@@ -1,0 +1,285 @@
+﻿ <html>
+<head>
+	<title>Монитор</title>
+	<LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">	
+	<script type="text/javascript" src="js/Browser.js"></script>
+	<script type="text/javascript" src="js/ajax.js"></script> 
+	<script type="text/javascript" src="js/script.js"></script> 	
+</head>
+<body onLoad="start_info_buttons();" style="margin:0px;padding:0px;" leftmargin=0 bottommargin=0 topmargin=0 rightmargin=0>
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+	<tr>
+		<td width='200px'>
+			<table cellpadding=0 cellspacing=0 border=0 width=100%>
+				<tr>
+				<td width='200px' style="padding-left:5px;">
+				<!--всего-->
+				Всего в очереди:&nbsp; <span style="color: black;font-weight: bold;" id="all_queue">0</span>
+				</td>
+				</tr>
+				<tr>
+				<td id='svetofor_place' width='200px'>
+				<!--светофор-->
+				</td>
+				</tr>
+			</table>
+		</td>
+		
+		<td  style="width:350px;padding-left:5px;">
+		Всего за день:&nbsp; 
+		<span style="color: red;font-weight: bold;" id="queue_red"></span>&nbsp;
+		<span style="color: green;font-weight: bold;" id="queue_green"></span>
+		</td>
+		<td style="padding-left:5px;">
+		<input type="button" value="Показатели за месяц" onClick='show_infobox();'>
+		</td>
+		<td id='svetofor_eye_place' style="font-size:11px;width:100px;">
+		
+		</td>
+	</tr>
+	<tr>
+		<td colspan=5 class="title"> Информация по операциям </td>
+	</tr>
+	<tr>
+		<td colspan=5>
+		<table cellpadding=0 cellspacing=0 border=1 width='100%'>
+		<tr>
+		<td valign='top'>
+		<table cellpadding=0 cellspacing=0 border=0 class="info_table" style="border:1px solid #bdbdbe;width:100%;">
+		
+		<thead>
+		<tr>
+			<!--<th width="15px">№</th>-->
+			<th style='min-width:250px;'>Операция</th>
+			<th width="60px" title='Максимальное время ожидания'>Время ожид. макс.</th>
+			<th width="60px" title='Количество ожидающих клиентов'>Кол-во ожид.</th>
+			<th width="60px" title='Обслужено сегодня'>Обслуж. сегодня</th>
+			<th width="60px" title='Среднее время обслуживания'>Среднее вр. обсл.</th>
+			<th width="115px" title='Прогнозное время ожидания'>Прогнозное время ожидания</th>
+			<th  title='Обслуживающие операцию окна'>Окна</th>
+			<th width="50px">Выдача талона</th>
+			<!--<th width="30px" title='Просмотр списка талонов'>Просмотр</th>-->
+		</tr>
+		</thead>
+		<tfoot>
+		<tr>
+			<td class='info_table_foot' colspan=2 style="font-weight:bold;padding-left:5px;">Всего:</td>
+			<td class='info_table_foot'style="font-weight:bold;text-align:center;" id='allWaiting'>0</td>
+			<td class='info_table_foot' style="font-weight:bold;text-align:center;" id='allGood'>0</td>
+			<td class='info_table_foot' colspan=4>&nbsp;</td>
+		</tr>
+		</tfoot>
+		<tbody id="info_buttons">
+		</tbody>
+		
+		</table>
+		</td>
+		<!--<td valign='top' width='150px'>
+		<table cellpadding=0 cellspacing=0 width='135px' border=0 class="info_table_button" style="float:left;border:1px solid #bdbdbe;">
+		<tbody>
+		<tr>
+			<th width="15px" title='Уровень'>Ур.</th>
+			<th width="60px">Талон</th>
+			<th width="60px" title='Время ожидания'>Время</th>
+		</tr>
+		</tbody>
+		</table>
+		<div style="height:330px;overflow-y:scroll;">
+		<table cellpadding=0 cellspacing=0 width='135px' border=0 class="info_table_button" style="float:left;border:1px solid #bdbdbe;">
+		<tbody id="info_tickets">
+		
+		</tbody>
+		</table>
+		</div>
+		</td>-->
+		</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=5 class="title">Информация по рабочим станциям</td>
+	</tr>
+	<tr>
+		<td colspan=5>
+		<table cellpadding=0 cellspacing=0 border=0 class="info_table" style="border:1px solid #bdbdbe;width:100%;">
+		<tbody id="info_counters">
+		<tr>
+			<th width="50px">Окно</th>
+			<th>Сотрудник</th>
+			<th>Алгоритм</th>
+			
+			<th width="50px">Статус</th>
+			<th width="60px">Время <br>простоя</th>
+			<th width="60px">Время <br>перерыва</th>
+			<th width="101px">Время обслуживания</th>
+			<th>Клиент</th>
+			<th width="60px">Сред. <br>вр. обсл.</th>
+			<th width="60px">Сумм. <br>вр. обсл.</th>
+			<th width="40px">Кол. <br>обсл.</th>
+		</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+	
+</table>
+<table width='100%' height='100%' id="info_box" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;">
+<tr>
+<td style="text-align:center;">
+<div class="info_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #4d8fcb;height: 58px;background-color: #d1e4f3;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='info.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#4d8fcb;text-align:center;">
+						Показатели за месяц
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_info.gif' style="cursor:pointer;" onClick="document.getElementById('info_box').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr id="info_box_info" style="display:none">
+		<td style="text-align:center;font-size:18pt;"> Всего за месяц
+		<br><br>
+		<span style="color:green;font-family: Arial, sans-serif;font-size:18pt;font-weigth:bold;" id="month_green"></span>
+		<br><br>
+		<span style="color:red;font-family: Arial, sans-serif;font-size:18pt;font-weigth:bold;" id="month_red"></span>
+		</td>
+	</tr>
+	<tr id="info_box_loading">
+		<td style="text-align:center;font-size:18pt;"><img src="loading.gif"/><br>
+		Загрузка...
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+
+<table width='100%' height='100%' id="message_box_1" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:998; background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" border=0/>
+					</td>
+					
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_1_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<div style="border-top:solid 1px #f43839;height: 38px;background-color: #fccac1;width:100%;text-align:center;">
+			<input type="button" value="OK" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" style="height:35px;width:80%;">
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%' id="message_box_2" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:997;background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(2); document.getElementById('message_box_2').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_2_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%'  style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:999;background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(3); document.getElementById('message_box_3').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

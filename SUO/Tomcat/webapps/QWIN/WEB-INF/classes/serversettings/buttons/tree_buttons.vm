@@ -1,0 +1,93 @@
+#loadcache2("BUTTON*" true)
+
+<tree version="2.0"
+           image                   = "images/categories.gif">
+    #cdata("label" $text.getText("buttons.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("buttons.generalNodeLabel")  )
+    #set( $group_node_label        = $text.getText("buttons.groupNodeLabel")    )
+    #set( $top_node_image          = "images/buttons.gif"                       )
+    #set( $item_node_image         = "images/button.gif"                        )
+
+    #set( $section_main            = "BUTTON"                                   )
+
+    #set( $top_node_grid           = "./buttons/form_buttons.vm"                )
+    #set( $group_node_grid         = "./buttons/form_button_group.vm"           )
+    #set( $item_node_grid          = "./buttons/form_button.vm"                 )
+
+    #set( $top_node_action         = "./buttons/action_buttons.vm"              )
+    #set( $group_node_action       = "./buttons/action_button_group.vm"         )
+    #set( $item_node_action        = "./buttons/action_button.vm"               )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems   = $sm.getNumericSetting( $section_main, "MAX"))
+
+    #nodestart($top_node_label $top_node_image)
+       <grid-ref>
+          #cdata("name" $top_node_grid)
+          #param("item" "1")
+          #param("nucm" "100")
+       </grid-ref>
+       <action-ref>
+           #cdata("name" $top_node_action)
+           #param("section" ${section_main})
+       </action-ref>
+
+            #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+            #if( $maxitems > 0 )
+               #foreach($group in [1..$groups])
+                   <node>
+
+                       <label><![CDATA[$group_node_label $group]]></label>
+                       <image><![CDATA[images/printer-group.gif]]></image>
+                       <grid-ref>
+                            #cdata("name" $group_node_grid)
+                            #param("item" ${group})
+                            #param("name" $sm.getStringSetting($section_main, "NAME$group"))
+                       </grid-ref>
+                       <action-ref>
+                            #cdata("name" $group_node_action)
+                            #param("item" ${group})
+                            #param("section" ${section_main})
+                       </action-ref>
+
+                       ## List all items that contains in this groups
+
+                       #set($buttonGroup = $sm.getSettingsGroup($section_main, "SETTINGS", $group))
+                       #set($members = $buttonGroup.getMembers())
+                       #foreach($button in $members)
+                           #set($buttonName = $sm.getStringSetting("BUTTON", "NAME$button"))
+                           #nodestart("$button. $buttonName" $item_node_image)
+                               #cdata("image" $item_node_image)
+                               <label><![CDATA[$item.$sm.getStringSetting($section_main, "NAME$item")]]></label>
+                               <grid-ref>
+                                   #cdata("name" $item_node_grid)
+                                   #param("item" ${button})
+                                   #param("name" $sm.getStringSetting($section_main, "NAME$button"))
+                               </grid-ref>
+                               <action-ref>
+                                   #cdata("name" $item_node_action)
+                                   #param("item" ${button})
+                                   #param("group" ${group})
+                                   #param("section" ${section_main})
+                               </action-ref>
+                           #nodeend()
+                       #end
+
+                   </node>
+                   #set($group = $group + 1)
+               #end
+            #end
+    #nodeend()
+
+    #perf()
+
+</tree>

@@ -1,0 +1,13 @@
+<%
+T=1
+S=ARRAY(1100)
+"{ \"logins\":["
+WHILE(T LE MAX_LOGINS)
+BEGIN
+	IF(T GT 1)
+		","
+	"\""LOGIN_NAME(T)"\""
+	T=T+1
+END
+"]}"
+%>	 

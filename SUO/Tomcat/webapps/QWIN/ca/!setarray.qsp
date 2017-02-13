@@ -1,0 +1,58 @@
+œ–»Ã≈– Œ¡–¿Ÿ≈Õ»ﬂ!
+
+!setarray.qsp?array="1|2|3|@"&value="11|33|22|@"
+<%
+C=${array}
+V=${value}
+
+
+
+I=1
+B=""
+J=1
+K=""
+
+
+WHILE(STRSUB(C I I) NE "@" AND I LE 2000)
+BEGIN
+
+	WHILE(STRSUB(C I I) NE "|" AND I LE 2000 AND STRSUB(C I I) NE "@")
+	BEGIN
+		B=B+STRSUB(C I I)
+		I=I+1
+	END	
+
+	WHILE(STRSUB(V J J) NE "|"  AND STRSUB(V J J) NE "@" )
+	BEGIN
+		K=K+STRSUB(V J J)
+		J=J+1
+	END	
+	IF(STRSTN(B) EQ 9990 AND STRSTN(B) EQ 9991)
+	BEGIN
+		V=STRSTN(B)
+		IF(ARRAY(V) NE K)
+		BEGIN
+			L="CHG_ARRAY "+B+" SET "+K+" USER 1"
+			FUNC_EVENT_SEND(123 1 L)
+		END
+		SETARRAY(STRSTN(B) K)
+	END
+	ELSE
+	BEGIN
+		V=STRSTN(B)
+		G=STRSTN(K)
+		IF(ARRAY(V) NE G)
+		BEGIN
+			L="CHG_ARRAY "+B+" SET "+K+" USER 1"
+			FUNC_EVENT_SEND(123 1 L)
+		END
+		SETARRAY(STRSTN(B) STRSTN(K))
+	END
+	B=""
+	K=""
+		I=I+1
+J=J+1
+END
+
+
+%>

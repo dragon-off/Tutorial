@@ -1,0 +1,326 @@
+#loadcache2("TERMINAL" true)
+#loadcache2("TERMINAL_SETT*" false)
+#loadcache2("TERMINAL_TYPE*" false)
+
+<tree version="1.0" image = "images/terminals.gif">
+    #cdata("label" $text.getText("terminal.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("terminal.generalNode")      )
+    #set( $types_node_label        = $text.getText("terminal.typesNode")        )
+    #set( $type_node_label         = $text.getText("terminal.typeNode")         )
+    #set( $keys_node_label         = $text.getText("terminal.keysNode")         )
+    #set( $single_node_label       = $text.getText("terminal.singleNode")       )
+    #set( $seq_node_label          = $text.getText("terminal.seqNode")          )
+    #set( $script_node_label       = $text.getText("terminal.scriptNode")       )
+
+    #set( $top_node_image          = "images/terminals.gif"                     )
+    #set( $types_node_image        = "images/terminaltypes.gif"                 )
+    #set( $key_node_image          = "images/terminal_key.gif"                  )
+    #set( $single_node_image       = "images/terminal_single_prg.gif"           )
+    #set( $seq_node_image          = "images/terminal_seq_prg.gif"              )
+    #set( $script_node_image       = "images/terminal_func_prg.gif"             )
+
+    #set( $top_node_grid           = "./terminals/form_terminals.vm"            )
+    #set( $types_node_grid         = ""                                         )
+    #set( $type_node_grid          = "./terminals/form_type.vm"                 )
+    #set( $keys_node_grid          = "./terminals/form_keys.vm"                 )
+    #set( $key_node_grid           = "./terminals/form_key.vm"                  )
+
+    #set( $singles_node_grid       = "./terminals/form_singles.vm"              )
+    #set( $single_node_grid        = "./terminals/form_single.vm"               )
+
+    #set( $seqs_node_grid          = "./terminals/form_seqs.vm"                 )
+    #set( $seq_node_grid           = "./terminals/form_seq.vm"                  )
+
+    #set( $scripts_node_grid       = "./terminals/form_scripts.vm"              )
+    #set( $script_node_grid        = "./terminals/form_script.vm"               )
+
+    #set( $item_node_grid          = "./terminals/form_terminal.vm"             )
+
+    #set( $section_main            = "TERMINAL"                                 )
+
+    #set( $top_node_action         = "./terminals/action_terminals.vm"          )
+    #set( $type_node_action        = "./terminals/action_terminal_type.vm"      )
+
+##------------------------------------------------------------------------------
+## Terminal Types
+
+    <node   image      = "$top_node_image">
+            <grid-ref>
+                #cdata("name" $top_node_grid)
+                #param("item" "1")
+            </grid-ref>
+            <action-ref>
+                #cdata("name" $top_node_action)
+                #param("section" ${section_main})
+            </action-ref>
+
+            #cdata("label" $top_node_label)
+
+            ## Get the number of items in the system
+
+            #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+            <node image = "$types_node_image">
+                    <grid-ref>
+                        #cdata("name" $types_node_grid)
+                        #param("item" "1")
+                    </grid-ref>
+                    <!--<action-ref>
+                        #cdata("name" "")
+                    </action-ref>-->
+
+                    #cdata("label" $types_node_label)
+                    #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "TYPE"))
+
+                    #if( $maxitems > 0 )
+                        #foreach($group in [1..$groups])
+                            <node   image      = "$type_node_image">
+                                    <grid-ref>
+                                        #cdata("name" $type_node_grid)
+                                        #param("group" $group)
+                                    </grid-ref>
+                                    <action-ref>
+                                        #cdata("name" "")
+                                    </action-ref>
+                                    #cdata("label" "$type_node_label $group")
+
+                                    ## List all keys in this type
+                                    <node   image           = "$key_node_image">
+                                        #cdata("label" $keys_node_label)
+                                            <grid-ref>
+                                                #cdata("name" $keys_node_grid)
+                                                #param("group" $group)
+                                            </grid-ref>
+
+                                            <action-ref>
+                                                #cdata("name" "")
+                                            </action-ref>
+
+                                            #set($maxkeys   = $sm.getNumericSetting( "TERMINAL_TYPE_$group", "KEY_MAX"))
+                                            #set($keylst    = $sm.getStringList("TERMINAL_TYPE_$group", "KEY", 1, $maxkeys))
+                                            #set($item      = 1)
+
+                                            #foreach($key in $keylst)
+                                                <node  image = "$key_node_image">
+                                                    #cdata("label" "$item. $key")
+                                                    <grid-ref>
+                                                        #cdata("name" $key_node_grid)
+                                                        #param("group" $group)
+                                                        #param("item" $item)
+                                                    </grid-ref>
+                                                    <action-ref>
+                                                        #cdata("name" "")
+                                                    </action-ref>
+                                                </node>
+                                                #set($item = $item + 1)
+                                                #set($key  = $key  + 1)
+                                            #end
+                                    </node>
+
+
+                                    ## List all single programs
+                                    <node image = "$single_node_image">
+                                            #cdata("label" $single_node_label)
+                                            <grid-ref>
+                                                #cdata("name" $singles_node_grid)
+                                                #param("group" $group)
+                                            </grid-ref>
+                                            <action-ref>
+                                                #cdata("name" "")
+                                            </action-ref>
+
+                                            #set($maxsingle = $sm.getNumericSetting( "TERMINAL_TYPE_$group", "DIRECT_MAX"))
+                                            #set($singlelst = $sm.getStringList("TERMINAL_TYPE_$group", "DIRECT", 1, $maxsingle))
+                                            #set($item      = 1)
+
+                                            #foreach($single in $singlelst)
+                                                <node image = "$single_node_image">
+                                                      #cdata("label" "$item. $single")
+                                                      <grid-ref>
+                                                        #cdata("name" $single_node_grid)
+                                                        #param("group" $group)
+                                                        #param("item" $item)
+                                                      </grid-ref>
+                                                      <action-ref>
+                                                        #cdata("name" "")
+                                                      </action-ref>
+                                                </node>
+                                                #set($item   = $item   + 1)
+                                                #set($single = $single + 1)
+                                            #end
+                                    </node>
+
+                                    ## List all sequence programs
+                                    <node image = "$seq_node_image">
+                                            #cdata("label" $seq_node_label)
+                                            <grid-ref>
+                                                #cdata("name" $seqs_node_grid)
+                                                #param("group" $group)
+                                            </grid-ref>
+                                            <action-ref>
+                                                #cdata("name" "")
+                                            </action-ref>
+                                            #set($maxseq    = $sm.getNumericSetting( "TERMINAL_TYPE_$group", "FUNC_MAX"))
+                                            #set($seqlst    = $sm.getStringList("TERMINAL_TYPE_$group", "FUNC", 1, $maxseq))
+                                            #set($item      = 1)
+
+                                            #foreach($seq in $seqlst)
+                                                <node image = "$seq_node_image">
+
+
+
+                                                      #cdata("label" "$item. $seq")
+                                                      <grid-ref>
+                                                        #cdata("name" $seq_node_grid)
+                                                        #param("group" $group)
+                                                        #param("item" $item)
+                                                      </grid-ref>
+                                                      <action-ref>
+                                                        #cdata("name" "")
+                                                      </action-ref>
+                                                </node>
+                                                #set($item  = $item + 1)
+                                                #set($seq   = $seq  + 1)
+                                            #end
+
+                                    </node>
+
+                                    ## List all script programs
+                                    <node image = "$script_node_image">
+                                            #cdata("label" $script_node_label)
+                                            <grid-ref>
+                                                #cdata("name" $scripts_node_grid)
+                                                #param("group" $group)
+                                            </grid-ref>
+                                            <action-ref>
+                                                #cdata("name" "")
+                                            </action-ref>
+                                            #set($maxscript = $sm.getNumericSetting( "TERMINAL_TYPE_$group", "FUNC_SCRIPT_MAX"))
+                                            #set($scriptlst = $sm.getStringList("TERMINAL_TYPE_$group", "FUNC_SCRIPT", 1, $maxscript))
+                                            #set($item      = 1)
+
+                                            #foreach($script in $scriptlst)
+                                                <node image      = "$script_node_image">
+                                                      #cdata("label" "$item. $script.")
+                                                      <grid-ref>
+                                                        #cdata("name" $script_node_grid)
+                                                        #param("group" $group)
+                                                        #param("item" $item)
+                                                      </grid-ref>
+                                                      <action-ref>
+                                                        #cdata("name" "")
+                                                      </action-ref>
+                                                </node>
+                                                #set($item   = $item   + 1)
+                                                #set($script = $script + 1)
+                                            #end
+                                    </node>
+
+                                    ## List all items that contains in this groups
+                                    #foreach($item in [1..$maxitems])
+                                        #if($sm.isMemberOfGroup("TERMINAL", "TYPE", $group, $item))
+                                           <node image = "$item_node_image">
+                                                  #cdata("label" $sm.getStringSetting("$section_main", "NAME$item"))
+                                                  <grid-ref>
+                                                    #cdata("name" $item_node_grid)
+                                                    #param("item" $item)
+                                                  </grid-ref>
+                                                  <action-ref>
+                                                    #cdata("name" $type_node_action)
+                                                    #param("item" $item)
+                                                    #param("group" $group)
+                                                    #param("section" $section_main)
+                                                  </action-ref>
+                                           </node>
+                                        #end
+                                        #set($item = $item + 1)
+                                    #end
+                            </node>
+                        #end
+                    #end
+            </node>
+
+##===========================================================================
+## Terminal Settings
+
+    #set( $top_node_label          = $text.getText("terminal.settingsNode")     )
+    #set( $group_node_label        = $text.getText("terminal.groupNode")        )
+
+    #set( $top_node_image          = "images/terminals.gif"                 )
+    #set( $group_node_image        = "images/terminal_group.gif"            )
+    #set( $item_node_image         = "images/terminal.gif"                  )
+
+    #set( $section_main            = "TERMINAL"                             )
+
+    #set( $top_node_grid           = ""                                     )
+    #set( $group_node_grid         = "./terminals/form_terminalgroup.vm"    )
+    #set( $item_node_grid          = "./terminals/form_terminal.vm"         )
+
+    #set( $item_node_action        = "./terminals/action_terminal_sett.vm"      )
+    #set( $group_node_action       = "./terminals/action_terminal_group.vm"     )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    <node image = "$top_node_image">
+          #cdata("label" $top_node_label)
+
+          <grid-ref>
+            #cdata("name" $top_node_grid)
+            #param("item" "1")
+          </grid-ref>
+          <action-ref>
+            #cdata("name" "")
+          </action-ref>
+          #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+          #if( $maxitems > 0 )
+              #foreach($group in [1..$groups])
+                  <node image = "$group_node_image">
+                          #cdata("label" "$group_node_label $group")
+                          <grid-ref>
+                            #cdata("name" $group_node_grid)
+                            #param("group" $group)
+                          </grid-ref>
+                          <action-ref>
+                            #cdata("name" $group_node_action)
+                            #param("item" $group)
+                            #param("section" $section)
+                          </action-ref>
+                          ## List all items that contains in this groups
+                          #foreach($item in [1..$maxitems])
+                              #if($sm.isMemberOfGroup("TERMINAL", "SETTINGS", $group, $item))
+                                  <node image      = "$item_node_image">
+                                    #cdata("label" $sm.getStringSetting("$section_main", "NAME$item"))
+                                    <grid-ref>
+                                        #cdata("name" $item_node_grid)
+                                        #param("item" $item)
+                                    </grid-ref>
+                                    <action-ref>
+                                        #cdata("name" $item_node_action)
+                                        #param("item" $item)
+                                        #param("group" $group)
+                                        #param("section" $section_main)
+                                    </action-ref>
+                                  </node>
+                              #end
+                              #set($item = $item + 1)
+                          #end
+                  </node>
+              #end
+          #end
+    </node>
+
+    </node>
+
+    #perf()
+
+</tree>

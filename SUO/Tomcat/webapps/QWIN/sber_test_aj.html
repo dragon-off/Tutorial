@@ -1,0 +1,97 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript">
+function msgg() {
+	updating = false;
+	update();
+}
+ var updating = false;
+
+function GetXmlHttpObject() {
+   var xmlHttp = null;
+   try {
+		// Firefox, Opera 8.0+, Safari
+		xmlHttp = new XMLHttpRequest();
+	} catch (e) {
+		// Internet Explorer
+		try {
+			xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		} catch (e) {
+			xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		}
+	}
+	if (xmlHttp.overrideMimeType) {
+		xmlHttp.overrideMimeType('text');
+	}
+	return xmlHttp;
+}
+		
+function createXMLHttpRequest() {
+	if(navigator.appName == "Microsoft Internet Explorer"){
+		req = new ActiveXObject("Microsoft.XMLHTTP");
+	}else{
+		req = new XMLHttpRequest();
+	}
+	return req;  
+}
+function rawsend(url,cb) {
+	var req = createXMLHttpRequest();
+	req.open("get",  url, true);
+	req.onreadystatechange = function () {                
+	if(req.readyState == 4) {        
+		if( req.status == 200) {
+			//alert("ok resp:"+req.responseText+" cb:"+cb);
+			if(cb!=null) 
+				cb(req.responseText);	
+			} else if (req.readyState == 4  && req.status != 200) {                     
+				//   alert("Error: status:" + req.status+" url:"+url); //+" resp:"+req.responseText);
+				setTimeout(function() {msgg(); },3000);
+				update();
+				document.getElementById('rr').innerHTML =document.getElementById('rr').innerHTML+'<br>error!!!!!!!!!!!! =!200';
+			} else {
+				update();
+				document.getElementById('rr').innerHTML =document.getElementById('rr').innerHTML+'<br>good 200';
+			}
+		}
+	}
+	req.send(null);
+}
+		
+function update() {
+	parseQwinInfo = function(resp) {
+		document.getElementById('rr').innerHTML =document.getElementById('rr').innerHTML+'<br>'+resp;
+		updating = false;
+		updateTimer_reset();
+	}
+	getStandardInfo = function() {
+		var url = 'http://192.168.0.1/sber/time.qsp';
+		return rawsend(url,parseQwinInfo);
+	}
+	if(!updating) {
+		updating = true;
+		getStandardInfo();
+	} else {
+		//		alert("false");
+	}
+}
+
+var updateTimer;
+updateTimer_reset = function() {
+	clearTimeout(updateTimer);
+	updateTimer = setTimeout(function() {update(); },3000);
+}
+
+		
+</script>
+
+</head>
+
+
+<body >
+<a onclick="update();">ddd</a>
+<div id=rr>dddddddddddd</div>
+
+</body>
+
+</html>

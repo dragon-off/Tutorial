@@ -1,0 +1,18 @@
+#loadcache2("TRANSFER*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("emails.generalNodeLabel"))
+
+    #set( $section            = "TRANSFER"                                        )
+
+    ##    SECTION  KEY              LABEL_ID              TYPE         HELP_ID               MIN MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"            "transfers_cat.max"   "number"     "transfers_cat.max"   0   255   "" )
+    #qsys($section "BTN_TRANS_ON"   "transfers_cat.wt"    "checkbox"   "transfers_cat.wt"    0   1     "" )
+    #qsys($section "BTN_NEW_ENTRY"  "transfers_cat.new"   "checkbox"   "transfers_cat.new"   0   1     "" )
+    #qsys($section "BTN_PROGRAM"    "transfers_cat.prg"   "script"     "transfers_cat.prg"   0   30000 "" )
+</grid-form>
+
+

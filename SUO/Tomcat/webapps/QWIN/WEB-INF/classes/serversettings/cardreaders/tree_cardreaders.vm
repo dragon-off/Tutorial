@@ -1,0 +1,86 @@
+#loadcache2("CARD_READER*" true)
+
+<tree version = "1.0" image = "images/cardreaders.gif">
+    #cdata("label" $text.getText("card.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("card.generalNodeLabel")     )
+    #set( $group_node_label        = $text.getText("card.groupNodeLabel")       )
+
+    #set( $top_node_image          = "images/cardreaders.gif"                   )
+    #set( $group_node_image        = "images/cardreader_group.gif"              )
+    #set( $item_node_image         = "images/cardreader.gif"                    )
+
+    #set( $section_main            = "CARD_READER"                              )
+
+    #set( $top_node_grid           = "./cardreaders/form_cardreaders.vm"        )
+    #set( $group_node_grid         = "./cardreaders/form_cardreader_group.vm"   )
+    #set( $item_node_grid          = "./cardreaders/form_cardreader.vm"         )
+
+    #set( $top_node_action         = "./cardreaders/action_cardreaders.vm"      )
+    #set( $group_node_action       = "./cardreaders/action_cardreader_group.vm" )
+    #set( $item_node_action        = "./cardreaders/action_cardreader.vm"       )
+
+##==============================================================================
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    #nodestart($top_node_label $top_node_image)
+        <grid-ref>
+            #cdata("name" $top_node_grid)
+        </grid-ref>
+
+        <action-ref>
+            #cdata("name" $top_node_action)
+            #param("section" ${section_main})
+        </action-ref>
+
+          #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+          #if( $maxitems > 0 )
+               #foreach($group in [1..$groups])
+                   #nodestart("$group_node_label $group" $group_node_image)
+                        <grid-ref>
+                            #cdata("name" $group_node_grid)
+                            #param("group" ${group})
+                        </grid-ref>
+                        <action-ref>
+                            #cdata("name" $group_node_action)
+                            #param("item" ${group})
+                            #param("section" ${section_main})
+                        </action-ref>
+
+                         ## List all items that contains in this groups
+                         #foreach($item in [1..$maxitems])
+                             #if($sm.isMemberOfGroup($section_main, "SETTINGS", $group, $item))
+
+                                #set($itemname = $sm.getStringSetting($section_main, "NAME$item"))
+                                #set($label = "$item. $itemname")
+                                #nodestart($label $item_node_image)
+                                    <grid-ref>
+                                        #cdata("name" $item_node_grid)
+                                        #param("item" ${item})
+                                        #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                                    </grid-ref>
+                                    <action-ref>
+                                        #cdata("name" $item_node_action)
+                                        #param("item" ${item})
+                                        #param("group" ${group})
+                                        #param("section" ${section_main})
+                                    </action-ref>
+                                #nodeend()
+                             #end
+                             #set($item = $item + 1)
+                         #end
+                   #nodeend()
+               #end
+          #end
+    #nodeend()
+
+    #perf()
+
+</tree>

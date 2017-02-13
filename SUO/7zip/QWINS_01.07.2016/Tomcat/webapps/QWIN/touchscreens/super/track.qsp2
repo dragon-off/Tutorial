@@ -1,0 +1,6 @@
+<%
+P=(${printer}0)/10
+P "#"
+PRINTER_TICKETS_LEFT(P) "#"
+ARRAY(2606)
+%>

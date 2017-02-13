@@ -1,0 +1,356 @@
+<html>
+<head>
+	<title>СберБанк</title>
+	<link href="default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<script type="text/javascript" src="/lib/ajax.js"></script>   	
+	<LINK rel=stylesheet type="text/css" href="style.css">
+	<script language="Javascript" type="text/javascript">
+	function alert1()
+	{
+  		if(q.style.display=='none')
+		{
+			q.style.display='block';
+			setTimeout('close()', 5000);
+		}
+  		else 
+   		{
+			q.style.display='none';
+   		}
+ 	}
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+// AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+alert(1);
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+alert(2);
+
+}
+	function close()
+ 	{
+		q.style.display='none';
+		qq.style.display='none';
+	}
+	</script>
+
+<%
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+IF(G EQ 1)
+	Q=0
+IF(G EQ 2)
+	Q=40
+IF(G EQ 3)
+	Q=60
+IF(G EQ 4)
+	Q=90
+IF(G EQ 5)
+	Q=120
+	
+W=(${priority_lavel}0)/10
+IF(W GT 0)
+BEGIN
+	W=W-1
+	"w="W
+	I=1
+	WHILE(I LE 40)
+	BEGIN
+		SETARRAY(600+I+Q STRSUB(ARRAY(600+I+Q) 1 30)+"F"+STRNTS(W))
+		I=I+1
+	END
+
+END	
+	
+W=(${window}0)/10
+B=(${button}0)/10
+V=(${level}0)/10
+W=STRSTN(W)
+IF(W GT 0 AND B GT 0)
+	IF(B EQ 1)
+		SETARRAY(600+Q+W STRNTS(V)+STRSUB(ARRAY(600+Q+W) 2 32))
+	ELSE
+		SETARRAY(600+Q+W STRSUB(ARRAY(600+Q+W) 1 B-1)+STRNTS(V)+STRSUB(ARRAY(600+Q+W) B+1 32))
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+
+R=(${reset}0)/10
+IF(R EQ 0)
+	R=0
+
+IF(R EQ 1)
+BEGIN
+	I=1
+	WHILE(I LE 40)
+	BEGIN
+		SETARRAY(600+I "000000000000000000000000000000F0")
+
+		I=I+1
+	END
+END
+
+Z=P
+%>
+</head>
+<body link=white alink=white vlink=white scrollwidth=100>
+
+<form action="">
+<TABLE BORDER=0><TR><TD>
+	
+
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+<tr><td class=boxTop>Сброс всех настроек</td></tr>
+<tr><td class=boxMain><input onclick="location.href='/settings_admin/priority/window_button.qsp?reset=1';" type=button value="Сброс всех настроек"></td></tr>
+</tbody></table>
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+
+<form action="window_button.qsp">
+<TABLE><TR><TD>
+	</TD></TR></TABLE>
+</form>
+
+	<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<tbody><tr><td class=boxTop rowspan=2>№</td>
+<td class=boxTop width=180 rowspan=2>Название операции</td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Кол. ожид. кл.</h3></td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Время ожид.</h3></td>
+<%
+W=30
+
+"<td class=boxTop colspan=15 align=center><h3 class=box>Окна<BR>(нажмите на окно которое хотите изменить)</h3></td></tr>"
+I=15
+"<TR>"
+
+	IF(G EQ 1)
+		H=0
+	IF(G EQ 2)
+		H=40
+	IF(G EQ 3)
+		H=60
+	IF(G EQ 4)
+		H=90
+	IF(G EQ 5)
+		H=120
+
+WHILE(I LE W)
+BEGIN
+	IF(ARRAY(400+I) EQ 0)
+	BEGIN
+		IF(STRSUB(ARRAY(600+H+I) 32 32) EQ "0")
+			"<TD class=boxMain style='background-color:#0099FF;' align=center>"
+		ELSE IF(STRSUB(ARRAY(600+H+I) 32 32) EQ "1")
+			"<TD class=boxMain style='background-color:#FFFF66;' align=center>"
+		ELSE IF(STRSUB(ARRAY(600+H+I) 32 32) EQ "2")
+			"<TD class=boxMain style='background-color:#FF6633;'  align=center>"
+		ELSE
+			"<TD class=boxMain style='background-color:#FF6633;'  align=center>"
+		"<div id=link_1_1 class=listItem ><B><FONT size=+1>"
+		I
+		"</FONT></B></DIV></TD>\n"
+	END
+	I=I+1
+END
+"</TR>"
+M=10 {MAX GROUPS}
+I=1
+WHILE(I LE M)
+BEGIN
+	IF(ARRAY(300+I) EQ 0)
+	BEGIN
+		IF(((I/2)*2) EQ I)
+			"<TR bgcolor=#E2E2E2>"
+		ELSE
+			"<TR>"
+	"<TD align=center>"I"</TD><TD>"BUTTON_LETTER(I)" "BUTTON_NAME(I)"</TD><TD align=center>"BUTTON_QUEUE(I)"</TD><TD align=center>" 
+	PRINT_CLOCK_SEC(BUTTON_RWT(I))"</TD>"
+	P=15
+	{+prior to array}
+
+	
+	WHILE(P LE W)
+	BEGIN
+		K=ARRAY(600+H+P)
+		{PROVERKA STROKI}
+		IF(STRSUB(K 31 31) NE "F")
+		BEGIN
+			SETARRAY(600+H+P "000000000000000000000000000000F0") {31=F}
+			K=ARRAY(600+H+P)
+		END
+		L=STRSUB(K I I)
+		IF(ARRAY(400+P) EQ 0)
+		BEGIN
+			"<form name=loginFormJ id=form1><input type=hidden name=call_button>"
+			"<TD id=win_"P"-"I" align=center title='" BUTTON_NAME(I)" (Окно №" P")'>"
+		{jacheyko!!!!!!!!!!!!!!!!!!!!!}
+		IF(1 EQ 1)
+		BEGIN
+			IF(L EQ "0")
+			BEGIN
+				"<IMG SRC=no.png border=0 onclick=setget('0','"P"','"I"','1','"G"','win_"P"-"I"');>"
+			END ELSE
+			BEGIN
+			"<select name=menu1 onchange=setget_combo('1','"P"','"I"','1','"G"','win_"P"-"I"',this) >"
+			R=0
+			WHILE(R LE 9)
+			BEGIN
+			Z=R
+				IF(STRNTS(Z) EQ L)
+				BEGIN
+					"<option selected value="R">"R"</option>"
+				END ELSE
+				BEGIN
+					"<option value="R">"R"</option>"
+				END
+				R=R+1
+			END
+			{ priority_lavel=n-1}"</form>"
+			END 
+		END ELSE
+		IF(L NE "0")
+		BEGIN
+			"<IMG SRC=yes.png border=0 onclick=setget('0','"P"','"I"','1','"G"','win_"P"-"I"')>"
+		END
+		ELSE
+		BEGIN
+			"<IMG SRC=no.png border=0 onclick=setget('1','"P"','"I"','1','"G"','win_"P"-"I"')>"
+		END
+		"</TD>"
+	END
+	P=P+1
+	END
+	"</TR>"
+	T=0
+	{H=0}
+	C=0
+	
+	END {IF VIEW BUTTON}
+	I=I+1
+END
+""
+
+"</table></TD><TD>"
+%>
+</TD></TD></TABLE><table></table>
+<div id="DopElement"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+		var updating = false;
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		function rawsend(url,cb) {
+		
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+
+		          if(cb!=null) cb(req.responseText);	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		     
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+		
+		function getInt(arg) {
+		  var n=parseInt(arg);
+		  if(isNaN(n)) return 0; else return n;
+		}
+
+		function update(url,obj) {
+			parseQwinInfo = function(resp) {
+				var line_split;
+				var el_g;
+				var system_type = '';
+				system_type = system_type.toUpperCase();
+				el_g = document.getElementById(obj);
+				el_g.innerHTML = resp;
+				updating = false;
+				updateTimer_reset();
+			}
+			
+					
+			getStandardInfo = function() {
+			// var url = 'getinfo.qsp?type=1';
+			///////// alert("ok resp:"+urll);
+			  return rawsend(url,parseQwinInfo);
+			}
+
+			if(!updating) {
+				updating = true;
+				getStandardInfo();
+			}
+		}
+		
+		var updateTimer;
+		updateTimer_reset = function() {
+			clearTimeout(updateTimer);
+			//updateTimer = setTimeout(function() {update(); },500);
+		}
+	
+			function setget(type,win,button,level,priority,obj) {
+			url="/settings_admin/priority/setget.qsp?type="+type+"&window="+win+"&button="+button+"&level="+level+"&priority="+priority+"&obj=\""+obj+"\"";
+		//	alert(url);
+			
+			var dopElementDiv = document.getElementById('DopElement');
+			var StrComment = "window="+win+" Operation_id="+button+" priority="+level;
+			rawsend('/lib/1.jsp?TypeId=6&ComIndex=13&Comment='+StrComment,dopElementDiv);
+			update(url,obj);
+		};
+		function setget_combo(type,win,button,level,priority,obj,selObj) {
+			url="/settings_admin/priority/setget.qsp?type="+type+"&window="+win+"&button="+button+"&level="+selObj.options[selObj.selectedIndex].value+"&priority="+priority+"&obj=\""+obj+"\"";
+			//url=eval(url);
+		//	alert(url);
+			var dopElementDiv = document.getElementById('DopElement');
+			var StrComment = "window="+win+" Operation_id="+button+" priority="+selObj.options[selObj.selectedIndex].value;
+			rawsend('/lib/1.jsp?TypeId=6&ComIndex=13&Comment='+StrComment,dopElementDiv);		
+			update(url,obj);
+			
+		};
+function call_customer(type,win,button,level,priority,obj,selObj){ //v3.0
+ eval("parent"+".content.location='?type=1&window="+win+"&button="+button+"&priority="+priority+"&level="+selObj.options[selObj.selectedIndex].value+"'&obj=\""+obj+"\"'");
+}
+	</script>

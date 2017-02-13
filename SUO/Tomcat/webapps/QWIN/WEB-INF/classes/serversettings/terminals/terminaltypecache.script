@@ -1,0 +1,12 @@
+A=INI_GET_MAX_SETTINGS("TERMINAL" "TYPE")
+X=1
+
+WHILE(X LE A)
+BEGIN
+     Y = X
+     T = "TERMINAL_TYPE_" + Y
+
+     INI_GET_SECTION(T)
+
+     X = X+1
+END

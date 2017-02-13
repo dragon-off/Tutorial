@@ -1,0 +1,74 @@
+#loadcache2("BUTTON*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    <label><![CDATA[$text.getText("buttons.groupNodeLabel") $item]]></label>
+
+    #set( $section            = "BUTTON_SETTING_$item"                                                       )
+
+    ##     SECTION  KEY                 LABEL_ID             TYPE       HELP_ID           MIN  MAX   REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "WALK_TIME"        "buttons.walkTime"        "number"    "buttons.walkTime"       0 32000 "" )
+    #qsys($section "TRANS_MAX_WTIME"  "buttons.transMaxTime"    "number"      "buttons.transMaxTime"   0 1440  "" )
+
+    #qsysunitlist ($section "COUNTER_LOCK"    "TERMINAL"  "buttons.lockToCounter"   1         "buttons.lockToCounter"      )
+    #qsysunitlist ($section "TRANS_TO_BUTTON" "BUTTON"    "buttons.transToButton"   1         "buttons.transToButton"      )
+
+    #qsys($section "START_NUMBER"     "buttons.startNumber"     "number"    "buttons.startNumber"    1 9999  "" )
+    #qsys($section "END_NUMBER"       "buttons.endNumber"       "number"    "buttons.endNumber"      1 9999  "" )
+
+    <field type  = "list"
+         helpid = "button.tickSelection">
+         <name><![CDATA[${section}_TEXT_FAILED]]></name>
+         <label><![CDATA[$text.getText("buttons.failedTicket")]]></label>
+        <params>
+            <param>
+                <name>multiple</name>
+                <value>false</value>
+            </param>
+            <param>
+                <name>size</name>
+                <value>1</value>
+            </param>
+            <param>
+                <name>ns</name>
+                <value><![CDATA[${section}]]></value>
+            </param>
+            <param>
+                <name>key</name>
+                <value>TEXT_FAILED</value>
+            </param>
+        </params>
+
+        <init-value><![CDATA[$sm.getStringSetting("$section", "TEXT_FAILED")]]></init-value>
+
+        <accepted-values>
+           #set( $list = $sm.getStringSettingAsList("TEXT", "TEXT_NUMBERS", "," ))
+           #foreach($tick in $list)
+               #set($name = $sm.getStringSetting("TEXT", "NAME$tick"))
+               #accepteditem($tick "$tick. $name")
+           #end
+        </accepted-values>
+
+    </field>
+
+    #qsysunitlist ($section "VOICE"        "VOICE"    "buttons.voiceUnit"    1        "buttons.voiceUnit"       )
+    #qsysunitlist ($section "VOICE_FAILED" "VOICE"    "buttons.failedVoice"  1        "buttons.failedVoice"     )
+
+    #qsys($section "GROUP_PROGRAM"    "buttons.groupProg"       "script"    "buttons.groupProg"      0 0     "" )
+    #qsys($section "CUST_ID_PROG"     "buttons.custIdProg"      "script"    "buttons.custIdProg"     0 0     "" )
+
+    #separator("buttons.estwtime")
+    #qsys($section "ESTW_LEN"         "buttons.estwLen"         "number"    "buttons.estwLen"        1 10000 "" )
+    #qsys($section "ESTW_FILTER_VAL"  "buttons.exclude"         "time"      "buttons.exclude"        0 21600 "" )
+
+    #qsys($section "ESTW_WEIGHT_AVG"  "buttons.useWeighted"     "checkbox"  "buttons.useWeighted"    0 1     "" )
+    #qsys($section "ESTW_ESTW_PCENT"  "buttons.estwIncluded"    "number"    "buttons.estwIncluded"   0 200   "" )
+    #qsys($section "ESTW_RWT_PCENT"   "buttons.realIncluded"    "number"    "buttons.realIncluded"   0 200   "" )
+    #qsys($section "ESTW_FIXED_PCENT" "buttons.fixedIncluded"   "number"    "buttons.fixedIncluded"  0 100   "" )
+    #qsys($section "ESTW_FIXED_VALUE" "buttons.fixedValue"      "number"    "buttons.fixedValue"     0 20000 "" )
+
+</grid-form>
+
+

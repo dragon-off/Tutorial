@@ -1,0 +1,86 @@
+<html>
+<head>
+ <link href="/css/default.css" rel="stylesheet" type="text/css" />
+ <LINK REL="StyleSheet" HREF="/touchscreens/bossallview/style.css" TYPE="text/css">
+ <script type="text/javascript" src="/lib/ajax.js"></script>			  
+ <script language="JavaScript"> 
+	  
+ function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+
+}
+   
+   </script>			  
+</head>
+<body>
+<div id="DopElement"></div>
+<table width="300" border="0" cellspacing="0" cellpadding="0" class="borderedbox">
+        <tr>
+            <td class="boxTop"><h3 class="box">Настройки выдачи талонов</h3></td>
+        </tr>
+        <tr>
+            <td class="boxMain">
+                <div >
+				<table border=0>
+					<tr>
+					<td width="10px"></td>
+					<td>
+                    <table  class=tableSection border="0" cellpadding="0" cellspacing="0" >
+					<td nowrap class=tdHeaderSection align=center >Операция</td>
+					<td nowrap class=tdHeaderSection align=center width=100>Статус выдачи талонов</td>
+<%
+B=(${button}0)/10
+A=(${change}0)/10
+IF(B GT 0) BEGIN
+SETARRAY(1000+B A)
+END
+ 
+I=1
+WHILE(I LE 11) BEGIN
+IF(I EQ 11) I=39
+	IF(I EQ ((I/2)*2))
+		"<tr class=trDataRow1>"
+	ELSE
+		"<tr class=trDataRow0>"
+  "<td nowrap class=tdDataRow width='150' class='tdLeft'>"
+    "<label>" BUTTON_LETTER(I)" "BUTTON_NAME(I)"</label>"
+  "</td>"
+  "<td nowrap class=tdDataRow width='50' class='tdRight'>"
+     IF(ARRAY(1000+I) EQ 0)
+	BEGIN
+		"<center><a onClick=DoScript('/lib/1.jsp?TypeId=3&ComIndex=21'); href=touchbuttons.qsp?button="I"&change=1><img border=0 src=images/yes.png></a></center>"
+	END ELSE
+	BEGIN
+		"<center><a onClick=DoScript('/lib/1.jsp?TypeId=3&ComIndex=21'); href=touchbuttons.qsp?button="I"&change=0><img border=0 src=images/no.png></a></center>"
+	END
+  "</td>"
+"</tr>"
+
+I=I+1
+
+END
+ %>
+
+</table></td>
+<td width="10px"></td>
+</tr>
+</table>
+                </div>
+            </td>
+        </tr>
+   
+    </table>
+</body>
+</html>

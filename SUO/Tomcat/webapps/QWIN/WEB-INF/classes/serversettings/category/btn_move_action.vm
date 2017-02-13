@@ -1,0 +1,16 @@
+
+  #set( $max     = $sm.getNumericSetting( $section, $key ) + 1)
+  #set( $max_grp = $sm.getNumericSetting( "GROUP", "MAX" ))
+  #set( $grp     = 0 )
+  #set( $itm     = 0 )
+  #set( $text  = $text.getText("common.defaultName")   )
+
+
+  $sm.addMemberToGroup($section, $key, $grp.parseInt($list), $itm.parseInt($item), true)
+
+  #if( $max_grp < ($grp.parseInt($list)) )
+     $sm.setNumericSetting("GROUP", "MAX", $grp.parseInt($list))
+     $sm.setStringSetting("GROUP", "NAME$grp.parseInt($list)", "$text " )
+
+  #end
+

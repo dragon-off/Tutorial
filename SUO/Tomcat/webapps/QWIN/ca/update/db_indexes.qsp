@@ -1,0 +1,104 @@
+use msqms_db;
+CREATE STATISTICS [_dta_stat_2073058421_14_1_2] ON [dbo].[Events]([IsCorrected], [id], [et])
+CREATE STATISTICS [_dta_stat_2073058421_13_2_5] ON [dbo].[Events]([Happened], [et], [tn])
+CREATE STATISTICS [_dta_stat_2073058421_2_1_5_14_13] ON [dbo].[Events]([et], [id], [tn], [IsCorrected], [Happened])
+CREATE STATISTICS [_dta_stat_2073058421_7_2_13] ON [dbo].[Events]([cw], [et], [Happened])
+CREATE STATISTICS [_dta_stat_2073058421_7_13_2] ON [dbo].[Events]([cw], [Happened], [et])
+CREATE NONCLUSTERED INDEX [_dta_index_Events_12_2073058421__K2_K13_K7_9] ON [dbo].[Events] 
+(
+	[et] ASC,
+	[Happened] ASC,
+	[cw] ASC
+)
+INCLUDE ( [p1]) WITH (SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+
+
+CREATE NONCLUSTERED INDEX [_dta_index_Events_12_2073058421__K2_K13_K14_K1_K5] ON [dbo].[Events] 
+(
+	[et] ASC,
+	[Happened] ASC,
+	[IsCorrected] ASC,
+	[id] ASC,
+	[tn] ASC
+)WITH (SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+
+CREATE STATISTICS [_dta_stat_2073058421_1_13_14] ON [dbo].[Events]([id], [Happened], [IsCorrected])
+
+
+CREATE STATISTICS [_dta_stat_2073058421_13_2_1] ON [dbo].[Events]([Happened], [et], [id])
+CREATE STATISTICS [_dta_stat_2073058421_1_5_13_14] ON [dbo].[Events]([id], [tn], [Happened], [IsCorrected])
+CREATE NONCLUSTERED INDEX [_dta_index_Events_12_2073058421__K2_K5_K1_K14_K13] ON [dbo].[Events] 
+(
+	[et] ASC,
+	[tn] ASC,
+	[id] ASC,
+	[IsCorrected] ASC,
+	[Happened] ASC
+)WITH (SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+CREATE STATISTICS [_dta_stat_2073058421_7_2_13_1] ON [dbo].[Events]([cw], [et], [Happened], [id])
+CREATE STATISTICS [_dta_stat_2073058421_2_13_14_5] ON [dbo].[Events]([et], [Happened], [IsCorrected], [tn])
+
+
+---rep 6
+CREATE STATISTICS [_dta_stat_2073058421_13_14] ON [dbo].[Events]([Happened], [IsCorrected])
+SET ARITHABORT ON
+SET CONCAT_NULL_YIELDS_NULL ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+SET NUMERIC_ROUNDABORT OFF
+CREATE STATISTICS [_dta_stat_2073058421_1_5_13_15_14_2] ON [dbo].[Events]([id], [tn], [Happened], [TDate], [IsCorrected], [et])
+CREATE STATISTICS [_dta_stat_2073058421_14_5] ON [dbo].[Events]([IsCorrected], [tn])
+SET ARITHABORT ON
+SET CONCAT_NULL_YIELDS_NULL ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+SET NUMERIC_ROUNDABORT OFF
+CREATE STATISTICS [_dta_stat_2073058421_5_2_1_13_15] ON [dbo].[Events]([tn], [et], [id], [Happened], [TDate])
+SET ARITHABORT ON
+SET CONCAT_NULL_YIELDS_NULL ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+SET NUMERIC_ROUNDABORT OFF
+CREATE STATISTICS [_dta_stat_2073058421_15_2_5_1] ON [dbo].[Events]([TDate], [et], [tn], [id])
+CREATE NONCLUSTERED INDEX [_dta_index_Events_12_2073058421__K5_K1_K13_K2] ON [dbo].[Events] 
+(
+	[tn] ASC,
+	[id] ASC,
+	[Happened] ASC,
+	[et] ASC
+)WITH (SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+CREATE NONCLUSTERED INDEX [_dta_index_Events_12_2073058421__K5_K1_K13_K15_K14_K2_6_7_9] ON [dbo].[Events] 
+(
+	[tn] ASC,
+	[id] ASC,
+	[Happened] ASC,
+	[TDate] ASC,
+	[IsCorrected] ASC,
+	[et] ASC
+)
+INCLUDE ( [cc],
+[cw],
+[p1]) WITH (SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF) ON [PRIMARY]
+SET ARITHABORT ON
+SET CONCAT_NULL_YIELDS_NULL ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+SET NUMERIC_ROUNDABORT OFF
+CREATE STATISTICS [_dta_stat_2073058421_1_13_15_14] ON [dbo].[Events]([id], [Happened], [TDate], [IsCorrected])
+SET ARITHABORT ON
+SET CONCAT_NULL_YIELDS_NULL ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+SET NUMERIC_ROUNDABORT OFF
+CREATE STATISTICS [_dta_stat_2073058421_1_15_13_2_14] ON [dbo].[Events]([id], [TDate], [Happened], [et], [IsCorrected])
+CREATE STATISTICS [_dta_stat_2073058421_1_14_5] ON [dbo].[Events]([id], [IsCorrected], [tn])

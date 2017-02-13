@@ -1,0 +1,90 @@
+#loadcache2("PRINTER*" true )
+
+<tree version = "1.0"
+        image = "images/printers.gif">
+
+    #cdata("label" $text.getText("printer.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("printer.generalNodeLabel")  )
+    #set( $group_node_label        = $text.getText("printer.groupEntry")        )
+    #set( $top_node_image          = "images/printers.gif"                      )
+    #set( $item_node_image         = "images/printer.gif"                       )
+
+    #set( $section_main            = "PRINTER"                                  )
+
+    #set( $top_node_grid           = "./printers/form_printers.vm"              )
+    #set( $group_node_grid         = "./printers/form_printer_group.vm"         )
+    #set( $item_node_grid          = "./printers/form_printer.vm"               )
+
+    #set( $top_node_action         = "./printers/action_printers.vm"            )
+    #set( $group_node_action       = "./printers/action_printer_group.vm"       )
+    #set( $item_node_action        = "./printers/action_printer.vm"             )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems     = $sm.getNumericSetting( $section_main, "MAX"))
+
+    <node image = "$top_node_image">
+            #cdata("label" $top_node_label)
+            <grid-ref>
+                #cdata("name" $top_node_grid)
+            </grid-ref>
+
+            <action-ref>
+                #cdata("name" $top_node_action)
+                #param("section" $section_main)
+            </action-ref>
+
+            #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section_main, "SETTINGS"))
+
+            #if( $maxitems > 0 )
+                #foreach($group in [1..$groups])
+                    <node   image      = "images/printer-group.gif">
+                            #cdata("label" "$group_node_label $group")
+                            <grid-ref>
+                                #cdata("name" $group_node_grid)
+                                #param("item" $group)
+                            </grid-ref>
+
+                            <action-ref>
+                                #cdata("name" $group_node_action)
+                                #param("item" ${group})
+                                #param("section" ${section_main})
+
+                            </action-ref>
+                            ## List all items that contains in this groups
+                            #foreach($item in [1..$maxitems])
+                                #if($sm.isMemberOfGroup($section_main, "SETTINGS", $group, $item))
+                                     <node image      = "$item_node_image">
+                                           #set($itemName = $sm.getStringSetting($section_main, "NAME$item"))
+                                           #cdata("label" "$item. $itemName")
+                                           <grid-ref>
+                                                #cdata("name" $item_node_grid)
+                                                #param("item" $item)
+                                                #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                                           </grid-ref>
+                                           <action-ref>
+                                                #cdata("name" $item_node_action)
+                                                #param("item" $item)
+                                                #param("group" $group)
+                                                #param("section" $section_main)
+                                           </action-ref>
+                                     </node>
+                                #end
+                                #set($item = $item + 1)
+                            #end
+                    </node>
+                #end
+            #end
+    </node>
+
+    #perf()
+
+</tree>
+

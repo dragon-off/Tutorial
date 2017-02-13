@@ -1,0 +1,25 @@
+#loadcache2("PAGER" true)
+
+#loadcache2("PAGER_SETTING_1*" false)
+#loadcache2("PAGER_SETTING_2*" false)
+#loadcache2("PAGER_SETTING_3*" false)
+#loadcache2("PAGER_SETTING_4*" false)
+#loadcache2("PAGER_SETTING_5*" false)
+#loadcache2("PAGER_SETTING_6*" false)
+#loadcache2("PAGER_SETTING_7*" false)
+#loadcache2("PAGER_SETTING_8*" false)
+#loadcache2("PAGER_SETTING_9*" false)
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$text.getText('pager.scriptNode') $item")
+    
+    #set( $section            = "PAGER"                           )
+
+    ##    SECTION  KEY              LABEL_ID         TYPE       HELP_ID          MIN MAX REGEXP
+    ##-------------------------------------------------------------------------------------------
+
+    #qsys($section "PROGRAM$item"   "pager.script"   "script"   "pager.script"   0   0   "" )
+
+</grid-form>

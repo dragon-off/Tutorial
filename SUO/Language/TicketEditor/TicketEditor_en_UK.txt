@@ -1,0 +1,179 @@
+# File menu
+
+mainmenu.file            = File
+mainmenu.edit            = Edit
+mainmenu.format          = Format
+mainmenu.page            = Page
+mainmenu.help            = Help
+mainmenu.new             = New
+mainmenu.save            = Save
+mainmenu.saveas          = Save As...
+mainmenu.exit            = Exit
+mainmenu.delete          = Delete
+mainmenu.saveAsBmp       = Save as Bitmap...
+mainmenu.uploadImage     = Upload Image...
+mainmenu.linkButton      = Button-Ticket Linker
+
+
+# Edit menu
+
+mainmenu.undo            = Undo
+mainmenu.insert          = Insert
+mainmenu.editObject      = Edit
+mainmenu.cut             = Cut
+mainmenu.copy            = Copy
+mainmenu.paste           = Paste
+mainmenu.properties      = Properties
+mainmenu.deleteobject    = Delete
+mainmenu.addpage         = Add Page
+mainmenu.deletepage      = Delete Selected Page
+
+mainmenu.setpagesize      = Set Ticket Length
+mainmenu.setpagesize_480  = Single Ticket
+mainmenu.setpagesize_960  = Double Ticket
+mainmenu.setpagesize_1440 = Triple Ticket
+
+# Format menu
+
+mainmenu.editFont           = Font
+mainmenu.setrotation        = Rotation
+mainmenu.setrotation_none   = 0
+mainmenu.setrotation_left   = 90
+mainmenu.setrotation_right  = 180
+mainmenu.setrotation_down   = 270
+
+mainmenu.setalignment        = Alignment
+mainmenu.setalignment_left   = Left
+mainmenu.setalignment_center = Center
+mainmenu.setalignment_right  = Right
+
+mainmenu.insertText          = Text
+mainmenu.insertAutoText      = System Information
+mainmenu.insertDate          = Date
+mainmenu.insertTime          = Time
+mainmenu.insertTicketNumber  = Ticket Number
+mainmenu.insertGroupLetter   = Category Letter
+mainmenu.insertButtonLetter  = Button Letter
+mainmenu.insertButtonName    = Button Name
+mainmenu.insertImage         = Image
+mainmenu.insertImageStored   = From list
+mainmenu.insertImageFile     = From file
+mainmenu.insertScript        = Script
+mainmenu.insertBarcode       = Barcode
+
+# Help Menu
+
+mainmenu.help                = Help
+mainmenu.editorHelp          = User's Guide
+mainmenu.about               = About
+
+# Macro Menu
+
+macro.date		     = Date
+macro.time		     = Time
+macro.ticketNumber           = Ticket Number
+macro.groupLetter            = Group Letter
+macro.buttonLetter           = Button Letter
+macro.buttonName             = Button Name
+
+#Text Toolbar
+
+texttoolbar.bold             = B
+texttoolbar.italic           = I
+texttoolbar.underline        = U
+
+texttoolbar.pasteHint        = Paste object
+texttoolbar.copyHint         = Copy object
+texttoolbar.cutHint          = Cut object
+
+texttoolbar.rotation         = Rotation
+texttoolbar.rotation_0       = 0
+texttoolbar.rotation_90      = 90
+texttoolbar.rotation_180     = 180
+texttoolbar.rotation_270     = 270
+texttoolbar.deleteHint       = Delete object
+texttoolbar.editHint         = Edit object
+
+page.tab_name                = Page
+
+#Ticket Toolbar
+
+tickettoolbar.deleteHint    = Delete ticket
+tickettoolbar.newHint       = Create a new ticket
+tickettoolbar.saveHint      = Save ticket
+tickettoolbar.saveAsHint    = Save ticket as...
+
+#Labels & captions
+
+label.editTicket            = Selected Ticket
+label.selectTicket          = Tickets
+label.insert                = Insert...
+label.image                 = Image
+label.text                  = Text
+label.autoText              = System Information
+label.script                = Script
+label.scriptEditor          = Script Editor
+label.barcode               = Barcode
+label.barcodeEditor         = Barcode Editor
+label.editNameDlg           = Edit ticket name
+label.messageDlg            = Ticket Editor Message
+label.userName              = User:
+label.password              = Password:
+label.about                 = About
+label.logonDlg              = Login
+label.buttonLinkDlg         = Link a Ticket to a Button
+label.editTextDlg           = Edit Text
+label.buttons               = Available Buttons
+label.assignTicket          = Assign Tickets
+label.barcodeList           = Barcode type
+label.calcChecksum          = Calculate checksum
+label.macroList             = Functions
+
+caption.close               = Close
+caption.ok                  = OK
+caption.cancel              = Cancel
+caption.compile             = Compile
+caption.insert              = Insert
+caption.insertFromFile      = Insert from file...
+
+ticklist.defaultName        = -
+
+#FontDialog
+
+fontdialog.underline        = Underline
+fontdialog.bold             = Bold
+fontdialog.italic           = Italic
+
+#Messages
+
+message.noUserRights        = You have no user rights to delete this ticket,\ncause it contains objects that you are not allow to change.
+message.noUserRightsEdit    = You have no user rights to edit this object
+message.noUserRightsDelObj  = You have no user rights to delete this object
+message.deleteTicket        = Delete ticket: %s \nAre you sure?
+message.cantDeleteTicket    = This ticket couldn't be delete cause it is linked with a Ticket Button.
+message.saveTicket          = Ticket has been changed.\nDo you want to save?
+message.noCompiled          = The script could not be compiled!
+message.compiledOk          = The script was compiled succesfully!
+message.noLicense           = There is no available license at the Server
+message.tryReconnect        = Try to reconnect
+message.emptyObject         = The object is empty and will be deleted!\nDo you want to continue?
+message.imageWidth          = The image is too wide for the ticket!\n\nYour image size is: %dx%d.\nMax image size is : %dx%d. 
+message.imageHeight         = The image is too high for the ticket!\n\nYour image size is: %dx%d.\nMax image size is : %dx%d. 
+message.saveImageAs         = Save as
+message.fileAlreadyExists   = already exists.\nDo you want to replace it?
+message.working             = Working!  Please wait...
+message.noConnection        = No connection with the server!
+
+#Error messages            
+
+error.criticalGUIError      = Critical GUI error\n You need to restart the Application
+error.logonFailed           = Failed to log on to Server!
+error.writeFileFailed       = Failed to write file to Server!
+error.transferFileFailed    = Failed to transfer file to Server!
+
+
+#Ticket Editor
+ticketeditor.defaultText    = New Text
+ticketeditor.defaultScript  = New Script
+ticketeditor.defaultBarcode = GROUP_NUMBER LEN(4)
+

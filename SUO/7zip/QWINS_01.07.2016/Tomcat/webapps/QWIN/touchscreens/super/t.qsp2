@@ -1,0 +1,4 @@
+<%
+FUNC_EVENT_SEND(10 1 1)
+
+%>

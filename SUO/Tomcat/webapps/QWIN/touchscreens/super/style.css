@@ -1,0 +1,223 @@
+  BODY {
+  overflow:hidden;
+  margin: 0;
+  }
+  .bg {
+    width:1280px;
+	height:1024px;
+    max-width:1280px;
+	max-height:1024px;
+
+   }
+  .logo {
+    padding-top: 5px;
+	text-align:center;
+	font-size: 32pt;
+	color: #339933;
+	font-weight:bold;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+  }
+  .datetime{
+    width:500px;
+	height:40px;
+	min-width:360px;
+	max-height:40px;
+	padding-left: 15px;
+	float: right; 
+	}
+  .datetimetext {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 25pt;
+	color: #339933;
+	
+	}
+   .datetimetext2 {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 25pt;
+	color: #339933;
+	font-weight: bold;
+	}
+  .bplace {
+    width:1280px;
+	min-width:1280px;
+	padding-left:30px;
+	padding-right:30px;
+  }
+  .button_s {
+    
+    float: left; 
+    width: 592px;
+    padding-top:5px;
+	margin-right:40px;	
+   }
+  .ins_butt_s {
+    
+    width:592px;
+	height:160px;
+	min-width:592px;
+	max-height:160px;
+	background-image: url(images/button.png);
+	background-repeat: no-repeat;
+	border:0px;
+	text-align:left;
+	padding-left:25px;
+	padding-right:25px;
+	padding-top:25px;
+	color: white;
+	font-weight: bold;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 22pt;
+	vertical-align: bottom;
+  }
+   .ins_butt_ss {
+	color: white;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 15pt;
+	vertical-align: top;
+	font-weight: normal;
+  }
+
+  .alert1{
+  width:1280px;
+  height:1024px;
+  position: absolute;
+  top:0px;
+  left:0px;
+  z-index: 110;
+  background-image: url(images/talon-good.jpg);
+  display:none;
+  }
+  .alert2{
+  width:1280px;
+  height:1024px;
+  position: absolute;
+  top:0px;
+  left:0px;
+  z-index: 110;
+  background-image: url(images/talon-bad.jpg);
+   display:none;
+  }
+  .alertmess {
+     width:1280px;
+	min-width:1280px;
+	text-align:center;
+	padding-top:250px;
+	color: #0e52d0;
+	text-shadow: white 0.0em 0.0em 0.3em;
+	font-family:  Arial, sans-serif;
+	font-size: 45pt;
+	font-weight: bolder;
+}
+  .alertmess2 {
+    width:1280px;
+	min-width:1280px;
+	text-align:center;
+	margin-top:150px;
+	padding-left:390px;
+	padding-right:390px;
+	color: white;
+	height:650px;
+	
+	text-shadow: black 0.0em 0.0em 0.3em;
+	font-family:  Arial, sans-serif;
+	font-size: 45pt;
+	font-weight: bolder;
+}
+#redqueue2 {
+font-weight: 300;
+}
+.redqueue_num {
+font-weight: 900;
+font-size: 25pt;
+color:#339933;
+}
+.usercard {
+
+	width:500px;
+	min-width:500px;
+	text-align:center;
+	height:300px;
+	position: absolute;
+	top:362px;
+	left:390px;
+	z-index: 100;
+	display:none;
+}
+.userprint {
+	
+	width:100%;
+	min-width:100%;
+	text-align:center;
+	height:100%;
+	position: absolute;
+	top:0px;
+	left:0px;
+	z-index: 50;
+	display:none;
+}
+.usermess {
+	width:500px;
+	min-width:500px;
+	text-align:center;
+	height:300px;
+}
+.usermessout {
+	width:100%;
+	min-width:100%;
+	text-align:center;
+	height:100%;
+	
+	font-family:  Arial, sans-serif;
+	color:white;
+	font-weight: bolder;
+	font-size: 21pt;
+	padding:15px;
+}
+#usertext {
+	width:400px;
+	min-width:400px;
+	text-align:center;
+	height:240px;
+	background-color: rgba(12, 129, 0, 0.8);
+	font-family:  Arial, sans-serif;
+	color:white;
+	font-weight: bolder;
+	font-size: 21pt;
+	padding:15px;
+}
+.userred {
+	width:1280px;
+	min-width:1280px;
+	text-align:center;
+	height:1024px;
+	position: absolute;
+	top:0px;
+	left:0px;
+	z-index: 100;
+	display:none;
+}
+.ured{
+	width:1280px;
+	min-width:1280px;
+	text-align:center;
+	height:1024px;
+	background-color: white;
+	font-family:  Arial, sans-serif;
+	color:#339933;
+	font-weight: bolder;
+	font-size: 24pt;
+	padding:15px;
+}
+#red {
+	width:1100px;
+	min-width:1100px;
+	text-align:center;
+	height:400px;
+	background-color: white;
+	-moz-border-radius: 40px; border: 6px solid #ff792c;
+	font-family:  Arial, sans-serif;
+	color:black;
+	font-weight: bolder;
+	font-size: 24pt;
+	padding:15px;
+}

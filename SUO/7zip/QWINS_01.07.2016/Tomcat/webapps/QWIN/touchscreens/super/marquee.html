@@ -1,0 +1,101 @@
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<!--<script src="js/index.js"></script>-->
+		<title>Сбербанк. Бегущая строка</title>
+		<style>
+			body{
+				margin: 0;
+				padding: 0px;
+			}
+		</style>
+		<script language="Javascript" type="text/javascript">
+		var glob_time=1*1280;
+		var width_str = 1280;
+		var st_mark = 0;
+		function getWidth()
+		{
+		el = document.getElementById('quick_text_hidden');
+		string_width = el.clientWidth+50;
+		width_str = string_width;
+		glob_time = string_width;
+		document.getElementById('strok').style.width = string_width+"px";
+		}
+		
+
+		function reload_str()
+		{
+		 $( function() {
+					getstart();
+					function getstart() {
+					
+					  var data = {};
+					  $.ajax( "/touchscreens/super/includes/get.qsp2", {
+						cache: false,
+						data: data,
+						dataType: "json",
+						error: errorHandler,
+						success: success
+					  } );
+					  
+					};
+				 
+					function success( data ) {
+					//loadinner("strok",data.strok);
+					data.strok=data.strok.replace(/          /g," &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ");
+					document.getElementById('strok').innerHTML = data.strok;
+					document.getElementById('quick_text_hidden').innerHTML = data.strok;
+					getWidth();		
+					if(st_mark==0)
+						{
+						
+						st_mark=1;
+						gogo(1280);
+						}
+					}
+					function errorHandler() {
+					  
+					}
+				 
+				  } );
+		}
+		function gogo(a)
+		{
+		
+		el=document.getElementById('strok');
+		el.style.left=a;
+		a=a-1;
+		glob_time=glob_time-1;
+		if(a==-width_str) 
+			{
+			a=1280;
+			if(glob_time<=0)
+				{
+				reload_str();
+				}
+			}
+		setTimeout('gogo('+a+')',10);
+		}
+		
+		</script>
+	</head>
+
+	<body onLoad="reload_str();">
+		<table align=center cellpadding=0 cellspacing=0 border=0>
+			<tr>
+				<td height=100% width=1280 align=center>
+				<div id='strok' style="z-index: 500; position: absolute; width: 1280px; top: 0px; height: 100px;display: block; color:#339933;font-weight: bold;font-size:48pt;">
+				
+				</div>
+					
+					
+				</td>
+			</tr>
+		</table>
+	<span id="quick_text_hidden" style="font-weight: bold;font-size:48pt;color:#339933;height: 100px;top:-100px;white-space: pre;position: absolute;">
+			</span>
+	</body>
+
+</html>

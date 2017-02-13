@@ -1,0 +1,22 @@
+#loadcache2("MONITOR*" true)
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+    #set( $section        = "MONITOR_SETTING_${item}"                 )
+
+    ##    SECTION   KEY              LABEL_ID                 TYPE        HELP_ID                 MIN MAX   REGEXP
+    ##------------------------------------------------------------------------------------------------------------
+
+    #qsys("MONITOR" "NAME${item}"    "dispinfo.name"          "text"      "dispinfo.name"          0  40    "" )
+
+</grid-form>
+
+
+
+
+
+
+
+

@@ -1,0 +1,318 @@
+<%
+K=ARRAY(760)
+{STRSUB(K 120 122)}
+IF(STRSUB(K 121 121) NE "F")
+	SETARRAY(760 "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000F") {121=F}
+
+%> 
+ 
+<html>
+    <head>
+        <title>Монитор</title>
+        <LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">
+		<LINK REL="StyleSheet" HREF="style_messages.css" TYPE="text/css">
+		<script type="text/javascript" src="/lib/ajax.js"></script>  		
+		<script language='javascript'>
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+} 	
+function close_salert(el)
+{
+var elem = parent.frames[0].document.getElementById('blockres');
+elem.innerHTML=elem.innerHTML*1-1;
+if(el==2) elem.innerHTML=0;
+var messages = elem.innerHTML*1;
+if(messages<0)
+	{
+	messages=0;
+	elem.innerHTML=0;
+	}
+if(messages==0)
+	parent.frames[0].document.getElementById('block').style.display = 'none';
+parent.frames[1].document.getElementById('message_box_'+el+'_text').innerHTML="";
+if(el==1)
+	parent.frames[1].document.getElementById('message_box_3_text').innerHTML="";
+}	
+		</script>		
+    </head>
+    <body onLoad="startTimeout()">  
+	<div id="DopElement" style="display:none;"></div>
+<%
+
+
+B=(${button}0)/10
+S=(${status}0)/10
+Y=(${buon}0)/10
+U=(${stus}0)/10
+IF(Y GT 0)
+BEGIN
+	SETARRAY(9900+Y U)
+END	
+IF(B GT 0 )
+BEGIN
+	SETARRAY(300+B S)
+	
+	L=(${limit}0)/10
+	{L"-"B}
+	IF(L GT 0)
+		IF(B GT 1)
+			SETARRAY(760+B L)	 {760 ARRAY}
+	
+		L=(${green_time}0)/10
+	IF(L GT 0)
+		SETARRAY(800+B L)
+
+	L=(${yellow_time}0)/10
+	IF(L GT 0)
+		SETARRAY(830+B L)
+
+	L=(${red_time}0)/10
+	IF(L GT 0)
+		SETARRAY(860+B L)	
+END
+%>
+<SCRIPT LANGUAGE="javascript"> 
+ 
+function startTimeout()
+{
+
+}
+function reloadFunc()
+{
+}
+function openPage(p) 
+{
+    parent.contents.location.href=p;
+}
+</SCRIPT>
+ 
+ 
+<form method="GET" name="changeList">
+<input type="hidden" name="useCategory" value="true">
+<input type="hidden" name="useWorkstation" value="true">
+ 
+<!-- Place this at the top
+ 
+ 
+ 
+-->
+ 
+<table class=tableMain cellpadding=5 cellspacing=0 width=10>
+	<tr>
+		<td class=headerBar align=left>
+			Отображаемые операции 
+		</td>
+		<td class=headerBar>
+			
+		</td>
+	</tr>
+ 
+	<tr>
+		<td valign="top">
+			<table class=tableSection cellpadding=0 cellspacing=0>
+				<tr>
+					<td nowrap class=tdHeaderSection>Операция</td>
+					<td nowrap class=tdHeaderSection>Статус</td>
+					<td nowrap class=tdHeaderSection>Светофор вр. обсл.(сек.)</td>
+					<td nowrap class=tdHeaderSection>Учет в тактике</td>
+	
+				</tr>
+				
+				<%
+				O=(${showtickets}0)/10
+A=10 {колличество операций}
+I=0 {summ ogid kl}
+J=0 {summ obsl kl}
+M=0
+N=1
+WHILE (N LE A)
+BEGIN
+IF(ARRAY(1000+N) EQ 0) BEGIN
+	IF(N EQ ((N/2)*2))
+		"<tr class=trDataRow1>"
+	ELSE
+		"<tr class=trDataRow0>"
+	"<td nowrap class=tdDataRow>"
+	IF(N LE 30)
+	BUTTON_LETTER(N) " " ARRAY(2000+N) "</td>"
+
+	
+	
+
+IF(ARRAY(300+N) EQ 0)
+BEGIN
+"<td nowrap class=tdDataRowC><a ><IMG SRC=yes.png border=0></a>"
+END
+ELSE
+BEGIN
+"<td nowrap class=tdDataRowC><a ><IMG SRC=no.png border=0></a>"
+END
+	"</td>"
+	
+		"<td><form method=GET name=workstationInfo>"
+	"<input type=hidden name=button value="N">"
+	"<input type=input name=green_time style=background:#008000 value=" ARRAY(800+N) " size=3>"
+	"<input type=input name=yellow_time style=background:#ffff00 value=" ARRAY(830+N) " size=3>"
+	"<input type=input name=red_time style=background:#ff0000 value=" ARRAY(860+N) " size=3></TD>"
+IF(ARRAY(9900+N) EQ 0)
+BEGIN
+"<td nowrap class=tdDataRowC><a ><IMG SRC=yes.png border=0></a>"
+END
+ELSE
+BEGIN
+"<td nowrap class=tdDataRowC><a ><IMG SRC=no.png border=0></a>"
+END
+	"</td>"
+	"<td></form></td>"
+	"</tr>\n"
+END
+N=N+1
+END
+
+%>			
+			</table>
+		</td>
+ 
+		<td valign=top align=left>
+			
+		</td>
+	</tr>
+	<tr>
+		<td class=tdCopyright>
+			Ритейл АСП (+7(495)953-05-08, +7(495)951-68-09)
+		</td>
+		<td class=tdVersion>
+			Версия 4.2.9
+		</td>
+	</tr>
+</table>
+
+<table width='100%' height='100%' id="message_box_1" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:998; background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" border=0/>
+					</td>
+					
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_1_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<div style="border-top:solid 1px #f43839;height: 38px;background-color: #fccac1;width:100%;text-align:center;">
+			<input type="button" value="OK" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" style="height:35px;width:80%;">
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%' id="message_box_2" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:997;background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(2); document.getElementById('message_box_2').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_2_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%'  style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:999;background-image:url('halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="close_salert(3); document.getElementById('message_box_3').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+ 
+</html>

@@ -1,0 +1,25 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.writer.DefaultWriter">
+    #cdata("label" "")
+
+    <field type="button">
+        <name>btnAddActivity</name>
+        #cdata("label" $text.getText("activity.add"))
+        <params>
+            #param("action-script" "./scheduler/scheduler_add_action.vm")
+        </params>
+        <accepted-values>
+        </accepted-values>
+    </field>
+
+    <field type="button">
+        <name>btnRemoveActivity</name>
+        #cdata("label" $text.getText("activity.removeLast"))
+        <params>
+            #param("action-script" "./scheduler/scheduler_remove_action.vm")
+        </params>
+        <accepted-values>
+        </accepted-values>
+    </field>
+
+</grid-form>

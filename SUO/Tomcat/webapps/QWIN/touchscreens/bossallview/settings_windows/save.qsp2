@@ -1,0 +1,6 @@
+<%
+A=(${window}0)/10
+V=(${value}0)/10
+	SETARRAY(390+A V)	
+	ARRAY(390+A)	
+%>

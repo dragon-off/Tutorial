@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%
+W=(${workstation}0)/10
+IF(W EQ 0)
+	W=1
+M=(${matter_true}0)/10
+Q=(${matter}0)/10
+
+IF(Q NE 0 AND M EQ 1)
+BEGIN
+	FUNC_MATTER(W Q 1 0 0)
+	SETARRAY(9999 "TRUE")    {????????????????????????????}
+END
+
+P=(${priority}0)/10
+IF(P GT 0)
+	FUNC_PRIORITY(W P 0 0 0)
+	
+L=(${logincod}0)/10
+IF(L GT 0)
+	FUNC_LOGON(W L 0 0 0)
+	
+N=(${next}0)/10
+IF(N GT 0)
+	FUNC_NEXT(W COUNTER_PRIORITY_NUMBER(W) 0 0 0)
+	
+A=(${alert}0)/10
+IF(A GT 0)
+	FUNC_ALERT(W 1 0 0 0)
+A=(${event}0)/10
+	
+I=(${insert_last}0)/10
+IF(I GT 0)
+	FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) 30+I 0)
+	
+E=(${end}0)/10
+IF(E GT 0)
+	FUNC_END_CUSTOMER(W 0 0 0 0)
+	
+	V=(${vvod}0)/10
+	IF(V EQ 1)
+	BEGIN
+		V=(${number}0)/10
+		IF(V GT 0)
+		BEGIN
+			FUNC_LOGON(W V 0 0 0)
+		END
+	END
+
+%>
+
+
+<SCRIPT LANGUAGE="javascript"> 
+function startTimeout()
+{
+setTimeout('reloadFunc()',2 * 1000 )
+
+}
+function reloadFunc()
+{
+ <%
+   IF(Q GT 0 AND Q LT 50)
+ 	BEGIN
+		 "location.href='?workstation="W"&matter="Q"&event="A"';"
+	END
+	ELSE
+	BEGIN
+		"location.href='?workstation="W"&event="A"';"
+	END
+	%>
+}
+function openPage(p) 
+{
+    parent.contents.location.href=p;
+}
+</SCRIPT>
+<script type="text/JavaScript">
+<!--
+function insert_last(targ,selObj,restore){ //v3.0
+  <% "eval(targ+\".location='?insert_last=\"+selObj.options[selObj.selectedIndex].value+\"&workstation="W"'\");"
+  %>
+  if (restore) selObj.selectedIndex=0;
+}
+function insert_first(targ,selObj,restore){ //v3.0
+  <% "eval(targ+\".location='?insert_first=\"+selObj.options[selObj.selectedIndex].value+\"&workstation="W"'\");"
+  %>
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+function show_div(name)
+{
+
+    name.style.display='block';
+
+}
+
+
+function alert1()
+ {
+  if(insert_msg.style.display=='none')
+   {
+    insert_msg.style.display='block';
+    setTimeout('close()', 5000);
+   }
+  else 
+   {
+   insert_msg.style.display='none';
+   }
+ }
+function alert2()
+ {
+  if(next.style.display=='none')
+   {
+    next.style.display='block';
+   
+   }
+  else 
+   {
+   next.style.display='none';
+   }
+ }
+
+function close()
+ {
+  insert_msg.style.display='none';
+  next.style.display='none';
+ }
+
+</script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Веб Пульт для того кто всегда рядом</title>
+<style>
+
+
+BODY {
+
+}
+table_razdel {
+background:#77B618;
+background:#33CC66;
+}
+table.table_button {
+background-color:#CCCCCC;
+border-right-color:#00FF33;
+text-align:center;
+border-bottom-color:#006633;
+}
+table.table_button_select {
+background-image: url('img/b1.gif');
+text-align:center;
+}
+table.table_button_select2 {
+background-image: url('img/b2.gif');
+text-align:center;
+}
+table.table_button_select3 {
+background-image: url('img/b3.gif');
+text-align:center;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Фоновый рисунок</title>
+		<style type="text/css">
+			.fon {
+				width: 100%;
+				border: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: -1;
+			}
+		</style>
+		
+		
+	
+		
+		
+		
+</head>
+
+<body onLoad="startTimeout()">
+<center>
+Тактика обслуживания:<br>
+<% 
+P=COUNTER_PRIORITY_NUMBER(W)*30
+	{p1 BEGIN}
+	{===========================================}
+	I=1
+	N=""
+	S=0 {QUEUE}
+	T=0 {WT}
+	IF(STRSUB(ARRAY(570+P+W) 31 31) EQ "F")
+		WHILE(I LE 30)
+		BEGIN
+			IF(STRSTN(STRSUB(ARRAY(570+P+W) I I)) GT 0)
+			BEGIN
+				IF(BUTTON_RWT(I) GT T)
+					T=BUTTON_RWT(I)
+				S=S+BUTTON_QUEUE(I)
+
+			END
+			I=I+1
+		END
+F=1
+
+IF(T LE ARRAY(490))
+BEGIN
+	F=3
+	"<img width=50 src='img/zelenama.png'>"
+	
+END
+ELSE IF(T LE ARRAY(491))
+BEGIN
+	F=2
+	"<img width=50 src='img/zholtama.png'>"
+END
+ELSE
+BEGIN
+	F=1
+	"<img width=50 src='img/krasnoma.png'>"
+END
+"<br>Время обсл.: <b>"PRINT_CLOCK_SEC(COUNTER_TRANSACTION_TIME_NOW(W)) "</b><br>"
+%>
+Время ТАКТА: <b>
+<% 
+IF(F EQ 1)
+	PRINT_CLOCK_SEC(ARRAY(800+W))
+ELSE IF (F EQ 2)
+	PRINT_CLOCK_SEC(ARRAY(830+W))
+ELSE
+	PRINT_CLOCK_SEC(ARRAY(860+W))
+ %></B>
+ <BR>
+ <FONT SIZE=-1>
+Консультации<BR>
+Активные продажи<BR>
+Работа с листом обратной связи и карточками клиента
+</FONT>
+</center>	
+</body>
+</html>

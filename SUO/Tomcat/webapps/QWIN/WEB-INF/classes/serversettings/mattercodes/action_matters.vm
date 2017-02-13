@@ -1,0 +1,13 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    <label></label>
+
+    <field type  = "button">
+           #cdata("label" $text.getText("matter.addMatter"))
+           <name>matter.addMatter</name>
+        <params>
+              #param("action-script" "./matter/matter.creatematter.action")
+              #param("ref-type" "raw")
+        </params>
+    </field>
+</grid-form>

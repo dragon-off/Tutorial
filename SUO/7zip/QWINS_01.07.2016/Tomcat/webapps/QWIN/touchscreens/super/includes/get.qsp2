@@ -1,0 +1,17 @@
+<%
+
+I=1
+M=15
+WHILE(I LE M)
+	BEGIN
+	ARRAY(1000+I) "*|*" ARRAY(2020+I) "*|*" ARRAY(5610+I) "*|*" I"*<br>*"
+	I=I+1
+	END
+"||<p>||"
+I=1
+WHILE(I LE M)
+	BEGIN
+	ARRAY(5630+I) "*<br>*"
+	I=I+1
+	END
+%>

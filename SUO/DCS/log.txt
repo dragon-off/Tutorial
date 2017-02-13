@@ -1,0 +1,51 @@
+2017-02-09 14:38:19.8977|WARN|DomainConnectorService.DomainConnector|Available domains in foresrt
+2017-02-09 14:38:19.8977|WARN|DomainConnectorService.DomainConnector|domain name: alfa.ru
+2017-02-09 14:38:19.8977|WARN|DomainConnectorService.DomainConnector|domain name: gamma.ru
+2017-02-09 14:38:19.8977|WARN|DomainConnectorService.DomainConnector|domain name: omega.ru
+2017-02-09 14:38:19.8977|WARN|DomainConnectorService.DomainConnector|domain name: test.1.ru
+2017-02-09 14:38:20.9248|ERROR|DomainConnectorService.DomainConnector|can't get user domain:alfa.ru err:The server could not be contacted. stack:   â System.DirectoryServices.AccountManagement.PrincipalContext.ReadServerConfig(String serverName, ServerProperties& properties)
+   â System.DirectoryServices.AccountManagement.PrincipalContext.DoServerVerifyAndPropRetrieval()
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name, String container, ContextOptions options, String userName, String password)
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name)
+   â DomainConnectorService.DomainConnector.GetDomainUser(String username)
+2017-02-09 14:38:21.8008|WARN|DomainConnectorService.DomainConnector|Available domains in foresrt
+2017-02-09 14:38:21.8048|WARN|DomainConnectorService.DomainConnector|domain name: alfa.ru
+2017-02-09 14:38:21.8048|WARN|DomainConnectorService.DomainConnector|domain name: gamma.ru
+2017-02-09 14:38:21.8048|WARN|DomainConnectorService.DomainConnector|domain name: omega.ru
+2017-02-09 14:38:21.8048|WARN|DomainConnectorService.DomainConnector|domain name: test.1.ru
+2017-02-09 14:38:22.0629|ERROR|DomainConnectorService.DomainConnector|can't get user domain:omega.ru err:The server could not be contacted. stack:   â System.DirectoryServices.AccountManagement.PrincipalContext.ReadServerConfig(String serverName, ServerProperties& properties)
+   â System.DirectoryServices.AccountManagement.PrincipalContext.DoServerVerifyAndPropRetrieval()
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name, String container, ContextOptions options, String userName, String password)
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name)
+   â DomainConnectorService.DomainConnector.GetDomainUser(String username)
+2017-02-09 14:38:22.0789|WARN|DomainConnectorService.DomainConnector|trying to find user in domain test.1.ru
+2017-02-09 14:38:22.0789|INFO|DomainConnectorService.DomainConnector|User found
+2017-02-09 14:38:22.8339|ERROR|DomainConnectorService.DomainConnector|can't get user domain:alfa.ru err:The server could not be contacted. stack:   â System.DirectoryServices.AccountManagement.PrincipalContext.ReadServerConfig(String serverName, ServerProperties& properties)
+   â System.DirectoryServices.AccountManagement.PrincipalContext.DoServerVerifyAndPropRetrieval()
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name, String container, ContextOptions options, String userName, String password)
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name)
+   â DomainConnectorService.DomainConnector.GetDomainUser(String username)
+2017-02-09 14:38:23.1770|ERROR|DomainConnectorService.DomainConnector|can't get user domain:gamma.ru err:The server could not be contacted. stack:   â System.DirectoryServices.AccountManagement.PrincipalContext.ReadServerConfig(String serverName, ServerProperties& properties)
+   â System.DirectoryServices.AccountManagement.PrincipalContext.DoServerVerifyAndPropRetrieval()
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name, String container, ContextOptions options, String userName, String password)
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name)
+   â DomainConnectorService.DomainConnector.GetDomainUser(String username)
+2017-02-09 14:38:25.0862|ERROR|DomainConnectorService.DomainConnector|can't get user domain:gamma.ru err:The server could not be contacted. stack:   â System.DirectoryServices.AccountManagement.PrincipalContext.ReadServerConfig(String serverName, ServerProperties& properties)
+   â System.DirectoryServices.AccountManagement.PrincipalContext.DoServerVerifyAndPropRetrieval()
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name, String container, ContextOptions options, String userName, String password)
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name)
+   â DomainConnectorService.DomainConnector.GetDomainUser(String username)
+2017-02-09 14:38:44.1781|ERROR|DomainConnectorService.DomainConnector|can't get user domain:omega.ru err:The server could not be contacted. stack:   â System.DirectoryServices.AccountManagement.PrincipalContext.ReadServerConfig(String serverName, ServerProperties& properties)
+   â System.DirectoryServices.AccountManagement.PrincipalContext.DoServerVerifyAndPropRetrieval()
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name, String container, ContextOptions options, String userName, String password)
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name)
+   â DomainConnectorService.DomainConnector.GetDomainUser(String username)
+2017-02-09 14:38:44.1941|WARN|DomainConnectorService.DomainConnector|trying to find user in domain test.1.ru
+2017-02-09 14:38:44.1941|INFO|DomainConnectorService.DomainConnector|User found
+2017-02-09 14:38:46.0913|ERROR|DomainConnectorService.DomainConnector|can't get user domain:omega.ru err:The server could not be contacted. stack:   â System.DirectoryServices.AccountManagement.PrincipalContext.ReadServerConfig(String serverName, ServerProperties& properties)
+   â System.DirectoryServices.AccountManagement.PrincipalContext.DoServerVerifyAndPropRetrieval()
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name, String container, ContextOptions options, String userName, String password)
+   â System.DirectoryServices.AccountManagement.PrincipalContext..ctor(ContextType contextType, String name)
+   â DomainConnectorService.DomainConnector.GetDomainUser(String username)
+2017-02-09 14:38:46.1073|WARN|DomainConnectorService.DomainConnector|trying to find user in domain test.1.ru
+2017-02-09 14:38:46.1073|INFO|DomainConnectorService.DomainConnector|User found

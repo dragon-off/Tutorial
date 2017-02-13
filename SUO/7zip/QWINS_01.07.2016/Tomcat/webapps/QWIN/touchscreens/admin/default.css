@@ -1,0 +1,679 @@
+.separator {
+    border: 1px solid #d0d0d0;
+    background: #eeeeee;
+    color: #606060;
+		font-weight: bold;
+		padding-top: 1px;
+		padding-left: 5px;
+		padding-bottom: 1px;
+}
+
+DIV.TreeItem {
+    margin-top: 1px;
+    padding:0px;
+    width:170px;
+    background-color: #FFFFFF;
+    font-size: 12px;
+}
+
+
+
+DIV.TreeItemActive {
+    margin-top: 1px;
+    padding:2px;
+    width:170px;
+    background-color: #101080;
+}
+
+DIV.TreeItem A:visited {
+    color: #000000;
+    text-decoration: none;
+
+}
+
+DIV.TreeItem A:hover {
+    color: #404040;
+    text-decoration: underline;
+}
+
+
+/* CSS Document */
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::	Grundelement
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+/*	Default textformatering */
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+/*	Sidans bakgrundsfärg */
+body {
+	background-color: #F4F4F5;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::	Topp
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+/*	Sidans titel */
+h1.title {
+	color:#FFFFFF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	margin-left: 15px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+/*	Sidans topptabell */
+table.top {
+	margin-bottom:10px;
+}
+/*	Sidans egen titel */
+td.title {
+	height:23px;
+}
+/*	Applikations knappar/tabar */
+td.toolbar {
+	height:37px;
+}
+
+.toolbarButton {
+    background-image:url(bkg_toolbarButton.gif);
+}
+.toolbarButton_over {
+    background-image:url(bkg_toolbarButton_over.gif);
+}
+.toolbarButton_active {
+    background-image:url(bkg_toolbarButton_active.gif);
+}
+
+/*	SidRubrik 1 */
+h1.page {
+	color:#646465;
+	font-size:13px;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+/*	Tabell till SidRubrik 1 - Totalbredden måste vara 780px*/
+table.page {
+	margin-left:15px;
+	width:765px;
+}
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::	Textmassa
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+/*	Rubrik 2 */
+h2 {
+	font-size:14px;
+	margin-top:0px;
+	margin-bottom:5px;
+}
+/*	Standard styckesavstånd */
+p {
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::	Formulär
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+/*	Textyta och selectboxar */
+textarea, select {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	margin-bottom:5px;
+}
+/*	Textfält, radiobuttons, checkboxar */
+input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+/*	Labels generellt */
+label {
+	text-align:left;
+	margin-top:0px;
+	margin-right:5px;
+	margin-bottom:0px;
+	white-space: nowrap;
+}
+/*	Tabellcell som håller labels i tex ett formulär */
+td.label {
+	text-align:left;
+	padding-top:3px;
+	padding-left:5px;
+}
+
+/*
+	TEXTFÄLT
+*/
+input.textfield {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+	margin-bottom:5px;
+}
+/*	Inputfält med bredd 1 */
+input.textfield1 {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+	margin-bottom:5px;
+	width:100px;
+}
+/*	Inputfält med bredd 2 */
+input.textfield2 {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+	margin-bottom:5px;
+	width:150px;
+}
+
+.errorMessage {
+    color: #FF0000;
+    width: 450px;
+    padding: 5px;
+    background-color: #FFFF66;
+    border: 1px solid #FF0000;
+
+}
+
+input.numfield {
+	background-image:url(input_bkg.gif);
+	
+	border:1px solid #AEAEAF;
+	margin-bottom:5px;
+	width:50px;
+}
+
+/*	Inputfält med bredd 3 */
+input.textfield3 {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+	margin-bottom:5px;
+	width:300px;
+}
+
+/*
+	CHECKBOX
+*/
+input.checkbox {
+  background-color: #FFFFFF;
+	/*margin-top: 0px;*/
+}
+/*
+	Radioin buttons
+*/
+input.radio {
+	margin-top: 1px;
+}
+/*	Label till radiobuttnar */
+label.radio {
+	margin-top:2px;
+	margin-left:3px;
+	margin-right:3px;
+}
+/*	Tabellen som håller en radiogroup */
+table.radioGroup {
+	margin-bottom:5px;
+}
+
+/*
+	TEXTAREA
+*/
+textarea {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+/*	textyta utan bredd */
+textarea.textarea {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+}
+/*	textyta med bredd 1 */
+textarea.textarea1 {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+	width:100px;
+}
+/*	textyta med bredd 2 */
+textarea.textarea2 {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+	width:150px;
+}
+/*	textyta med bredd 3 */
+textarea.textarea3 {
+	background-image:url(input_bkg.gif);
+	border:1px solid #AEAEAF;
+	width:300px;
+}
+
+/*
+	SELECT
+*/
+/*	Selectbox med bredd 1 */
+select.select1 {
+	width:105px;
+}
+/*	Selectbox med bredd 1 */
+select.select2 {
+	width:155px;
+}
+/*	Selectbox med bredd 1 */
+select.select3 {
+	width:305px;
+}
+select.select4 {
+	width:360px;
+}
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::	Knappar
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+/*	Knapparnas huvudtabell */
+table.button {
+	margin-left:2px;
+	margin-right:2px;
+	cursor: pointer;
+	cursor: hand;
+}
+/*	Tabell som håller knapparna */
+table.buttonBar {
+	margin-right: 3px;
+	margin-left: 3px;
+}
+/*	Celler i knapparna */
+td.button {
+	background-image:url(btn_bkg.gif);
+	white-space: nowrap;
+}
+/*	knapplänkar för alla knappar */
+a.button {
+	color: #000000;
+	text-decoration:none;
+}
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::	Innehållsboxar
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+*/
+
+/*	Ram för boxarna	*/
+table.box {
+	border-top: 1px solid #BDBDBE;
+	border-left: 1px solid #BDBDBE;
+	border-right: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	margin-left:15px;
+	margin-top:10px;
+	margin-bottom:15px;
+}
+
+table.borderedbox {
+	border-top: 1px solid #BDBDBE;
+	border-left: 1px solid #BDBDBE;
+	border-right: 1px solid #BDBDBE;
+	border-bottom: 1px solid #BDBDBE;
+	margin-left:15px;
+	margin-top:10px;
+	margin-bottom:15px;
+}
+
+/*	Titeltext för boxarna */
+h3.box {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight:normal;
+	color: #000000;
+	margin-left: 5px;
+	margin-top:3px;
+	margin-right:5px;
+	margin-bottom:3px;
+}
+/*	Titel rad i boxarna */
+td.boxTop {
+	background-color:#E0E0E1;
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+	border-bottom: 1px solid #BDBDBE;
+}
+/*	Innehåll i boxarna */
+td.boxMain {
+	background-color:#FFFFFF;
+	margin-left:15px;
+}
+
+td.searchBox {
+	background-color:#EEEEEE;
+	padding:5px;
+}
+
+/*
+	KOLUMN 1 - VÄNSTER
+*/
+/*	Scroll i vänsterboxen */
+div.col1BoxScroll {
+	overflow:auto;
+	width: 200px;
+	height: 305px;
+	padding: 00px;
+	margin:1px;
+}
+
+
+div.settingsTreeScroll {
+	overflow:auto;
+	width: 180px;
+	height: 400px;
+	padding: 00px;
+	margin:1px;
+}
+
+div.fileBrowserScroll {
+	overflow:auto;
+	width: 500px;
+	height: 400px;
+	padding: 0px;
+	margin:1px;
+}
+
+div.settingsGridScroll {
+	overflow:auto;
+    width: 500px;
+	height: 488px;
+	padding: 00px;
+	margin:1px;
+}
+
+
+div.changePasswordBox {
+
+	width: 300px;
+	height: 200px;
+	padding: 00px;
+	margin:1px;
+}
+
+div.serverLogGridScroll {
+	overflow:auto;
+	width: 100%;
+	height: 489px;
+	padding: 0px;
+	margin:1px;
+}
+
+div.matterGridScroll {
+	overflow:auto;
+	width: 500px;
+	height: 498px;
+	padding: 00px;
+	margin:1px;
+}
+div.arrayGridScroll {
+	overflow:auto;
+	width: 500px;
+	height: 465px;
+	padding: 00px;
+	margin:1px;
+}
+
+
+div.actionGridScroll {
+	overflow:auto;
+	width: 180px;
+	height: 100px;
+	padding: 00px;
+	margin:1px;
+}
+
+div.reportPreviewScroll {
+	overflow:auto;
+	width: 140px;
+	height: 400px;
+	padding: 00px;
+	margin:1px;
+}
+
+div.loginBox {
+	overflow:auto;
+	width: 250px;
+	height: 160px;
+	padding: 00px;
+	margin:1px;
+}
+
+
+/*	Cell för knappar i vänsterboxen */
+td.col1BoxBot {
+	text-align: right;
+	padding: 5px;
+	border-top: 1px solid #BDBDBE;
+}
+
+div.resultBoxScroll {
+	overflow:auto;
+	width: 206px;
+	height: 163px;
+	padding: 0px;
+}
+
+div.col3BoxScroll {
+	overflow:auto;
+	width: 200px;
+	height: 200px;
+	padding: 00px;
+	margin:1px;
+}
+
+/* KOLUMN 2 - HÖGER */
+
+/*	Scroll i högerboxen */
+div.col2BoxScroll {
+	overflow:auto;
+	width:500px;
+	height:309px;
+	padding:0px;
+	margin:1px;
+}
+/*	Texttabell */
+table.mainBody {
+	/*margin-right:50px;*/
+	width: 450px;
+	margin: 10px;
+}
+/*	Cell för knappar i högerboxen */
+td.col2BoxBot {
+	text-align:right;
+	border-right: 1px solid #BDBDBE;
+	border-bottom: 1px solid #BDBDBE;
+	padding: 5px;
+}
+
+/*
+	TABBAR
+*/
+/*	Tabtext för tabbar i boxarna */
+h3.tab {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight:normal;
+	color: #000000;
+	margin-left:20px;
+	margin-right:20px;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+/*	Tablänkar för tabbar i boxarna */
+a.tab {
+	color: #000000;
+	text-decoration:none;
+}
+a:Hover.tab {
+	color: #000000;
+	text-decoration: underline;
+}
+/*	Huvudtabell for tab-toppen */
+td.boxTabTop {
+	background-color:#E0E0E1;
+	border-top: 1px solid #FFFFFF;
+}
+/*	Aktiv tab */
+.boxTabActive, .boxTabActive_over {
+	background-image:url(bkg_activetab.gif);
+}
+.boxTabActive_over {
+	cursor: pointer;
+	cursor: hand;
+}
+/*	Normal tab */
+.boxTabNormal {
+	border-bottom: 1px solid #BDBDBE;
+	background-image:url(bkg_inactivetab.gif);
+	text-align: center;
+	vertical-align: center;
+}
+.boxTabNormal_over {
+	border-bottom: 1px solid #BDBDBE;
+	background-image:url(bkg_inactivetab_over.gif);
+	text-align: center;
+	vertical-align: center;
+	cursor: pointer;
+	cursor: hand;
+}
+/*	No more tabs */
+.boxTabEnd {
+	border-bottom: 1px solid #BDBDBE;
+}
+
+body.listBox {
+		background: #ffffff;
+}
+.listItem_noBorder, .listItem_header {
+    padding-top: 1px;
+    padding-left: 3px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    color: #606060;
+}
+.listItem_header {
+		font-weight: bold;
+}
+.listItem, .listItem_over, .listItem_selected {
+    margin-top: 1px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    color: #606060;
+    border: 1px solid #ffffff;
+}
+.listItem_over {
+    cursor: pointer;
+    cursor: hand;
+    background: #f0f0f0;
+    border: 1px solid #f0f0f0;
+}
+.listItem_selected {
+    cursor: pointer;
+    cursor: hand;
+    background: #eeeeee;
+    border: 1px solid #d0d0d0;
+		font-weight: bold;
+}
+.listHeader {
+		background-color: #E0E0E1;
+	  padding-top: 1px;
+	  padding-left: 3px;
+	  padding-right: 1px;
+	  padding-bottom: 1px;
+	  text-align: left;
+	  width: 50%;
+}
+
+.mainlinks {
+	font-family: verdana;
+	font-size: 9px;
+	text-decoration: none;
+}
+
+.treeItem, .treeItem_over, .treeItem_selected {
+    color: #606060;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+}
+.treeItem_over {
+    background: #f0f0f0;
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+}
+.treeItem_selected {
+		border-left: 1px solid #d0d0d0;
+		border-right: 1px solid #d0d0d0;
+    background-image:url(bkg_selected.gif);
+}
+
+.node, .node_selected {
+	text-decoration: none;
+	color: #404040;
+	cursor: pointer;
+	cursor: hand;
+}
+.node_selected {
+	font-weight: bold;
+}
+
+.headerItem, .headerItem_over, .headerItem_selected {
+		padding-left: 3px;
+    padding-right: 1px;
+    color: #606060;
+}
+.headerItem_over {
+    cursor: pointer;
+    cursor: hand;
+    background: #ffffff;
+}
+.headerItem_selected {
+    cursor: pointer;
+    cursor: hand;
+    background: #f0f0f0;
+}
+
+/* Start menu buttons */
+.startButton {
+    padding: 2px;
+}
+.startButtonImage_disabled {
+    border: 1px solid #F7F7F7;
+}
+.startButtonImage {
+    cursor: pointer;
+    cursor: hand;
+    border: 1px solid #F7F7F7;
+}
+.startButtonImage_over {
+    cursor: pointer;
+    cursor: hand;
+    border: 1px solid #C8C8C8;
+}

@@ -1,0 +1,67 @@
+#loadcache2("EMAIL" true)
+
+#loadcache2("EMAIL_SETTING_1*" false)
+#loadcache2("EMAIL_SETTING_2*" false)
+#loadcache2("EMAIL_SETTING_3*" false)
+#loadcache2("EMAIL_SETTING_4*" false)
+#loadcache2("EMAIL_SETTING_5*" false)
+#loadcache2("EMAIL_SETTING_6*" false)
+#loadcache2("EMAIL_SETTING_7*" false)
+#loadcache2("EMAIL_SETTING_8*" false)
+#loadcache2("EMAIL_SETTING_9*" false)
+
+<tree version="1.0"
+           image                   = "images/emails.gif">
+    #cdata("label" $text.getText("emails.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("emails.generalNodeLabel")   )
+    #set( $top_node_image          = "images/emails.gif"                        )
+    #set( $item_node_image         = "images/email.gif"                         )
+
+    #set( $section_main            = "EMAIL"                                    )
+
+    #set( $top_node_grid           = "./email/form_emails.vm"                   )
+    #set( $item_node_grid          = "./email/form_email.vm"                    )
+
+    #set( $top_node_action         = "./email/action_emails.vm"                 )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    #nodestart($top_node_label $top_node_image)
+          <grid-ref>
+              #cdata("name" $top_node_grid)
+              #param("item" "1")
+          </grid-ref>
+          <action-ref>
+              #cdata("name" $top_node_action)
+              #param("section" ${section_main})
+              #param("section" ${section_main})
+              #param("group" ${maxitems})
+          </action-ref>
+
+          #if( $maxitems > 0 )
+              #foreach($item in [1..$maxitems])
+                  #set($name = $sm.getStringSetting($section_main, "NAME$item"))
+                  #nodestart("$item. $name" $item_node_image)
+                        <grid-ref>
+                            #cdata("name" $item_node_grid)
+                            #param("item" ${item})
+                            #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                        </grid-ref>
+                  </node>
+                  #set($item = $item + 1)
+              #end
+          #end
+    </node>
+
+    #perf()
+
+</tree>

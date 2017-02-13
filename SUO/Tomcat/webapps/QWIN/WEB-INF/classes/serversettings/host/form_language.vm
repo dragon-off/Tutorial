@@ -1,0 +1,42 @@
+#loadcache2("HOST*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("host.languageHeading"))
+
+    #set( $section            = "HOST"                                         )
+
+    <field type  = "list" helpid = "host.codepage">
+         #cdata("name" "${section}_CODE_PAGE")
+         #cdata("label" $text.getText("host.codepage"))
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" $section)
+            #param("key" "CODE_PAGE")
+        </params>
+        
+        #cdata("init-value" $sm.getStringSetting("$section", "CODE_PAGE"))
+
+        <accepted-values>
+            #accepteditem("0"    $text.getText("host.code")    )
+            #accepteditem("1250" $text.getText("host.code1250") )
+            #accepteditem("1251" $text.getText("host.code1251") )
+            #accepteditem("1252" $text.getText("host.code1252") )
+            #accepteditem("1253" $text.getText("host.code1253") )
+            #accepteditem("1254" $text.getText("host.code1254") )
+            #accepteditem("1255" $text.getText("host.code1255") )
+            #accepteditem("1256" $text.getText("host.code1256") )
+            #accepteditem("1257" $text.getText("host.code1257") )
+            #accepteditem("1258" $text.getText("host.code1258") )
+            #accepteditem("874" $text.getText("host.code874") )
+            #accepteditem("932" $text.getText("host.code932") )
+            #accepteditem("936" $text.getText("host.code936") )
+            #accepteditem("949" $text.getText("host.code949") )
+            #accepteditem("950" $text.getText("host.code950") )
+        </accepted-values>
+    </field>
+
+</grid-form>
+
+

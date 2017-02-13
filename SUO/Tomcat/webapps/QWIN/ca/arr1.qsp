@@ -1,0 +1,9 @@
+<%
+
+I=1
+WHILE(I LE 9998)
+BEGIN
+	I"	"SETARRAY(I 0) "\N"
+	I=I+1
+END
+%>

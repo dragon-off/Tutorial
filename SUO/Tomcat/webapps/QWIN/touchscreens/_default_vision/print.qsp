@@ -1,0 +1,8 @@
+<% 
+  P=(#{printer}0)/10
+  B=(${button}0)/10
+
+  IF(P LE 0) P=1
+  IF(B GT 0 AND B LE MAX_BUTTONS AND P LE MAX_PRINTERS)
+    FUNC_PRINTER_BUTTON(P B)
+%>

@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>СберБанк</title>
+<meta http-equiv="Content-Language" content="en-ru">
+        <link href="default.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="expires" content="0">
+<LINK rel=stylesheet type="text/css" href="style.css">
+<script language="Javascript" type="text/javascript">
+function alert1()
+ {
+  if(q.style.display=='none')
+   {
+    q.style.display='block';
+    setTimeout('close()', 5000);
+   }
+  else 
+   {
+   q.style.display='none';
+   }
+ }
+
+function close()
+ {
+  q.style.display='none';
+qq.style.display='none';
+  
+}
+</script>
+
+<%
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+Z=P
+%>
+</head>
+<body link=white alink=white vlink=white >
+<table width="100%" border=0>
+<tr><td align=center>
+
+</td></tr>
+</table><a href="info_buttons_p.qsp"><font size="+2" color="#000000"><< Назад к сводной таблицы </font></a>
+<table>
+<tr><td align=center colspan=2>
+
+</td>
+</table>
+
+	<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+                        <tbody>
+						<tr>
+                            <td class=boxTop rowspan=2>№</td>
+                            <td class=boxTop width=180 rowspan=2>Название операции</td>
+                            <td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Кол. ожид. кл.</h3></td>
+                            <td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Время ожид.</h3></td>
+<%
+
+
+
+IF(G EQ 1)
+Q=0
+IF(G EQ 2)
+Q=30
+IF(G EQ 3)
+Q=60
+IF(G EQ 4)
+Q=90
+IF(G EQ 5)
+Q=120
+W=(${window}0)/10
+B=(${button}0)/10
+V=(${level}0)/10
+W=STRSTN(W)
+IF(W GT 0 AND B GT 0)
+	IF(B EQ 1)
+		SETARRAY(600+Q+W STRNTS(V)+STRSUB(ARRAY(600+Q+W) 2 32))
+	ELSE
+		SETARRAY(600+Q+W STRSUB(ARRAY(600+Q+W) 1 B-1)+STRNTS(V)+STRSUB(ARRAY(600+Q+W) B+1 32))
+
+
+
+"<td colspan=1 align=center>Окна</td></tr>"
+
+"<TR>"
+
+"<TD>Окно "W"</TD>"
+
+"</TR>"
+M=30 {MAX GROUPS}
+I=1
+WHILE(I LE M)
+BEGIN
+
+	S=BUTTON_RWT(I)*2
+	IF(S GE 3600)
+		H=S/60/60
+	T=(S-(H*60*60))/60
+	C=S-(H*60*60)-(T*60)
+	"<TR ALIGN=CENTER><TD>"I"</TD><TD align=LEFT>"BUTTON_NAME(I)"</TD><TD>"BUTTON_QUEUE(I)"</TD><TD align=center>"H LEN(2) ":" T LEN(2) ":" C LEN(2)"</TD>"
+
+K=ARRAY(600+Q+W)
+{PROVERKA STROKI}
+IF(STRSUB(K 31 31) NE "F")
+	SETARRAY(600+Q+W "000000000000000000000000000000F0") {31=F}
+
+L=STRSUB(K I I)
+IF(L EQ "1")
+"<TD align=center bgcolor=#008000>"
+ELSE IF(L EQ "2")
+"<TD align=center bgcolor=#808000>"
+ELSE IF(L EQ "3")
+"<TD align=center bgcolor=#ff0000>"
+ELSE
+"<TD align=center>"
+IF(L NE "0")
+L
+ELSE
+"-"
+"</TD>"
+L=STRSTN(L)
+"<td width=40 onclick=location.href='/touchscreens/admin/change_window.qsp?window="W"&level="L+1"&button="I"&priority="G"';><FONT size=+2 color=#008000>&nbsp;+&nbsp;</FONT></td>\n"
+IF(L GE 1)
+BEGIN
+"<td width=40 onclick=location.href='/touchscreens/admin/change_window.qsp?window="W"&level="L-1"&button="I"&priority="G"';><FONT size=+2 color=#008000>&nbsp;-&nbsp;</FONT></td>\n"
+END
+"</TR>"
+	T=0
+	H=0
+	C=0
+	I=I+1
+END
+""
+"</table>"
+"</TD><TD>"
+%>
+</TD></TD></TABLE>
+<table>
+<tr><td align=center>
+
+</td>
+</table>
+
+</body>
+</html>

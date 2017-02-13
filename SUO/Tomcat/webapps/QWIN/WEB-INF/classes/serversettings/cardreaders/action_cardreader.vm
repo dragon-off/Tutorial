@@ -1,0 +1,9 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "")
+    ##            SECTION   KEY         BUTTON_LABEL           GRP_LABEL              NEW_GRP_LABEL     SCRIPT_FILE         ITEM   GROUP   CREATE_NEW
+    ##------------------------------------------------------------------------------------------------------------------------------------------------
+
+    #move_button( $section  "SETTINGS"  "card.moveCardReader"  "card.groupNodeLabel"  "card.newCardGrp"  "./move_action.vm"  $item  $group  true )
+
+</grid-form>

@@ -1,0 +1,36 @@
+<%
+{name_button#button_login_str^...%max_login^login_str^button_str}
+I=1
+L=""
+B=""
+WHILE(I LE 13)
+BEGIN
+	IF(ARRAY(1000+I) EQ 0 AND I LE 10)
+	BEGIN
+		ARRAY(2000+I)
+		IF(B EQ "")
+			B=""+I
+		ELSE
+			B=B+","+I
+	END ELSE IF(I LE 10)
+	ARRAY(2000+I)
+	"#"I"#"
+	
+		"0"
+	"^"
+	I=I+1
+END
+"%"
+
+I=1
+S=ARRAY(1100)
+WHILE(I LE MAX_LOGINS)
+BEGIN
+	IF(STRSUB(ARRAY(1100) I I) EQ "0")
+	BEGIN
+		I "@"LOGIN_NAME(I)"$"
+	END
+	I=I+1
+END
+  "^" B "^" MAX_LOGINS 
+%>

@@ -1,0 +1,5 @@
+UPDATE tab1
+   SET tab1.login_name = tab2.comments
+from msqms_db.dbo.login_name as tab1
+inner join qwin.dbo.stafinfo as tab2
+on tab1.login_name=tab2.name

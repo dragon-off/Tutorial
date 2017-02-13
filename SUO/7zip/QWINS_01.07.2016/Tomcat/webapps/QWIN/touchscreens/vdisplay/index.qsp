@@ -1,0 +1,73 @@
+
+<center>
+<%
+Q=5 {okna sleva}
+IF(ARRAY(8500) GT 0)
+BEGIN
+	IF((COUNTER_CUSTOMER_PRESENT(ARRAY(8500)) EQ 1) AND (COUNTER_CUSTOMER_ITEM(ARRAY(8500) ITEM_BUTTON) NE 39) AND (COUNTER_CUSTOMER_ITEM(ARRAY(8500) ITEM_BUTTON) LE 221))
+	BEGIN
+	N=COUNTER_DISPLAY_NO(ARRAY(8500))
+	K=COUNTER_CUSTOMER_ITEM(ARRAY(8500) ITEM_ENTER_BUTTON)
+	
+	W=ARRAY(8500)
+	IF(W LE Q)
+		A= "&larr;"
+	ELSE
+	A="&rarr;"
+	IF(COUNTER_CUSTOMER_ITEM(W ITEM_CATEGORY) NE 39) BEGIN	 
+		 IF(((COUNTER_TRANSACTION_TIME_NOW(W) LE ARRAY(500)) AND (ARRAY(500) GT 0)) OR ((COUNTER_TRANSACTION_TIME_NOW(W) LE 10) AND (ARRAY(500) EQ 0)))
+			BEGIN
+			 "<font  color=RED style='font-size:150px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'>"
+			END
+			ELSE BEGIN
+			"<font  color=WHITE style='font-size:150px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'>"
+			END
+	
+	 BUTTON_LETTER(K) N LEN(3) A W LEN(2)
+	"</font>"	
+	END
+	{первая строка}
+END
+END
+	S=1
+	WHILE(S LE 3) BEGIN
+	
+
+		N= DISPLAY_CACHE_NUMBER(1 ARRAY(8500+S))
+		C= DISPLAY_CACHE_COUNTER(1 ARRAY(8500+S))
+		L= DISPLAY_CACHE_LETTER(1 ARRAY(8500+S))
+
+	IF((ARRAY(8500+S) GT 0) AND (ARRAY(8500+S) NE ARRAY(8500+S-1)) AND(ARRAY(8500) NE (ARRAY(8500+S))))
+BEGIN
+IF((COUNTER_CUSTOMER_PRESENT(ARRAY(8500+S)) EQ 1) AND (COUNTER_CUSTOMER_ITEM(ARRAY(8500+S) ITEM_BUTTON) NE 39) AND (COUNTER_CUSTOMER_ITEM(ARRAY(8500+S) ITEM_BUTTON) LE 221) )
+BEGIN
+			A= " "   { No arrow }
+
+			K=COUNTER_CUSTOMER_ITEM(ARRAY(8500+S) ITEM_ENTER_BUTTON)
+			
+			N=COUNTER_DISPLAY_NO(ARRAY(8500+S))
+			   W=ARRAY(8500+S)
+			IF(W LE Q)
+			A= "&larr;"
+			ELSE
+			A="&rarr;"
+			IF(COUNTER_CUSTOMER_ITEM(W ITEM_CATEGORY) NE 39) BEGIN	
+			"<br>""<br>"
+		 	IF(((COUNTER_TRANSACTION_TIME_NOW(W) LE ARRAY(500)) AND (ARRAY(500) GT 0)) OR ((COUNTER_TRANSACTION_TIME_NOW(W) LE 10) AND (ARRAY(500) EQ 0)))
+			BEGIN
+			 "<font  color=RED style='font-size:150px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'>"
+			END
+			ELSE BEGIN
+			"<font  color=WHITE style='font-size:150px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'>"
+			END
+			 	 BUTTON_LETTER(K) N LEN(3) A W LEN(2) 
+			 "</font>"	
+			END
+		END
+
+	END
+S=S+1
+
+END
+%>
+<center>

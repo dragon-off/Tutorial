@@ -1,0 +1,14 @@
+
+<tree version="1.0" image = "images/categories.gif">
+   #cdata("label" $text.getText("apiclient.treeHeading"))
+
+#set( $top_node_label          = $text.getText("apiclient.generalNodeLabel")     )
+#set( $top_node_image        = "images/printers.gif"                      )
+
+    #nodestart($top_node_label  $top_node_image)
+       <grid-ref>
+           #cdata("name" "./apiclient/form_apiclient_policy.vm")
+       </grid-ref>
+    #nodeend()
+
+</tree>

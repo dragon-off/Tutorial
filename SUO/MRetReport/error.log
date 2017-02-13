@@ -1,0 +1,24 @@
+17.11.2016 17:50:34	sid_f3DA912830B1F4061B0E7DBF2583C2DEC	report session error: Report prepare error: Недопустимое имя объекта "suo_settings"
+
+17.11.2016 17:50:34	192.168.0.168	\sid_f3DA912830B1F4061B0E7DBF2583C2DEC document not found Недопустимое имя объекта "suo_settings"
+
+05.12.2016 15:01:41	192.168.0.1	\sid_f99990B11BA4749E0AA163EEA8DE8F38C\РћС‚С‡РµС‚ РїРѕ С‚Р°Р»РѕРЅР°Рј  05.12.2016-05.12.2016.xls document not found Недопустимая строка с указанием класса, ProgID: "Excel.Application"
+
+05.12.2016 16:17:29	192.168.0.1	\sid_f685988C798254131913205B220A0CC4B\РћС‚С‡РµС‚ РїРѕ С‚Р°Р»РѕРЅР°Рј  05.12.2016-05.12.2016.xls document not found Недопустимая строка с указанием класса, ProgID: "Excel.Application"
+
+08.12.2016 21:40:54	sid_fED726DA4868242E0B43BE1C061E6DDCC	report session error: Report prepare error: Недопустимое имя объекта "login_name"
+
+08.12.2016 21:40:54	192.168.0.82	\sid_fED726DA4868242E0B43BE1C061E6DDCC document not found Недопустимое имя объекта "login_name"
+
+20.12.2016 18:52:09	sid_f1F322CE38ABC40549311433EDC884AD7	report session error: Report prepare error: Ошибка в скрипте 20:8: Неопределенный идентификатор: 'Memo81'
+
+20.12.2016 18:52:09	192.168.0.174	\sid_f1F322CE38ABC40549311433EDC884AD7 document not found Ошибка в скрипте 20:8: Неопределенный идентификатор: 'Memo81'
+
+29.12.2016 14:15:44	sid_f15C88FCD0A5B4869B4C0569CE8C45C8F	report session error: Report prepare error: Вложенные запросы в данном контексте не разрешены. Допускаются только скалярные выражения
+
+29.12.2016 14:15:44	192.168.0.1	\sid_f15C88FCD0A5B4869B4C0569CE8C45C8F document not found Вложенные запросы в данном контексте не разрешены. Допускаются только скалярные выражения
+
+29.12.2016 14:17:54	sid_f199340B5E8F145F28500A42CE06F919C	report session error: Report prepare error: Вложенные запросы в данном контексте не разрешены. Допускаются только скалярные выражения
+
+29.12.2016 14:17:54	192.168.0.1	\sid_f199340B5E8F145F28500A42CE06F919C document not found Вложенные запросы в данном контексте не разрешены. Допускаются только скалярные выражения
+

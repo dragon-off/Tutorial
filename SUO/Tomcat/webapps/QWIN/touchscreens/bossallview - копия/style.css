@@ -1,0 +1,302 @@
+body {
+background-color: #F4F4F5;
+font-family: verdana;
+font-size: 14px;
+color: #000080;
+}
+.title {
+padding-left: 5px;
+background-image: url('/images/headerBar.gif');
+height: 36px;
+}
+.info_table th,.info_table_button th {
+background: #E0E0E1;
+padding-left: 3px;
+padding-right: 3px;
+border-top: solid 1px #ffffff;
+border-left: solid 1px #ffffff;
+border-bottom: solid 1px #BDBDBE;
+border-right: solid 1px #BDBDBE;
+color: #808080;
+font-family: verdana;
+font-size: 11px;
+font-weight: normal;
+}
+.filtres {
+float:left;
+padding:5px;
+
+}
+.info_table tr, .info_table_button tr  {
+font-size: 12px;
+height: 30px;
+border-width: 0px;
+}
+.info_box {
+
+width: 400px;
+height: 300px;
+border:solid 1px #4d8fcb;
+background-color:white;
+}
+.error_box {
+
+width: 400px;
+display:inline-block;
+border:solid 1px #eb5439;
+background-color:white;
+}
+
+.info_message {
+color:#4a7ea8;
+background-color: #d1e4f3;
+border:solid 1px #4d8fcb;
+padding-bottom:5px;
+padding-top:5px;
+}
+.warning_message {
+color:#97791f;
+background-color: #ffe9ad;
+border:solid 1px #fab418;
+padding-bottom:5px;
+padding-top:5px;
+}
+.error_message {
+color:#b62323;
+background-color: #fccac1;
+border:solid 1px #eb5439;
+padding-bottom:5px;
+padding-top:5px;
+}
+.error_message table{
+color:#b62323;
+
+}
+.info_table_foot {
+background: #E0E0E1;
+padding-left: 3px;
+padding-right: 3px;
+border-top: solid 1px #ffffff;
+border-left: solid 1px #ffffff;
+border-bottom: solid 1px #BDBDBE;
+border-right: solid 1px #BDBDBE;
+color: #000080;
+font-family: verdana;
+font-size: 11px;
+font-weight: normal;
+}
+
+.navigationHeader{
+    background: #EEEEEE;
+    font-weight: bold;
+}
+
+
+
+body
+{
+    font-size: 10px;
+    font-family: verdana;
+	background-color: #F4F4F5;
+}
+
+
+a {
+    color: #0000EE;
+    font-family: verdana;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.header {
+    background: #D6D7D6;
+    font-family: arial;
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-left: 0px;
+}
+
+
+a:link {
+    font-family; verdana;
+}
+a:visited {
+}
+
+a:hover {
+    text-decoration: underline;
+    background: #EEEEEE;
+}
+
+a:active {
+    color: #000000;
+}
+
+h1{
+    background: #EEEEFF;
+    font-family: verdana;
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.tableMain {
+	background: #F4F4F5;
+	padding-bottom: 5px;
+	border: solid 1px #404040;
+}
+
+.tableSection {
+	background: #F4F4F5;
+	border: solid 1px #BDBDBE;
+}
+
+.tdSection {
+	padding-right: 4px;
+	vertical-align: top;
+}
+.tableHead {
+background: #E0E0E1;
+padding-left: 3px;
+padding-right: 3px;
+border-top: solid 1px #ffffff;
+border-left: solid 1px #ffffff;
+border-bottom: solid 1px #BDBDBE;
+border-right: solid 1px #BDBDBE;
+color: #808080;
+font-family: verdana;
+font-size: 11px;
+font-weight: normal;
+}
+.tableBody {
+
+padding-left: 3px;
+padding-right: 3px;
+border-top: solid 1px #ffffff;
+border-left: solid 1px #ffffff;
+border-bottom: solid 1px #BDBDBE;
+border-right: solid 1px #BDBDBE;
+
+font-family: verdana;
+font-size: 11px;
+font-weight: normal;
+}
+}
+.tdHeaderSection, .tdTotalRow, .tdTotalRowC, .tdDataRow, .tdDataRowL, .tdDataRowC, .tdDataRow_Disabled, .tdDataRowC_Disabled , .tdDataRowOver{
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	font-family: verdana;
+	font-size: 11px;
+}
+
+.tdHeaderSection {
+	background: #E0E0E1;
+	padding-left: 8px;
+	border-top: solid 1px #ffffff;
+	border-left: solid 1px #ffffff;
+	border-bottom: solid 1px #BDBDBE;
+	border-right: solid 1px #BDBDBE;
+	color: #808080;
+}
+
+.tdMenuItem, .tdMenuItemOver {
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	font-family: verdana;
+	font-size: 10px;
+	color: #000080;
+	border-top: 0px;
+	border-left: 0px;
+	border-bottom: 0px;
+	border-right: 0px;
+}
+
+.tdMenuItem {
+	background:  #F4F4F5;
+}
+.tdMenuItemOver {
+	background: #ffffff;
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.tdTotalRow, .tdTotalRowC {
+	border-top: solid 1px #BDBDBE;
+	font-weight: bold;
+	color: #000080;
+}
+.tdTotalRowC {
+	text-align: center;
+}
+
+.trDataRow0 {
+	background: #F4F4F5;
+}
+.trDataRow1 {
+	background: #EEEEEE;
+}
+
+.tdDataRow, .tdDataRowL, .tdDataRowC , .tdDataRowOver{
+	color: #000080;
+}
+.tdDataRowC, .tdDataRowC_Disabled {
+	text-align: center;
+}
+.tdDataRowL {
+	text-align: left;
+}
+.tdDataRow_Disabled, .tdDataRowC_Disabled {
+	color: #aaaaaa;
+}
+
+.tdDataRowOver {
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.tdCopyright {
+	font-family: verdana;
+	font-size: 11px;
+	color: #808080;
+}
+.tdVersion {
+	font-family: verdana;
+	font-size: 9px;
+	color: #e0e0e0;
+	text-align: right;
+}
+
+.headerBar {
+	background-image:url('/images/headerBar.gif');
+	font-family: verdana;
+	font-size: 14px;
+	color: #000080;
+	height: 36;
+}
+
+.trSubmitRow {
+	background: #EEEEEE;
+}
+.tdSubmitRow {
+	border-top: solid 1px #BDBDBE;
+	padding-left: 2px;
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	text-align: right;
+}
+.submitOver {
+	background: #ffffff;
+	cursor: pointer;
+	cursor: hand;
+}
+.submitOut {
+}

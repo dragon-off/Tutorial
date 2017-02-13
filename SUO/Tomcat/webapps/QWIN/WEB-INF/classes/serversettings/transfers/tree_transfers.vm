@@ -1,0 +1,59 @@
+#loadcache2("TRANSFER*" true)
+
+<tree version="1.0"
+           image                   = "images/cat_transfers.gif">
+    #cdata("label" $text.getText("transfers.treeHeading"))
+
+##==============================================================================
+## Category Transfers
+
+    #set( $top_node_label          = $text.getText("transfers_cat.generalNodeLabel"))
+    #set( $top_node_image          = "images/cat_transfers.gif"                     )
+    #set( $item_node_image         = "images/cat_transfer.gif"                      )
+
+    #set( $section_main            = "TRANSFER"                                     )
+
+    #set( $top_node_grid           = "./transfers/form_cat_transfers.vm"            )
+    #set( $item_node_grid          = "./transfers/form_cat_transfer.vm"             )
+
+    #set( $top_node_action         = "./transfers/action_cat_transfers.vm"          )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    #nodestart($top_node_label $top_node_image)
+          <grid-ref>
+            #cdata("name" $top_node_grid)
+          </grid-ref>
+          <action-ref>
+            #cdata("name" $top_node_action)
+            #param("section" ${section_main})
+            #param("group" ${maxitems})
+
+          </action-ref>
+
+          #if( $maxitems > 0 )
+               #foreach($item in [1..$maxitems])
+                   #set($name=$sm.getStringSetting($section_main, "NAME$item"))
+                   #nodestart("$item. $name" $item_node_image)
+                         <grid-ref>
+                            #cdata("name" $item_node_grid)
+                            #param("item" ${item})
+                            #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                         </grid-ref>
+                   </node>
+                   #set($item = $item + 1)
+               #end
+          #end
+    </node>
+
+    #perf()
+
+</tree>

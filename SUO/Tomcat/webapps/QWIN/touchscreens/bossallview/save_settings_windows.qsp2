@@ -1,0 +1,16 @@
+<%
+A=(${window}0)/10
+V=(${value}0)/10
+T=(${type}0)/10
+IF(T EQ 0)
+BEGIN
+	SETARRAY(400+A V)	
+	ARRAY(400+A)
+END
+	
+IF(T EQ 1)
+BEGIN
+	SETARRAY(7000+A V)	
+	ARRAY(7000+A)
+END
+%>

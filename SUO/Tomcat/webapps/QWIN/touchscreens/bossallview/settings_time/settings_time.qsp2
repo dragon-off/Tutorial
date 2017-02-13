@@ -1,0 +1,513 @@
+ 
+<html>
+    <head>
+        <title>Настройки времени</title>
+        <LINK REL="StyleSheet" HREF="../style.css" TYPE="text/css">
+		<LINK REL="StyleSheet" HREF="../style_messages.css" TYPE="text/css">
+				<script type="text/javascript" src="/lib/ajax.js"></script>  		
+		<script language='javascript'>
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+
+} 
+function close_salert(el)
+{
+var elem = parent.frames[0].document.getElementById('blockres');
+elem.innerHTML=elem.innerHTML*1-1;
+if(el==2) elem.innerHTML=0;
+var messages = elem.innerHTML*1;
+if(messages<0)
+	{
+	messages=0;
+	elem.innerHTML=0;
+	}
+if(messages==0)
+	parent.frames[0].document.getElementById('block').style.display = 'none';
+parent.frames[1].document.getElementById('message_box_'+el+'_text').innerHTML="";
+if(el==1)
+	parent.frames[1].document.getElementById('message_box_3_text').innerHTML="";
+}	
+
+
+function createXMLHttpRequest() {
+  try { return new XMLHttpRequest(); } catch(e) {}
+  try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) {}
+  try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
+  throw 'XMLHttpRequest not supported';
+}
+
+var HTTP_TIMEOUT = 10; // default to 20s
+function httpRequest(url, onSuccess, onFail, postData, timeout) {
+
+	var req = createXMLHttpRequest();
+  var method = postData ? 'POST' : 'GET';
+  req.open(method, url, true);
+  req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
+  if (postData) {
+    req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+  }
+
+  var timer = null;
+  if (!timeout) timeout = HTTP_TIMEOUT;
+  if (timeout != -1) {
+    timer = setTimeout(httpTimeoutClosure(req, onFail), timeout);
+  }
+
+  req.onreadystatechange = httpStatusChangeClosure(req, onSuccess, onFail, timer);
+    req.send(postData);
+}
+  
+function httpTimeoutClosure(req, onFail) {
+  return function() {
+   req.onreadystatechange = null;
+    try {req.abort()}
+   finally {if (onFail) onFail(req)}
+  }
+}
+
+function httpStatusChangeClosure(req, onSuccess, onFail, timer) {
+  return function() {
+    if (req.readyState != 4) return;
+    if (timer) clearTimeout(timer);
+    if (req.status != 200 && req.status != 304) {
+      if (onFail) onFail(req);
+      return;
+    }    
+    if (onSuccess) onSuccess(req);
+  }
+}
+
+
+
+
+
+function getVarValueFromURL(url, varName) { //для получение значений из URL
+	var query = url.substring(url.indexOf('?') + 1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if (pair[0] == varName) {
+			return pair[1];
+		}
+	}
+	return null;
+} ;
+function test_change() {
+if(getVarValueFromURL(document.URL ,'change') == '1') {
+httpRequest('/ca/update/set_suo_to_db.jsp', function(req) { }, function(req) {}, null, 3000);
+
+};
+};
+function gray()
+{
+for(var i=1;i<=7;i++)
+	{
+	;
+	for(var j=1;j<=4;j++)
+		{
+		var element = document.getElementById('time_'+i+'_'+j);
+		document.getElementById('time_'+i+'_'+j).style.borderColor='gray';
+		}
+	}
+}
+function proverka_time()
+{
+var marker=0;
+
+
+for(var i=1;i<=7;i++)
+	{
+	for(var j=1;j<=4;j++)
+		{
+		var element = document.getElementById('time_'+i+'_'+j);
+		document.getElementById('time_'+i+'_'+j).style.borderColor='gray';
+		var num = element.value*1;
+
+		if(!(isFinite(num) && num>=0 && ((j%2 == 0 && num < 60) || (j%2 != 0 && num < 24))))
+			{
+			marker=1;
+			document.getElementById('time_'+i+'_'+j).style.borderColor='red';
+			}
+		}
+	
+	}
+
+if(marker>0)
+	alert("Ошибка сохранения!");
+
+return marker;
+}
+
+function proverka2_time()
+{
+var marker=0;
+var buf_err = new Array();
+
+for(var i=1;i<=7;i++)
+	{
+	var nums = new Array();
+	var element = new Array();
+	for(var j=1;j<=4;j++)
+		{
+		element[j] = document.getElementById('time_'+i+'_'+j);
+		document.getElementById('time_'+i+'_'+j).style.borderColor='gray';
+		nums[j] = element[j].value*1;
+		}
+	if((nums[1]*60+nums[2]*1) > (nums[3]*60+nums[4]*1))
+		{
+		marker = 1;
+		for(var j=1;j<=4;j++)
+			{
+			document.getElementById('time_'+i+'_'+j).style.borderColor='red';
+			}
+		}
+	
+	}
+
+if(marker>0)
+	alert("Ошибка сохранения! Время начала работы офиса не может быть больше времени окончания работы офиса!");
+
+return marker;
+}
+
+function saveFunc()
+{
+if(proverka_time()==0)
+	{
+	if(proverka2_time()==0)
+		{
+		document.workstationInfo.submit();
+		DoScript('/lib/1.jsp?TypeId=6&ComIndex=19&Comment=0');alert('Изменения были сохранены');
+		}
+	}
+}
+		</script>
+    </head> <body onload="test_change();gray();">
+<form method="GET" name="workstationInfo" action="set_time.jsp">
+<input type="hidden" name="saveData" value="true">
+   <div id="DopElement"></div>
+
+<table class=tableMain cellpadding=5 cellspacing=0>
+	<tr>
+		<td class=headerBar align=left colspan=2>
+			Настройки времени
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			<table class=tableSection cellpadding=0 cellspacing=0 align=center>
+				<tr>
+					<td nowrap class=tdHeaderSection>Время </td>
+					<td nowrap class=tdHeaderSection colspan=2>Значение</td>
+				</tr>
+ <tr><td colspan=3><hr></td></tr>
+				<tr>
+					<td nowrap class=tdDataRow>Голосовое оповещение только при повторном вызове</td>
+					<td nowrap class=tdDataRowC><input type="checkbox" name="voice" "<% IF(ARRAY(460) EQ 0) "CHECKED=TRUE"  %>" size="7"></td>
+					<td nowrap class=tdDataRowL></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время на установку оценки СОКОК</td>
+					<td nowrap class=tdDataRowC><input disabled type="input" name="chered" value="<% ARRAY(509)  %>" size="7"></td>
+					<td nowrap class=tdDataRowL>секунд</td>
+				</tr>
+				<input type="HIDDEN" name="change" value="1" size="7">
+								<tr>
+					<td nowrap class=tdDataRow>Доступность кнопки "Повторный вызов"</td>
+					<td nowrap class=tdDataRowC><input disabled type="input" name="recall_time" value="<% ARRAY(500) %>" size="7"></td>
+					<td nowrap class=tdDataRowL>секунд</td>
+				</tr>			
+				<tr>
+					<td nowrap class=tdDataRow>Время сброса клиента</td>
+					<td nowrap class=tdDataRowC><input disabled type="input" name="second_time" value="<% ARRAY(501) %>" size="7"></td>
+					<td nowrap class=tdDataRowL>секунд</td>
+				</tr>
+				
+					<td nowrap class=tdDataRow>Максимальное время перерыва</td>
+					<td nowrap class=tdDataRowC><input disabled type="input" name="pereriv_time" value="<% ARRAY(508)/60 %>" size="7"></td>
+					<td nowrap class=tdDataRowL>минут</td>
+				</tr>
+			
+				<tr><td colspan=3><hr></td></tr>
+				
+				
+				
+				<tr border=0 >
+					<td class=headerBar align=left colspan=3>Настройка расписания работы офиса</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow colspan=3>Понедельник</td><td></td><td></td>
+				</tr>
+				<tr border=0>
+					<td border=0 nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td border=0 nowrap class=tdDataRowC><input type="input" id="time_1_1" name="mopenh_time" value="<% ARRAY(2700) %>" maxlength=2 size="2">ч.</td>
+					<td border=0 nowrap class=tdDataRowC><input type="input" id="time_1_2" name="mopenm_time" value="<% ARRAY(2701) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr border=0>
+					<td border=0 nowrap class=tdDataRow>Время окончания работы офиса<hr></td>
+					<td border=0 nowrap class=tdDataRowC><input type="input" id="time_1_3" name="mcloseh_time" value="<% ARRAY(2702) %>" maxlength=2 size="2">ч.</td>
+					<td border=0 nowrap class=tdDataRowC><input type="input" id="time_1_4" name="mclosem_time" value="<% ARRAY(2703) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td colspan=3></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow colspan=3>Вторник </td><td></td><td></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_2_1" name="topenh_time" value="<% ARRAY(2704) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_2_2" name="topenm_time" value="<% ARRAY(2705) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время окончания работы офиса<hr></td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_2_3" name="tcloseh_time" value="<% ARRAY(2706) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_2_4" name="tclosem_time" value="<% ARRAY(2707) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td colspan=3></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow colspan=3>Среда </td><td></td><td></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_3_1" name="wopenh_time" value="<% ARRAY(2708) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_3_2" name="wopenm_time" value="<% ARRAY(2709) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время окончания работы офиса<hr></td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_3_3" name="wcloseh_time" value="<% ARRAY(2710) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_3_4" name="wclosem_time" value="<% ARRAY(2711) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td colspan=3></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow colspan=3>Четверг </td><td></td><td></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_4_1" name="thopenh_time" value="<% ARRAY(2712) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_4_2" name="thopenm_time" value="<% ARRAY(2713) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время окончания работы офиса<hr></td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_4_3" name="thcloseh_time" value="<% ARRAY(2714) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_4_4" name="thclosem_time" value="<% ARRAY(2715) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td colspan=3></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow colspan=3>Пятница</td><td></td><td></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_5_1" name="fopenh_time" value="<% ARRAY(2716) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_5_2" name="fopenm_time" value="<% ARRAY(2717) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время окончания работы офиса <hr></td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_5_3" name="fcloseh_time" value="<% ARRAY(2718) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_5_4" name="fclosem_time" value="<% ARRAY(2719) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td colspan=3></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow colspan=3>Суббота </td><td></td><td></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_6_1" name="satopenh_time" value="<% ARRAY(2720) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_6_2" name="satopenm_time" value="<% ARRAY(2721) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время окончания работы офиса<hr></td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_6_3" name="satcloseh_time" value="<% ARRAY(2722) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_6_4" name="satclosem_time" value="<% ARRAY(2723) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td colspan=3></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow colspan=3>Воскресенье </td><td></td><td></td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время начала работы офиса</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_7_1" name="sunopenh_time" value="<% ARRAY(2724) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_7_2" name="sunopenm_time" value="<% ARRAY(2725) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Время окончания работы офиса<hr></td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_7_3" name="suncloseh_time" value="<% ARRAY(2726) %>" maxlength=2 size="2">ч.</td>
+					<td nowrap class=tdDataRowC><input type="input" id="time_7_4" name="sunclosem_time" value="<% ARRAY(2727) %>" maxlength=2 size="2">мин.</td>
+				</tr>
+				
+					<tr>					<td nowrap class=tdDataRow></td>					<td nowrap class=tdDataRowC></td>					<td nowrap class=tdDataRowC></td>				</tr>
+				<!-------->
+				
+			<!--
+				<tr>
+					<td nowrap class=tdDataRow>Печать на талоне прогнозируемого времени ожидания</td>
+					<td nowrap class=tdDataRowC>true/false</td>
+					<td nowrap class=tdDataRowL>true/false</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Печать на талоне количества людей в очереди</td>
+					<td nowrap class=tdDataRowC>true/false</td>
+					<td nowrap class=tdDataRowL>true/false</td>
+				</tr>
+				<tr>
+					<td nowrap class=tdDataRow>Печать на талоне прогнозируемого времени ожидания</td>
+					<td nowrap class=tdDataRowC>true/false</td>
+					<td nowrap class=tdDataRowL>true/false</td>
+				</tr>
+				-->
+				
+					
+						
+				<tr class=trSubmitRow><td class=tdSubmitRow colspan=3><input onClick="saveFunc();"onmouseover="javascript:this.className='submitOver';" onmouseout="javascript:this.className='submitOut';" type=button value=Сохранить></td></tr>
+			</table>
+		</td>
+	</tr>
+		<tr>
+		<td class=tdCopyright>
+			Софтинг (+7(495)953-05-08, +7(495)951-68-09)
+		</td>
+		<td class=tdVersion>
+			Версия 5.6.3
+		</td>
+	</tr>
+</table>
+ 
+</form>
+
+<table width='100%' height='100%' id="message_box_1" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:998; background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" border=0/>
+					</td>
+					
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_1_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<div style="border-top:solid 1px #f43839;height: 38px;background-color: #fccac1;width:100%;text-align:center;">
+			<input type="button" value="OK" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" style="height:35px;width:80%;">
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%' id="message_box_2" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:997;background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(2); document.getElementById('message_box_2').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_2_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%'  style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:999;background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(3); document.getElementById('message_box_3').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table></body>
+</html>

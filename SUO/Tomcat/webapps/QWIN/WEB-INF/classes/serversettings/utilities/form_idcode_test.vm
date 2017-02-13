@@ -1,0 +1,16 @@
+<grid-form version="1.0"
+    label="ID Code Test"
+    writer="com.qmatic.web.serversettings.IDCodeTestWriter">
+    #cdata("label" $text.getText("utilities.idCodeTest"))
+
+    <field type="number"
+           helpid="idtest.seconds">
+        <name>seconds</name>
+        #cdata("label" $text.getText("idtest.seconds"))
+        <params>
+        </params>
+        <init-value>10</init-value>
+    </field>
+
+</grid-form>
+

@@ -1,0 +1,16 @@
+#loadcache2("HOST*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("host.systemScriptHeading"))
+
+    #set( $section            = "HOST"                                         )
+
+    ##    SECTION  KEY                LABEL_ID              TYPE         HELP_ID                MIN MAX     REGEXP
+    ##-------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "SYSTEM_PROG"      "host.systemScript"   "script"     "host.systemScript"    0   30000   "" )
+
+</grid-form>
+
+

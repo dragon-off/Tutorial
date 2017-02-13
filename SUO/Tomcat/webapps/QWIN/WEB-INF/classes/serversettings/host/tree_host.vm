@@ -1,0 +1,148 @@
+#loadcache2("HOST*" true)
+
+<tree version="1.0"
+      image="images/server.gif">
+    #cdata("label" $text.getText("host.treeHeading"))
+
+
+##===========================================================================
+## Connections
+
+    #set( $con_node_label          = $text.getText("host.conNodeLabel")         )
+    #set( $con_node_image          = "images/host.gif"                          )
+    #set( $item_node_image         = "images/host.gif"                          )
+
+    #set( $section_main            = "HOST"                                     )
+
+    #set( $con_node_grid           = "./host/form_connections.vm"               )
+    #set( $item_node_grid          = "./host/form_connection.vm"                )
+
+    #set( $con_node_action         = "./host/action_connections.vm"             )
+
+##------------------------------------------------------------------------------
+
+    ## Get the number of items in the system
+    	
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+    #nodestart($con_node_label $con_node_image)
+            <grid-ref>
+                #cdata("name" $con_node_grid)
+                #param("item" "1")
+            </grid-ref>
+            <action-ref>
+                #cdata("name" $con_node_action)
+                #param("section" ${section_main})
+                #param("group" ${maxitems})
+            </action-ref>
+
+             ## List all items
+             #if( $maxitems > 0 )
+                  #foreach($item in [2..$maxitems])
+                      #set($name = $sm.getStringSetting($section_main, "NAME$item"))
+                      #nodestart("$item $name" $item_node_image)
+                            <grid-ref>
+                              #cdata("name" $item_node_grid)
+                              #param("item" ${item})
+                              #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                            </grid-ref>
+                      </node>
+                      #set($item = $item + 1)
+                  #end
+             #end
+    </node>
+
+##===========================================================================
+## I/O Settings
+    #nodestart($text.getText("host.ioSettings") "images/iosettings.gif")
+            <grid-ref>
+                #cdata("name" "./host/form_io.vm")
+                #param("item" "1")
+            </grid-ref>
+    </node>
+
+
+##===========================================================================
+## Events
+    #nodestart($text.getText("host.eventsHeading") "images/scripts.gif")
+            <grid-ref>
+                #cdata("name" "./host/form_events.vm")
+                #param("item" "1")
+            </grid-ref>
+    </node>
+
+##===========================================================================
+## Run Scripts
+
+    #set( $top_node_label          = $text.getText("host.runScriptNodeLabel")   )
+    #set( $top_node_image          = "images/runscript.gif"                     )
+    #set( $item_node_image         = "images/runscript.gif"                     )
+
+    #set( $section_main            = "HOST"                                     )
+
+    #set( $top_node_grid           = "./host/form_runscripts.vm"                )
+    #set( $item_node_grid          = "./host/form_runscript.vm"                 )
+
+    #set( $top_node_action         = "./host/action_runscripts.vm"              )
+
+##------------------------------------------------------------------------------
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "RUN_PROG_MAX"))
+    #nodestart($top_node_label $top_node_image)
+            <grid-ref>
+               #cdata("name" $top_node_grid)
+               #param("item" "1")
+            </grid-ref>
+            <action-ref>
+              #cdata("name" $top_node_action)
+              #param("section" ${section_main})
+              #param("group" ${maxitems})
+            </action-ref>
+
+             ## List all items
+             #if( $maxitems > 0 )
+                  #foreach($item in [1..$maxitems])
+                      #nodestart("Run Script $item" $item_node_image)
+                            <grid-ref>
+                                 #cdata("name" $item_node_grid)
+                                 #param("item" $item)
+                            </grid-ref>
+                      </node>
+                      #set($item = $item + 1)
+                  #end
+             #end
+    </node>
+
+##===========================================================================
+## System Script
+
+    #nodestart($text.getText("host.systemScriptHeading") "images/systemscript.gif")
+            <grid-ref>
+              #cdata("name" "./host/form_systemscript.vm")
+              #param("item" "1")
+            </grid-ref>
+    </node>
+
+##===========================================================================
+## Language
+
+    #nodestart($text.getText("host.languageHeading") "images/hostlanguage.gif")
+            <grid-ref>
+              #cdata("name" "./host/form_language.vm")
+              #param("item" "1")
+            </grid-ref>
+    </node>
+
+##===========================================================================
+## Date & Time
+    #nodestart($text.getText("host.dateHeading") "images/scripts.gif")
+            <grid-ref>
+              #cdata("name" "./host/form_datetime.vm")
+              #param("item" "1")
+            </grid-ref>
+    </node>
+
+    #perf()
+
+</tree>

@@ -1,0 +1,88 @@
+<html>
+	
+<head>
+   <TITLE>Button page</TITLE>
+   <link rel="stylesheet" type="text/css" href="css/style-main.css">
+   <script type='text/javascript' src='/js/qevent.js'> </script>
+   <script type="text/javascript" src="scripts/settings.js"></script>
+   <script type="text/javascript" src="scripts/main.js"></script>
+   <script type="text/javascript" src="scripts/screensaver.js"></script>
+</head>
+
+<body onLoad="javascript:redirectToStartPage.start();">
+
+<div id="mainbackground" class="mainbackground"></div>
+
+<div class="main">
+	
+	<div id="buttonCenter" class="buttonCenter">
+		<img src="images/button_takeTicket.png">
+		<div class="buttonText1" id="d1a"> </div>
+		<div class="buttonText3" id="d1b"> </div>
+	</div>
+
+<!--
+	<div class="buttonCenterTop">
+		<img src="images/button_clean.png">
+		<div class="camImage">
+			<img height="170" class="camImage" id="camImage" src="images/pixel.gif">
+		</div>
+		<div class="buttonImageText1" id="d2a"> </div>
+		<div class="buttonImageText2" id="d2b"> </div>
+	</div>
+-->
+
+	<div id="popupInfo" class="popupInfo" onClick="parent.control.hidePopup('popupInfo');"></div>
+	
+</div>
+</body>
+
+<script type="text/javascript">
+
+	pageLoaded();
+
+	<%
+		"var lang = '" ${lang} "';"
+	%>
+	
+	if(lang == '') lang = 'en';
+
+	var div1a = document.getElementById("d1a");
+	var div1b = document.getElementById("d1b");
+	
+	var div2a = document.getElementById("d2a");
+	var div2b = document.getElementById("d2b");
+	
+	if(lang == "en") {
+		div1a.innerHTML = "Please take your ticket";
+		div1b.innerHTML = "Please be seated until your ticket is called.";
+
+		div2a.innerHTML = "Your picture";
+		if(parent.control.currentCustName.length > 1) 
+			div2b.innerHTML = "<-- " + parent.control.currentCustName;
+
+	} else if(lang == "se") {
+		div1a.innerHTML = "Tag din nummerlapp";
+		div1b.innerHTML = "Var vänlig och sitt ner och vänta på er tur. Tag gärna en kopp kaffe under tiden.";
+
+		div2a.innerHTML = "Din bild";
+		if(parent.control.currentCustName.length > 1) 
+			div2b.innerHTML = "<-- " + parent.control.currentCustName;
+
+	}
+	
+	setTimeout("updateCamImage()",1500);
+	
+	function updateCamImage() {
+		try {
+			var ci = document.getElementById("camImage");
+			ci.src = parent.control.currentImageName;
+		} catch(e) {
+			setTimeout("updateCamImage()",200);
+		}
+		
+	}
+
+</script>
+
+</html>

@@ -1,0 +1,64 @@
+body {
+background-color: #F4F4F5;
+font-family: verdana;
+font-size: 14px;
+color: #000080;
+}
+.error_box {
+width: 400px;
+border:solid 1px #eb5439;
+background-color:white;
+}
+.error_bow table tr td {
+
+background-color: #F4F4F5;
+font-family: verdana;
+font-size: 14px;
+color: #000080;
+
+}
+
+.info_message {
+color:#4a7ea8;
+background-color: #d1e4f3;
+border:solid 1px #4d8fcb;
+padding-bottom:5px;
+padding-top:5px;
+}
+.warning_message {
+color:#97791f;
+background-color: #ffe9ad;
+border:solid 1px #fab418;
+padding-bottom:5px;
+padding-top:5px;
+}
+.error_message {
+color:#b62323;
+background-color: #fccac1;
+border:solid 1px #eb5439;
+padding-bottom:5px;
+padding-top:5px;
+
+}
+.error_message table{
+color:#b62323;
+
+}
+.info_table th,.info_table_button th, {
+background: #E0E0E1;
+padding-left: 3px;
+padding-right: 3px;
+border-top: solid 1px #ffffff;
+border-left: solid 1px #ffffff;
+border-bottom: solid 1px #BDBDBE;
+border-right: solid 1px #BDBDBE;
+color: #808080;
+font-family: verdana;
+font-size: 11px;
+font-weight: normal;
+}
+.info_table tr, .info_table_button tr  {
+font-size: 12px;
+height: 30px;
+border-width: 0px;
+}

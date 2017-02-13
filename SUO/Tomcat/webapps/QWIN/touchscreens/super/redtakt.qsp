@@ -1,0 +1,27 @@
+<%
+	{Проверка ограничения по времени работы офиса	}
+	{Время начала - конца рабочего дня в массиве:	}
+	{503	часы начала				}
+	{504	минуты начала				}
+	{505	часы конца				}
+	{506	минуты конца				}
+
+	IF( (HOUR GE ARRAY(503)) AND (MINUTE GE ARRAY(504)) )
+	BEGIN
+		{Тачскрин - Сбербанк. Массив 492 содержит время красной тактики (админка).	}
+		{Если оно больше, чем прогнозируемое, то возвращаем 1 в функцию red()		}
+		IF( (HOUR GE ARRAY(505)) AND (MINUTE GE ARRAY(506)) )
+			"2"
+		T = (${but}0)/10
+
+		IF(BUTTON_RWT(T) GE ARRAY(492))
+		BEGIN
+				"1^"IF(BUTTON_ESTW(T) LE 150) PRINT_CLOCK(150) ELSE PRINT_CLOCK(BUTTON_ESTW(T))"^"BUTTON_QUEUE(T)
+		END
+		ELSE
+			"0"
+	END
+	ELSE
+		"2"
+		"^good"
+%>

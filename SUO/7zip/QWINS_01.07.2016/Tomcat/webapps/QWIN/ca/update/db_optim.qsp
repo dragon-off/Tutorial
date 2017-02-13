@@ -1,0 +1,2 @@
+"USE [Msqms_db];"
+"DBCC DBREINDEX (Events, '');"

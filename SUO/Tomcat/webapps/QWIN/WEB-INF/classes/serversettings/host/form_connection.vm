@@ -1,0 +1,125 @@
+#loadcache2("HOST*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.HostWriter">
+    #cdata("label" $text.getText("host.connectionHeading"))
+
+    #set( $section            = "HOST"                                     )
+
+    ##    SECTION  KEY           LABEL_ID               TYPE        HELP_ID               MIN MAX REGEXP
+    ##---------------------------------------------------------------------------------------------------
+
+    #qsys($section "NAME$item"   "host.conName"         "text"      "host.conName"        0   40  "" )
+
+    #set( $list = $sm.getStringSettingAsList($section, "HOST${item}", "," ))
+
+    #set( $index      = 0 )
+
+    #set( $port       = 500 )
+    #set( $encryption = 2   )
+    #set( $eventport  = 501 )
+    #set( $tcpeventport  = 0 )
+    #set( $maxclients = 30  )
+
+    #foreach($part in $list)
+        #if( $index == 1 )  ## Port
+            #set( $port = $part )
+        #end
+        #if( $index == 2 )  ## Event port
+            #set( $eventport = $part )
+        #end
+        #if( $index == 3 ) ## Max clients
+            #set( $maxclients = $part )
+        #end
+
+        #if( $index == 5 ) ## Encryption
+            #set( $encryption = $part )
+        #end
+
+        #if( $index == 6 ) ## TCP Event port
+            #set( $tcpeventport = $part )
+        #end
+
+        #set( $index = $index+1 )
+    #end
+
+    
+    <field type  = "number"
+           helpid = "host.conPort">
+           <name>PORT</name>
+           #cdata("label" $text.getText("host.conPort"))
+           <params>
+               #param("ns" $section)
+               #param("key" "HOST${item}")
+               #param("multiple" "false")
+               #param("size" "1")
+               #param("min" "1")
+               #param("max" "65535")
+           </params>
+           #cdata("init-value" $port)
+    </field>
+
+    <field type  = "number"
+           helpid = "host.conEventPort">
+           <name>EVENTPORT</name>
+           #cdata("label" $text.getText("host.conEventPort"))
+           <params>
+               #param("multiple" "false")
+               #param("size" "1")
+               #param("min" "0")
+               #param("max" "65535")
+           </params>
+           #cdata("init-value" $eventport)
+    </field>
+
+    <field type  = "number"
+           helpid = "host.conTcpEventPort">
+           <name>TCPEVENTPORT</name>
+           #cdata("label" $text.getText("host.conTcpEventPort"))
+           <params>
+               #param("multiple" "false")
+               #param("size" "1")
+               #param("min" "0")
+               #param("max" "65535")
+           </params>
+           #cdata("init-value" $tcpeventport)
+    </field>
+
+    
+    <field type  = "number"
+           helpid = "host.conClients">
+           <name>MAXCLIENTS</name>
+           #cdata("label" $text.getText("host.conClients"))
+           <params>
+               #param("multiple" "false")
+               #param("size" "1")
+           </params>
+           #cdata("init-value" $maxclients)
+    </field>
+
+
+    <field type  = "list"
+           helpid = "host.encryption">
+       <name>ENCRYPTION</name>
+       #cdata("label" $text.getText("host.encryption"))
+       <params>
+           #param("multiple" "false")
+           #param("size" "1")
+       </params>
+       #cdata("init-value" $encryption)
+       <accepted-values>
+           #accepteditem("2" $text.getText("host.encryptQwin"))
+           #accepteditem("1" $text.getText("host.encryptDist"))
+           #accepteditem("0" $text.getText("host.encryptPubl"))
+       </accepted-values>
+    </field>
+</grid-form>
+
+    ##qsys($section "HOST$item"   "host.constr"          "text"      "host.constr"         0   40  "" )
+    ##qsys($section "HOST$item"   "host.conPort"         "number"    "host.conPort"        0   40  "" )
+    ##qsys($section "HOST$item"   "host.conEventPort"    "number"    "host.conEventPort"   0   40  "" )
+    ##qsys($section "HOST$item"   "host.conTcpEventPort" "number"    "host.conTcpEventPort"0   40  "" )
+    ##qsys($section "HOST$item"   "host.conClients"      "number"    "host.conClients"     0   40  "" )
+    ##qsys($section "HOST$item"   "host.conMltThread"    "checkbox"  "host.conMltThread"   0   40  "" )
+    ##qsys($section "HOST$item"   "host.conMaxThreads"   "number"    "host.conMaxThreads"  0   40  "" )
+

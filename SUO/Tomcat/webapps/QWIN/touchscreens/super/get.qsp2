@@ -1,0 +1,16 @@
+<%
+I=2
+ARRAY(5611)
+WHILE(I LE 10)
+BEGIN
+"#"ARRAY(5610+I)
+I=I+1
+END
+"<br>*<br>"
+I=1
+WHILE(I LE 10)
+BEGIN
+ARRAY(2000+I)"^"ARRAY(2020+I)"#"
+I=I+1
+END
+%>

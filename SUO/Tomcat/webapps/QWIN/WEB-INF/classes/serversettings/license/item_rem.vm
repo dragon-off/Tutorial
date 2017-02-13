@@ -1,0 +1,17 @@
+
+
+  #set( $clients = $sm.getStringSettingAsList($section, ${slot}, "," ))
+  #set( $string  = "" )
+
+  #foreach( $item in $clients )
+      #if( $item != $client )
+         #if( $string == "" )
+            #set( $string = "$item" )
+         #else
+            #set( $string = "$string,$item" )
+         #end
+      #end
+  #end
+
+  $sm.setStringSetting($section, ${slot}, "$string" )
+

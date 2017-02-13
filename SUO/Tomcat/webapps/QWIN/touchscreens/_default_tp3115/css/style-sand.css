@@ -1,0 +1,50 @@
+/* -------------------------------------- */
+/*                                        */
+/* Custom css for sand demo page          */
+/*                                        */
+/* -------------------------------------- */
+
+/* -------------------------------------- */
+/* Main                                   */
+/* -------------------------------------- */
+
+body {
+  background: url(../images/background-sand.png) no-repeat;
+}
+td.mainOuter {
+  vertical-align: bottom;
+}
+
+/* -------------------------------------- */
+/* Buttons                                */
+/* -------------------------------------- */
+
+table.mainButtons {
+  height: 660px;
+}
+div.buttonOuter {
+  background: url(../images/button-sand.png) no-repeat;
+}
+
+/* -------------------------------------- */
+/* Logo                                   */
+/* -------------------------------------- */
+
+div.logo {
+  background: url(../images/logo-sand.png) no-repeat;
+  top: 10px;
+  left: 40px;
+  width: 400px;
+  height: 120px;
+}
+
+/* -------------------------------------- */
+/* Ticket splash                          */
+/* -------------------------------------- */
+
+div.splash {
+  border: solid 3px #966F38;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */

@@ -1,0 +1,82 @@
+<script language="javascript">
+
+function createXMLHttpRequest() {
+  try { return new XMLHttpRequest(); } catch(e) {}
+  try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) {}
+  try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
+  throw 'XMLHttpRequest not supported';
+}
+ 
+var HTTP_TIMEOUT = 10; // default to 20s
+ 
+// Sends an asynchronous XMLHttpRequest.
+// onSuccess:function(req)
+//    Function to be fired on completion.
+// onFail : function(req)
+//    Function to be fired on failure or timeout.  Note the req parameter
+//    may be null.
+// timeout: milliseconds
+//    Request will be aborted if it hasn't completed within the timeout
+//    period.  If not specified, default HTTP_TIMEOUT will be used.
+//    Pass in -1 for infinite.
+function httpRequest(url, onSuccess, onFail, postData, timeout) {
+
+  var req = createXMLHttpRequest();
+  var method = postData ? 'POST' : 'GET';
+  req.open(method, url, true);
+  req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
+  if (postData) {
+    req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+  }
+
+  var timer = null;
+  if (!timeout) timeout = HTTP_TIMEOUT;
+  if (timeout != -1) {
+    timer = setTimeout(httpTimeoutClosure(req, onFail), timeout);
+  }
+
+  req.onreadystatechange = httpStatusChangeClosure(req, onSuccess, onFail, timer);
+    req.send(postData);
+}
+  
+function httpTimeoutClosure(req, onFail) {
+  return function() {
+   req.onreadystatechange = null;
+    try {req.abort()}
+   finally {if (onFail) onFail(req)}
+  }
+}
+
+function httpStatusChangeClosure(req, onSuccess, onFail, timer) {
+  return function() {
+    if (req.readyState != 4) return;
+    if (timer) clearTimeout(timer);
+    if (req.status != 200 && req.status != 304) {
+      if (onFail) onFail(req);
+      return;
+    }    
+    if (onSuccess) onSuccess(req);
+  }
+}
+
+
+
+function GET_TICKET(button) {
+httpRequest('print.qsp2?button='+button, function(req) { document.getElementById('but_'+button).innerHTML = (document.getElementById('but_'+button).innerHTML*1)+1; }, function(req) { }, null, 20000);
+
+}
+</script>
+<table>
+<%
+I=1
+WHILE(I LE 251)
+BEGIN
+{IF((I GT 0 AND I LE 10) OR (I GT 20 AND I LE 30) OR (I GT 40 AND I LE 50))}
+{BEGIN}
+"<tr><td><A ONCLICK=GET_TICKET("I")>"I " "BUTTON_LETTER(I)" " BUTTON_NAME(I) "</A></td><td id=but_"I">"BUTTON_QUEUE(I)"</td></tr>"
+{END}
+I=I+1
+END
+
+%>
+</table>

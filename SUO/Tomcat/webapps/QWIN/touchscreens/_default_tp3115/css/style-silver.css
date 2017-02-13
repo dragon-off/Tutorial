@@ -1,0 +1,53 @@
+/* -------------------------------------- */
+/*                                        */
+/* Custom css for silver demo page        */
+/*                                        */
+/* -------------------------------------- */
+
+/* -------------------------------------- */
+/* Main                                   */
+/* -------------------------------------- */
+
+body {
+  background: url(../images/background-silver.png) no-repeat;
+}
+td.mainOuter {
+  vertical-align: bottom;
+}
+
+/* -------------------------------------- */
+/* Buttons                                */
+/* -------------------------------------- */
+
+table.mainButtons {
+  height: 660px;
+}
+div.buttonOuter {
+  background: url(../images/button-silver.png) no-repeat;
+}
+div.buttonText {
+  color: #111111;
+}
+
+/* -------------------------------------- */
+/* Logo                                   */
+/* -------------------------------------- */
+
+div.logo {
+  background: url(../images/logo-silver.png) no-repeat;
+  top: 10px;
+  left: 40px;
+  width: 400px;
+  height: 120px;
+}
+
+/* -------------------------------------- */
+/* Ticket splash                          */
+/* -------------------------------------- */
+
+div.splash {
+  border: ridge 6px #434343;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */

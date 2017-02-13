@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding='UTF-8' ?><%
+
+"<opcatPriority>\r\n"
+J=1
+WHILE(J LE 20)
+BEGIN
+   IF(ARRAY(1000+J ) EQ 0)
+   BEGIN
+"	<op cc=\"" ARRAY(5630+J )"\" uc=\"Installadmin\"" " df=\"0\">\r\N"
+	I=1
+	WHILE(I LE 30)
+	BEGIN
+		"		<wp cw=\""I"\" vl=\""STRSUB(ARRAY(600+I) J J)"\"/>\r\N"
+		I=I+1
+	END
+	"	</op>\r\N"
+	
+   END
+J=J+1
+END
+"</opcatPriority>\r\n"
+%>

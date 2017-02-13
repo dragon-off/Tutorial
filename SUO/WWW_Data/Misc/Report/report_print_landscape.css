@@ -1,0 +1,7 @@
+@media print {
+	p { page-break-after: never }
+	img { width: auto; height: 16 cm; }
+	margin-left: 0px;
+	margin-top: 0px;
+
+}

@@ -1,0 +1,131 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Сбербанк.Вертикальное табло</title>
+<script src="js/jquery-1.7.2.min.js"></script>
+		<script src="js/index.js"></script>
+
+<style>
+BODY{
+overflow: hidden;
+}
+</style>
+<script type="text/javascript">
+		var updating = false;
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		var global_buf="";
+		function rawsend(url,cb) {
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+ 
+		          global_buf=req.responseText;
+							
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		    
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+	function gogofunc() {
+	var el=document.getElementById('infoqq');
+	
+	
+	rawsend('gindex.qsp2',global_buf);
+	
+	if(global_buf!="" && global_buf.search("Please wait")==-1)
+		{
+		if(global_buf.search("touchscreens")==-1)
+		el.innerHTML=global_buf;
+		}
+	else
+		{
+		rawsend('/login/logout.action',global_buf);
+		
+		setTimeout(function (){rawsend('/login/login.action?username=InstallAdmin&page=/touchscreens/vdisplay/gindex.qsp2',global_buf);},2000)
+		
+		}
+	global_buf="";
+	setTimeout('gogofunc()', 3000);
+	}
+var glob_time = 10;
+function lalafunc(a)
+{
+
+el=document.getElementById('strok');
+el.style.left=a+"px";
+a=a-1;
+if(a==-(el.offsetWidth*1)) 	
+{
+	a=768;
+	glob_time--;
+	if(glob_time<=0)
+		{
+		glob_time = 10;
+		  $( function() {
+			getstart();
+			function getstart() {
+			  var data = {};
+			  $.ajax( "/touchscreens/vdisplay/includes/get.qsp2", {
+				cache: false,
+				data: data,
+				dataType: "json",
+				error: errorHandler,
+				success: success
+			  } );
+			};
+			function success( data ) {
+				loadinner("inside_strok",data.strok);
+			}
+			function errorHandler() {  
+			}
+		  } );
+		}
+
+	}
+setTimeout('lalafunc('+a+')',10);
+}
+</script>
+</head>
+
+<body bgcolor="4fa340" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" onLoad="lalafunc(768);gogofunc();" cellpadding=0 cellspacing=0 background='bg.jpg' scroll=no >
+<table border=0 leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" height=1366 width=768>
+<tr height=180><td></td></tr>
+<tr height=1016><td valign=top><div id='infoqq' valign=top height=1016></div></td></tr>
+<tr height=170><td>
+
+</td></tr>
+</table>
+<div id='strok' style="z-index: 500; position: absolute;white-space: nowrap; top: 1196px; height: 170px;display: block; ">
+				<font color="WHITE" style='font-size:80px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'><b id='inside_strok'></b></font>
+				</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<%
+
+
+T=1
+S=ARRAY(1100)
+WHILE(T LE MAX_LOGINS)
+BEGIN
+	J=T
+	"UPDATE [dbo].[STAFINFO]  SET [Pager] ='"
+	
+	I=1
+	B="" {SHOW BUTTON}
+	WHILE(I LE 23)
+	BEGIN
+		STRSUB(ARRAY(1100+I) T T)
+		I=I+1
+	END
+	 "'  WHERE name='"LOGIN_NAME(J)"';\r\n"
+	
+	T=T+1
+END
+
+
+
+
+
+
+%>	 

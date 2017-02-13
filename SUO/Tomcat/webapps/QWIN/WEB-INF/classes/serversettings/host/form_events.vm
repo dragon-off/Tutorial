@@ -1,0 +1,115 @@
+#loadcache2("HOST*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.EventWriter">
+    #cdata("label" $text.getText("host.eventsHeading"))
+
+    #set( $section            = "HOST")
+
+    #set( $event1  = false )
+    #set( $event2  = false )
+    #set( $event3  = false )
+    #set( $event4  = false )
+    #set( $event5  = false )
+    #set( $event6  = false )
+    #set( $event7  = false )
+    #set( $event8  = false )
+    #set( $event9  = false )
+    #set( $event10 = false )
+    #set( $event11 = false )
+    #set( $event12 = false )
+    #set( $event13 = false )
+    #set( $event14 = false )
+    #set( $event15 = false )
+    #set( $event16 = false )
+    #set( $event17 = false )
+    #set( $event18 = false )
+    #set( $event21 = false )
+    #set( $event24 = false )
+
+    #set( $list = $sm.getStringSettingAsList( $section, "EVENTS", "," ))
+
+    #foreach($part in $list)
+        #if( $part == "1"  )  #set( $event1  =true )  #end
+        #if( $part == "2"  )  #set( $event2  =true )  #end
+        #if( $part == "3"  )  #set( $event3  =true )  #end
+        #if( $part == "4"  )  #set( $event4  =true )  #end
+        #if( $part == "5"  )  #set( $event5  =true )  #end
+        #if( $part == "6"  )  #set( $event6  =true )  #end
+        #if( $part == "7"  )  #set( $event7  =true )  #end
+        #if( $part == "8"  )  #set( $event8  =true )  #end
+        #if( $part == "9"  )  #set( $event9  =true )  #end
+        #if( $part == "10" )  #set( $event10 =true )  #end
+        #if( $part == "11" )  #set( $event11 =true )  #end
+        #if( $part == "12" )  #set( $event12 =true )  #end
+        #if( $part == "13" )  #set( $event13 =true )  #end
+        #if( $part == "14" )  #set( $event14 =true )  #end
+        #if( $part == "15" )  #set( $event15 =true )  #end
+        #if( $part == "16" )  #set( $event16 =true )  #end
+        #if( $part == "17" )  #set( $event17 =true )  #end
+        #if( $part == "18" )  #set( $event18 =true )  #end
+        #if( $part == "21" )  #set( $event21 =true )  #end
+        #if( $part == "24" )  #set( $event24 =true )  #end
+    #end
+
+
+    #checkbox($section "EVENT1" "host.evAlarmToManager" $event1 "host.evAlarmToManager")
+    #if( $event1 == true ) #qsys( $section "EVENT_PROG1"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT2"       "host.evRemovedFromCat"     $event2       "host.evRemovedFromCat"               )
+    #if( $event2  ) #qsys( $section "EVENT_PROG2"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT3"       "host.evInsertInCat"        $event3       "host.evInsertInCat"                  )
+    #if( $event3  ) #qsys( $section "EVENT_PROG3"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT4"       "host.evCalledFromCat"      $event4       "host.evCalledFromCat"                )
+    #if( $event4  ) #qsys( $section "EVENT_PROG4"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT5"       "host.evWorkNext"           $event5       "host.evWorkNext"                     )
+    #if( $event5  ) #qsys( $section "EVENT_PROG5"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT6"       "host.evWorkClose"          $event6       "host.evWorkClose"                    )
+    #if( $event6  ) #qsys( $section "EVENT_PROG6"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT7"       "host.evTicketPrinted"      $event7       "host.evTicketPrinted"                )
+    #if( $event7  ) #qsys( $section "EVENT_PROG7"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT8"       "host.evTicketButton"       $event8       "host.evTicketButton"                 )
+    #if( $event8  ) #qsys( $section "EVENT_PROG8"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT9"       "host.evNumInsertDispl"     $event9       "host.evNumInsertDispl"               )
+    #if( $event9  ) #qsys( $section "EVENT_PROG9"  "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT10"      "host.evCardInserted"       $event10      "host.evCardInserted"                 )
+    #if( $event10 ) #qsys( $section "EVENT_PROG10" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT11"      "host.evCalendarUpdate"     $event11      "host.evCalendarUpdate"               )
+    #if( $event11 ) #qsys( $section "EVENT_PROG11" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT12"      "host.evShowLayout"         $event12      "host.evShowLayout"                   )
+    #if( $event12 ) #qsys( $section "EVENT_PROG12" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT13"      "host.evCalendarChange"     $event13      "host.evCalendarChange"               )
+    #if( $event13 ) #qsys( $section "EVENT_PROG13" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT14"      "host.evWorkLogon"          $event14      "host.evWorkLogon"                    )
+    #if( $event14 ) #qsys( $section "EVENT_PROG14" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT15"      "host.evWorkLogoff"         $event15      "host.evWorkLogoff"                   )
+    #if( $event15 ) #qsys( $section "EVENT_PROG15" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT16"      "host.evWorkOpen"           $event16      "host.evWorkOpen"                     )
+    #if( $event16 ) #qsys( $section "EVENT_PROG16" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT17"      "host.evServerUpDown"       $event17      "host.evServerUpDown"                 )
+    #if( $event17 ) #qsys( $section "EVENT_PROG17" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT18"      "host.evServerSetupChange"  $event18      "host.evServerSetupChange"            )
+    #if( $event18 ) #qsys( $section "EVENT_PROG18" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT21"      "host.evCardInsertedInvalid" $event21     "host.evCardInsertedInvalid"            )
+    #if( $event21 ) #qsys( $section "EVENT_PROG21" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+
+    #checkbox( $section "EVENT24"      "host.evUserInteractionTimeout" $event24     "host.evUserInteractionTimeout"            )
+    #if( $event24 ) #qsys( $section "EVENT_PROG24" "host.evScript"  "script"      "host.evScript"             0   0  "" ) #end
+</grid-form>

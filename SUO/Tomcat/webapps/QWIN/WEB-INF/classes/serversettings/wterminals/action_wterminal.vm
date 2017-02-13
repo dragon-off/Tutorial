@@ -1,0 +1,10 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    <label></label>
+
+    ##            SECTION   KEY         BUTTON_LABEL               GRP_LABEL                  NEW_GRP_LABEL           SCRIPT_FILE         ITEM   GROUP   CREATE_NEW
+    ##-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    #move_button( $section  "SETTINGS"  "wterminal.moveWterminal"  "wterminal.groupNodeLabel" "wterminal.newWtermGrp" "./move_action.vm"  $item  $group  true )
+
+</grid-form>

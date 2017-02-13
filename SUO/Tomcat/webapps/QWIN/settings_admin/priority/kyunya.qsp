@@ -1,0 +1,68 @@
+<% M=MAX_LOGINS {MAX GROUPS}
+
+P=1
+WHILE(P LE 11)
+BEGIN
+I=1
+	"<p>"
+	IF(0 EQ 0)
+	BEGIN
+		IF(((I/2)*2) EQ I)
+		BEGIN
+			"<TR bgcolor=#E2E2E2>"
+		END
+		ELSE
+			"<TR>"
+	
+	
+	{+prior to array}
+Z=0
+	WHILE(I LE M)
+	BEGIN
+	   
+		K=ARRAY(1100+P)
+		{PROVERKA STROKI}
+		IF(STRSUB(K 31 31) NE "F")
+		BEGIN
+			SETARRAY(1100+P "000000000000000000000000000000F0") {31=F}
+			K=ARRAY(1100+P)
+		END
+		L=STRSUB(K I I)
+		IF(ARRAY(400+P) EQ 0)
+		BEGIN
+		IF(STRSUB(K 32 32) EQ "1")
+		BEGIN
+			"<TD id=win_"P"-"I" align=center title='" LOGIN_NAME(I)"'>"
+		END
+		ELSE
+		BEGIN
+			"<TD id=win_"P"-"I" align=center title='" LOGIN_NAME(I)"'>" 
+		END
+		" "
+	
+		{jacheyko!!!!!!!!!!!!!!!!!!!!!}
+	
+		IF(L NE "0")
+		BEGIN
+			Z=Z+1
+		END
+		ELSE
+		BEGIN
+			Z=Z+0
+		END
+		"</TD>"
+	END
+	I=I+1
+	END
+	IF(Z EQ 0) BUTTON_NAME(P)
+	Z
+	"</TR>"
+	T=0
+	{H=0}
+	C=0
+	
+	END {IF VIEW BUTTON}
+	P=P+1
+	
+END
+%>

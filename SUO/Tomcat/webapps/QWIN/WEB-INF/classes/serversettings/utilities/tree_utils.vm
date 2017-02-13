@@ -1,0 +1,58 @@
+<tree version="1.0"
+           image                   = "images/timedate.gif">
+    #cdata("label" $text.getText("utilities.treeHeading"))
+
+    ##set( $top_node_label          = $text.getText("timedate.generalNodeLabel") )
+    ##set( $top_node_image          = "images/timedate.gif"                      )
+    ##set( $item_node_image         = "images/timedate.gif"                      )
+
+    ##set( $section_main            = "CLOCK"                                    )
+
+    ##set( $top_node_grid           = "./timedate/form_timedate.vm"              )
+
+##------------------------------------------------------------------------------
+    #nodestart($text.getText("utilities.presetButton") "preset.gif")
+            <grid-ref>
+                <name>./utilities/form_preset.vm</name>
+            </grid-ref>
+    </node>
+    #nodestart($text.getText("utilities.resetSystem") "preset.gif")
+            <grid-ref>
+                <name>./utilities/form_reset.vm</name>
+            </grid-ref>
+    </node>
+    #nodestart($text.getText("utilities.displayTest") "preset.gif")
+            <grid-ref>
+                <name>./utilities/form_display_test.vm</name>
+            </grid-ref>
+    </node>
+
+    #nodestart($text.getText("utilities.idCodeTest") "preset.gif")
+            <grid-ref>
+                <name>./utilities/form_idcode_test.vm</name>
+            </grid-ref>
+    </node>
+
+    <node ref-type = "raw">
+            #cdata("label" $text.getText("utilities.serverLog"))
+            <image>preset.gif</image>
+            <grid-ref>
+                <name>ss.geterrorlog.action</name>
+            </grid-ref>
+    </node>
+    <node ref-type = "raw">
+            #cdata("label" $text.getText("utilities.fontUpload"))
+            <image>preset.gif</image>
+            <grid-ref>
+                <name>font/upload-form.jsp</name>
+            </grid-ref>
+    </node>
+    <node ref-type = "raw">
+            #cdata("label" $text.getText("utilities.array"))
+            <image>preset.gif</image>
+            <grid-ref>
+                <name>array/list.jsp</name>
+            </grid-ref>
+    </node>
+
+</tree>

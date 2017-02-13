@@ -1,0 +1,44 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.PresetWriter">
+    #cdata("label" $text.getText("utilities.presetButton"))
+
+    <field type="number"
+           helpid="preset.start">
+        <name>start</name>
+        #cdata("label" $text.getText("preset.start"))
+        <params>
+            #param("ns" "preset")
+            #param("key" "start")
+        </params>
+        <init-value>1</init-value>
+    </field>
+    <field type="number"
+           helpid="preset.end">
+        <name>end</name>
+        #cdata("label" $text.getText("preset.end"))
+        <params>
+            #param("ns" "preset")
+            #param("key" "end")
+        </params>
+        <init-value>10</init-value>
+    </field>
+
+    <field type="list"
+           helpid="preset.button">
+        <name>button</name>
+        #cdata("label" $text.getText("preset.button"))
+        <params>
+            #param("ns" "preset")
+            #param("key" "end")
+        </params>
+        <init-value>1</init-value>
+        #set($buttonList = $sm.getStringList("BUTTON", "NAME"))
+        <accepted-values>
+            #foreach($button in $buttonList)
+                #accepteditem($velocityCount "$button")
+            #end
+        </accepted-values>
+    </field>
+
+
+</grid-form>

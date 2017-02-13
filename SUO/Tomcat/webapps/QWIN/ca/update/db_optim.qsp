@@ -1,0 +1,7 @@
+"USE [Msqms_db];"
+"DBCC DBREINDEX (Events, '');"
+"DELETE FROM [qwin].[dbo].[VISIT];"
+"DELETE FROM [qwin].[dbo].[EVENT];"
+"DROP TABLE [dbo].[login_name];"
+"CREATE TABLE [dbo].[login_name]([un] [nvarchar](max) NULL,[login_name] [nvarchar](max) NULL,[login_code] [int] NULL) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY];"
+"INSERT INTO [msqms_db].[dbo].[login_name]([un],[login_name],[login_code]) select ('sberbank\'+name) as un, Comments, Code from qwin.dbo.STAFINFO;"

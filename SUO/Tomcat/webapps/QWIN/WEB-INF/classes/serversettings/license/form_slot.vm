@@ -1,0 +1,36 @@
+#loadcache2("DEDICATED_LICS" true)
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.LicenseSlotWriter">
+    #cdata("label" $text.getText("license.clientNodeLabel"))
+    #set( $section            = "DEDICATED_LICS"                          )
+    #set( $clients = $sm.getStringSettingAsList($section, "${slot}", "," ))
+
+    ## for some reason $clients[n] doesnt work.. :-(
+    #set($counter = 0)
+    #set($value = "")
+    #foreach($item in $clients)
+        #if("$counter" == $pos)
+            #set($value = $item)
+        #end
+        #set($counter = $counter + 1)
+    #end
+
+    ##---------------------------------------------------------------------------------------------------
+
+    <field type = "text" helpid = "license.clientNames">
+
+           #cdata("name" "name")
+           #cdata("label" $text.getText("license.clientNames"))
+           <params>
+                #param("ns" $section)
+                #param("key" $slot)
+                #param("org_client" $client)
+                #param("pos" $pos)
+           </params>
+           #cdata("init-value" $value)
+
+    </field>
+
+</grid-form>

@@ -1,0 +1,123 @@
+<html>
+	
+<head>
+   <TITLE>Button page</TITLE>
+   <link rel="stylesheet" type="text/css" href="css/style-main.css">
+   <script type='text/javascript' src='/js/qevent.js'> </script>
+   <script type="text/javascript" src="scripts/settings.js"></script>
+   <script type="text/javascript" src="scripts/main.js"></script>
+   <script type="text/javascript" src="scripts/screensaver.js"></script>
+</head>
+
+  
+
+<body>
+
+<div id="mainbackground" class="mainbackground"></div>
+
+<div id="main" class="main">
+
+	<%
+		L="${lang}"
+		IF(L EQ "") L="en"
+		IF(L EQ "en")
+			L="se"
+		ELSE
+			L="en"
+		"<div id=\"flag\" class=\"flag\" onClick=\"javascript:loadPage('index.qsp?lang=" L "');\">"
+		"	<img src=\"images/flag_" L ".png\">"
+		"</div>"
+	%>
+	
+
+	<div class="header1" id="h1"> </div>
+	<div class="header2" id="h2"> </div>
+
+
+	<%
+		"<div id=\"buttonLeft\" class=\"buttonLeft\" onClick=\"javascript:printTicket(this,7,'ticket.qsp?lang=" ${lang} "');\">"
+	%>
+		<img src="images/button.png">
+		<div class="buttonImage">
+			<img src="images/button_counter.png">
+		</div>
+		<div class="buttonText1" id="d1a"> </div>
+		<div class="buttonText2" id="d1b"> </div>
+		<div class="buttonText3" id="d1c"> </div>
+	</div>
+
+
+	<%
+		"<div id=\"buttonRight\" class=\"buttonRight\" onClick=\"javascript:dimObject(this);loadPage('staff.qsp?lang=" ${lang} "');\">"
+	%>
+		<img src="images/button.png">
+		<div class="buttonImage">
+			<img src="images/button_personal.png">
+		</div>
+		<div class="buttonText1" id="d2a"> </div>
+		<div class="buttonText2" id="d2b"> </div>
+	</div>
+
+	<div id="splash" class="splashOuter">
+	  <div class="splashInner">
+	    <div id="splashText" class="splash"> </div>
+	  </div>
+	</div>
+	
+	
+</div>
+
+<div id="splashError" class="splashOuter">
+  <div class="splashInner">
+    <div id="splashErrorText" class="splashError"> </div>
+  </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+	pageLoaded();
+
+	<%
+		"var lang = '" ${lang} "';"
+	%>
+	
+	if(lang == '') lang = 'en';
+
+	var div1a = document.getElementById("d1a");
+	var div1b = document.getElementById("d1b");
+
+	var div2a = document.getElementById("d2a");
+	var div2b = document.getElementById("d2b");
+
+	var divh1 = document.getElementById("h1");
+	var divh2 = document.getElementById("h2");
+	
+	if(lang == "en") {
+		div1a.innerHTML = "Counter Service";
+		div1b.innerHTML = "I want a ticket for counter service";
+
+		div2a.innerHTML = "Personal Service";
+		div2b.innerHTML = "I want personal service";
+
+		divh1.innerHTML = "Welcome to Qmatic";
+		divh2.innerHTML = "If you have a card, please insert it before you select any service";
+
+	} else if(lang == "se") {
+		div1a.innerHTML = "Kassaservice";
+		div1b.innerHTML = "Jag vill ha en nummerlapp till<br>kassaservice";
+
+		div2a.innerHTML = "Personlig service";
+		div2b.innerHTML = "Jag vill ha ett personligt möte med en handläggare";
+
+		divh1.innerHTML = "Välkommen till Qmatic";
+		divh2.innerHTML = "Om du har ett magnetkort, vänligen mata in det innan du väljer service";
+
+	}
+	
+	update();
+	
+</script>
+
+</html>

@@ -1,0 +1,19 @@
+<%
+P=(${printer}0)/10
+IF(P EQ 0) P=1
+A=ARRAY(5600+P)
+A
+"#"
+ARRAY(2606)
+{A";" TIME_NO-3}
+IF(A GT TIME_NO-6)
+	BEGIN 
+	"#GOOD#GOOD"
+	SETARRAY(514+P 0)
+	END
+ELSE 
+	BEGIN
+	"#BAD#BAD"
+	SETARRAY(514+P 1)
+	END
+%>

@@ -1,0 +1,438 @@
+<html>
+<head>
+	<title>СберБанк</title>
+	<link href="default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<script type="text/javascript" src="/js/qevent.js"></script>  
+	<LINK rel=stylesheet type="text/css" href="style.css">
+	<script language="Javascript" type="text/javascript">
+	function alert1()
+	{
+  		if(q.style.display=='none')
+		{
+			q.style.display='block';
+			setTimeout('close()', 5000);
+		}
+  		else 
+   		{
+			q.style.display='none';
+   		}
+ 	}
+
+	function close()
+ 	{
+		q.style.display='none';
+		qq.style.display='none';
+	}
+	</script>
+
+<%
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+IF(G EQ 1)
+	Q=0
+IF(G EQ 2)
+	Q=30
+IF(G EQ 3)
+	Q=60
+IF(G EQ 4)
+	Q=90
+IF(G EQ 5)
+	Q=120
+	
+W=(${priority_lavel}0)/10
+IF(W GT 0)
+BEGIN
+	W=W-1
+	"w="W
+	I=1
+	WHILE(I LE 30)
+	BEGIN
+		SETARRAY(600+I+Q STRSUB(ARRAY(600+I+Q) 1 30)+"F"+STRNTS(W))
+		I=I+1
+	END
+
+END	
+	
+W=(${window}0)/10
+B=(${button}0)/10
+V=(${level}0)/10
+W=STRSTN(W)
+IF(W GT 0 AND B GT 0)
+	IF(B EQ 1)
+		SETARRAY(600+Q+W STRNTS(V)+STRSUB(ARRAY(600+Q+W) 2 32))
+	ELSE
+		SETARRAY(600+Q+W STRSUB(ARRAY(600+Q+W) 1 B-1)+STRNTS(V)+STRSUB(ARRAY(600+Q+W) B+1 32))
+
+
+
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+
+R=(${reset}0)/10
+IF(R EQ 0)
+	R=0
+
+IF(R EQ 1)
+BEGIN
+	I=1
+	WHILE(I LE 30)
+	BEGIN
+		SETARRAY(600+I "000000000000000000000000000000F0")
+		SETARRAY(630+I "000000000000000000000000000000F0")
+		SETARRAY(660+I "000000000000000000000000000000F0")
+		SETARRAY(690+I "000000000000000000000000000000F0")
+		SETARRAY(720+I "000000000000000000000000000000F0")
+		I=I+1
+	END
+END
+
+Z=P
+%>
+</head>
+<body link=white alink=white vlink=white scrollwidth=100>
+
+<form action="info_buttons_p.qsp">
+<TABLE BORDER=1><TR><TD>
+	<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+		<tbody>
+		<tr><td class=boxTop>Пороговый лимит времени ожидания</td></tr>
+		<tr><td class=boxMain><div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);>
+<%
+W=(${time}0)/10
+IF(W GT 0)
+BEGIN
+	W=(W*60)/2
+	SETARRAY(791 W)
+END
+"<input type=Text size=4 name=time value="(ARRAY(791)*2)/60"> минут. <input type=Submit value=Сохранить>"
+%>
+</td></tr></tbody></table>
+
+
+
+
+</form>
+</TD><TD>
+
+
+
+
+
+
+	<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+	<tr><td class=boxTop>Выберите режим для изменения</td></tr>
+	<tr><td class=boxMain><table border=1><tr><TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=1';><div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 1) BEGIN "style='background-color: Aqua;'" END %> size=+1>P1</FONT></B></DIV>
+</TD><TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=2';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 2) BEGIN "style='background-color: Aqua;'" END %> size=+1>P2</FONT></B></DIV></TD>
+<TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=3';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 3) BEGIN "style='background-color: Aqua;'" END %> size=+1>P3</FONT></B></DIV></TD>
+<TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=4';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 4) BEGIN "style='background-color: Aqua;'" END %> size=+1>P4</FONT></B></DIV></TD>
+<TD class=boxMain width=35 align=center onclick=location.href='/touchscreens/admin/info_buttons_p.qsp?priority=5';> 
+<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B>
+<FONT <% IF(G EQ 5) BEGIN "style='background-color: Aqua;'" END %> size=+1>P5</FONT></B></DIV>
+</TD>
+	</tr></table>
+</td></tr></tbody></table>
+</TD><TD>
+
+
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+<tr><td class=boxTop>Сброс всех настроек</td></tr>
+<tr><td class=boxMain><a href="/touchscreens/admin/info_buttons_p.qsp?reset=1"><FONT size=+1 color=black>Сброс всех настроек</font></a></td></tr>
+</tbody></table>
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+
+<form action="info_buttons_p.qsp">
+<TABLE><TR><TD>
+	<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+		<tbody>
+		<tr><td class=boxTop>Приоритет в офисе</td></tr>
+		<tr><td class=boxMain>
+Приоритет в офисе
+<%
+"<input type=hidden name=priority value="G">"
+%>
+<SELECT NAME="priority_lavel">
+        <OPTION VALUE="1" SELECTED  style="background-color:#0099FF;">Вр. ожидания
+        <OPTION VALUE="2" style=" background-color:#FFFF66;">По уровню
+        <OPTION VALUE="3" style="background-color:#FF6633;">по уроню+вр.ожид.
+		
+</SELECT>
+<div id=link_1_1 class=listItem >
+
+ <input type="Submit" value="Сохранить">
+
+</td></tr></tbody></table></TD></TR></TABLE>
+</form>
+
+	<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<tbody><tr><td class=boxTop rowspan=2>№</td>
+<td class=boxTop width=180 rowspan=2>Название операции</td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Кол. ожид. кл.</h3></td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Время ожид.</h3></td>
+<%
+W=25
+
+"<td class=boxTop colspan="W" align=center><h3 class=box>Окна<BR>(нажмите на окно которое хотите изменить)</h3></td></tr>"
+I=1
+"<TR>"
+
+	IF(G EQ 1)
+		H=0
+	IF(G EQ 2)
+		H=30
+	IF(G EQ 3)
+		H=60
+	IF(G EQ 4)
+		H=90
+	IF(G EQ 5)
+		H=120
+
+WHILE(I LE W)
+BEGIN
+	IF(ARRAY(400+I) EQ 0)
+	BEGIN
+		IF(STRSUB(ARRAY(600+H+I) 32 32) EQ "0")
+		BEGIN
+			"<TD class=boxMain style='background-color:#0099FF;' align=center onclick=location.href='/touchscreens/admin/change_window.qsp?window="I"&priority="G"';>"
+		END
+		IF(STRSUB(ARRAY(600+H+I) 32 32) EQ "1")
+		BEGIN
+			"<TD class=boxMain style='background-color:#FFFF66;' align=center onclick=location.href='/touchscreens/admin/change_window.qsp?window="I"&priority="G"';>"
+		END
+		IF(STRSUB(ARRAY(600+H+I) 32 32) EQ "2")
+		BEGIN
+			"<TD class=boxMain style='background-color:#FF6633;'  align=center onclick=location.href='/touchscreens/admin/change_window.qsp?window="I"&priority="G"';>"
+		END
+		"<div id=link_1_1 class=listItem onmouseover=javascript:listOver(this,1); onmouseout=javascript:listOver(this,0);><B><FONT size=+1>"
+		I
+		"</FONT></B></DIV></TD>"
+	END
+	I=I+1
+END
+"</TR>"
+M=30 {MAX GROUPS}
+I=1
+WHILE(I LE M)
+BEGIN
+	IF(ARRAY(300+I) EQ 0)
+	BEGIN
+		IF(((I/2)*2) EQ I)
+		BEGIN
+			"<TR bgcolor=#E2E2E2>"
+		END
+		ELSE
+			"<TR>"
+	"<TD align=center>"I"</TD><TD>"BUTTON_LETTER(I)" "BUTTON_NAME(I)"</TD><TD align=center>"BUTTON_QUEUE(I)"</TD><TD align=center>" 
+	PRINT_CLOCK_SEC(BUTTON_RWT(I))"</TD>"
+	P=1
+	{+prior to array}
+
+	
+	WHILE(P LE W)
+	BEGIN
+		K=ARRAY(600+H+P)
+		{PROVERKA STROKI}
+		IF(STRSUB(K 31 31) NE "F")
+		BEGIN
+			SETARRAY(600+H+P "000000000000000000000000000000F0") {31=F}
+			K=ARRAY(600+H+P)
+		END
+		L=STRSUB(K I I)
+		IF(ARRAY(400+P) EQ 0)
+		BEGIN
+		IF(STRSUB(K 32 32) EQ "1")
+		BEGIN
+			"<TD id=win_"P"-"I" align=center title='" BUTTON_NAME(I)" (Окно №" P")'>"
+		END
+		ELSE
+		BEGIN
+			"<TD id=win_"P"-"I" align=center title='" BUTTON_NAME(I)" (Окно №" P")' onclick=setget('1','"P"','"I"','1','"G"','win_"P"-"I"')>" 
+		END
+		" "
+		{"<a onclick=setget('1','"P"','"I"','1','"G"','obj')>a</a>"}
+		{jacheyko!!!!!!!!!!!!!!!!!!!!!}
+		IF(STRSUB(K 32 32) EQ "1")
+		BEGIN
+			IF(L EQ "0")
+			BEGIN
+				"<IMG SRC=no.png border=0 onclick=eval(\"parent.content.location='?type=1&window="P"&button="I"&priority="G"&level=1'\");>"
+			END ELSE
+			BEGIN
+			"<form name=loginFormJ id=form1>"
+			"<input type=hidden name=call_button>"
+			{"<input type=hidden name=priority value="G">"}
+			"<select name=menu1 onchange=call_customer('1','"P"','"I"','1','"G"','win_"P"-"I"',this) >"
+			R=0
+			WHILE(R LE 9)
+			BEGIN
+			Z=R
+				IF(STRNTS(Z) EQ L)
+				BEGIN
+					"<option selected value="R">"R"</option>"
+				END ELSE
+				BEGIN
+					"<option value="R">"R"</option>"
+				END
+				R=R+1
+			END
+			"</form>"{ priority_lavel=n-1}
+			END
+		END ELSE
+		IF(L NE "0")
+		BEGIN
+			{"<a href=info_buttons_p.qsp?window="P"&button="I"&level=0&priority="G"><IMG SRC=yes.png border=0></a>"}
+			"<IMG SRC=yes.png border=0>"
+		END
+		ELSE
+		BEGIN
+			{"<a href=info_buttons_p.qsp?window="P"&button="I"&level=1&priority="G"><IMG SRC=no.png border=0></a>"}
+			"<IMG SRC=no.png border=0>"
+		END
+		"</TD>"
+	END
+	P=P+1
+	END
+	"</TR>"
+	T=0
+	{H=0}
+	C=0
+	
+	END {IF VIEW BUTTON}
+	I=I+1
+END
+""
+
+"</table></TD><TD>"
+%>
+</TD></TD></TABLE><table></table>
+</body>
+</html>
+
+<script type="text/javascript">
+
+		var updating = false;
+
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+				
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		
+		function rawsend(url,cb) {
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+
+		          if(cb!=null) cb(req.responseText);	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		     
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+		
+		function getInt(arg) {
+		  var n=parseInt(arg);
+		  if(isNaN(n)) return 0; else return n;
+		}
+
+		function update(url,obj) {
+			parseQwinInfo = function(resp) {
+				
+				var line_split;
+				var el_g;
+				var system_type = '';
+				system_type = system_type.toUpperCase();
+				el_g = document.getElementById(obj);
+				el_g.innerHTML = resp;
+		///////alert(resp);
+				updating = false;
+				updateTimer_reset();
+			}
+			
+			
+			getStandardInfo = function() {
+			// var url = 'getinfo.qsp?type=1';
+			///////// alert("ok resp:"+urll);
+				//alert("run"+url);
+			  return rawsend(url,parseQwinInfo);
+			}
+			if(!updating) {
+				updating = true;
+				getStandardInfo();
+			}
+		}
+		qwin_event.trig = function(eventType, unit, payload) {
+			update();
+		}
+		qwin_event.setEvents = function() {
+			// set which events we should listen to
+			// this function needs to be called manually to set up which events to listen to
+			// this function is also called once when server is up
+			qwin_event.waitForEventTrig("2.3.4.8");
+		}
+		// the following call should be put at the end of the page/javascript
+		qwin_event.setEvents();
+		var updateTimer;
+		updateTimer_reset = function() {
+			clearTimeout(updateTimer);
+			//updateTimer = setTimeout(function() {update(); },500);
+		}
+	/////////////	update();
+	
+			function setget(type,win,button,level,priority,obj) {
+			url="/touchscreens/admin/setget.qsp?type="+type+"&window="+win+"&button="+button+"&level="+level+"&priority="+priority+"&obj="+obj;
+			update(url,obj);
+			//alert("ok resp:"+url);
+		};
+		function setget_combo(type,win,button,level,priority,obj,selObj) {
+			url="/touchscreens/admin/setget.qsp?type="+type+"&window="+win+"&button="+button+"&level="+selObj.options[selObj.selectedIndex].value+"&priority="+priority+"&obj="+obj;
+			///////alert("ok resp:"+url);
+			update(url,obj);
+			
+		};
+function call_customer(type,win,button,level,priority,obj,selObj){ //v3.0
+ eval("parent"+".content.location='?type=1&window="+win+"&button="+button+"&priority="+priority+"&level="+selObj.options[selObj.selectedIndex].value+"'");
+//alert("parent"+".content.location='?type=1&window="+win+"&button="+button+"&priority="+priority+"&level="+selObj.options[selObj.selectedIndex].value+"'");
+}
+	</script>

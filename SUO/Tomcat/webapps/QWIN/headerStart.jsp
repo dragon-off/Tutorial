@@ -1,0 +1,4 @@
+<%@ taglib uri="mole" prefix="m" %>
+<%@include file="headerHeader.jsp"%>
+<td background="<m:path src="/images/bkg_main-toolbar.gif"/>" class="toolbar"><img src="<m:path src="/images/toolbar-handle.gif"/>" width="15" height="37" /><a href="manager/staff" target="_top"><img align="top" border="0" height="36" src="<m:path src="/images/staff-management-0.gif"/>"></a><a href="serversettings" target="_top"><img align="top" border="0" height="36" src="<m:path src="/images/settings-editor-0.gif"/>"></a><img align="top" border="0" height="36" src="<m:path src="/images/statistical-reports-0.gif"/>"><img align="top" border="0" height="36" src="<m:path src="/images/management-screens-0.gif"/>"></td>
+<%@include file="headerFooter.jsp"%>

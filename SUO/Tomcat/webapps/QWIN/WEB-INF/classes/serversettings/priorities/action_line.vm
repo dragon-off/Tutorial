@@ -1,0 +1,13 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "")
+
+    <field type  = "button">
+          <name>remLine</name>
+          <label>Remove line</label>
+          <params>
+              #param("action-script" "./priority/priority.removeline.action?priority=$priorityNo&amp;line=$line")
+              #param("ref-type" "raw")
+          </params>
+    </field>
+</grid-form>

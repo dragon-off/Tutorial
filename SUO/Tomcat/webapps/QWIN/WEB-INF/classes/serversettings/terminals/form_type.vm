@@ -1,0 +1,73 @@
+#loadcache2("TERMINAL" true)
+#loadcache2("TERMINAL_TYPE*" false)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    #cdata("label" "$text.getText('termtype.SettingsHeading') $group")
+
+    #set( $section            = "TERMINAL_TYPE_${group}"                           )
+
+    ##    SECTION  KEY                  LABEL_ID                  TYPE          HELP_ID                  MIN MAX   REGEXP
+    ##--------------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "TIME_UPDATE"        "termtype.update"         "number"      "termtype.update"        1   1000  "" )
+    #qsys($section "KEY_TIME_OUT"       "termtype.maxTimeKey"     "number"      "termtype.maxTimeKey"    0   1000  "" )
+
+    <field type = "list" helpid = "termtype.digits">
+
+         #cdata("name"  "${section}_NUMBER_WIDTH")
+         #cdata("label" "$text.getText('termtype.digits')")
+
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" "$section")
+            #param("key" "NUMBER_WIDTH")
+        </params>
+        #cdata("init-value" $sm.getStringSetting( "$section", "NUMBER_WIDTH"))
+
+        <accepted-values>
+            #accepteditem("3" "3")
+            #accepteditem("4" "4")
+
+        </accepted-values>
+    </field>
+
+    #qsys($section "KD_TURNED_OFF"      "termtype.discDispNet"    "checkbox"    "termtype.discDispNet"   0   1     "" )
+    #qsys($section "KT_TURNED_OFF"      "termtype.discTermNet"    "checkbox"    "termtype.discTermNet"   0   1     "" )
+
+    <field type = "list" helpid = "termtype.protocol">
+
+         #cdata("name"  "${section}_PROTOCOL")
+         #cdata("label" "$text.getText('termtype.protocol')")
+
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" "$section")
+            #param("key" "PROTOCOL")
+        </params>
+        #cdata("init-value" $sm.getStringSetting( "$section", "PROTOCOL"))
+
+        <accepted-values>
+            #accepteditem("A" "A")
+            #accepteditem("B" "B")
+
+        </accepted-values>
+    </field>
+
+    #qsys($section "KD_BUZZER"          "termtype.dispBuzz"       "checkbox"    "termtype.dispBuzz"      0   1     "" )
+    #qsys($section "KD_PROGRAM"         "termtype.dispServPrg"    "script"      "termtype.dispServPrg"   0   0     "" )
+    #qsys($section "KD_PROGRAM_OPEN"    "termtype.dispOpenPrg"    "script"      "termtype.dispOpenPrg"   0   0     "" )
+    #qsys($section "KD_PROGRAM_CLOSE"   "termtype.dispClosePrg"   "script"      "termtype.dispClosePrg"  0   0     "" )
+    #qsys($section "KT_PROGRAM"         "termtype.termDisplPrg"   "script"      "termtype.termDisplPrg"  0   0     "" )
+    #qsys($section "KT_PROGRAM_BUZZ"    "termtype.termBuzzPrg"    "script"      "termtype.termBuzzPrg"   0   0     "" )
+    #qsys($section "KT_PROGRAM_LED1"    "termtype.termLED1prg"    "script"      "termtype.termLED1prg"   0   0     "" )
+    #qsys($section "KT_PROGRAM_LED2"    "termtype.termLED2prg"    "script"      "termtype.termLED2prg"   0   0     "" )
+    #qsys($section "KT_PROGRAM_INFO1"   "termtype.termInfo1Prg"   "script"      "termtype.termInfo1Prg"  0   0     "" )
+    #qsys($section "KT_PROGRAM_INFO2"   "termtype.termInfo2Prg"   "script"      "termtype.termInfo2Prg"  0   0     "" )
+    #qsys($section "PROGRAM_END_CUST"   "termtype.endCustPrg"     "script"      "termtype.endCustPrg"    0   0     "" )
+
+</grid-form>
+

@@ -1,0 +1,11 @@
+<%
+P=(${printer}0)/10
+	IF(P EQ 0)
+		P=1
+%>
+<% 
+YEAR LEN(2) "^" MONTH LEN(2)"^"
+PRINTER_CUSTOMER_ITEM(P ITEM_CARD3) "^"
+PRINTER_CUSTOMER_ITEM_STR(P ITEM_CARD1)
+
+%>

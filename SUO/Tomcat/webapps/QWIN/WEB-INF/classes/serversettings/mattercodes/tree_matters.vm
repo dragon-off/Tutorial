@@ -1,0 +1,30 @@
+#loadcache2("MATTER*" true)
+<tree version="1.0"
+   image="images/matters.gif">
+   #cdata("label" $text.getText("matters.treeHeading"))
+   #set($mcm = $qf.getMatterCodeManager())
+    <node ref-type="raw">
+            #cdata("label" $text.getText("matters.treeHeading"))
+            <image>images/matters.gif</image>
+            <grid-ref>
+                <name>matter/matters.jsp</name>
+            </grid-ref>
+            <action-ref>
+                <name>./mattercodes/action_matters.vm</name>
+            </action-ref>
+            #foreach($matter in $mcm.getMatterCodes($qf.getScriptManager()))
+                <node ref-type="raw">
+                    #cdata("label" $matter.name)
+                    <grid-ref>
+                        <name>matter.getmatter.action</name>
+                        #param("matterId" ${matter.lineId})
+                    </grid-ref>
+                    <action-ref>
+                        <name>./mattercodes/action_matter.vm</name>
+                        #param("lineId" ${matter.lineId})
+                    </action-ref>
+                </node>
+
+            #end
+    </node>
+</tree>

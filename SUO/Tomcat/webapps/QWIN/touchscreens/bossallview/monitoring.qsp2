@@ -1,0 +1,711 @@
+<!-- to do: превышено время перерыва -->
+<html>
+	<head>
+		<title>Мониторинг окон и операций</title>
+		<style>
+			.main_table{
+				width:				1000px;
+				border:				1px solid black;
+			}
+			
+			.oper_table{
+				border-collapse:		collapse;
+				border:				1px solid #999999;
+/*				table-layout:			fixed;*/
+			}
+			
+			.oper_table th{
+				background-image:url('/images/headerBar.gif');
+				font-family: verdana;
+				font-size: 11px;
+				color: #000080;
+				font-weight:normal;
+				height: 36;
+			}
+			
+			.oper_table td, th{
+				border:				1px solid #999999;
+				white-space:			nowrap;
+			}
+			
+			.hover_oper_table_line{
+				background:			#D3D3D3;
+			}
+			
+			.hover_oper_table_line_red{
+				background:			#CD5C5C;
+			}
+			
+			.tickets_table{
+				border-collapse:		collapse;
+				border:				1px solid #999999;
+				font-family:			sans-serif;
+				font-size:			12px;
+			}
+
+			.tickets_table th{
+				
+				background-image:url('/images/headerBar.gif');
+				font-family: verdana;
+				font-size: 11px;
+				color: #000080;
+				font-weight:normal;
+				height: 36;
+			}
+			
+			.tickets_table td, th{
+				border:				1px solid #999999;
+				white-space:			nowrap;
+			}
+		</style>
+		<script>
+			var first_operation = 1;		//Введите номер первой операции диапазона.
+			var last_operation = 10;		//Введите номер последней операции диапазона.
+		
+			function getInformationOnOperations(){
+				var http;
+				var url = "getOperations.qsp2";
+				var params = "first=" + first_operation + "&last=" + last_operation;
+				var OperationData = document.getElementById("information_by_category");
+				if(window.XMLHttpRequest)
+					http = new XMLHttpRequest();
+				else 
+					if(window.ActiveXObject){
+						try{
+							http = new ActiveXObject('Msxml2.XMLHTTP');
+						}
+						catch(e){}
+						try{
+							http = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+						catch(e){}
+					}
+				if(http){
+					http.onreadystatechange = function(){
+						if(http.readyState == 4 && http.status == 200){
+							var getLine = http.responseText.split('%');
+							var tempData = "";
+							tempData += "<table class='oper_table' cellpadding=0 cellspacing=0 style='font-family:sans-serif;font-size:12px;' width=100% border=0>";
+							tempData += "<tr bgcolor=silver>";
+							tempData += "<th style='width:15px;'>&nbsp</th>";
+							tempData += "<th style='width:250px;'>Операция</th>";
+							tempData += "<th style='width:60px;' title='Максимальное время ожидания'>Время<br>ожидания</th>";
+							tempData += "<th style='width:60px;' title='Количество ожидающих клиентов'>Кол-во<br>ожид.</th>";
+							tempData += "<th style='width:60px;' title='Обслужено сегодня'>Обслуж.<br>сегодня</th>";
+							tempData += "<th style='width:60px;' title='Среднее время обслуживания'>Среднее<br>вр. обсл.</th>";
+							tempData += "<th style='width:115px;' title='Максимальное прогнозное время ожидания'>Макс. прогнозное<br>время ожидания</th>";
+							tempData += "<th style='width:50px;'>Выдача<br>талонов</th>";
+							tempData += "<th title='Обслуживающие операцию окна'>Окна</th>";
+							tempData += "<th style='width:30px;' title='Просмотр списка талонов'>Просмотр</th>";
+							tempData += "</tr>";
+							var allCustomers = 0;
+							for(var i=0; i<getLine.length-2; i++){
+								var getCell = getLine[i].split('#');
+								if((getCell[3] > 0) && (getCell[8] == 0))
+									tempData += "<tr height=20 bgcolor=#ff9999 onMouseOver='table_operations_focus_line(this, 1);' onMouseOut='table_operations_out_of_focus(this);'>";
+								else
+									tempData += "<tr height=20 onMouseOver='table_operations_focus_line(this, 0);' onMouseOut='table_operations_out_of_focus(this);'>";
+								for(var j=0; j<getCell.length; j++){
+									if(j != 1){
+										if(j == 7){
+											if(getCell[j] == 0){
+												tempData += "<td align=center><img src='no.png' title='Выдача запрещена'></td>";
+											}
+											else{
+												tempData += "<td align=center><img src='yes.png' title='Выдача разрешена'></td>";
+											}
+										}
+										else if(j == 8){
+											if(getCell[j] == 0){
+												tempData += "<td align=center bgcolor=red title='Нет обслуживающих окон'></td>";
+											}
+											else{
+												tempData += "<td align=center>" + getCell[j] + "</td>";
+											}
+										}
+										else{
+											tempData += "<td align=center>" + getCell[j] + "</td>";
+										}
+									}
+									else
+										tempData += "<td>" + getCell[j] + "</td>";
+								}
+								allCustomers += (getCell[3] * 1);
+								if(i < getLine.length-1)
+									tempData += "<td align=center><input type=radio " + ((i == getCookie('operation_marked')-1)?"checked":"" )+ " name='preview_tickets_radio' id='preview_tickets_radio' onClick='show_tickets(" + (i+first_operation) + ");'></td>";
+								tempData += "</tr>";
+							}
+							tempData += "</table>";
+							OperationData.innerHTML = tempData;
+							document.getElementById("all_customers").innerHTML = allCustomers;
+							//отображение светофора
+							var getTactic = getLine[getLine.length-2].split('#');
+							if((getTactic[2] == 0) && (getTactic[1] == 0)){
+								document.getElementById("color_tactics").innerHTML = "<img border=0 src='big_g.jpg'>";
+							}
+							if((getTactic[2] == 0) && (getTactic[1] > 0)){
+								document.getElementById("color_tactics").innerHTML = "<img border=0 src='big_y.jpg'>";
+							}
+							if(getTactic[2] > 0){
+								document.getElementById("color_tactics").innerHTML = "<img border=0 src='big_r.jpg'>";
+							}
+							//цветовая шкала тактики
+							var tempTactic = "";
+							tempTactic += "<table cellpadding=0 cellspacing=0 border=0 style='border:1px solid black;'>";
+							tempTactic += "<tr height=30>"
+							tempTactic += "<td bgcolor=red align=center width=" + (getTactic[2] * 200) / allCustomers + ">";
+							if(getTactic[2] > 0)
+								tempTactic += "<b>" + getTactic[2] + "</b>";
+							tempTactic += "</td>";
+							tempTactic += "<td bgcolor=yellow align=center width=" + (getTactic[1] * 200) / allCustomers + ">";
+							if(getTactic[1] > 0)
+								tempTactic += "<b>" + getTactic[1] + "</b>";
+							tempTactic += "</td>";
+							tempTactic += "<td bgcolor=green align=center width=" + (getTactic[0] * 200) / allCustomers + ">";
+							if(getTactic[0] > 0)
+								tempTactic += "<b>" + getTactic[0] + "</b>";
+
+							if(getTactic[0] == 0 && getTactic[1] == 0 && getTactic[2] == 0)
+								tempTactic += "<td bgcolor=white align=center width=200>";
+
+							tempTactic += "</td>";
+							tempTactic += "</tr>";
+							tempTactic += "</table>";
+							document.getElementById("customer_relationship_tactics").innerHTML = tempTactic;
+						}
+					};
+					http.open("GET", url + "?" + params, true);
+					http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http.send(null);
+				}
+				else
+					alert("Браузер не поддерживает AJAX");
+				setTimeout("getInformationOnOperations();", 5 * 1000);
+			}
+			
+			function show_tickets(button){
+				var http;
+				var url = "getTickets.qsp2";
+				var params = "button=" + button;
+				var OperationData = document.getElementById("preview_tickets");
+				if(window.XMLHttpRequest)
+					http = new XMLHttpRequest();
+				else 
+					if(window.ActiveXObject){
+						try{
+							http = new ActiveXObject('Msxml2.XMLHTTP');
+						}
+						catch(e){}
+						try{
+							http = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+						catch(e){}
+					}
+				if(http){
+					http.onreadystatechange = function(){
+						if(http.readyState == 4 && http.status == 200){
+							var getLine = http.responseText.split('%');
+							var getTime= getLine[getLine.length-2].split('#');
+							var tempData = "";
+							tempData += "<table class='tickets_table' cellpadding=0 cellspacing=0 width=100% border=0>";
+							tempData += "<tr bgcolor=silver height=29>";
+							tempData += "<th style='width:30px;'>№</th>";
+							tempData += "<th style='width:50px;'>Талон</th>";
+							tempData += "<th style='width:70px;'>Время</th>";
+							tempData += "</tr>";
+							for(var i=0; i<getLine.length-2; i++){
+								var getCell = getLine[i].split('#');
+								if(getCell[1]/60 <= getTime[0]){
+									tempData += "<tr height=17 bgcolor=green>";
+								}
+								else{
+									if(getCell[1]/60 <= getTime[1])
+										tempData += "<tr height=17 bgcolor=yellow>";
+									else
+										tempData += "<tr height=17 bgcolor=red>";
+								}
+								tempData += "<td align=center>" + (i+1) + "</td>";
+								tempData += "<td align=center>" + getCell[0] + "</td>";
+								var waitingTime = new Date();
+								waitingTime.setHours(0);
+								waitingTime.setMinutes(0);
+								waitingTime.setSeconds(getCell[1]);
+								tempData += "<td align=center>" + waitingTime.getHours() + ":" + ((waitingTime.getMinutes() < 10)?"0":"") + waitingTime.getMinutes() + ":" + ((waitingTime.getSeconds() < 10)?"0":"") + waitingTime.getSeconds() + "</td>";
+								tempData += "</tr>";
+							}
+							tempData += "</table>";
+							OperationData.innerHTML = tempData;
+						}
+					};
+					http.open("GET", url + "?" + params, true);
+					http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http.send(null);
+				}
+				else
+					alert("Браузер не поддерживает AJAX");
+				document.cookie = "operation_marked=" + button;
+			}
+			
+			function getInformationOnWindows(){
+				var http;
+				var url = "getWindows.qsp2";
+				var params = "";
+				var OperationData = document.getElementById("information_by_windows");
+				if(window.XMLHttpRequest)
+					http = new XMLHttpRequest();
+				else 
+					if(window.ActiveXObject){
+						try{
+							http = new ActiveXObject('Msxml2.XMLHTTP');
+						}
+						catch(e){}
+						try{
+							http = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+						catch(e){}
+					}
+				if(http){
+					http.onreadystatechange = function(){
+						if(http.readyState == 4 && http.status == 200){
+							var getLine = http.responseText.split('%');
+							var tempData = "";
+							tempData += "<table class='oper_table' cellpadding=0 cellspacing=0 style='font-family:sans-serif;font-size:12px;' width=100% border=0>";
+							tempData += "<tr bgcolor=silver>";
+							tempData += "<th style='width:50px;'>Окно</th>";
+							tempData += "<th style='width:130px;'>Сотрудник</th>";
+							tempData += "<th title='Алгоритм обслуживания клиентов'>Алгоритм</th>";
+							tempData += "<th style='width:45px;' title='Тактика обслуживания клиентов'>Тактика</th>";
+							tempData += "<th style='width:50px;'>Статус</th>";
+							tempData += "<th style='width:55px;'>Время простоя</th>";
+							tempData += "<th style='width:55px;'>Время перерыва</th>";
+							tempData += "<th style='width:70px;'>Время ТАКТ фактическое</th>";
+							tempData += "<th>Клиент</th>";
+							tempData += "<th style='width:55px;' title='Среднее время обслуживания клиентов'>Сред. вр. обсл.</th>";
+							tempData += "<th style='width:55px;' title='Время обслуживания за день'>Сумма вр. обсл.</th>";
+							tempData += "<th style='width:40px;' title='Клиентов обслужено за день'>Кол. обсл.</th>";
+							tempData += "</tr>";
+							for(var i=0; i<getLine.length-1; i++){
+								var getCell = getLine[i].split('<p>---<p>');
+								tempData += "<tr height=20 onMouseOver='table_operations_focus_line(this, 0);' onMouseOut='table_operations_out_of_focus(this);'>";
+								for(var j=0; j<getCell.length; j++){
+									if(j != 1){
+										tempData += "<td align=center>" + getCell[j] + "</td>";
+									}
+									else{
+										tempData += "<td>" + getCell[j] + "</td>";
+									}
+								}
+								tempData += "</tr>";
+							}
+							tempData += "</table>";
+							OperationData.innerHTML = tempData;
+						}
+					};
+					http.open("GET", url + "?" + params, true);
+					http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http.send(null);
+				}
+				else
+					alert("Браузер не поддерживает AJAX");
+				setTimeout("getInformationOnOperations();", 5 * 1000);
+			}
+
+			function getReadyOperations(){
+				var http;
+				var url = "get_ready_operations.qsp2";
+				var params = "";
+				var OperationData = document.getElementById("maintenance-free_operation");
+				if(window.XMLHttpRequest)
+					http = new XMLHttpRequest();
+				else 
+					if(window.ActiveXObject){
+						try{
+							http = new ActiveXObject('Msxml2.XMLHTTP');
+						}
+						catch(e){}
+						try{
+							http = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+						catch(e){}
+					}
+				if(http){
+					http.onreadystatechange = function(){
+						if(http.readyState == 4 && http.status == 200){
+							var getLine = http.responseText.split('%');
+							if(getLine.length > 1){
+								var tempData = "";
+								tempData += "<ul>";
+								for(var i=0; i<getLine.length-1; i++){
+									var getCell = getLine[i].split('#');
+									tempData += "<li>";
+									tempData += getCell[0];
+									tempData += " " + getCell[1];
+									tempData += " [" + getCell[2] + "]";
+									tempData += "</li>";
+								}
+								tempData += "</ul>";
+								OperationData.innerHTML = tempData;
+								document.getElementById("red_operations").style.display = "block";
+							}
+							else{
+								document.getElementById("red_operations").style.display = "none";
+							}
+						}
+					};
+					http.open("GET", url + "?" + params, true);
+					http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http.send(null);
+				}
+				else
+					alert("Браузер не поддерживает AJAX");
+				setTimeout("getReadyOperations();", 17 * 1000);
+			}
+
+			function getReadyWindows(){
+				var http;
+				var url = "get_ready_windows.qsp2";
+				var params = "";
+				var OperationData = document.getElementById("inactive_windows");
+				if(window.XMLHttpRequest)
+					http = new XMLHttpRequest();
+				else 
+					if(window.ActiveXObject){
+						try{
+							http = new ActiveXObject('Msxml2.XMLHTTP');
+						}
+						catch(e){}
+						try{
+							http = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+						catch(e){}
+					}
+				if(http){
+					http.onreadystatechange = function(){
+						if(http.readyState == 4 && http.status == 200){
+							var getLine = http.responseText.split('%');
+							if(getLine.length > 1){
+								var tempData = "";
+								tempData += "<ul>";
+								for(var i=0; i<getLine.length-1; i++){
+									tempData += "<li>";
+									tempData += getLine[i];
+									tempData += "</li>";
+								}
+								tempData += "</ul>";
+								OperationData.innerHTML = tempData;
+								document.getElementById("red_windows").style.display = "block";
+							}
+							else{
+								document.getElementById("red_windows").style.display = "none";
+							}
+						}
+					};
+					http.open("GET", url + "?" + params, true);
+					http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http.send(null);
+				}
+				else
+					alert("Браузер не поддерживает AJAX");
+				setTimeout("getReadyWindows();", 17 * 1000);
+			}
+
+			function getExcessTimeout(){
+				var http;
+				var url = "get_excess_timeout.qsp2";
+				var params = "";
+				var OperationData = document.getElementById("excess_timeout");
+				if(window.XMLHttpRequest)
+					http = new XMLHttpRequest();
+				else 
+					if(window.ActiveXObject){
+						try{
+							http = new ActiveXObject('Msxml2.XMLHTTP');
+						}
+						catch(e){}
+						try{
+							http = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+						catch(e){}
+					}
+				if(http){
+					http.onreadystatechange = function(){
+						if(http.readyState == 4 && http.status == 200){
+							var getLine = http.responseText.split('%');
+							if(getLine.length > 1){
+								var tempData = "";
+								tempData += "<ul>";
+								for(var i=0; i<getLine.length-1; i++){
+									tempData += "<li>";
+									tempData += getLine[i];
+									tempData += "</li>";
+								}
+								tempData += "</ul>";
+								OperationData.innerHTML = tempData;
+								document.getElementById("red_time-out").style.display = "block";
+							}
+							else{
+								document.getElementById("red_time-out").style.display = "none";
+							}
+						}
+					};
+					http.open("GET", url + "?" + params, true);
+					http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http.send(null);
+				}
+				else
+					alert("Браузер не поддерживает AJAX");
+				setTimeout("getExcessTimeout();", 17 * 1000);
+			}
+
+			function increaseInIntensity(){
+				var http;
+				var url = "increase_in_intensity.qsp2";
+				var increaseState = document.getElementById("increase_in_intensity");
+				if(increaseState.checked == true){
+					var state = 2;
+				}
+				else{
+					var state = 1;
+				}
+				var params = "state=" + state;
+				if(window.XMLHttpRequest)
+					http = new XMLHttpRequest();
+				else 
+					if(window.ActiveXObject){
+						try{
+							http = new ActiveXObject('Msxml2.XMLHTTP');
+						}
+						catch(e){}
+						try{
+							http = new ActiveXObject('Microsoft.XMLHTTP');
+						}
+						catch(e){}
+					}
+				if(http){
+					http.onreadystatechange = function(){
+						if(http.readyState == 4 && http.status == 200){
+							var ReturnData = http.responseText;
+							if(ReturnData.replace(/\s+$/, "") == "goodon"){
+								increaseState.checked = true;
+							}
+							else if(ReturnData.replace(/\s+$/, "") == "goodoff"){
+								increaseState.style.checked = false;
+							}
+							else{
+								alert("При выполнении операции произошла ошибка.");
+								increaseState.checked = false;
+							}
+						}
+					};
+					http.open("GET", url + "?" + params, true);
+					http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					http.send(null);
+				}
+				else
+					alert("Браузер не поддерживает AJAX");
+				setTimeout("getExcessTimeout();", 17 * 1000);
+			}
+
+
+			function table_operations_focus_line(obj, checked_line){
+				if(checked_line > 0)
+					obj.className = "hover_oper_table_line_red";
+				else
+					obj.className = "hover_oper_table_line";
+			}
+
+			function table_operations_out_of_focus(obj){
+				obj.className = "";
+			}
+			
+			function getCookie(name){
+				var cookie = " " + document.cookie;
+				var search = " " + name + "=";
+				var setStr = null;
+				var offset = 0;
+				var end = 0;
+				if (cookie.length > 0) {
+					offset = cookie.indexOf(search);
+					if (offset != -1) {
+						offset += search.length;
+						end = cookie.indexOf(";", offset)
+						if (end == -1) {
+							end = cookie.length;
+						}
+						setStr = unescape(cookie.substring(offset, end));
+					}
+				}
+				return(setStr);
+			}
+			
+			function restore_the_state_of_the_page(){
+				getInformationOnOperations();
+				getInformationOnWindows();
+				show_tickets(getCookie("operation_marked"));
+				getReadyOperations();
+				getReadyWindows();
+				getExcessTimeout();
+			}
+		</script>
+	</head>
+	<body onLoad="restore_the_state_of_the_page();" style="background-color: #F4F4F5;">
+		<table class="main_table" cellpadding=0 cellspacing=0 border=0>
+			<tr>
+				<td>
+					<table width=100% cellpadding=0 cellspacing=0 style="border-bottom:1px solid black;" border=0>
+						<tr height=50>
+							<td width=205>
+								<span id="customer_relationship_tactics"></span>
+							</td>
+							<td align="left" style="padding-left:5px;font-family: verdana;font-size: 14px;color: #000080;">
+								Всего в очереди:&nbsp <span style="color:black;font-weight:bold;" id="all_customers"></span>
+							</td>
+							<td align="left" style="padding-left:5px;font-family: verdana;font-size: 14px;color: #000080;">
+								Всего за день:&nbsp <span style="color:green;font-weight:bold;" id="all_day_green">150 (50%)</span>
+													&nbsp <span style="color:red;font-weight:bold;" id="all_day_green">150 (50%)</span>
+													<input type="button" value="Показатели за месяц">
+							</td>
+							
+							<td width=120 align=right>
+								Тактика
+								<br>
+								обслуживания
+							</td>
+							<td width=5>
+							</td>
+							<td width=50>
+								<span id="color_tactics"></span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-left:5px;background-image:url('/images/headerBar.gif');font-family: verdana;font-size: 14px;color: #000080;height: 36;">
+					Журнал сообщений
+				</td>
+			</tr>
+			<tr style="height:150px;">
+			<td style="height:150px;">
+			<div style="height:150px;overflow-y: scroll;"><table width=100% cellpadding=0 cellspacing=0 style="color:#b61b19;border-bottom:1px solid #f5393a;background-color: #ffa1a2;" border=0>
+						<tr height=30>
+							<td  width=30>
+								<!-- картинка с восклицательными знаками на жёлтом фоне -->
+								<img src="warning.gif"/>
+							</td>
+							<td>
+								<font face="Arial">
+									<b>
+										&nbsp
+										Дальнейшее выполнение следующих операций невозможно ни в одном окне
+									</b>
+								</font>
+							</td>
+						</tr>
+						<tr>
+							<td colspan=2>
+								<span id="maintenance-free_operation"></span>
+							</td>
+						</tr>
+						</table>
+						<table width=100% cellpadding=0 cellspacing=0 style="color:#b61b19;border-bottom:1px solid #f5393a;background-color: #ffa1a2;" border=0>
+						<tr id="red_windows" style="display:none;">
+				<td>
+					<table width=100% cellpadding=0 cellspacing=0 style="color:#b61b19;border-top:1px solid #f5393a;margin:5px;background-color: #ffa1a2" border=0>
+						<tr height=30>
+							<td width=30 >
+								<!-- картинка с восклицательными знаками на жёлтом фоне -->
+								<img src="warning.gif"/>
+							</td>
+							<td >
+								<font face="Arial">
+									<b>
+										&nbsp
+										Невозможно выполнить ни одной операции
+									</b>
+								</font>
+							</td>
+						</tr>
+						<tr>
+							<td colspan=2 >
+								<span id="inactive_windows"></span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id="red_time-out" style="display:none;">
+				<td>
+					<table width=100% cellpadding=0 cellspacing=0 style="color:#b61b19;border-top:1px solid #f5393a;margin:5px;background-color: #ffa1a2;" border=0>
+						<tr height=30>
+							<td width=30>
+								<!-- картинка с восклицательными знаками на жёлтом фоне -->
+								<img src="warning.gif"/>
+							</td>
+							<td>
+								<font face="Arial">
+									<b>
+										&nbsp
+										Превышено время перерыва
+									</b>
+								</font>
+							</td>
+						</tr>
+						<tr>
+							<td colspan=2>
+								<span id="excess_timeout"></span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+					</table></div>
+			</td>
+			</tr>
+			<tr>
+				<td style="padding-left:5px;background-image:url('/images/headerBar.gif');font-family: verdana;font-size: 14px;color: #000080;height: 36;">
+					Информация по категориям
+				</td>
+			</tr>
+			<tr id="red_operations" style="display:none;">
+				<td>
+					
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<table width=100% cellpadding=0 cellspacing=0 border=0>
+						<tr valign=top>
+							<td>
+								<!-- мониторинг по категориям -->
+								<span id="information_by_category"></span>
+							</td>
+							<td width=5>
+							</td>
+							<td style="width:150px;">
+								<span id="preview_tickets"></span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr height=5>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td style="padding-left:5px;background-image:url('/images/headerBar.gif');font-family: verdana;font-size: 14px;color: #000080;height: 36;">
+					Информация по рабочим станциям
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="border-top:1px solid black;">
+					<!-- мониторинг по рабочим станциям -->
+					<span id="information_by_windows"></span>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

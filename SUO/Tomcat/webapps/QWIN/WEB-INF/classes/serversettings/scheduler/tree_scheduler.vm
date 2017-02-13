@@ -1,0 +1,67 @@
+<tree version="1.0"
+   image="images/printers.gif">
+   #cdata("label" $text.getText("scheduler.treeHeading"))
+
+   #nodestart($text.getText("scheduler.treeHeading") "")
+        <grid-ref>
+            <name></name>
+        </grid-ref>
+        <action-ref>
+            <name>./scheduler/action_activities.vm</name>
+        </action-ref>
+        #set($scheduler = $qf.getScheduler())
+        #foreach($item in $scheduler.getItems())
+            #nodestart($item.getName() "")
+            <action-ref>
+                <name>./scheduler/action_item.vm</name>
+                #param("item" $item.getId())
+            </action-ref>
+            <grid-ref>
+                <name>./scheduler/form_item.vm</name>
+                #param("id" $item.getId())
+            </grid-ref>
+
+                #foreach($set in $item.getTimeSets())
+                    <node ref-type="raw">
+
+                        #set($label = "Unknown")
+
+                        #if($set.getType() == 0)
+                            #set($label=$text.getText("scheduler.type.everyDay"))
+                        #end
+
+                        #if($set.getType() == 1)
+                            #set($label=$text.getText("scheduler.type.byDate"))
+                        #end
+
+                        #if($set.getType() == 2)
+                            #set($label=$text.getText("scheduler.type.dayInMonth"))
+                        #end
+
+                        #if($set.getType() == 3)
+                            #set($label=$text.getText("scheduler.type.dayInWeek"))
+                        #end
+
+                        #if($set.getType() == 4)
+                            #set($label=$text.getText("scheduler.type.firstDayInMonth"))
+                        #end
+
+                        #cdata("label" $label)
+                        <image></image>
+                        <grid-ref>
+                            <name>schedule/scheduler.getset.action</name>
+                            #param("itemId" $item.getId())
+                            #param("setId" $set.getId())
+                        </grid-ref>
+                        <action-ref>
+                            <name>./scheduler/action_timeset.vm</name>
+                            #param("itemId" $item.getId())
+                            #param("setId" $set.getId())
+                        </action-ref>
+
+                    </node>
+                #end
+            </node>
+        #end
+    </node>
+</tree>

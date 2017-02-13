@@ -1,0 +1,15 @@
+#loadcache2("CARD" true)
+#loadcache2("CARD_SETTING*" false)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("cardvalid.generalNodeLabel"))
+
+    #set( $section            = "CARD"                                                    )
+
+    ##    SECTION   KEY            LABEL_ID            TYPE         HELP_ID             MIN   MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section  "MAX"          "cardvalid.max"     "number"     "cardvalid.max"     0     255  "" )
+    #qsys($section  "SHOW_INPUT"   "cardvalid.debug"   "checkbox"   "cardvalid.debug"   0     1    "" )
+</grid-form>

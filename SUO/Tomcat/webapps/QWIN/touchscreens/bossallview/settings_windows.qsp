@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title>Монитор</title>
+        <LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">		
+		<script type="text/javascript" src="/lib/ajax.js"></script>  		
+		<script language='javascript'>
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+} 		
+		</script>	
+    </head>
+    <body onLoad="startTimeout()">
+<%
+W=(${window}0)/10
+S=(${status}0)/10
+IF(W GT 0)
+	SETARRAY(400+W S)	
+
+G=(${spec}0)/10
+IF(G GT 0)
+	SETARRAY(7000+W G-1)	
+%>
+<SCRIPT LANGUAGE="javascript"> 
+ 
+function startTimeout()
+{
+    setTimeout('reloadFunc()',30 * 1000 )
+}
+function reloadFunc()
+{
+    location.reload()
+}
+function openPage(p) 
+{
+    parent.contents.location.href=p;
+}
+</SCRIPT>
+ 	<div id="DopElement"></div>
+ 
+<form method="GET" name="changeList">
+<input type="hidden" name="useCategory" value="true">
+<input type="hidden" name="useWorkstation" value="true">
+ 
+<!-- Place this at the top
+ 
+ 
+ 
+-->
+ 
+<table class=tableMain cellpadding=5 cellspacing=0 width=10>
+	<tr>
+		<td class=headerBar align=left>
+			Отображаемые окна
+		</td>
+		<td class=headerBar>
+		</td>
+	</tr>
+ 
+	<tr>
+		<td valign="top">
+			<table class=tableSection cellpadding=0 cellspacing=0>
+				<tr>
+					<td nowrap class=tdHeaderSection>Операция</td>
+					<td nowrap class=tdHeaderSection>Статус</td>
+					<td nowrap class=tdHeaderSection>Специальная регистрация</td>
+					
+				
+				</tr>
+				
+				<%
+				O=(${showtickets}0)/10
+A=30 {колличество операций}
+I=0 {summ ogid kl}
+J=0 {summ obsl kl}
+M=0
+N=1
+WHILE (N LE A)
+BEGIN
+
+	IF(N EQ ((N/2)*2))
+		"<tr class=trDataRow1>"
+	ELSE
+		"<tr class=trDataRow0>"
+	"<td nowrap class=tdDataRow>"
+	 COUNTER_NAME(N) "</td>" 
+IF(ARRAY(400+N) EQ 0)
+BEGIN
+"<td nowrap class=tdDataRowC><a onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=18&Comment=0');\" href=?window="N"&status=1><IMG SRC=yes.png border=0></a>"
+END
+ELSE
+BEGIN
+"<td nowrap class=tdDataRowC><a onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=18&Comment=0');\" href=?window="N"&status=0><IMG SRC=no.png border=0></a>"
+END
+IF(ARRAY(7000+N) EQ 1)
+BEGIN
+"<td nowrap class=tdDataRowC><a onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=18&Comment=0');\" href=?window="N"&spec=1><IMG SRC=yes.png border=0></a>"
+END
+ELSE
+BEGIN
+"<td nowrap class=tdDataRowC><a onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=18&Comment=0');\" href=?window="N"&spec=2><IMG SRC=no.png border=0></a>"
+END
+
+"</tr>"
+
+N=N+1
+END
+
+%>
+				
+				
+ 
+										
+			
+			</table>
+		</td>
+ 
+		<td valign=top align=left>
+			
+		</td>
+	</tr>
+	<tr>
+		<td class=tdCopyright>
+			Ритейл АСП (+7(495)953-05-08, +7(495)951-68-09)
+		</td>
+		<td class=tdVersion>
+			Версия 2.0
+		</td>
+	</tr>
+</table>
+ 
+ 
+</html>

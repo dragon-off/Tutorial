@@ -1,0 +1,78 @@
+#loadcache2("GROUP" true)
+#loadcache2("BUTTON" false )
+
+<tree version="1.0" image = "images/categories.gif">
+    #cdata("label" $text.getText("category.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("category.generalNodeLabel") )
+    #set( $top_node_image          = "images/categories.gif"                    )
+    #set( $item_node_image         = "images/category.gif"                      )
+
+    #set( $section_main            = "GROUP"                                    )
+
+    #set( $top_node_grid           = "./category/form_categories.vm"            )
+    #set( $item_node_grid          = "./category/form_category.vm"              )
+    #set( $group_node_grid         = "./category/form_category.vm"              )
+    #set( $button_node_grid        = "./buttons/form_button.vm"                 )
+
+    #set( $top_node_action         = "./category/action_categories.vm"          )
+    #set( $group_node_action       = "./category/action_button_group.vm"        )
+    #set( $button_node_action      = "./category/action_category.vm"            )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems   = $sm.getNumericSetting( $section_main, "MAX"))
+    #set($maxbuttons = $sm.getNumericSetting( "BUTTON", "MAX"))
+
+    #nodestart($top_node_label $top_node_image)
+
+        #foreach($group in [1.. $maxitems])
+            #set($groupName = $sm.getStringSetting($section_main, "NAME$group"))
+            #nodestart("${group}.$groupName" $top_node_image)
+                #set($sg = $sm.getGroupByMember($section_main, "SETTINGS", $group).getGroup())
+                <grid-ref>
+                    #cdata("name" $group_node_grid)
+                    #param("setting" ${sg})
+                    #param("item" ${group})
+                    #param("name" $sm.getStringSetting($section_main, "NAME$group"))
+                </grid-ref>
+                #set($buttonGroup = $sm.getSettingsGroup("BUTTON", "GROUPS", $group))
+                #set($members = $buttonGroup.getMembers())
+                #foreach($button in $members)
+                    #set($buttonName = $sm.getStringSetting("BUTTON", "NAME$button"))
+                    #nodestart("$button. $buttonName" $item_node_image)
+                        <grid-ref>
+                            #cdata("name"  $button_node_grid)
+                            #param("item"  ${button})
+                            #param("name"  $sm.getStringSetting("BUTTON", "NAME$button"))
+                         </grid-ref>
+                        <action-ref>
+                            #cdata("name"   $button_node_action)
+                            #param("group"  ${item})
+                            #param("button" ${button})
+                         </action-ref>
+                     #nodeend()
+                #end
+            #nodeend()
+        #end
+
+        <grid-ref>
+            #cdata("name" $top_node_grid)
+        </grid-ref>
+
+        <action-ref>
+            #cdata("name" $top_node_action)
+            #param("section" ${section_main})
+            #param("group" ${maxitems})
+        </action-ref>
+    #nodeend()
+
+    #perf()
+
+</tree>

@@ -1,0 +1,47 @@
+<%
+I=1
+L="" {SHOW LOGIN}
+B="" {SHOW BUTTON}
+"{'"operation"':['"
+WHILE(I LE 23)
+BEGIN
+	IF(ARRAY(1000+I) EQ 0 AND I LE 20)
+	BEGIN
+		IF(B EQ "")
+			B=""+I
+		ELSE
+		BEGIN
+			B=B+","+I
+		END
+	END
+
+	IF(I LE 23) 
+	BEGIN
+		ARRAY(1100+I)"','"
+	END
+	ELSE
+	BEGIN
+		"null,"
+	END
+	I=I+1
+END
+"'],'max_logins':"MAX_LOGINS",'show_login':["
+I=1
+S=ARRAY(1100)
+WHILE(I LE MAX_LOGINS)
+BEGIN
+	J=I
+	IF(STRSUB(ARRAY(1100) I I) EQ "0")
+		IF(L EQ "")
+		BEGIN
+			L="1"
+			STRNTS(J+1)
+		END
+		ELSE
+		BEGIN
+			"," STRNTS(J+1)
+	END
+	I=I+1
+END
+"],'show_button':["B",21,22,23]}"
+%>	 

@@ -1,0 +1,132 @@
+
+
+<%
+P=(${printer}0)/10
+
+IF(P GT 0)
+BEGIN
+T = (${print_time}0)/10
+C = (${print_chel}0)/10
+SETARRAY(2130+P T)
+SETARRAY(2135+P C)
+END
+ELSE
+	BEGIN
+	I=1
+
+	A=(${time1}0)/10
+	B=(${chel1}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time2}0)/10
+	B=(${chel2}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time3}0)/10
+	B=(${chel3}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time4}0)/10
+	B=(${chel4}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time5}0)/10
+	B=(${chel5}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time6}0)/10
+	B=(${chel6}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time7}0)/10
+	B=(${chel7}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time8}0)/10
+	B=(${chel8}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time9}0)/10
+	B=(${chel9}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time10}0)/10
+	B=(${chel10}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time11}0)/10
+	B=(${chel11}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time12}0)/10
+	B=(${chel12}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time13}0)/10
+	B=(${chel13}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time14}0)/10
+	B=(${chel14}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+
+	A=(${time15}0)/10
+	B=(${chel15}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+	A=(${time16}0)/10
+	B=(${chel16}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+	A=(${time17}0)/10
+	B=(${chel17}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+	A=(${time18}0)/10
+	B=(${chel18}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+	A=(${time19}0)/10
+	B=(${chel19}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+	A=(${time20}0)/10
+	B=(${chel20}0)/10
+	SETARRAY(5900+I A)
+	SETARRAY(5920+I B)
+	I=I+1
+	END
+%>

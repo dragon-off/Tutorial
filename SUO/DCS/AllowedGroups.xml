@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data-context>
+  <groups>
+    <group>
+      <name>MC_Queue_Operator</name>
+    </group>
+    <group>
+      <name>Queue_ShiftAdmin</name>
+    </group>
+    <group>
+      <name>suo_trm</name>
+    </group>
+    <group>
+      <name>suo_dir</name>
+    </group>
+    <group>
+      <name>suo_root_user</name>
+    </group>
+    <group>
+      <name>suo_branchadmin</name>
+    </group>
+  </groups>
+</data-context>

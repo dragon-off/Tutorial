@@ -1,0 +1,7 @@
+<% 
+	B=1
+	WHILE(B LE MAX_BUTTONS)
+	BEGIN
+		BUTTON_QUEUE(B) "\n" B=B+1
+	END
+%>

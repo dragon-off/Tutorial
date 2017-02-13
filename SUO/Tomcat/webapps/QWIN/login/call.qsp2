@@ -1,0 +1,7 @@
+<%
+V=${v}
+FUNC_CALL_TRACK(1 V 1 0 0)
+
+V"=" COUNTER_CUSTOMER_ITEM(1  ITEM_TRACK)
+
+%>

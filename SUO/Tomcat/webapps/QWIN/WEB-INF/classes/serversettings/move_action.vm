@@ -1,0 +1,9 @@
+
+  #set( $max   = $sm.getNumericSetting( $section, $key ) + 1)
+  #set( $grp   = 0 )
+  #set( $itm   = 0 )
+
+  $sm.addMemberToGroup($section, $key, $grp.parseInt($list), $itm.parseInt($item), true)
+
+
+

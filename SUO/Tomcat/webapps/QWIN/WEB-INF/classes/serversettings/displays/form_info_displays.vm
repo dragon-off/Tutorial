@@ -1,0 +1,17 @@
+#loadcache2("MONITOR*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    
+    #cdata("label" $text.getText("dispinfo.generalNodeLabel"))
+
+    #set( $section            = "MONITOR"                                      )
+
+    ##    SECTION  KEY            LABEL_ID                 TYPE       HELP_ID                 MIN MAX  REGEXP
+    ##----------------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"          "dispinfo.maxMainDisp"   "number"   "dispinfo.maxMainDisp"  0   99   "" )
+    #qsys($section "ID_NO_START"  "dispinfo.startIdCode"   "number"   "dispinfo.startIdCode"  1   128  "" )
+    #qsys($section "TIME_UPDATE"  "dispinfo.update"        "number"   "dispinfo.update"       0   255  "" )
+
+</grid-form>

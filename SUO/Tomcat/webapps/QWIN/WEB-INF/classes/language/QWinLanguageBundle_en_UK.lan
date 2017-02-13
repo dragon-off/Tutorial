@@ -1,0 +1,1469 @@
+logout                                  = Logout
+login                                   = Login
+staff.staffMemberManagement             = Staff member management
+staff.add                               = Add
+staff.address                           = Address
+staff.alreadymember                     = Member of these groups
+staff.alreadymembersofgroup             = Members of this group
+staff.alreadymembersofgroupaccess       = Members and access
+staff.buttonName                        = Lock to Ticket Button
+staff.canbookapp                        = Can book appointments
+staff.cancel                            = Cancel
+staff.cancreateapp                      = Can create appointments
+staff.cansetapp                         = Can set appointment status to arrived
+staff.clickaddgroup                     = Click to add group
+staff.clickaddmember                    = Click to add Staff Member
+staff.clickremovegroup                  = Click to remove group
+staff.clickremovemember                 = Click to remove Staff Member
+staff.comments                          = Comments
+staff.duringWeeks                       = During weeks
+staff.email                             = Email
+staff.find                              = Find
+staff.from                              = From
+staff.groupinformation                  = Group Information
+staff.loginname                         = Username
+staff.loginCode                         = Login code
+staff.loginId                           = Login id
+staff.loginsettings                     = Login
+staff.name                              = Name
+staff.nonmembersofgroup                 = Non-members of this group
+staff.notmember                         = Not member of these groups
+staff.officePrinter                     = Office printer
+staff.pager                             = Pager name
+staff.password                          = Password
+staff.priority                          = Lock Priority at Login
+staff.personalsettings                  = Personal settings
+staff.phone                             = Phone
+staff.pino                              = PINo
+staff.remove                            = Remove
+staff.save                              = Save
+staff.search.type                       = Type
+staff.setpassword                       = Set Password
+staff.staffgroups                       = Staff Groups
+staff.staffgroupChanged                 = Staff Group is changed and not saved
+staff.staffgroupSaved                   = Staff Group is saved
+staff.staffmembers                      = Staff Members
+staff.staffmemberChanged                = Staff Member is changed and not saved
+staff.staffmemberSaved                  = Staff Member is saved
+staff.tab.accesscontrol                 = Access Control
+staff.tab.branchaccess                  = Branch Access
+staff.tab.general                       = General
+staff.tab.membership                    = Membership
+staff.tab.reports                       = Reports
+staff.tab.access                        = Access Control
+staff.tabs.general                      = General
+staff.tabs.staffgroups                  = Staff Groups
+staff.tabs.usergroups                   = User Groups
+staff.to                                = To
+staff.town                              = Town
+staff.usePresentMonth                   = Use present month instead of weeks
+staff.usergroups                        = User Groups
+staff.usergroupChanged                  = User Group is changed and not saved
+staff.usergroupSaved                    = User Group is saved
+staff.usergroupspolicy                  = User group policy
+staff.webpassword                       = Web password
+staff.webuser                           = Web user
+staff.workMax1                          = Working limit 1
+staff.workMax2                          = Working limit 2
+staff.workStart                         = Working Time
+staff.zipcode                           = ZipCode
+staff.loginexistserror                  = Login name already exists. Please choose another login name
+staff.loginCodeNan                      = Login Code is not a number
+staff.workinglimitNan                   = Working limit contain data that is not a number
+staff.logincodeOutOfInterval            = Login code has to be in the interval of 1-9999
+staff.createLoginId                     = Generate Login code
+staff.mustchangepassword                = Must change password during next logon
+staff.passwordUpdated                   = The Password has been succesfully updated
+staff.oldPasswordIncorrectError         = Old Password is incorrect
+staff.noReusePasswordError              = The passwords are not allowed to be identical
+staff.passwordTooSimple                 = The new password is too simple
+staff.newPasswordTooShortError          = The new password is too short
+staff.newPasswordNotUniqueError         = The new password is not unique
+staff.newPasswordNumericError           = The new password is not allowed too be numeric at beginning or end
+staff.newPasswordConsecutiveCharsError  = The new password is not allowed to have consecutive characters
+staff.newPasswordPartlySameError        = The new password is not allowed too be partly same as the old password
+staff.newPasswordDictionaryError        = The new password is not allowed too be a dictionary word
+staff.newPasswordPartDictionaryError    = The new password is not allowed too be a part of a dictionary word
+staff.newPasswordUsernameSameError      = The new password is not allowed too be same as username
+staff.ticketButton                      = Assigned to Ticket button
+staff.adminByGroupMembers               = This group can be administrated by members of the following groups
+
+staff.confirm.createNewStaffGroup       = Create a new Staff Group?
+staff.confirm.createNewStaffMember      = Create a new Staff Member?
+staff.confirm.createNewUserGroup        = Create a new User Group?
+staff.confirm.deleteSelected            = Delete selected item?
+
+staff.staffMemberSaved                  = Staff Member has been saved
+staff.staffMemberNotSaved               = Staff Member has not been saved
+
+staff.resetPassword                     = Reset password
+staff.passwordCleared                   = The Password has been succesfully cleared
+
+script.insertFunction                   = Insert function
+script.insertScript                     = Insert script
+script.test                             = Test
+script.done                             = Done
+script.templates                        = Templates
+script.functions                        = Functions
+                                        
+settings.save                           = Save
+settings.restore                        = Restore
+settings.formChanged                    = Form is changed and not saved
+settings.formSaved                      = Form is saved
+settings.incorrectValue                 = Incorrect value in field(s)
+settings.numberInvalid                  = must be a numeric value
+settings.outOfRange                     = must be >= $1 and <= $2
+settings.outOfRangeLow                  = must be >= $1
+settings.outOfRangeHigh                 = must be <= $1
+settings.stringOutOfRange               = must contain between $1 and $2 characters
+settings.invalidScript                  = contains an invalid script
+settings.invalidPattern                 = does not contain valid input
+
+matter.sortOnId				                  = Sort on id
+matter.sortOnName			                  = Sort on name
+matter.clickEdit			                  = Click to edit Matter code
+matter.matterCodes		                  = Matter codes
+matter.id							                  = Id
+matter.name						                  = Name
+matter.time						                  = Time
+matter.hour						                  = Hours
+matter.minute					                  = Minutes
+matter.second					                  = Seconds
+
+array.array                             = Array
+array.showRange                         = Show range
+array.save                              = Save
+array.index                             = Index
+array.value                             = Value
+array.startIndex                        = Start index
+array.length                            = Length
+array.clickEdit                         = Click to edit value
+
+priority.save                           = Save
+priority.add                            = Add
+priority.type                           = Type
+priority.line                           = Priority line
+priority.basedOn                        = Based on
+priority.buttonsAndLevels               = Buttons and levels
+priority.category                       = Category
+priority.buttonFrom                     = From Button
+priority.buttonTo                       = To Button
+priority.script                         = Script
+
+priority.basedOn.custWaiting            = Customer waiting
+priority.basedOn.estWaitingTime         = Estimated waiting time
+priority.basedOn.actWaitingTime         = Actual Waiting time
+priority.basedOn.openWorkstations       = Number of open workstations
+priority.basedOn.waitingPerWorkstation  = Waiting per workstation
+priority.basedOn.custWaitringCanCall    = Customer waiting can be called
+priority.basedOn.actWaitingCanCall      = Actual waiting time can be called
+
+priority.type.selectFromCategory        = Select a customer from a category
+priority.type.byLevel                   = Select by level                   
+priority.type.highestValueByLevel       = Select the highest value by level 
+priority.type.buttonByScript            = Select a button by script         
+
+scheduler.save                          = Save
+                                        
+scheduler.type.everyDay                 = Every day
+scheduler.today                         = Today
+scheduler.type.byDate                   = By date   
+scheduler.type.dayInMonth               = Day in month
+scheduler.type.dayInWeek                = Day in week
+scheduler.type.firstDayInMonth          = First day in month
+
+scheduler.timeRange                     = Time range
+scheduler.weekRange                     = Exclude weeks
+
+scheduler.showCalendar                  = Open calendar
+
+scheduler.day.monday          = Monday
+scheduler.day.tuesday         = Tuesday
+scheduler.day.wednesday       = Wednesday
+scheduler.day.thursday        = Thursday
+scheduler.day.friday          = Friday
+scheduler.day.saturday        = Saturday
+scheduler.day.sunday          = Sunday
+
+scheduler.day.mondayAbbr      = Mo
+scheduler.day.tuesdayAbbr     = Tue
+scheduler.day.wednesdayAbbr   = We
+scheduler.day.thursdayAbbr    = Thu
+scheduler.day.fridayAbbr      = Fr
+scheduler.day.saturdayAbbr    = Sat
+scheduler.day.sundayAbbr      = Sun
+
+
+
+scheduler.include             = Include
+scheduler.exclude             = Exclude
+scheduler.scheduleItem        = Schedule item
+
+month.january              = January 
+month.february             = February
+month.march                = March
+month.april                = April
+month.may                  = May     
+month.june                 = June   
+month.july                 = July   
+month.august               = August
+month.september            = September
+month.october              = October 
+month.november             = November
+month.december             = December
+
+weekday.short.monday       = Mon
+weekday.short.tuesday      = Tue
+weekday.short.wednesday    = Wed
+weekday.short.thursday     = Thu
+weekday.short.friday       = Fri
+weekday.short.saturday     = Sat
+weekday.short.sunday       = Sun
+
+policy.managementScreens                = Management screens
+
+categoryInformation                     = Web - Category Information
+qwin                                    = Web - Q-WIN
+workstationInformation                  = Web - Workstation Information
+
+policy.calendarList                     = Appointment list
+policy.calendarPlan                     = Appointment planner
+policy.arvNotifyDlg                     = Arrival notify dialog
+policy.layoutByVip                      = Arrival layout based on VIP level
+policy.rmenuUndoCall                    = Undo call
+policy.rmenuUndoArr                     = Undo arrival
+policy.editArrived                      = Edit arrived
+policy.deleteCalled                     = Delete called
+policy.deleteArrived                    = Delete arrived
+policy.lstUseCall                       = Enable Call in Appointment list
+
+policy.clientTerminal                   = Client terminal
+policy.designer                         = Designer
+policy.distributedManagement            = Distributed management
+policy.staffAdv                         = Staff advanced
+policy.staffBasic                       = Staff basic
+policy.quickText                        = Quick text editor
+policy.serverEditor                     = System configuration
+policy.staffManagement                  = Staff management
+policy.statisticalReports               = Statistical reports
+policy.textEditor                       = Ticket editor
+policy.textEditorTP                     = Ticket editor TP
+policy.textEditorTPScript               = Edit script objects
+policy.textSelect                       = Ticket selector
+policy.customerRegistration             = Customer Registration
+
+policy.enterUserName                    = Enter user name
+policy.listUserName                     = List user name
+policy.pswNeeded                        = Password needed
+policy.windowsUserName                  = Windows user name
+
+policy.parentBranch                     = Branch
+policy.parentGeneral                    = General
+policy.parentCalendar                   = Calendar
+policy.parentTicketEditor               = Ticket Editor
+policy.q-winWorkstation	                = Q-WIN WorkStation
+
+policy.resetPassword                    = Reset password
+
+utilities.uploadDisplayFonts            = Upload display fonts
+utilities.uploadFonts										= Upload fonts
+utilities.serverlog                     = Server log
+utilities.serverLogRefresh              = Update
+
+file.browse                             = Browse
+file.filebrowser                        = File browser
+file.parentfolder                       = Parent Folder
+
+
+font.name                               = Name
+
+general.valuesChanged                   = The values has been changed.
+general.saveBeforeLeaving               = Do you want to save changes before leaving?
+general.QwinWorkspace                   = Q-WIN Workspace
+general.user                            = User
+general.serverVersion                   = Server Version
+
+management.categoryInformation          = Category Information
+management.workstationInformation       = Workstation Information
+management.qwinManagement               = Q-WIN Management
+management.categorySettings             = Category Settings
+management.workstationSettings          = Workstation Settings
+management.generalSettings              = General Settings
+management.selectedQueue                = Selected queue
+management.workstation                  = Workstation
+management.transactionTime              = Transaction Time
+management.estWaitingTime               = Est w.time
+management.actWaitingTime               = Act w.time
+management.waiting                      = Waiting
+management.openWs                       = Open ws.
+management.number                       = Number
+management.button                       = Button
+management.time                         = Time
+management.total                        = Total
+management.category                     = Category
+management.alarm                        = Alarm
+management.showQueue                    = Show queue
+management.workload                     = Workload
+management.enable                       = Enable
+management.categoryName                 = Category Name
+management.waitingTimeAlarmLevel        = Waiting time Alarm Level (seconds)
+management.save                         = Save
+management.submitChange                 = Save
+management.cancel                       = Cancel
+management.parameter                    = Parameter
+management.value                        = Value
+management.reloadTime                   = Reload time
+management.seconds                      = seconds
+management.workstationName              = Workstation Name
+management.staffMember                  = Staff Member
+management.priority                     = Priority
+management.fixedPriority                = Lock to priority
+management.notLockedToPrio              = None
+management.cancel                       = Cancel
+management.prioritySetting              = Priority Settings
+management.customerName                 = Customer Name
+management.footerCopyright              = Qmatic
+management.footerVersion                = Version
+
+management.template.workstationInformation = Workstation Information (example)
+management.template.description            = This example Management Screen shows all Workstations and currently served customers
+management.template.workstation            = Workstation
+management.template.customer               = Customer
+management.template.closed                 = Closed
+
+management.showLetter			= Show letter in front of queue number
+management.digits			= digits
+management.numberOfDigits		= Number of digits in queue number
+management.yes				= Yes
+management.no				= No
+
+
+####################################################
+#   Serversettings
+####################################################
+
+
+#
+# Common strings
+#
+
+common.defaultName            = Name
+
+
+#
+# Tree
+#
+tree.serverGroup              = Q-WIN Server
+tree.alarms                   = Alarms
+tree.buttons                  = Buttons
+tree.cardReaders              = Card readers
+tree.cardValidation           = Card validation
+tree.categories               = Categories
+tree.database                 = Database
+tree.displays                 = Displays
+tree.email                    = E-Mail
+tree.host                     = Host
+tree.license                  = License
+tree.multiInterfaces          = Multi interfaces
+tree.matterCodes              = Matter codes
+tree.pagerInterfaces          = Pager interfaces
+tree.printers                 = Printers
+tree.priorities               = Priorities
+tree.scheduledActivities      = Scheduled activities
+tree.security                 = Security
+tree.terminals                = Terminals
+tree.transfers                = Transfers
+tree.voice                    = Voice
+tree.wirelessTerminals        = Wireless terminals
+
+tree.utilitiesGroup           = Utilities
+tree.utilities                = Utilities
+
+tree.applicationGroup         = Applications
+tree.calendar                 = Qmatic Calendar
+tree.qwinClient               = Q-WIN Client
+tree.qwinApiClient	          = Q-WIN API Client
+tree.webTerminal              = Qmatic Web Terminal
+
+
+#
+# Client
+#
+client.policy                  = Policy
+client.ENTER_USER_NAME         = Must enter username
+client.LIST_USER_NAME          = Allow username listing
+client.PSW_NEEDED              = Must enter password
+client.WINDOWS_USER_NAME       = Allow windows username
+client.passwordSett            = Password settings
+client.policyError             = Some username policy has to be set
+client.loginPolicy             = Q-WIN Client Login Policy
+
+#
+# API Client
+#
+apiclient.treeHeading          = Q-WIN API Client
+apiclient.generalNodeLabel     = Logon Policy
+apiclient.loginPolicy          = Q-WIN Api Client Login Policy
+
+apiclient.ENTER_USER_NAME      = Must enter username
+apiclient.LIST_USER_NAME       = Allow username listing
+apiclient.PSW_NEEDED           = Must enter password
+apiclient.WINDOWS_USER_NAME    = Allow windows username
+apiclient.passwordSett         = Password settings
+apiclient.policyError          = Some username policy has to be set
+
+
+#
+# Alarms
+#
+alarms.Alarms                 = Alarms
+
+# Alarms Tree
+alarms.generalNodeLabel       = General
+alarms.treeHeading            = Alarms
+
+# Alarms General Settings
+alarms.maxTypes               = Number of alarm types
+alarms.updateTime             = Update of alarm
+alarms.minActiveTime          = Min. time new alarm is active
+alarms.maxActiveTime          = Max. time new alarm is active
+alarms.maxSimultan            = Maximum number of queued alarms
+alarms.oldAlarmsAlt           = Number of old alarms alternating
+alarms.timeAlternate          = Alternating time between old alarms
+alarms.maxTimeAlternate       = Max time an old alarm can be alternating
+alarms.minMessageNo           = Minimum message no.
+alarms.maxMessageNo           = Maximum message no.
+alarms.newAlarms              = New alarms
+alarms.oldAlarms              = Old alarms
+alarms.messageAlarms          = Message alarms
+alarms.addAlarm               = Add alarm
+alarms.remAlarm               = Remove alarm
+
+# Alarm Settings
+alarm.name                    = Name
+alarm.SettingsHeading         = Alarm Settings
+alarm.number                  = Alarm number
+alarm.videoUnit               = Video Unit
+alarm.voiceUnit               = Voice Unit
+alarm.minValue                = Min. value
+alarm.maxValue                = Max. value
+alarm.scriptProg              = Criteria for alarm
+alarm.trigging                = Trigging
+alarm.minType                 = Trig this alarm when the result value is
+alarm.minTypeMax              = greater or equal to Max
+alarm.minTypeMin              = less or equal to Min
+
+#
+# Buttons
+#
+
+# Button Tree
+buttons.treeHeading           = Buttons
+buttons.generalNodeLabel      = General
+buttons.groupNodeLabel        = Button Group
+
+# General Button Settings
+buttons.SettingsHeading       = General ticket button settings
+buttons.max                   = Number of ticket buttons
+buttons.letters               = Button letters
+
+# Button Group Setting
+buttons.groupSettingsHeading  = Button group setting
+buttons.lockToCounter           = Button locked to Work Station
+buttons.failedText            = Ticket Text No when waiting to many
+buttons.walkTime              = Walk time
+buttons.transMaxTime          = Time for transfer
+buttons.transToButton         = Transfer to this button
+buttons.startNumber           = Start ticket number
+buttons.endNumber             = End ticket number
+buttons.voiceUnit             = Voice played when button is pressed
+buttons.videoUnit             = Video unit no
+buttons.failedTicket          = Error ticket
+buttons.failedVoice           = Voice played when too many waiting
+buttons.failedVideo           = Video unit no when waiting too many
+buttons.groupProg             = Optional program
+buttons.custIdProg            = Optional cust ID program
+buttons.useWeighted           = Use weighted average
+buttons.estwIncluded          = Percentage of estimated waiting time
+buttons.realIncluded          = Percentage of real waiting time
+buttons.fixedIncluded         = Percentage of fixed
+buttons.fixedValue            = Fixed value
+buttons.exclude               = Exclude waiting times longer than
+buttons.estwLen               = Number of tickets
+buttons.estwtime              = Estimated waiting time
+
+# Button actions
+buttons.addButton             = Add button
+buttons.remButton             = Remove button
+buttons.moveButton            = Move to button group
+buttons.newButtonGrp          = New button group
+
+
+# Button setting
+button.SettingsHeading        = Button Setting
+button.name                   = Button Name
+button.category               = Category
+button.tickSelection          = Ticket text
+
+
+#
+# Card Readers
+#
+
+# Card Reader Tree
+card.treeHeading              = Card readers
+card.generalNodeLabel         = General
+card.groupNodeLabel           = Card reader group
+
+card.name                     = Name
+card.max                      = Number of card readers
+card.idCode                   = ID code
+card.subIdCode                = Starting sub ID
+
+card.printer                  = Connected to printer
+card.ledTime                  = LED time (sec)
+card.scriptAction             = Script program
+card.accepted                 = Card accepted script
+card.rejected                 = Card rejected script
+
+# Card Reader actions
+card.addCardReader            = Add card reader
+card.remCardReader            = Remove card reader
+card.moveCardReader           = Change group
+card.newCardGrp               = New card reader group
+
+# Card Reader
+card.name                = Name
+
+
+#
+# Card Validation
+#
+
+# Card Validation Tree
+cardvalid.treeHeading         = Card validation
+cardvalid.generalNodeLabel    = General
+
+
+# Card Validation actions
+cardvalid.addCardValid        = Add card type
+cardvalid.remCardValid        = Remove card type
+
+# Card Validation General form
+cardvalid.max                 = Number of card types
+cardvalid.digitsStored        = Number of card digits stored
+cardvalid.cardsStored         = Maximum number of cards stored
+cardvalid.debug               = Debug
+
+# Card Validation Item
+cardvalidItem.start           = Start validation
+cardvalidItem.stopp           = Stop validation
+cardvalidItem.validString     = Validation data
+cardvalidItem.button          = Locked to ticket button
+cardvalidItem.stripProg1      = Track 1
+cardvalidItem.stripProg2      = Track 2
+cardvalidItem.stripProg3      = Track 3
+cardvalidItem.track           = Track to use for validation
+cardvalidItem.useCustInfo     = Search the customers database for info.
+cardvalidItem.validCust       = Card's data must be valid
+cardvalidItem.cardDataProg    = Card data program.
+cardvalidItem.track1          = Track 1
+cardvalidItem.track2          = Track 2
+cardvalidItem.track3          = Track 3
+cardvalidItem.name            = Name
+
+#
+# Category Settings
+#
+
+# Category Tree
+category.treeHeading          = Categories
+category.generalNodeLabel     = General
+
+# Category action
+category.addButton            = Add category
+category.remButton            = Remove category
+category.moveButton           = Move to category
+category.newCategory          = New category
+
+# Categories
+categories.SettingsHeading    = Category Settings
+categories.max                = Number of categories
+categories.letters            = Category letters
+
+# Category
+category.name                 = Name
+category.startNum             = Start number
+category.endNum               = End number
+category.tickPerTimePer       = Max tickets per time period
+category.periodLength         = Period length
+
+category.appointment          = Restrictions
+category.groupSize            = Max waiting customers
+category.allowDouble          = Do not allow same ticket number twice
+category.updateDb             = Update ODBC online
+category.copyNotes            = Copy notes
+
+category.waitingTime          = Estimated waiting time
+category.useWeighted          = Use weighted average
+category.estwTickLen          = Number of tickets
+category.estwIncluded         = Percentage of estimated waiting time
+category.readIncluded         = Percentage of real waiting time
+category.fixedIncluded        = Percentage of fixed value
+category.fixedValue           = Fixed value
+category.exclude              = Exclude waiting times longer than
+
+category.corrEstwTime         = Correction of Estimated Waiting time. 100 is no correction, 120 is +20%, 90 is -10%. Min: 0; Max: 200.
+category.appointPeriod        = Period length
+category.appointsize          = Max tickets per time period
+category.cardDatalen          = in use= CARD_DATA_LEN
+
+#
+# Database Settings
+#
+
+# Database Tree
+database.treeHeading          = Database
+database.generalNodeLabel     = Database settings
+database.SettingsHeading      = Database settings
+database.odbcDsn              = DSN
+database.odbcUser             = User name
+database.odbcPsw              = Password
+database.odbcTimeout          = Timeout
+database.odbcQryTimeout       = Query timeout
+database.odbcMaxRows          = Max rows
+database.siteId               = Site Id ??
+database.logonText            = Logon Text ??
+database.compactTime          = Compact time
+database.backupTime           = Backup time
+database.pictKeepDays         = Keep picture
+database.autoPeriod           = Auto Period ???
+database.backup               = Backup settings
+database.backupUser           = Backup User
+database.backupPsw            = Password
+database.backupDSN            = DSN
+database.backupKeepDays       = Automatic deletion
+
+
+#
+# Display Settings
+#
+
+# Display tree
+display.treeName              = Displays
+dispmain.generalNodeLabel     = Main displays General
+dispinfo.generalNodeLabel     = Information displays General
+dispmain.groupNodeLabel       = Main display group
+dispinfo.groupNodeLabel       = Information display group
+
+# Display actions
+dispmain.addMainDisp          = Add main display
+dispmain.remMainDisp          = Remove main display
+dispmain.moveToGroup          = Move to main display group
+dispmain.newMainDispGrp       = New main display group
+dispinfo.addInfoDisp          = Add information display
+dispinfo.remInfoDisp          = Remove information display
+dispinfo.moveToGroup          = Move to info display group
+dispinfo.newInfoDispGrp       = New info display group
+
+# Main Display Settings
+##dispmain.SettingsHeading    = Main display
+dispmain.maxMainDisp          = Number of displays
+dispmain.startIdCode          = Starting Id code
+dispmain.queueLen             = Queued calls
+
+dispmain.name                 = Name
+dispmain.voice                = Voice
+dispmain.autoTurnOff          = Auto turn off
+dispmain.update               = Update (sec)
+dispmain.minDisplayed         = Minimum time for ticket number
+dispmain.timeBeforeAlt        = Time before alternating
+dispmain.timeAlt              = Display time
+dispmain.timeEndAlt           = Time number is displayed
+dispmain.timeArrow            = Time for arrow
+dispmain.timeFlash            = Flash time
+
+dispmain.useButtonLett        = Use button letters
+dispmain.useEnterButt         = Use enter button
+dispmain.catDisplayed         = Included categories
+dispmain.counterInclud        = Included workstations
+dispmain.counterOnLeft        = Workstations to the left
+dispmain.useInternalBuzz      = Use internal buzzer
+
+dispmain.optProg              = Optional program
+dispmain.numSecondaries       = Number of secondary rows
+dispmain.secProg              = Secondary program
+
+
+# Information Display Settings
+dispinfo.maxMainDisp          = Number of displays
+dispinfo.startIdCode          = Starting Id code
+dispinfo.update               = Update interval
+
+dispinfo.name                 = Name
+dispinfo.infoType             = Output format
+dispinfo.infoIsNum            = Numeric
+dispinfo.infoIsText           = Text
+
+dispinfo.flashOnValue         = Flash above this value
+dispinfo.bellOnValue          = Bell  above this value
+dispinfo.useIntBuzz           = Internal buzzer
+dispinfo.program              = Script program
+
+# Display Fonts Tree
+fonts.treeHeading             = Display font settings
+fonts.generalNodeLabel        = Display fonts
+
+# Display Fonts actions
+fonts.addFont                 = Add font
+fonts.remFont                 = Remove font
+
+# Display Fonts General Settings
+fonts.mainSettingsHeading     = General display font settings
+fonts.max                     = Number of fonts
+fonts.timeRefresh             = Refresh time
+fonts.reduceLang              = Select language
+fonts.none                    = None
+fonts.japanese                = Japanese
+fonts.chineseSimp             = Chinese (simplified)
+fonts.chineseTrad             = Chinese (traditional)
+fonts.korean                  = Korean
+
+
+# Display Font Settings
+font.name                     = Name
+font.SettingsHeading          = Display font settings
+font.enabled                  = Font enabled
+font.bsidNo                   = BSID
+font.id                       = Font Id
+font.file                     = Font file
+
+
+#
+# Email
+#
+
+# Email Tree
+emails.treeHeading            = E-mail
+emails.generalNodeLabel       = General
+
+# Email actions
+emails.addEmail               = Add email
+emails.remEmail               = Remove email
+
+# Email General Settings
+emails.mainSettingsHeading    = General E-mail Settings
+emails.max                    = Number of email setups
+emails.fromAdress             = From e-mail address
+emails.fromName               = From e-mail name
+emails.replyTo                = Reply to
+emails.smtpServer             = SMTP Server
+emails.smtpUser               = SMTP Server Login Name
+emails.smtpPassword           = SMTP Server Login Password
+emails.smtpPort               = SMTP Server Port
+emails.smtpSSL                = SMTP Server requires SSL/TLS
+emails.queueLen               = Email queue
+
+# Email Settings
+email.name                    = Name
+email.SettingsHeading         = E-mail message Settings
+email.toAdress                = To e-mail address
+email.toName                  = To e-mail name
+email.scriptProgram           = Script program
+email.subject                 = Email subject
+
+#
+# Host Settings
+#
+
+# Host Tree
+host.treeHeading              = Host
+host.scriptsHeading           = Script Settings
+host.eventsHeading            = Event Settings
+host.conNodeLabel             = Connections
+host.runScriptNodeLabel       = Run Scripts
+host.dateHeading              = Date and Time
+host.ioSettings               = Communication
+host.systemScriptHeading      = System script
+host.languageHeading          = Language
+
+# Events Settings
+host.evAlarmToManager         = 1. Alarm from server to manager
+host.evRemovedFromCat         = 2. Customer is removed from cat
+host.evInsertInCat            = 3. Customer is inserted into cat
+host.evCalledFromCat          = 4. Customer is called from a cat
+host.evWorkNext               = 5. Work Station Next
+host.evWorkClose              = 6. Work Station Close
+host.evTicketPrinted          = 7. Ticket Printed at printer
+host.evTicketButton           = 8. Ticket button has created a ticket
+host.evNumInsertDispl         = 9. Number inserted at display
+host.evCardInserted           = 10. Card Inserted at card reader
+host.evCalendarUpdate         = 11. Calendar needs update
+host.evShowLayout             = 12. Show a layout due to script
+host.evCalendarChange         = 13. Calendar change
+host.evWorkLogon              = 14. Work Station Logon
+host.evWorkLogoff             = 15. Work Station Logoff
+host.evWorkOpen               = 16. Work Station Open
+host.evServerUpDown           = 17. System Server Up and Down
+host.evServerSetupChange      = 18. Server Setup has changed
+host.evCardInsertedInvalid    = 21. Invalid Card Inserted at card reader
+host.evUserInteractionTimeout = 24. User interaction timeout
+
+# Connection Settings
+host.conGenSettingsHeading    = Connection Settings
+host.hostMax                  = Host connections
+host.connectionHeading        = Connection Settings
+
+host.conName                  = Name
+host.constr                   = temp string
+host.conPort                  = Port
+host.conEventPort             = UDP Event port
+host.conTcpEventPort          = TCP Event port
+host.conClients               = Max Clients
+host.conMltThread             = MultiThreaded
+host.conMaxThreads            = Max Threads
+host.encryption               = Type of encryption
+host.encryptQwin              = Q-WIN Encryption
+host.encryptDist              = Distributor encryption
+host.encryptPubl              = No encryption
+
+host.addConn                  = Add connection
+host.remConn                  = Remove connection
+
+# Communication
+host.protocolSettings         = Communication settings
+host.commandTrys              = Send commands
+host.conTimeOut               = Connection time out
+host.ansTimeOut               = Answer time out
+host.dataTrys                 = Send data
+
+# Event Scrips
+host.evScriptHeading          = Event script
+host.evScript                 = Script
+
+# Run Scripts
+host.runScriptsHeading        = Run scripts settings
+host.runScriptMax             = Run scripts
+host.runScriptHeading         = Run script
+host.runScript                = Script
+host.addRunScript             = Add run script
+host.remRunScript             = Remove run script
+
+# System Scripts
+host.systemScript             = System script
+
+# Date Time
+host.dateSettingsHeading      = Date and Time settings
+host.am_pm                    = am/pm
+host.dateType                 = Date format
+host.allDisplOff              = Turning off displays
+host.backupInterval           = Backup
+host.newDayHour               = Daily reset
+host.newDayTest               = Test daily reset
+host.DMYYYY                   = D/M YYYY
+host.YYMMDD                   = YY-MM-DD
+host.MMDDYY                   = MM-DD-YY
+host.newDayHourOff            = Off
+
+# Language
+host.codepage                 = Codepage
+host.code                     = Default to windows code page
+host.code1250                 = 1250 Central Europe
+host.code1251                 = 1251 Cyrillic
+host.code1252                 = 1252 Latin 1 ( US, Western Europe )
+host.code1253                 = 1253 Greece
+host.code1254                 = 1254 Turkey
+host.code1255                 = 1255 Hebrew
+host.code1256                 = 1256 Arabic
+host.code1257                 = 1257 Baltic
+host.code1258                 = 1258 Vietnam
+host.code874                  = 874 Thai
+host.code932                  = 932 Japanese Shift-JIS
+host.code936                  = 936 Simplified Chinese GBK
+host.code949                  = 949 Korean
+host.code950                  = 950 Traditional Chinese Big5
+
+
+#
+# License Settings
+#
+
+# License Tree
+license.treeHeading           = License
+license.generalNodeLabel      = General
+license.slotNodeLabel         = Slot
+license.SlotLabel3            = Q-WIN Client
+license.SlotLabel4            = Qmatic Client Terminal
+license.SlotLabel5            = Qmatic Calendar
+license.SlotLabel6            = Qmatic Staff Scheduling
+license.SlotLabel7            = Qmatic Workstation Scheduling
+license.SlotLabel8            = Qmatic Web Terminal
+license.SlotLabel9            = not in use
+license.SlotLabel10           = not in use
+license.SlotLabel11           = not in use
+license.SlotLabel12           = not in use
+license.SlotLabel13           = not in use
+license.SlotLabel14           = not in use
+license.SlotLabel15           = External API Client
+
+# License action
+license.remClient             = Remove client
+
+# General License
+license.max                   = Slots
+license.addslot               = Add client
+license.remslot               = Remove slot
+
+# Slot
+license.clientNames           = Name
+license.clientNodeLabel       = Clients User Name
+
+#
+# Log Central Settings
+#
+
+# Log Central Tree
+log.treeHeading               = Log Central
+log.generalNodeLabel          = General
+
+
+#
+# Multi Interface
+#
+
+# Multi Interface Tree
+intf.treeHeading              = Multi interfaces
+intf.generalNode              = General
+
+#Multi Interface Settings
+intf.typeMI2166               = MI2166 / MI2280
+intf.groupNode                = Interface Group
+intf.MI2166input              = Input
+intf.MIoutput                 = Output
+intf.typeMI2280               = MI2280
+intf.MI2280input              = Input
+intf.typeSI2477               = SI2477
+intf.miType                   = Interface type
+intf.maxInputs                = Number of inputs
+intf.maxOutputs               = Number of outputs
+intf.inMI2477                 = Input script
+intf.outMI2477                = Output script
+intf.showOutMI2477            = Show Inputs (debug)
+intf.max                      = Number of Interfaces
+intf.startIdCode              = ID code
+intf.subIdCode                = Sub ID code
+intf.name                     = Name
+intf.outputProg               = Output Program
+intf.inputProg                = Input Program
+intf.disableRadio             = Disable Radio Receiver
+intf.inputScriptProg          = Input Script Program
+intf.addIntf                  = Add interface
+intf.remIntf                  = Remove interface
+intf.addInputs                = Add inputs
+intf.remInputs                = Remove inputs
+intf.addOutputs               = Add outputs
+intf.remOutputs               = Remove outputs
+
+intf.input                    = Interface Input
+intf.output                   = Interface Output
+intf.inputProgShort           = Input Program (short signal)
+intf.inputProgLong            = Input Program (long signal)
+
+intf.moveIntf                 = Move Interface
+intf.newIntfGrp               = New Interface group
+
+#
+# Pagers
+#
+
+# Pager Tree
+
+pager.treeHeading             = Pager interfaces
+pager.generalNode             = General
+pager.scriptNode              = Script
+
+# pager action
+
+pager.addPager                = Add pager
+pager.remPager                = Remove pager
+pager.addPagerScript          = Add pager script
+pager.remPagerScript          = Remove pager script
+
+
+# General pager form
+
+pager.generalNodeLabel        = General
+pager.max                     = Number of pagers
+pager.maxScript               = Number of script programs
+pager.comSetup                = Communication
+
+# Pager form
+
+pager.name                    = Name
+pager.capCode                 = Cap code
+pager.adr7Len                 = 7 bytes cap code
+pager.inverted                = Inverted signal
+pager.isAlpha                 = Alphanumerical pager
+pager.noPriNumOnly            = No priority alert for numerical pager
+pager.priNumOnly              = Priority alert for numerical pager
+pager.noPriAlpha              = No priority alert for alphanumerical pager
+pager.priAlpha                = Priority alert for alphanumerical pager
+pager.baudRate                = Baud rate
+pager.512baud                 = 512 baud
+pager.1200baud                = 1200 baud
+pager.2400baud                = 2400 baud
+
+# Pager script
+
+pager.script                  = Pager script
+
+#
+# Printers
+#
+
+# Printer Tree
+printer.treeName              = Printers
+printer.treeHeading           = Printers
+printer.rootEntry             = Ticket printers
+printer.groupEntry            = Printer group
+printer.printerEntry          = Printer
+printer.generalNodeLabel      = General
+
+# Printer main settings form
+printers.settingsHeading      = Printer main settings
+printers.max                  = Number of printers
+printers.startingIdCode       = Starting Id code
+
+
+printers.advIpSettings        = Advanced Configuration
+printers.jamDetection         = Paper jam detection
+printers.headDetection        = Head released detection
+printers.receivePort          = Receive Port
+printers.sendCtrlPort         = Send CTRL Port
+printers.sendDataPort         = Send Data Port
+printers.deviceHeartBeat      = Heart beat interval
+printers.deviceConTimeOut     = Connect time out
+printers.deviceConTrys        = Connection trys
+printers.deviceAnsTimeOut     = Answer time out
+printers.deviceComTrys        = Command trys
+printers.deviceTimeOutCorr    = Time out correction
+
+
+# Printer group form
+printerGroup.heading          = Ticket printer group
+printerGroup.mainSep          = Settings
+printerGroup.cardReaderSep    = Card reader
+printerGroup.appointSep       = Appointments
+
+printerGroup.protocol         = Protocol
+printerGroup.unit             = Sub id code
+printerGroup.tickets          = Tickets per roll
+printerGroup.lowTickets       = Low tickets alarm
+printerGroup.timeDelay        = Button delay
+printerGroup.timeCardButton   = Button available time
+printerGroup.buttonProgram    = Button program
+printerGroup.timeButtonInfo   = Access to button number
+printerGroup.unplugError      = Report unconnected printers
+printerGroup.checkTickets     = Auto stop tickets
+printerGroup.ticketLess       = Q-WIN Ticketless
+
+printerGroup.timeCardLed      = Card reader LED
+printerGroup.track            = Track
+printerGroup.cardReset        = Card reset
+printerGroup.prgGoodCard      = Approved card
+printerGroup.prgWrongCard     = Unauthorized card
+printerGroup.track1           = Track 1
+printerGroup.track2           = Track 2
+printerGroup.track3           = Track 3
+
+printerGroup.checkAppoints    = Automatically print tickets
+printerGroup.prgWrongAppt     = Appointment error
+
+#Printer action
+printer.addPrinter            = Add ticket printer
+printer.remPrinter            = Remove ticket printer
+printer.movePrinter           = Move ticket printer
+printer.newPrinterGrp         = New printer group
+
+#Printer form
+printer.heading               = Ticket printer
+printer.printerName           = Ticket printer name
+printer.printerHostName       = Ticket printer IP Address
+
+
+
+#
+# Security
+#
+
+# Password Tree
+passwords.treeHeading          = Password Settings
+passwords.generalNodeLabel     = Password Policy
+password.generalNodeLabel      = General
+security.treeHeading           = Security
+
+# Password General Settings
+passwords.mainSettingsHeading  = Password Policy
+passwords.complex              = Complex password
+passwords.unique               = Unique password
+passwords.numAtEnds            = Not numeric at beginning or end
+passwords.pswEqUser            = Not username
+passwords.consecutive          = No consecutive characters
+passwords.dictionary           = Not a dictionary word
+passwords.partDict             = Not contain a dictionary word
+passwords.noChange             = Not possible to change after expire
+passwords.auditing             = Log passwords
+passwords.strictVer            = Require same version
+
+passwords.age                  = Time limit
+passwords.length               = Minimum length
+passwords.reuse                = Used passwords
+passwords.attempts             = Maximum number of log-on attempts
+passwords.blocking             = Blocking time
+passwords.partlyOld            = The new password must differ from the old one
+passwords.expireWarn           = Expire warning
+
+#
+# Scheduled activities
+#
+
+# Scheduler Tree
+
+scheduler.treeHeading          = Scheduled Activities
+
+# Scheduler settings
+scheduler.scheduleName         = Name
+
+
+#
+# Terminals
+#
+
+# Terminal
+terminal.treeHeading          = Terminals
+terminal.generalNode          = General
+terminal.typesNode            = Terminal Types
+terminal.typeNode             = Type
+terminal.keysNode             = Keys
+terminal.singleNode           = Single Programs
+terminal.seqNode              = Sequence Programs
+terminal.scriptNode           = Script Programs
+terminal.settingsNode         = Terminal Settings
+terminal.groupNode            = Terminal Group
+
+# General
+terminal.max                  = Number of terminals
+terminal.idStart              = Starting ID code
+terminal.bunch                = Terminals handled simultaneously
+terminal.unplugged            = Unconnected terminals
+
+# Type Settings
+termtype.SettingsHeading      = Terminal Type
+termtype.protocol             = Protocol
+termtype.termSubId            = Sub ID
+termtype.displSubId           = Display Sub Id
+termtype.update               = Update
+termtype.maxTimeKey           = Time between keystrokes
+termtype.updateSwitch         = Update priority switch
+termtype.digits               = Number of digits
+termtype.discDispNet          = Disconnect displays
+termtype.discTermNet          = Disconnect terminals
+termtype.protocol             = Protocol   
+termtype.dispBuzz             = Display buzzer
+termtype.dispServPrg          = Display, Serving Cust
+termtype.dispOpenPrg          = Display, No customers
+termtype.dispClosePrg         = Display, Closed
+termtype.termDisplPrg         = Terminal display
+termtype.termBuzzPrg          = Terminal buzzer
+termtype.termLED1prg          = Terminal LED1
+termtype.termLED2prg          = Terminal LED2
+termtype.termInfo1Prg         = Terminal INFO1
+termtype.termInfo2Prg         = Terminal INFO2
+termtype.endCustPrg           = End customer
+
+# TerminalType Keys
+termkeys.SettingsHeading      = Terminal keys
+termkeys.max                  = Number of terminal keys
+termkey.SettingsHeading       = Terminal key
+termkey.name                  = Name
+
+# TerminalType Single programs
+termsingles.SettingsHeading   = Single programs
+termsingles.max               = Number of single programs
+termsingle.SettingsHeading    = Single program
+termsingle.program            = Program
+
+# TerminalType Sequense Program
+termseqs.SettingsHeading      = Sequence programs
+termseqs.max                  = Number of sequence programs
+termseq.SettingsHeading       = Sequence program
+termseq.program               = Program
+
+# TerminalType Script Programs
+termscripts.SettingsHeading   = Script Programs
+termscripts.max               = Number of script programs
+termscript.SettingsHeading    = Script program
+termscript.program            = Program
+
+
+# Terminal Group Settings
+termsett.groupSettingsHeading = Terminal Group
+termsett.kdLitTime            = Auto close display (min)
+termsett.kdFlashTime          = Display flash time (sec)
+termsett.autoCloseTime        = Auto close workstation (min)
+termsett.moreThan             = number of persons when +
+termsett.minBetwNext          = Min time between calls (sec)
+termsett.numInPark            = Park register size
+termsett.altDisplay           = Show next customer
+termsett.checkPri             = Show next number
+termsett.trashCat             = Trash category
+
+termsett.reportUnplug         = Report unconnected terminals
+termsett.storeNext            = Store next
+termsett.useAddDisp           = Previous number
+termsett.forceLogin           = Force login
+termsett.forceMatter          = Force matter
+termsett.logoffAtClose        = Automatically logoff
+termsett.logUserErr           = Log errors
+
+# Terminal Settings
+termsett.SettingsHeading      = Terminal
+termsett.name                 = Name
+termsett.fixedPrio            = Lock to priority
+termsett.kdLocation           = Alt. workstation number
+
+# Terminal actions
+terminal.moveTermType         = Move to terminal type
+terminal.addTerminal          = Add terminal
+terminal.moveTermSett         = Move to terminal setting
+terminal.newTermGrp           = New terminal group
+terminal.newTermType          = New terminal type
+terminals.addTerminal         = Add terminal
+terminals.remTerminal         = Remove terminal
+
+#
+# Transfer
+#
+
+# Transfer Tree
+
+transfers.treeHeading          = Transfers
+transfers_cat.generalNodeLabel = General settings
+transfers_net.generalNodeLabel = Network transfer
+
+# Transfer actions
+transfers.addCatTrans          = Add transfer
+transfers.remCatTrans          = Remove transfer
+
+
+# General Category tranfer settings
+
+transfers_cat.max        = Number of settings
+transfers_cat.wt         = Waiting time
+transfers_cat.new        = Statistics
+transfers_cat.prg        = Script program
+
+# Category tranfer settings
+
+transfers.name         = Name
+transfers.grpFrom      = From category
+transfers.grpTo        = To category
+transfers.location     = Area number
+transfers.prgIsBtn     = Script to button
+transfers.new          = Save in statistics
+transfers.prg          = Script program
+
+# Matter Codes
+
+matters.treeHeading    = Matter codes
+
+
+
+
+#
+# Voice Interface
+#
+
+# Voice Tree
+
+voice.treeHeading    = Voice
+voice.general        = General
+
+# Voice actions
+voice.addVoice                = Add voice
+voice.remVoice                = Remove voice
+
+# Voice main settings form
+voice.mainSettingsHeading     = Main Voice Interface Settings
+voice.mainMax                 = Voice units
+voice.mainStartingIdCode      = Starting ID code
+
+# Voice form
+voice.useSoundCard            = Use SoundCard
+voice.useWavFormat            = Use .wav format
+voice.voiceScript             = Voice Script Prg
+
+# Voice unit
+voice.name                    = Name
+voice.useSoundCard            = Use sound card
+voice.useWavFormat            = Wav file
+voice.voiceScript             = Voice script
+
+
+
+# Wireless Terminals tree
+wterminal.treeHeading         = Wireless terminals
+
+# Wireless Terminals actions
+wterminal.addWterminal        = Add terminal
+wterminal.remWterminal        = Remove terminal
+wterminal.moveWterminal       = Move terminal
+wterminal.newWtermGrp         = New terminal group
+
+# Wireless Terminals General
+wterminal.generalNodeLabel    = General
+wterminal.max                 = Number of terminals
+wterminal.debug               = Debug
+
+# Wireless Terminal
+wterminal.name                = Name
+wterminal.signature           = Signature
+wterminal.learn               = Learn
+wterminal.learnWireless       = Learn wireless terminal
+wterminal.pressButton         = Press a button on the wireless terminal!
+wterminal.learnPressButton    = Press 'Learn'. When the progress bar starts, press any button on your terminal.
+
+wterminal.learnDone           = Done
+wterminal.error               = Error
+wterminal.learnError          = Unable to learn serial number!
+wterminal.learnErrorRetry     = Try again
+
+
+
+# Wireless Terminal group
+wterminal.groupNodeLabel      = Wireless terminal group
+wterminal.timeKey             = Time delay
+wterminal.prog1               = Script for button 1
+wterminal.prog2               = Script for button 2
+wterminal.prog3               = Script for button 3
+
+
+
+#
+# Calendar
+#
+
+# Calendar Tree
+calendar.treeName             = Calendar
+calendar.treeHeading          = Calendar Settings
+calendar.generalNodeLabel     = General
+calendar.arrivalNotifyLabel   = Arrival Notify Service
+calendar.newNotifyLabel       = New Notify Service
+
+# Calendar General form
+calendar.mainSettingsHeading  = General Calendar Settings
+calendar.validBefore          = Before appointment
+calendar.validAfter           = After appointment
+calendar.validDay             = Check day
+calendar.sortAppoint          = Call order
+calendar.noSort               = Waiting time
+calendar.appTimeSort          = Appointment time
+calendar.tickNumSort          = Ticket number
+calendar.assignNumbers        = Assign numbers
+calendar.noAssign             = No sorting
+calendar.catAssign            = Sorted from category
+calendar.buttAssign           = Sorted from button
+
+# Calendar Arrival & New form
+calendar.arrivalNotifyHeading = Arrival Notify Service
+calendar.newNotifyHeading     = New Notify Service
+calendar.usePrinter           = Print message
+calendar.sendEmail            = Email message
+calendar.sendWSAlarm          = Workstation alarm
+calendar.sendPager            = Pager message
+calendar.emailScript          = Email script
+calendar.pagerScript          = Pager script
+calendar.layoutScript         = Layout script
+calendar.noOfficePrnNew       = No message
+calendar.staffOfficePrnNew    = Staff member printer
+calendar.defaultOfficePrnNew  = Default printer
+calendar.altPrinter           = Alternative printer
+calendar.noOfficePrn          = No message
+calendar.staffOfficePrn       = Staff member printer
+calendar.defaultOfficePrn     = Default printer
+
+
+
+#
+# Activity
+#
+
+# Activity Tree
+scheduler.treeHeading         = Scheduled activities
+activity.treeHeading          = Scheduled activity Settings
+activity.generalNodeLabel     = Activities
+
+
+# Activities General Settings
+activities.mainSettingsHeading = Activities
+activities.max                 = Number of scheduled activities
+
+activity.add                   = Add new activity
+activity.addItem               = Add new item
+activity.remove                = Remove
+activity.removeLast            = Remove last activity
+
+# Activity Settings
+activity.temp                  = Vi måste fixa en speciell komponent som läser schemaläggningar!!!
+
+#
+# Utilities
+#
+
+utilities.treeHeading         = Utilities
+utilities.presetButton        = Preset button
+utilities.resetSystem         = Reset system
+utilities.displayTest         = Display test
+utilities.idCodeTest          = ID Code test
+utilities.serverLog           = Server log
+utilities.fontUpload          = Font upload
+utilities.array               = Array
+
+# Preset
+preset.start                  = Start
+preset.end                    = Tickets
+preset.button                 = Ticket button
+
+# Preset
+reset.click                   = Click 'Save' to reset the system
+
+# Display test
+disptest.seconds              = Seconds
+
+# Id test
+idtest.seconds                = Seconds
+
+#
+# Priority
+#
+
+priority.treeHeading          = Priorities
+priority.priorityName         = Priority name
+priority.addPriority          = Add Priority
+priority.remPriority          = Remove Priority
+
+#
+# Matter
+#
+
+matter.addMatter              = Add Matter code
+matter.remMatter              = Remove Matter code
+
+#
+# Web Reports
+#
+
+wreports.webReports           = Web Reports
+wreports.reports              = Reports
+wreports.fullScale            = Full scale
+wreports.reportPreview        = Report preview

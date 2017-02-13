@@ -1,0 +1,58 @@
+<tree version="1.0"
+         image = "images/priorities.gif">
+         #cdata("label" $text.getText("priority.treeHeading"))
+  #nodestart($text.getText("priority.treeHeading") "images/folder.gif")
+          <grid-ref>
+              <name>assa</name>
+          </grid-ref>
+          <action-ref>
+            <name>./priorities/action_priorities.vm</name>
+          </action-ref>
+
+      #set($pm = $qf.getPriorityManager())
+      #foreach($priority in $pm.getPriorities())
+          #nodestart($priority.getPriorityName() "images/folder.gif")
+              <grid-ref>
+                <name>./priorities/form_priority.vm</name>
+                #param("item" $priority.getPriorityId())
+                #param("name" $priority.getPriorityName())
+              </grid-ref>
+
+              
+              #foreach($line in $priority.getLines())
+                  #if($line.getType() != 0)
+
+                          #set($label = "Unknown")
+
+                          #if($line.getType() == 10)
+                              #set($label=$text.getText("priority.type.selectFromCategory"))
+                          #end
+
+                          #if($line.getType() == 13)
+                              #set($label=$text.getText("priority.type.byLevel"))
+                          #end
+
+                          #if($line.getType() == 14)
+                              #set($label=$text.getText("priority.type.highestValueByLevel"))
+                          #end
+
+                          #if($line.getType() == 18)
+                              #set($label=$text.getText("priority.type.buttonByScript"))
+                          #end
+
+                          <node ref-type="raw">
+                          #cdata("label" $label)
+                          <image>images/folder.gif</image>
+                          ##action-ref="./priorities/action_line.vm?line=$line.getLineNumber()&amp;priorityNo=$priority.getPriorityId()&amp;priName=$priority.getPriorityName()"
+                          <grid-ref>
+                                <name>priority/priority.getline.action</name>
+                                #param("lineNo" $line.getLineNumber())
+                                #param("priorityNo" $priority.getPriorityId())
+                          </grid-ref>
+                      </node>
+                  #end
+              #end
+          </node>
+      #end
+  </node>
+</tree>

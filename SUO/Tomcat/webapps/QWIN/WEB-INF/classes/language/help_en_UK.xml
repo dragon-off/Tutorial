@@ -1,0 +1,1882 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================ -->
+<!--            Alarms General Settings           -->
+<!-- ============================================ -->
+
+<help-items>
+	<help id="alarms.maxTypes">        
+		The number of different automatic alarms. Automatic alarms are automatically sent from the Q-WIN server to all Q-WIN clients. The result of a script program and the alarm type settings specify when an alarm is sent.
+	</help>
+
+	<help id="alarms.updateTime">        
+		This is the time in seconds between each update of the information sent to the alarm script functions. This setting is usually not used. The alarm information is always updated when there is a new alarm.
+Max: 999 seconds
+Min: 0 (only update information when there is a new alarm)
+	</help>
+
+	<help id="alarms.minActiveTime">        
+		This is the shortest time new alarms are available for ALARM_NUMBER and ALARM_TEXT. The setting is used when alarms are displayed, for example, on displays. The setting makes it possible for the readers to see every alarm when many alarms occur at the same time. Each new alarm is displayed this time before the next new alarm is displayed.
+Max: 60 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="alarms.maxActiveTime">        
+		ALARM_NUMBER and ALARM_TEXT cycles through the old alarms when there are no new alarms. This setting specifies the time an alarm is considered as a new alarm.
+Max: 999 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="alarms.maxSimultan">        
+		This is the maximum number of new alarms that can be queued.
+Max: 100
+Min: 0
+	</help>
+
+	<help id="alarms.oldAlarmsAlt">        
+		This setting specifies the number of old alarms that can be stored. The oldest alarm will be deleted when the limit is reached.
+Max: 100
+Min: 0
+	</help>
+
+	<help id="alarms.timeAlternate">        
+		This is the time, in seconds, an old alarm is available for the ALARM_NUMBER and ALARM_TEXT functions.
+Max: 999 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="alarms.maxTimeAlternate">        
+		This is the maximum time, in minutes, an old alarm is included in the cycling of old alarms.
+Max: 999 minutes
+Min: 0 minutes
+	</help>
+
+	<help id="alarms.minMessageNo">        
+		This is the minimum value allowed for a message from a workstation.
+Max: 999
+Min: 0
+	</help>
+
+	<help id="alarms.maxMessageNo">        
+		This is the maximum value allowed for a message from a workstation (FUNC_MESSAGE).
+Max: 999
+Min: 0
+	</help>
+
+<!-- ============================================ -->
+<!--                Alarm Settings                -->
+<!-- ============================================ -->
+
+	<help id="alarm.name">        
+		The name of the alarm setting.
+	</help>
+
+	<help id="alarm.number">        
+		This is the value assigned to ALARM_NUMBER.
+	</help>
+
+	<help id="alarm.voiceUnit">        
+		It is possible to play a voice message when an alarm occurs. The setting must be a valid Voice Interface setting.
+	</help>
+
+	<help id="alarm.minValue">        
+		The result of the script program is compared with MIN VALUE and MAX VALUE.
+	</help>
+
+	<help id="alarm.maxValue">        
+		The result of the script program is compared with MIN VALUE and MAX VALUE.
+	</help>
+
+	<help id="alarm.minType">        
+		Trigg this alarm when the Result Value of the Criteria script is less or equal to Min
+
+The result of the script program is compared with MIN VALUE. An alarm is issued if the result of the script is equal to or less than MIN VALUE. The result of the script must rise to a value above MAX VALUE before the server can issue this alarm again.
+
+Trigg this alarm when the Result Value of the Criteria script is greater or equal to Max
+
+The result of the script program is compared with MAX VALUE. An alarm is issued if the result of the script is equal to or grater than MAX VALUE. The result of the script must drop to a value below MIN VALUE before the server can issue this alarm again.
+	</help>
+
+	<help id="alarm.scriptProg">        
+		The alarm is based on the result returned by the script program.
+	</help>
+
+<!-- ============================================ -->
+<!--            General Button Settings           -->
+<!-- ============================================ -->
+
+	<help id="buttons.max">        
+		The number of ticket buttons.
+		
+		Be careful if you decrease the number of ticket buttons. Make sure that the ticket buttons you are going to remove are not used in any other settings or script programs. We recommend that you do not remove unused ticket buttons.
+	</help>
+
+	<help id="buttons.letters">        
+		Ticket button letters can be used to indicate that a ticket number belongs to a certain ticket button. The ticket button letter can be displayed on tickets and displays. You do not have to enter anything to use the letters in alphabetic order (button 1 = A, button 2 = B, etc.). Enter the letters without any space to specify ticket button letters, for example EKLBF. The first of the letters will be assigned to ticket button 1, the second to ticket button 2, etc.
+	</help>
+
+
+<!-- ============================================ -->
+<!--             Button Group Setting             -->
+<!-- ============================================ -->
+
+	<help id="buttons.walkTime">        
+		This setting is used if the ticket printer is not placed in the waiting area. The entered time prevents workstations from calling a customer before the customer has arrived to the waiting area. The entered time must elapse before a workstation can call the customer.
+Max: 17 hours.
+Min: 0
+	</help>
+
+	<help id="buttons.lockToCounter">        
+		With this setting you lock the Buttons in the group to a specific Work Station.
+	</help>
+
+	<help id="buttons.transMaxTime">        
+		Customers are automatically transferred to another ticket button when the waiting time reaches this level. Time in minutes.
+	</help>
+
+	<help id="buttons.transToButton">        
+		Automatic transfer transfers customers to this ticket button.
+	</help>
+
+	<help id="buttons.startNumber">        
+		Starting ticket number in the appointments ticket sequence.
+	</help>
+
+	<help id="buttons.endNumber">        
+		Ending ticket number in the appointments ticket sequence.
+	</help>
+
+	<help id="buttons.failedTicket">        
+		The ticket text printed when there are too many waiting customers.
+	</help>
+
+	<help id="buttons.voiceUnit">        
+		This message is sent when a customer presses the ticket button. For example, here you call the voice setting that plays "Your ticket number is xxx.". The entered value must be a valid voice settings number.
+	</help>
+
+	<help id="buttons.failedVoice">        
+		In the category settings it is possible to specify the maximum number of waiting customers. This message is sent when more customers arrive. The entered value must be a valid voice settings number.
+	</help>
+
+	<help id="buttons.groupProg">        
+		The result of the script is used as category number. The result of the script overrides the category selected in the ticket button settings.
+	</help>
+
+	<help id="buttons.custIdProg">        
+		This script program assigns a text to ITEM_ID. Use a ...CUSTOMER_ITEM_STR( x ITEM_ID) script command to retrieve the text.
+	</help>
+
+	<help id="buttons.estwLen">        
+		Q-WIN uses the average time between the latest calls within the category to calculate the estimated waiting time. This setting specifies the number of calls that are used in the calculation.
+	</help>
+
+	<help id="buttons.exclude">        
+		Exclude waiting times that are longer than the specified value. This makes it possible to exclude faulty waiting times. You can, for example, get a faulty waiting time if you take a test ticket in the morning to check the system. This ticket is not called until you open the office, which results in an extremely long waiting time. Use this option to exclude the waiting time from the calculation of the estimated waiting time.
+	</help>
+
+	<help id="buttons.useWeighted">        
+		Weighted estimated waiting time makes the latest time the most important one.
+	</help>
+
+	<help id="buttons.estwIncluded">        
+		Percentage of the estimated waiting time used in the calculation.
+	</help>
+
+	<help id="buttons.realIncluded">        
+		Percentage of the real waiting time used in the calculation.
+	</help>
+
+	<help id="buttons.fixedIncluded">        
+		Percentage of the fixed value used in the calculation.
+	</help>
+
+	<help id="buttons.fixedValue">        
+		The fixed value used in the calculation.
+	</help>
+
+<!-- ============================================ -->
+<!--                Button setting                -->
+<!-- ============================================ -->
+
+	<help id="button.name">        
+		The name of the ticket button.
+	</help>
+
+
+	<help id="button.tickSelection">        
+		The ticket text used for the button.
+	</help>
+
+	<help id="button.category">        
+		Place the ticket button in a category. The category specifies the ticket number sequence. All ticket buttons in the same category will share the same ticket number sequence. Select a category number.
+	</help>
+
+<!-- ============================================ -->
+<!--           Calendar general setting           -->
+<!-- ============================================ -->
+
+	<help id="calendar.validBefore">        
+		This is how long time before the start of an appointment that the customers are allowed to arrive. Enter 0:00:00 to accept all customers that arrive before the appointment time.
+	</help>
+
+	<help id="calendar.validAfter">        
+		This is how long time after the start of an appointment that the customers are allowed to arrive. Enter 0:00:00 to accept all customers that arrive after the appointment time.
+	</help>
+
+	<help id="calendar.validDay">        
+		The customers must arrive at the correct day to be registered as valid appointments.
+	</help>
+
+	<help id="calendar.sortAppoint">        
+		The Sort Queue setting specifies the call order.
+		Waiting time
+Call the customer according to the waiting time. The ticket number and the appointment time are ignored. The longest waiting time is always called first.
+Appointment time
+Call the customers according to the appointment time. The waiting time and the ticket number are ignored.
+Ticket number
+Call the customers according to the ticket number. The waiting time and the appointment time are ignored.
+	</help>
+
+	<help id="calendar.assignNumbers">        
+		This setting specifies the way ticket numbers are sorted and where they are specified.
+		No sorting
+Use ticket numbers from the category settings and do not sort the numbers. This is the default setting. The ticket numbers are assigned according to the time of arrival. The customer who first arrives also gets the first ticket number.
+Sorted from category
+Use ticket numbers from the category settings and sort them according to the appointment time.
+Sorted from button
+The ticket button settings specify the ticket number sequence. The ticket numbers are sorted according to the appointment time.
+	</help>
+
+<!-- ============================================ -->
+<!--             Calendar new notify              -->
+<!-- ============================================ -->
+
+	<help id="calendar.usePrinter">        
+		Print a message when a new appointment is booked. There are three choices for the printed message.
+		No message
+Do not print any message.
+Staff member printer
+This is the printer specified in the staff member registration. This is usually the printer located closest to the staff member.
+Default printer
+This is the default printer for the PC running the Qmatic Calendar.
+	</help>
+
+	<help id="calendar.altPrinter">        
+		This printer will be used instead of the default office printer. The default office printer is specified in the "Printer Setup" in the file menu.
+	</help>
+
+	<help id="calendar.sendEmail">        
+		Send an email message when a new appointment is booked.
+	</help>
+
+	<help id="calendar.sendPager">        
+		Send a pager message when a new appointment is booked.
+	</help>
+
+	<help id="calendar.emailScript">        
+		The result of this script program is the email message.
+	</help>
+
+	<help id="calendar.pagerScript">        
+		The result of this script program is the pager message.
+	</help>
+
+	<help id="calendar.layoutScript">        
+		This script program adds information to a layout file. The result of the script program is inserted into the second page (Z2) of the action window in the layout file for the notify page.
+	</help>
+
+
+	<help id="calendar.sendWSAlarm">        
+		Send an alarm to the staff member if the staff member is logged in.
+	</help>
+
+<!-- ============================================ -->
+<!--                 Card Readers                 -->
+<!-- ============================================ -->
+
+	<help id="card.max">        
+		The number of card reader interfaces in the system.
+	</help>
+
+	<help id="card.idCode">        
+		The ID code for the card reader interfaces. All card reader interfaces uses the same ID code.
+	</help>
+
+	<help id="card.subIdCode">        
+		The starting Sub ID code. This is the Sub ID code for the first card reader interface in the system. This is usually 1.
+	</help>
+
+	<help id="card.printer">        
+		Choose the ticket printer that should receive the information from the card reader.
+	</help>
+
+	<help id="card.ledTime">        
+		Specify the time the LEDs should be lit on the card reader when a card is inserted.
+	</help>
+
+	<help id="card.accepted">        
+		Enter the script that will be executed when a valid card is used.
+	</help>
+
+	<help id="card.rejected">        
+		Enter the script program that is executed when the card is invalid. The action must be specified in the script program. The result of the script is not used.
+	</help>
+
+<!-- ============================================ -->
+<!--                  Card Reader                 -->
+<!-- ============================================ -->
+
+	<help id="card.name">        
+		The name of the card reader interface.
+	</help>
+
+<!-- ============================================ -->
+<!--         Card Validation General form         -->
+<!-- ============================================ -->
+
+	<help id="cardvalid.max">        
+		The number of valid card types.
+	</help>
+
+	<help id="cardvalid.debug">        
+		Set the check mark to open a debug window on the Q-WIN server with the card data when a card is used. The card data can be used to check that the system reads correct information from the card.
+	</help>
+
+<!-- ============================================ -->
+<!--             Card Validation Item             -->
+<!-- ============================================ -->
+
+	<help id="cardvalidItem.name">        
+		The name of the setting.
+	</help>
+
+	<help id="cardvalidItem.start">        
+		The validation of the card data starts at this character.
+	</help>
+
+	<help id="cardvalidItem.stopp">        
+		The validation of the card data ends at this character.
+	</help>
+
+	<help id="cardvalidItem.validString">        
+		This is the number that identifies a valid card.
+	</help>
+
+	<help id="cardvalidItem.button">        
+		Select a ticket button. This setting is used when the use of a card automatically prints a ticket.
+	</help>
+
+	<help id="cardvalidItem.stripProg1">        
+		The script is executed before the card data is searched for in the database. The result of the script is used as validation data against database.
+	</help>
+
+	<help id="cardvalidItem.stripProg2">        
+		The script is executed before the card data is searched for in the database. The result of the script is used as validation data against database.
+	</help>
+
+	<help id="cardvalidItem.stripProg3">        
+		The script is executed before the card data is searched for in the database. The result of the script is used as validation data against database.
+	</help>
+
+	<help id="cardvalidItem.track">        
+		Specify the track used for validation.
+	</help>
+
+	<help id="cardvalidItem.useCustInfo">        
+		Set this check mark to search for customer information in the database. The information from the database is assigned to the ITEM_CUSTINFO_ item types. These can be used in CUSTOMER_ITEM_STR script functions.
+	</help>
+
+	<help id="cardvalidItem.validCust">        
+		The card is only valid if Q-WIN finds the card number in the database.
+	</help>
+
+<!-- ============================================ -->
+<!--                  Categories                  -->
+<!-- ============================================ -->
+
+	<help id="categories.max">        
+		The number of categories.
+	</help>
+
+	<help id="categories.letters">        
+		Category letters can be used to indicate that a ticket number belongs to a certain category. The category letter can be printed on the ticket and shown on the displays. You do not have to enter anything if you want to use the English alphabet as category letters. If you do not want to use the default letters then you must enter the letters you want to use. Enter the letters without any separation, for example EKLFB. The first of the letters will be assigned to category 1, the second to category 2, etc.
+	</help>
+
+<!-- ============================================ -->
+<!--                   Category                   -->
+<!-- ============================================ -->
+
+	<help id="category.name">        
+		The category name.
+	</help>
+
+	<help id="category.startNum">        
+		The first ticket number in the ticket number sequence. Each category has its own ticket number sequence. It is possible for two ticket number sequences to use the same ticket numbers but we recommend that each category use unique ticket numbers. The category letter makes it possible to identify a ticket number when many categories have the same ticket number sequences.
+	</help>
+
+	<help id="category.endNum">        
+		The last number in the ticket number sequence. Each category has its own ticket number sequence. It is possible for two ticket number sequences to use the same ticket numbers but we recommend that each category use unique ticket numbers. The category letter makes it possible to identify a ticket number when many categories have the same ticket number sequences.
+	</help>
+
+	<help id="category.groupSize">        
+		The maximum number of customers that are allowed to wait. Additional customers get an information ticket instead of an ordinary ticket. The ticket text number for the information ticket is specified in the ticket button settings.
+	</help>
+
+	<help id="category.appointsize">        
+		This is the maximum number of tickets that can be assigned to a period. This setting is used together with FUNC_TICKET_MAKE_APPOINT and makes it possible to book a visit time for a ticket number. The ticket number cannot be called before the correct time period.
+	</help>
+
+	<help id="category.appointPeriod">        
+		The length of one time period. This setting is used together with "Max tickets per time period" and makes it possible to book a visit time for a ticket number. The ticket number cannot be called before the correct time period.
+	</help>
+
+	<help id="category.allowDouble">        
+		The number of ticket numbers in a sequence depends on the settings. It is possible that the same ticket number appears twice if there are few numbers in the ticket number sequence and if there are long waiting times. The system can identify them as two different customers but it can be very confusing when one of the numbers is called to a workstation.
+Set this check mark to not allow that the same ticket number appear twice at the same time.
+	</help>
+
+	<help id="category.copyNotes">        
+		It is possible to add a note to a customer (for example in the Qmatic Client Terminal). This note is normally deleted when a customer is transferred to another category. Set this setting to keep the note even when the customer is transferred.
+	</help>
+
+	<help id="category.estwTickLen">        
+		Q-WIN uses the average time between the latest calls within the category to calculate the estimated waiting time. This setting specifies the number of calls that are used in the calculation.
+	</help>
+
+	<help id="category.exclude">        
+		Exclude waiting times that are longer than the specified value. This makes it possible to exclude faulty waiting times. You can, for example, get a faulty waiting time if you take a test ticket in the morning to check the system. This ticket is not called until you open the office, which results in an extremely long waiting time. Use this option to exclude the waiting time from the calculation of the estimated waiting time.
+	</help>
+
+	<help id="category.useWeighted">        
+		Weighted estimated waiting time makes the latest time the most important one.
+	</help>
+
+	<help id="category.estwIncluded">        
+		Percentage of the estimated waiting time used in the calculation.
+	</help>
+
+	<help id="category.readIncluded">        
+		Percentage of the real waiting time used in the calculation.
+	</help>
+
+	<help id="category.fixedIncluded">        
+		Percentage of the fixed value used in the calculation.
+	</help>
+
+	<help id="category.fixedValue">        
+		The fixed value used in the calculation.
+	</help>
+
+<!-- ============================================ -->
+<!--         General Main Display Settings        -->
+<!-- ============================================ -->
+
+	<help id="dispmain.maxMainDisp">        
+		The number of main display settings. A system can contain many main displays with the same ID code showing the same information. These displays are counted as one main display setting.
+	</help>
+
+	<help id="dispmain.startIdCode">        
+		ID code for main display 1.
+	</help>
+
+	<help id="dispmain.queueLen">        
+		This is the number of ticket numbers that are stored in the main display if they are called at the same time.
+	</help>
+
+<!-- ============================================ -->
+<!--          Main Display Group Settings         -->
+<!-- ============================================ -->
+
+	<help id="dispmain.name">        
+		The name of the display setting.
+	</help>
+
+	<help id="dispmain.voice">        
+		The voice message played when a customer is called. The entered value must be a valid voice interface setting.
+	</help>
+
+	<help id="dispmain.autoTurnOff">        
+		The system turns off the display if it is inactive longer than the specified time in minutes. 
+Max: 1400 minutes
+Min: 0 minutes
+	</help>
+
+	<help id="dispmain.update">        
+		This is the time, in seconds, between each update of the display if no customers are called. The displays are always updated when customers are called.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="dispmain.minDisplayed">        
+		It is very important that the customers always have time to read their ticket numbers even if many workstations call customers at the same time. This is the minimum time in seconds a ticket number is shown on the main display. Other ticket numbers that arrive during this time are stored and displayed after the current ticket number.
+Max: 60 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="dispmain.timeBeforeAlt">        
+		This setting is used if a main display shows ticket numbers from many categories. It specifies the number of seconds that the latest ticket number is shown. After that time the display starts to cycle the latest ticket number in all categories specified for the display. This makes it possible for the customers to see the currently served ticket numbers for all categories.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="dispmain.timeAlt">        
+		This setting specifies the time in seconds that each ticket number is shown when the display cycles through the latest called ticket numbers. This setting is ignored if the display shows ticket numbers from only one category.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="dispmain.timeEndAlt">        
+		This is the maximum time a ticket number is included in the cycling of called ticket numbers.
+Max: 1000 minutes
+Min: 0 minutes
+	</help>
+
+	<help id="dispmain.timeArrow">        
+		This setting specifies the time the arrow is displayed. Most main displays have an arrow that guides the customers to the workstations. Use the DISPLAY_ARROW_FLASH script function to control the arrow in the scripts.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="dispmain.timeFlash">        
+		It is possible to flash all information on the main display. This makes it easier for the customers to observe that the information has been changed. Use DISPLAY_FLASH in scripts to check if the display should flash.
+Max: 1000 seconds
+Min: 0 seconds (no flash)
+	</help>
+
+	<help id="dispmain.useButtonLett">        
+		Ticket button letter and category letter are letters placed in front of the ticket number to indicate the ticket button or the category. Set this check mark to use ticket button letters instead of category letters.
+	</help>
+
+	<help id="dispmain.useEnterButt">        
+		The ticket button letter or category letter is usually changed when a ticket number is transferred from one ticket button queue into another one. This setting makes it possible to prevent the change and keep the original ticket button letter or category letter.
+	</help>
+
+	<help id="dispmain.catDisplayed">        
+		The categories that are going to be shown on the display. A main display can show ticket numbers from many categories. The number of categories that you can show on the same main display depends on the number of customers. It must be possible to show every called ticket number on the main display long enough for the customers to read it. Enter a single category (for example 2), multiple categories separated by commas (2,5,7), a sequence of categories (2-5) or a mix (2,5-7,9).
+	</help>
+
+	<help id="dispmain.counterInclud">        
+		The workstations that should use the main display. In very large system it may be necessary to limit the number of workstations that use the same main display otherwise simultaneous calls will be delayed too long before they can be showed. Enter a single workstation number (for example 2), multiple workstation numbers separated by commas (2,5,7), a sequence of workstation numbers (2-5) or a mix (2,5-7,9).
+	</help>
+
+	<help id="dispmain.counterOnLeft">        
+		The workstations that are placed to the left of the main display. This setting affects the direction of the arrow (DISPLAY_COUNTER_IS_LEFT and DISPLAY_COUNTER_IS_RIGHT). Enter a single workstation number (for example 2), multiple workstation numbers separated by commas (2,5,7), a sequence of workstation numbers (2-5) or a mix (2,5-7,9).
+	</help>
+
+	<help id="dispmain.useInternalBuzz">        
+		Use the internal buzzer in the display.
+	</help>
+
+	<help id="dispmain.optProg">        
+		Script program for the main display.
+	</help>
+
+	<help id="dispmain.numSecondaries">        
+		Secondary rows are the additional displays in stacked main displays. This makes it possible to create large main displays with many rows. Q-WIN can automatically handle these additional displays. This is the number of additional displays. These displays must have the same ID code as the top display. The top display must have Sub ID code 1,the second display must have Sub ID code 2, etc.
+	</help>
+
+	<help id="dispmain.secProg">        
+		The script program for the additional displays
+	</help>
+
+<!-- ============================================ -->
+<!--      General information display Settings    -->
+<!-- ============================================ -->
+
+	<help id="dispinfo.maxMainDisp">        
+		This is the number of settings. Displays with the same ID code are counted as one setting.
+	</help>
+
+	<help id="dispinfo.startIdCode">        
+		ID code for information display 1.
+	</help>
+
+	<help id="dispinfo.update">        
+		This is the time between each update of the information to the display when the information is not changed. This setting is used if the connection to the display is broken. The display does not show any information after a broken connection until it is updated. There are two actions that update the display. The information is always updated when the result of the script changes. The information is also updated according to this setting. If you set the time to 0 then the display is only updated when the result of the script changes.
+	</help>
+
+<!-- ============================================ -->
+<!--       information display group  Settings    -->
+<!-- ============================================ -->
+
+	<help id="dispinfo.name">        
+		The name of the information display setting.
+	</help>
+
+	<help id="dispinfo.infoType">        
+		Specify if it is text (8, 9 and 16-series displays) or numerical (7-series displays) displays.
+	</help>
+
+	<help id="dispinfo.flashOnValue">        
+		The display starts to flash when the result of the script program is equal to or greater than this value. 8, 9 and 16-series displays do not use this setting (set the value to 0).
+	</help>
+
+	<help id="dispinfo.bellOnValue">        
+		A bell must be connected to the display to use this setting. The bell sounds once when the result of the script program is equal to the setting. 8, 9 and 16-series displays do not use this setting (set the value to 0).
+	</help>
+
+	<help id="dispinfo.useIntBuzz">        
+		Use the internal buzzer.
+	</help>
+
+	<help id="dispinfo.program">        
+		Script program for the information display.
+	</help>
+
+<!-- ============================================ -->
+<!--         Display Fonts General Settings       -->
+<!-- ============================================ -->
+
+	<help id="fonts.max">        
+		This is the total number of fonts that are used on the displays.
+Max: 100
+Min: 0
+	</help>
+
+	<help id="fonts.timeRefresh">        
+		The refresh time, in minutes, specifies the time between each update of the fonts in the displays. A font must be loaded into a display before it can be used. This is performed when Q-WIN starts. If something happens to the display that makes it lose the fonts it will not get back the fonts until next time Q-WIN is started. This can be prevented if Q-WIN regularly updates the fonts. Specify the time between the updates of the font. Set the time to 0 to turn of the automatic update.
+Max: 1440 minutes
+Min: 0 minutes (disabled)
+	</help>
+
+	<help id="fonts.reduceLang">        
+		This setting specifies the language (only used with double byte languages). The following values are available.
+1 = Japanese
+2 = Chinese (simplified)
+3 = Chinese (traditional)
+4 = Korean
+	</help>
+
+<!-- ============================================ -->
+<!--             Display Font Settings            -->
+<!-- ============================================ -->
+
+
+	<help id="font.name">        
+		The name of the font.
+	</help>
+
+	<help id="font.enabled">        
+		Set the check mark if the font should be loaded into the displays.
+	</help>
+
+	<help id="font.bsidNo">        
+		This is the Broadcast Sub ID code for the displays. The same fonts will be loaded to all displays with the same Sub ID Code. This makes it possible to load different fonts into different types of displays. All displays with the same Broadcast Sub ID code will use the same fonts.
+	</help>
+
+	<help id="font.id">        
+		The font ID is the character that identifies the font. The font ID is used by the FS display command to select the font. You can choose any characters but letters are usually used. Upper case and lower case characters are identified as separate font ID characters.
+You cannot use 0 because that is the system font.
+Never use the same character as font ID for more than one font.
+	</help>
+
+	<help id="font.file">        
+		This is the path to the file with the Q-WIN font (fnt).
+	</help>
+
+<!-- ============================================ -->
+<!--            Email General Settings            -->
+<!-- ============================================ -->
+
+	<help id="emails.max">        
+		The number of email messages.
+	</help>
+
+	<help id="emails.fromAdress">        
+		This e-mail address is used as the sender signature of the e-mail message.
+	</help>
+
+	<help id="emails.fromName">        
+		This name informs the recipient about the identity of the sender.
+	</help>
+
+	<help id="emails.replyTo">        
+		This is the email address that will receive the replies on the emails. This can be another address than the from address.
+	</help>
+
+	<help id="emails.smtpServer">        
+		The address to the SMTP server.
+	</help>
+
+	<help id="emails.smtpPort">
+		The SMTP server's port.
+	</help>
+
+	<help id="emails.smtpUser">        
+		This is the user's account name on the SMTP server. Not all servers need this.
+	</help>
+
+	<help id="emails.smtpPassword">        
+		This is the user's password on the SMTP server. Not all servers need this.
+	</help>
+	
+	<help id="emails.smtpSSL">        
+		Check if the SMTP server requires sequre communication over SSL/TLS. Uncheck otherwise.
+	</help>
+
+	<help id="emails.queueLen">        
+		Number of unsent email messages that are placed in a queue.
+	</help>
+
+<!-- ============================================ -->
+<!--                Email Settings                -->
+<!-- ============================================ -->
+
+	<help id="email.toAdress">        
+		The recipient's email address.
+	</help>
+
+	<help id="email.toName">        
+		The recipient's name.
+	</help>
+
+	<help id="email.scriptProgram">        
+		The result of the script is the email message.
+	</help>
+	<help id="email.subject">
+		The subject of the email.
+	</help>
+
+
+<!-- ============================================ -->
+<!--           General Licence Settings           -->
+<!-- ============================================ -->
+
+	<help id="license.max">        
+		This is the number of slots in the licence.
+	</help>
+
+<!-- ============================================ -->
+<!--            Licence Slot  Settings            -->
+<!-- ============================================ -->
+
+	<help id="license.clientNames">        
+		This is the client ID as specified in the qwin.ini file.
+	</help>
+
+<!-- ============================================ -->
+<!--            Log Central   Settings            -->
+<!-- ============================================ -->
+
+	<help id="log.off">        
+		Har kommer texten for helpid buttons.maxax
+	</help>
+
+	<help id="xxx">        
+		Har kommer texten for helpid buttons.maxax
+	</help>
+
+	<help id="xxx">        
+		Har kommer texten for helpid buttons.maxax
+	</help>
+
+	<help id="xxx">        
+		Har kommer texten for helpid buttons.maxax
+	</help>
+
+	<help id="xxx">        
+		Har kommer texten for helpid buttons.maxax
+	</help>
+
+<!-- ============================================ -->
+<!--       General multi interface Settings       -->
+<!-- ============================================ -->
+
+	<help id="intf.max">        
+		The number of multi interfaces.
+	</help>
+
+	<help id="intf.startIdCode">        
+		ID code for all multi interfaces. All multi interfaces uses the same ID code.
+	</help>
+
+	<help id="intf.subIdCode">        
+		This is the sub ID code for the first multi interface.
+	</help>
+
+<!-- ============================================ -->
+<!--             MI2166 group Settings            -->
+<!-- ============================================ -->
+
+	<help id="intf.miType">        
+		Specify the function of the Interface. There are three possibilities.
+	- Internal programs
+	- Script programs
+	- RS232 (SI2477)
+	</help>
+
+	<help id="intf.maxInputs">        
+		The number of input pins.
+	</help>
+
+	<help id="intf.maxOutputs">        
+		The number of output pins.
+	</help>
+
+<!-- ============================================ -->
+<!--            Multi interface Settings          -->
+<!-- ============================================ -->
+
+	<help id="intf.name">        
+		The name of the multi interface.
+	</help>
+
+<!-- ============================================ -->
+<!--                  MI2166 input                -->
+<!-- ============================================ -->
+
+	<help id="intf.inputProg">        
+		Program for the input pins.
+	</help>
+
+	<help id="intf.inputScriptProg">        
+		Script program executed when SCRIPT is used in the input program.
+	</help>
+
+<!-- ============================================ -->
+<!--                    MI output                 -->
+<!-- ============================================ -->
+
+	<help id="intf.outputProg">        
+		The script program for the output. The output is off when the result of the script is 0 otherwise it is on.
+	</help>
+
+<!-- ============================================ -->
+<!--                   MI2180 group               -->
+<!-- ============================================ -->
+
+
+	<help id="intf.disableRadio">        
+		Set the check mark to disable the radio interface. The radio receiver setting is usually enabled (no check mark) because multi interfaces without radio receivers ignore the setting. Set the check mark if the system has radio interfaces that should not receive signals from wireless terminals.
+	</help>
+
+<!-- ============================================ -->
+<!--                   SI2477 group               -->
+<!-- ============================================ -->
+
+	<help id="intf.inMI2477">        
+		Program that handles the input from the external device.
+	</help>
+
+	<help id="intf.outMI2477">        
+		The result of the script program is used as output to the external device.
+	</help>
+
+	<help id="intf.showOutMI2477">        
+		Show input data on the screen of the Q-WIN server. Used only during test of the system.
+	</help>
+
+<!-- ============================================ -->
+<!--              General pager settings          -->
+<!-- ============================================ -->
+
+	<help id="pager.max">        
+		The number of pagers in the system.
+	</help>
+
+	<help id="pager.maxScript">        
+		The script programs specify the message sent to the pagers. A number identifies the script. This script number is one of the parameters used by the FUNC_PAGER script command. The other parameter is the pager unit number.
+	</help>
+
+	<help id="pager.comSetup">        
+		This is the setting for the COM port. The format is port,speed,bits,parity,stop bits. Example: 2,1200,8,N,1.
+	</help>
+
+<!-- ============================================ -->
+<!--                  Pager settings              -->
+<!-- ============================================ -->
+
+	<help id="pager.name">        
+		The pager's name.
+	</help>
+
+	<help id="pager.capCode">        
+		The pager's address.
+	</help>
+
+	<help id="pager.adr7Len">        
+		Set the check mark if the pager uses a cap code address with seven bytes. Remove the check mark if the pager uses a cap code with three bytes.
+	</help>
+
+	<help id="pager.inverted">        
+		Set the check mark if the signal between the transmitter and the pager should be inverted.
+	</help>
+
+	<help id="pager.isAlpha">        
+		Set the check mark if the pager can show text.
+	</help>
+
+	<help id="pager.noPriNumOnly">        
+		No priority alert for numerical pagers.
+	</help>
+
+	<help id="pager.priNumOnly">        
+		Priority alert for numerical pagers.
+	</help>
+
+	<help id="pager.noPriAlpha">        
+		No priority alert for alphanumerical pagers.
+	</help>
+
+	<help id="pager.priAlpha">        
+		Priority alert for alphanumerical pagers.
+	</help>
+
+	<help id="pager.baudRate">        
+		This is the baud rate of the radio transmission.
+	</help>
+
+<!-- ============================================ -->
+<!--                   Pager script               -->
+<!-- ============================================ -->
+
+	<help id="pager.script">        
+		The script programs specify the message sent to the pagers. A number identifies the script. This script number is one of the parameters used by the FUNC_PAGER script command. The other parameter is the pager unit number.
+	</help>
+
+<!-- ============================================ -->
+<!--                Password settings             -->
+<!-- ============================================ -->
+
+	<help id="passwords.complex">        
+		The passwords must consist of small letters, capital letters and digits.
+	</help>
+
+	<help id="passwords.unique">        
+		Two staff members cannot use the same password.
+	</help>
+
+	<help id="passwords.numAtEnds">        
+		The passwords cannot start or end with a digit.
+	</help>
+
+	<help id="passwords.pswEqUser">        
+		The user name and the password must be different.
+	</help>
+
+	<help id="passwords.consecutive">        
+		The same character cannot be placed together in the passwords.
+	</help>
+
+	<help id="passwords.dictionary">        
+		It is possible to specify a dictionary with reserved words in the database. These words cannot be used as passwords if this setting is enabled.
+The dictionary is stored in the PSWDICT table in the Q-WIN database. Use for example Microsoft Access to edit the dictionary.
+	</help>
+
+	<help id="passwords.partDict">        
+		The passwords cannot contain a dictionary word.
+	</help>
+
+	<help id="passwords.noChange">        
+		It is possible to specify a time limit for passwords (see below). The user cannot change the password when it has expired.
+	</help>
+
+	<help id="passwords.auditing">        
+		All logins will be saved in the password.log file in the Log folder.
+	</help>
+
+	<help id="passwords.strictVer">        
+		The clients must use the same version as the server.
+	</help>
+
+	<help id="passwords.age">        
+		It is possible to specify a time limit for all passwords.
+	</help>
+
+	<help id="passwords.length">        
+		This is the minimum length of the password.
+	</help>
+
+	<help id="passwords.reuse">        
+		This setting prevents the user from using the same password a second time. Q-WIN will remember which passwords the user has used in the past. This setting specifies how many old passwords Q-WIN compares with the new password. The new password is only accepted if Q-WIN does not find it among the old passwords.
+	</help>
+
+	<help id="passwords.attempts">        
+		The user can try invalid passwords the specified number of times, then the application is blocked. It is not possible to login while the application is blocked, not even with a valid password. The next setting specifies the duration of a block. Set to 0 to disable the block.
+	</help>
+
+	<help id="passwords.blocking">        
+		This is the duration of the block if the previous setting is enabled. Set to 0 to disable the block.
+	</help>
+
+	<help id="passwords.partlyOld">        
+		A password cannot contain this amount or more characters from the previous password. This setting prevents the user from specifying a new password that is too similar to the old one.
+	</help>
+
+	<help id="passwords.expireWarn">        
+		Warn the user before the password has expired.
+	</help>
+
+<!-- ============================================ -->
+<!--                Database settings             -->
+<!-- ============================================ -->
+
+	<help id="database.odbcDsn">        
+		This is the data source name in the ODBC settings.
+	</help>
+
+	<help id="database.odbcUser">        
+		Some databases require a user name.
+	</help>
+
+	<help id="database.odbcPsw">        
+		Some databases require a password.
+	</help>
+
+	<help id="database.odbcTimeout">        
+		This is the time Q-WIN tries to connect to the database.
+	</help>
+
+	<help id="database.odbcQryTimeout">        
+		This is the maximum number of times  Q-WIN will try to get in contact with a database.
+	</help>
+
+	<help id="database.odbcMaxRows">        
+		This is the maximum number of entries Q-WIN will read from the database when a drop down list is used. This will prevent extremely long waiting times for large databases.
+	</help>
+
+	<help id="database.compactTime">        
+		Deleted records may result in empty entries in the Microsoft Access database. These empty lines make the file much larger than necessary. These empty entries are removed when the file is compacted. This setting specifies the time for the compact action. Use Q-WIN two-second units to specify the time. The compact action will be performed once within thirty minutes from the specified time.
+	</help>
+
+	<help id="database.pictKeepDays">        
+		This is the maximum time customer pictures are stored in the database. Pictures older than this date are automatically deleted. Set to 0 to disable the setting.
+	</help>
+
+	<help id="database.backupTime">        
+		This setting specifies the time, in two-second units, for the backup. The backup will be performed once within thirty minutes from the start time. Set to 0 to disable the automatic backup.
+	</help>
+
+	<help id="database.backupUser">        
+		Some databases require a user name.
+	</help>
+
+	<help id="database.backupPsw">        
+		Some databases require a password.
+	</help>
+
+	<help id="database.backupDSN">        
+		The database name in the ODBC settings.
+	</help>
+
+	<help id="database.backupKeepDays">        
+		This is the time a record should be stored in the database. Set to 0 to disable the automatic deleting of old records.
+	</help>
+
+<!-- ============================================ -->
+<!--                Host - connections            -->
+<!-- ============================================ -->
+
+	<help id="host.hostMax">        
+		The connection settings specify the connection between the Q-WIN clients and the server. A connection must be activated before it is possible to connect clients to the Q-WIN server. Specify the number of connection settings.
+	</help>
+
+<!-- ============================================ -->
+<!--                Host - connection             -->
+<!-- ============================================ -->
+
+	<help id="host.conName">        
+		The name of the setting.
+	</help>
+
+	<help id="host.conPort">        
+		This port receives information from the outside. Default port is 500.
+	</help>
+
+	<help id="host.conEventPort">        
+		This port is used to send (broadcast) events from the server via UDP. Default port is 501. Set to 0 to disable UDP events.
+	</help>
+
+	<help id="host.conTcpEventPort">        
+		Other applications can connect to this port in order to receive events via TCP. Set to 0 to disable TCP events.
+	</help>
+
+	<help id="host.conClients">        
+		This is the number of clients that can be connected to the server at the same time (TCP/IP).
+	</help>
+
+	<help id="host.conMltThread">        
+		Set the check mark to use multi threaded communication.
+	</help>
+
+	<help id="host.conMaxThreads">        
+		This is the maximum number of threads
+	</help>
+
+	<help id="host.encryption">        
+		The communication between the clients and the server is encrypted. There are three levels of encryption.
+Q-WIN encryption
+All Q-WIN clients and all applications from Qmatic use this type of encryption.
+Distributor encryption
+Distributor developed applications use this type of encryption.
+No encryption
+Some applications cannot handle encrypted communication.
+	</help>
+
+<!-- ============================================ -->
+<!--              Host - communication            -->
+<!-- ============================================ -->
+
+	<help id="host.commandTrys">        
+		This is the maximum number of times that Q-WIN tries to send a command to a unit. Default value: 5, minimum value: 1, maximum value: 100.
+	</help>
+
+	<help id="host.conTimeOut">        
+		The maximum time that Q-WIN waits for an answer when it tries to connect to a unit. The value is in 0.01 seconds. Default value: 100, minimum value: 10, maximum value: 30000.
+	</help>
+
+	<help id="host.ansTimeOut">        
+		The maximum time that Q-WIN waits for an answer when a command is sent to a unit. The value is in 0.01 seconds. Default value: 1000, minimum value: 10, maximum value: 30000.
+	</help>
+
+	<help id="host.dataTrys">        
+		This is the maximum number of times that Q-WIN tries to send data to a unit. Default value: 5, minimum
+	</help>
+
+<!-- ============================================ -->
+<!--                  Host - events               -->
+<!-- ============================================ -->
+
+	<help id="host.evScript">        
+		This script is executed when the corresponding event occurs. Q-WIN returns the result of the script and the event number.
+	</help>
+
+	<help id="host.evAlarmToManager">        
+		Send an event when there is an alarm from the server.
+	</help>
+
+	<help id="host.evRemovedFromCat">        
+		Send an event when a ticket number is removed from a category.
+	</help>
+
+	<help id="host.evInsertInCat">        
+		Send an event when a ticket number is inserted into a category.
+	</help>
+
+	<help id="host.evCalledFromCat">        
+		Send an event when a ticket number is called.
+	</help>
+
+	<help id="host.evWorkNext">        
+		Send an event when a workstation calls the next customer.
+	</help>
+
+	<help id="host.evWorkClose">        
+		Send an event when a workstation is closed.
+	</help>
+
+	<help id="host.evTicketPrinted">        
+		Send an event when a ticket printer prints a ticket.
+	</help>
+
+	<help id="host.evTicketButton">        
+		Send an event when a ticket button has created a ticket. This event is sent before the ticket printer prints the ticket.
+	</help>
+
+	<help id="host.evNumInsertDispl">        
+		Send an event when a ticket number is placed on the main display.
+	</help>
+
+	<help id="host.evCardInserted">        
+		Send an event when a card is inserted into a card reader.
+	</help>
+
+	<help id="host.evCardInsertedInvalid">        
+		Send an event when an invalid card is inserted into a card reader.
+	</help>
+
+	<help id="host.evCalendarUpdate">        
+		Send an event when Qmatic Calendar needs to be updated.
+	</help>
+
+	<help id="host.evShowLayout">        
+		Send an event when a script program opens a layout file.
+	</help>
+
+	<help id="host.evCalendarChange">        
+		Send an event when there is a change in the Qmatic Calendar.
+	</help>
+
+	<help id="host.evWorkLogon">        
+		Send an event when there is a logon at a workstation.
+	</help>
+
+	<help id="host.evWorkLogoff">        
+		Send an event when there is a logoff at a workstation.
+	</help>
+
+	<help id="host.evWorkOpen">        
+		Send an event when a workstation is opened.
+	</help>
+
+	<help id="host.evServerUpDown">        
+		Send an event when the Q-WIN server starts or stops.
+	</help>
+
+	<help id="host.evServerSetupChange">        
+		Send an event when the server settings are changed.
+	</help>
+
+	<help id="host.evUserInteractionTimeout">        
+		Send an event if the user has not pressed a button until "button available time" (configured under printer settings) has elapsed.
+	</help>
+  
+<!-- ============================================ -->
+<!--                Host - run scripts            -->
+<!-- ============================================ -->
+
+	<help id="host.runScriptMax">        
+		Run Scripts are executed with the API command RUN. A number that identifies the scripts is used as an argument to RUN. Increase the number by 1 to add a script.
+	</help>
+
+<!-- ============================================ -->
+<!--                Host - run script             -->
+<!-- ============================================ -->
+
+	<help id="host.runScript">        
+		Run Scripts are executed with the API command RUN. A number that identifies the scripts is used as an argument to RUN.
+	</help>
+
+<!-- ============================================ -->
+<!--                Host - system script             -->
+<!-- ============================================ -->
+
+	<help id="host.systemScript">        
+		This script is executed every second.
+	</help>
+
+<!-- ============================================ -->
+<!--                Host - language               -->
+<!-- ============================================ -->
+
+	<help id="host.codepage">        
+		Choose the codepage for the system.
+	</help>
+
+<!-- ============================================ -->
+<!--              Host - date and time            -->
+<!-- ============================================ -->
+
+	<help id="host.am_pm">        
+		Set the check mark to use Am/Pm time format otherwise Q-WIN will use the 24-hour format.
+	</help>
+
+	<help id="host.dateType">        
+		Select one of the date formats.
+	</help>
+
+	<help id="host.allDisplOff">        
+		This is the time that the displays stay lit when the system is inactive. Then the system automatically turns off all displays. 
+Max: 1400 minutes
+Min: 1 minute
+	</help>
+
+	<help id="host.backupInterval">        
+		In the Data folder there are data files (.dat) that store information from the system. This information makes it possible to continue after a break. For example, the data files save the ticket numbers. The waiting customers are still in the queue when Q-WIN restarts after a break.
+This setting specifies the time in seconds between each backup. 
+Max: 1000 seconds
+Min: 1 second
+	</help>
+
+	<help id="host.newDayHour">        
+		The daily reset removes all remaining waiting customers and the ticket numbers and the track number restart from the start value. The setting specifies the hour for the reset. Default is at 1:00 am. Set the setting to Off to disable the daily reset.
+	</help>
+
+	<help id="host.newDayTest">        
+		The Test New Day button simulates a daily reset with one exception, the track number does not restart. This button is used to test the system.
+	</help>
+
+	<help id="host.workLoadPeriod">        
+		Vad ² detta
+	</help>
+
+<!-- ============================================ -->
+<!--                    Printers                  -->
+<!-- ============================================ -->
+
+	<help id="printers.max">        
+		The number of ticket printers in the system.
+	</help>
+
+	<help id="printers.startingIdCode">        
+		The ID code for the first ticket printer. The default ID code is 89.
+	</help>
+
+<!-- ============================================ -->
+<!--                 Printer group                -->
+<!-- ============================================ -->
+
+	<help id="printerGroup.ticketLess">        
+		Set this check mark if there is no ticket printer in the system.
+
+NOTE! The system requires a Q-WIN Ticketless licence to be able to work without a ticket printer.
+	</help>
+
+	<help id="printerGroup.tickets">        
+		This is the number of tickets per ticket roll. The ticket counter uses this setting as a start value. The ticket counter restarts at this value when the paper feed button on the ticket printer is pressed.
+	</help>
+
+	<help id="printerGroup.lowTickets">        
+		Q-WIN sends alarm 201 when the number of tickets in a ticket printer is less than this value. The alarm is displayed on all Q-WIN clients.
+Be careful to use this alarm. The ticket counter restarts every time the paper feed button is pressed.
+	</help>
+
+	<help id="printerGroup.timeDelay">        
+		This is the minimum time that must elapse after a customer has pressed the button and until the next customer can get a ticket. Never use a delay under three seconds. A shorter delay can result in the following error in the error log "Error Io, Command Answer, target response NAK due to over run at input buffer". This message does not cause any malfunction of the system.
+Max: 60 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="printerGroup.timeCardButton">        
+		The customer must select a ticket button within this time after a card has been used. Set this value to 0 to automatically print a ticket when a card is used.
+	</help>
+
+	<help id="printerGroup.timeButtonInfo">        
+		This is the time that the printer button number is available for the PRINTER_BUTTON and PRINTER_BUTTON_PUSHED script functions. These functions return 0 after that this time has elapsed. Set this setting to 0 to keep the ticket button number until the next ticket button is pressed.
+	</help>
+
+	<help id="printerGroup.unplugError">        
+		Set the check box to report unconnected ticket printers to the error log. Use this option during installation but not in a running system.
+	</help>
+
+	<help id="printerGroup.checkTickets">        
+		Set this check mark to stop issuing tickets when the ticket counter is 0.
+	</help>
+
+	<help id="printerGroup.buttonProgram">        
+		This script program is executed when a ticket button is pressed. The result of the script program is used as the ticket number.
+	</help>
+
+	<help id="printerGroup.timeCardLed">        
+		This setting specifies the time the LEDs on the card reader are lit when a card is inserted. 
+Maximum value: 1000.
+Minimum value: 1.
+	</help>
+
+	<help id="printerGroup.track">        
+		The track used at the card. This selection overrides the selection made in the Card validation settings.
+	</help>
+
+	<help id="printerGroup.cardReset">        
+		Mark the check box to remove the card data after the ticket has been printed. If the data is not removed then it will be available until the next card is inserted. 
+This can be necessary if the card data is used in a script program. Use FUNC_PRINTER_RESET_CARD() in the script program to remove the card data.
+	</help>
+
+	<help id="printerGroup.prgGoodCard">        
+		This script program specifies the ticket button number when a valid card is used. The result of the script must be a valid ticket button number.
+	</help>
+
+	<help id="printerGroup.prgWrongCard">        
+		The script program is executed when an invalid card is used. The result of the script program specifies a ticket text and prints a ticket. This ticket text should be an information ticket that informs the customer that an invalid card has been used.
+	</help>
+
+	<help id="printerGroup.checkAppoints">        
+		Set the check mark to automatically print a ticket if the customer has an appointment. The customer must use a card for identification.
+	</help>
+
+	<help id="printerGroup.prgWrongAppt">        
+		Enter a script program if the system should print a ticket when there is a problem, for example when a customer arrives too late. Omit the script not to print any error ticket.
+	</help>
+
+<!-- ============================================ -->
+<!--                   Priority                   -->
+<!-- ============================================ -->
+
+	<help id="priority.priorityName">        
+		The name of the priority.
+	</help>
+
+	<help id="priority.type">        
+		The type of priority: select which statement to use in the priority.
+	</help>
+
+	<help id="priority.basedOn">        
+		"Based on" specifies a system value to be used for comparison in the statement (for example: the number of waiting customers).
+	</help>
+
+	<help id="priority.buttonsAndLevels">        
+		This is the list of buttons and their levels. In this case "Based on" is only used to check if there are any customers waiting for the button.
+	</help>
+
+	<help id="priority.category">        
+		Select the category to use in the priority statement.
+	</help>
+
+	<help id="priority.buttonFrom">        
+		The first button in the range to be included in the statement.
+	</help>
+
+	<help id="priority.buttonTo">        
+		The last button in the range to be included in the statement.
+	</help>
+
+	<help id="priority.script">        
+		The script program of the priority.
+	</help>
+
+<!-- ============================================ -->
+<!--              Scheduled activities            -->
+<!-- ============================================ -->
+
+	<help id="scheduler.scheduleName">        
+		The name of the settings.
+	</help>
+
+<!-- ============================================ -->
+<!--                 Ticket printer               -->
+<!-- ============================================ -->
+
+	<help id="printer.printerName">        
+		The name of the ticket printer.
+	</help>
+
+	<help id="printer.printerHostName">        
+		Each printer of the TP3100 family must have a unique IP address, it is entered here. Leave this field empty when using printers of the BP2800 family.
+	</help>
+
+	<help id="printers.jamDetection">        
+		Enables/disables the paper-jam prevention functionality in the printer.
+	</help>
+
+	<help id="printers.headDetection">        
+		Checked: The thermal head released (rubber roll removed) sensor is used.
+		Unchecked: The thermal head released sensor is ignored.
+		Recommended value to use is 'Unchecked' since the detected switch value is not not always reliable.
+	</help>
+
+<!-- ============================================ -->
+<!--            General Category transfer         -->
+<!-- ============================================ -->
+
+	<help id="transfers_cat.max">        
+		The number of category transfer settings.
+	</help>
+
+	<help id="transfers_cat.wt">        
+		Set this check mark to automatically transfer ticket numbers when the waiting time reaches a specified level. The waiting time level is specified in the ticket button settings.
+	</help>
+
+	<help id="transfers_cat.new">        
+		Set the check mark to store the transfer in the statistics. The customer gets a new waiting time after the transfer. The transfer cannot be traced in the statistics if this setting is omitted.
+	</help>
+
+	<help id="transfers_cat.prg">        
+		A script program must be used if the ticket button settings do not specify the destination for the transfer. The result of this script program is used as the new ticket button number for the customer.
+	</help>
+
+<!-- ============================================ -->
+<!--                Category transfer             -->
+<!-- ============================================ -->
+
+	<help id="transfers.name">        
+		The name of the setting.
+	</help>
+
+	<help id="transfers.grpFrom">        
+		Specify from which category the ticket number will be transferred.
+	</help>
+
+	<help id="transfers.grpTo">        
+		Specify to which category the ticket number will be transferred.
+	</help>
+
+	<help id="transfers.location">        
+		Specify the information that will be shown on the main display. The ticket number is shown on the main display when the customer is transferred. The main display will also show another number at the position for the workstation number. Here it is possible to specify this number. This number can be used to guide the customer to a new waiting area (sub waiting area). The main display will show the category from which the customer is transferred if this setting is 0.
+	</help>
+
+	<help id="transfers.prgIsBtn">        
+		The "Category to" setting usually specifies to which category the ticket number is going to be transferred. Set this check mark to override the "Category to" setting and instead use the result of the script program to specify the destination of the transfer. The result of the script program must be a ticket button number (not a category number).
+	</help>
+
+	<help id="transfers.new">        
+		Set the check mark to save the transfer in the statistics.
+	</help>
+
+	<help id="transfers.prg">        
+		The transfer is performed if the result of the script is greater than 0.
+	</help>
+
+<!-- ============================================ -->
+<!--              Voice main settings             -->
+<!-- ============================================ -->
+
+	<help id="voice.mainMax">        
+		The number of scripts.
+	</help>
+
+	<help id="voice.mainStartingIdCode">        
+		The ID Code for the Voice Units. This value is not used by Qmatic Voice. All Voice Units must have the same ID code. Use the Sub ID code to identify the units.
+	</help>
+
+<!-- ============================================ -->
+<!--                 Voice settings               -->
+<!-- ============================================ -->
+
+	<help id="voice.name">        
+		The name of the setting.
+	</help>
+
+	<help id="voice.useSoundCard">        
+		Set the check mark if an internal sound card is used (Qmatic Voice).
+	</help>
+
+	<help id="voice.useWavFormat">        
+		The Wave File option must be set if an internal sound card is used (Qmatic Voice) but it must not be set if a Voice Unit is used.
+	</help>
+
+	<help id="voice.voiceScript">        
+		This is the script program that specifies the message.
+	</help>
+
+<!-- ============================================ -->
+<!--               Wireless terminals             -->
+<!-- ============================================ -->
+
+
+	<help id="wterminal.max">        
+		The number of wireless terminals.
+	</help>
+
+
+	<help id="wterminal.debug">        
+		Use this setting to display the signature from the Wireless terminal on the system server screen. This setting is only used during test of the system.
+	</help>
+
+<!-- ============================================ -->
+<!--               Wireless terminal              -->
+<!-- ============================================ -->
+
+	<help id="wterminal.name">        
+		The name of the Wireless Terminal.
+	</help>
+
+	<help id="wterminal.signature">        
+		The signature of the Wireless Terminal.
+	</help>
+
+	<help id="xxx">        
+		Har kommer texten for helpid buttons.maxax
+	</help>
+
+<!-- ============================================ -->
+<!--             Wireless terminal group          -->
+<!-- ============================================ -->
+
+	<help id="wterminal.timeKey">        
+		This time is used to prevent that a script is executed twice by mistake. This time must elapse after a button has been pressed and before a script can be executed again.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="wterminal.prog1">        
+		This script program is executed when button 1 is pressed on the Wireless Terminal.
+	</help>
+
+	<help id="wterminal.prog2">        
+		This script program is executed when button 2 is pressed on the Wireless Terminal.
+	</help>
+
+	<help id="wterminal.prog3">        
+		This script program is executed when button 3 is pressed on the Wireless Terminal.
+	</help>
+
+<!-- ============================================ -->
+<!--            General terminal settings         -->
+<!-- ============================================ -->
+
+	<help id="terminal.max">        
+		This is the highest workstation number in the system. This is usually the same as the number of workstations.
+Max: 255
+Min: 0
+It is not possible to have 255 hardware terminals because there are only 128 ID codes. It is possible to connect about 100 hardware terminals to the system. Displays, ticket printers and other hardware units need the remaining ID codes.
+	</help>
+
+	<help id="terminal.idStart">        
+		This is the ID code for the first workstation terminal.
+	</help>
+
+	<help id="terminal.bunch">        
+		This is the number of workstation terminals that the server handles at the same time. The server must call all hardware units one by one. Each unit must be called within a reasonable time. This may cause a problem if there are many workstation terminals because the server must call every terminal before it can continue with the other units. 
+This setting specifies the number of workstation units that should be handled each time the server calls workstation terminals. The server handles the next bunch of terminals in the next cycle.
+Max: 64
+Min: 1
+	</help>
+
+	<help id="terminal.unplugged">        
+		These are the terminals that are not connected to the system. This setting is used when the number of terminals is less than the highest workstation number (see above). We recommend that you always use this setting if there are unused workstation numbers. The system will be faster because the server ignores these numbers.
+Enter single workstation numbers separated by comma (1,5,12), sequences of numbers (3-7,11-13) or a mix of both (1-4,7,10-13).
+	</help>
+
+<!-- ============================================ -->
+<!--             Terminal type settings           -->
+<!-- ============================================ -->
+
+	<help id="termtype.update">        
+		The time between refreshes of the information on the workstation terminal and the workstation display.
+Max: 1000 seconds
+Min: 1 second
+	</help>
+
+	<help id="termtype.maxTimeKey">        
+		The longest time, in seconds, allowed between two keystrokes on the workstation terminal. After this time the entered information is cleared.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="termtype.digits">        
+		This is the number of digits for the ticket number when it is displayed on the workstation terminal display.
+	</help>
+
+	<help id="termtype.discDispNet">        
+		Disable the hardware workstation displays. This setting is used when there are no workstations displays in the system.
+	</help>
+
+	<help id="termtype.discTermNet">        
+		Disable the hardware workstation terminals. This setting is used when software applications are used instead of hardware terminals.
+	</help>
+
+    <help id="termtype.protocol">
+        Which 1745 communication protocol to use. Note: All new Qmatic terminals use protocol B.
+    </help>
+
+	<help id="termtype.dispBuzz">        
+		Use the internal buzzer in the workstation displays.
+	</help>
+
+	<help id="termtype.dispServPrg">        
+		This script program specifies the information on the workstation display when the workstation is open and serving customers.
+	</help>
+
+	<help id="termtype.dispOpenPrg">        
+		This script program specifies the information on the workstation display when the workstation is open but not serving any customers.
+	</help>
+
+	<help id="termtype.dispClosePrg">        
+		This script program specifies the information on the workstation display when the workstation is closed.
+	</help>
+
+	<help id="termtype.termDisplPrg">        
+		This script program specifies the information on the hardware workstation terminal display.
+	</help>
+
+	<help id="termtype.termBuzzPrg">        
+		This script program activates the buzzer in the hardware workstation terminal. The buzzer is activated when the result of the script changes from 0 to 1.
+	</help>
+
+	<help id="termtype.termLED1prg">        
+		The result of the script controls LED 1 on the workstation terminals. The LED is lit when the script returns a value greater than 0.
+	</help>
+
+	<help id="termtype.termLED2prg">        
+		The result of the script controls LED 2 on the workstation terminals. The LED is lit when the script returns a value greater than 0.
+	</help>
+
+	<help id="termtype.termInfo1Prg">        
+		The result of the script program is displayed on the hardware workstation terminal display. It is displayed at the same position as the clock.
+	</help>
+
+	<help id="termtype.termInfo2Prg">        
+		The result of the script program is displayed on the hardware workstation terminal display. It is displayed at the same position as the clock.
+	</help>
+
+	<help id="termtype.endCustPrg">        
+		The script is executed when a transaction ends.
+	</help>
+
+<!-- ============================================ -->
+<!--             Terminal keys settings           -->
+<!-- ============================================ -->
+
+	<help id="termkeys.max">        
+		This is the number of keys on the terminal.
+	</help>
+
+<!-- ============================================ -->
+<!--             Terminal key settings            -->
+<!-- ============================================ -->
+
+	<help id="termkey.name">        
+		This is the terminal key name.
+	</help>
+
+<!-- ============================================ -->
+<!--                Single programs               -->
+<!-- ============================================ -->
+
+	<help id="termsingles.max">        
+		These programs specify the functions of the workstation terminal keys. This is the number of single programs.
+	</help>
+
+<!-- ============================================ -->
+<!--                Single program                -->
+<!-- ============================================ -->
+
+	<help id="termsingle.program">        
+		These programs specify the functions of the workstation terminal keys.
+	</help>
+
+<!-- ============================================ -->
+<!--               Sequence programs              -->
+<!-- ============================================ -->
+
+	<help id="termseqs.max">        
+		These programs specify the functions of the workstation terminal keys. This is the number of sequence programs.
+	</help>
+
+<!-- ============================================ -->
+<!--               Sequence program               -->
+<!-- ============================================ -->
+
+	<help id="termseq.program">        
+		These programs specify the functions of the workstation terminal keys.
+	</help>
+
+<!-- ============================================ -->
+<!--          Terminal Script programs            -->
+<!-- ============================================ -->
+
+	<help id="termscripts.max">        
+		These are script programs that can be started from a sequence program. This is the number of scriptprograms.
+	</help>
+
+<!-- ============================================ -->
+<!--          Terminal Script program             -->
+<!-- ============================================ -->
+
+	<help id="termscript.program">        
+		These are script programs that can be started from a sequence program.
+	</help>
+
+<!-- ============================================ -->
+<!--                  Terminal                    -->
+<!-- ============================================ -->
+
+	<help id="termsett.name">        
+		The name of the workstation.
+	</help>
+
+	<help id="termsett.fixedPrio">        
+		Lock the workstation to a priority. This setting disables the possibility of using the workstation terminal or the login to choose a priority.
+	</help>
+
+	<help id="termsett.kdLocation">        
+		This setting is used when the workstation does not use its own workstation number. Choose a workstation, then enter the workstation number that should be used. Enter 0 to turn off this function.
+	</help>
+
+<!-- ============================================ -->
+<!--           Terminal group settings            -->
+<!-- ============================================ -->
+
+	<help id="termsett.kdLitTime">        
+		The workstation display will be turned off if the workstation is closed.
+Max: 1000 minutes
+Min: 0 minutes
+	</help>
+
+	<help id="termsett.kdFlashTime">        
+		This is the time the display flashes when a ticket number is called.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="termsett.autoCloseTime">        
+		The workstation is automatically closed if no ticket numbers are called.
+Max: 1400 minutes
+Min: 0 minutes
+	</help>
+
+	<help id="termsett.minBetwNext">        
+		This time must elapse after a customer is called and until the next customer can be called.
+Max: 1000 seconds
+Min: 0 seconds
+	</help>
+
+	<help id="termsett.numInPark">        
+		This is the maximum number of ticket numbers that can be stored in the park register.
+Max: 1000
+Min: 0
+	</help>
+
+	<help id="termsett.checkPri">        
+		Show the ticket button and ticket number for the next customer to be called, on the workstation terminal display.
+Max: 9999 seconds
+Min: 0 seconds (disabled)
+	</help>
+
+	<help id="termsett.trashCat">        
+		Save the served ticket number in a trash category. The entered value must be a valid category number or 0 (off).
+	</help>
+
+	<help id="termsett.reportUnplug">        
+		Unconnected workstation terminals are reported to the error log.
+	</help>
+
+	<help id="termsett.storeNext">        
+		Store the call of a customer if there are no waiting customers. The terminal will automatically call the next customer.
+	</help>
+
+	<help id="termsett.useAddDisp">        
+		This setting affects the value returned by COUNTER_DISPLAY_BUFFERD_NO and COUNTER_DISPLAY_NO. COUNTER_DISPLAY_BUFFERD_NO will return the ticket number currently called to the workstation. COUNTER_DISPLAY_NO will show the ticket number previously called to the workstation.
+	</help>
+
+	<help id="termsett.forceLogin">        
+		The user must login to be able to use the workstation terminal.
+	</help>
+
+	<help id="termsett.forceMatter">        
+		The user must enter at least one matter code per called ticket number.
+	</help>
+
+	<help id="termsett.logoffAtClose">        
+		The user is logged out when the workstation is closed.
+	</help>
+
+	<help id="termsett.logUserErr">        
+		Some of the errors caused by the workstation are saved in the error log.
+	</help>
+
+<!-- ============================================ -->
+<!--               Utilities Preset               -->
+<!-- ============================================ -->
+
+	<help id="preset.start">        
+		You can specify the first ticket number that will be used. Q-WIN will use the start ticket number from the category settings if Start is 0.
+	</help>
+
+	<help id="preset.end">        
+		This is the number of ticket numbers. All existing ticket numbers are erased.
+	</help>
+
+	<help id="preset.button">        
+		Select in which ticket button queue you want to place the new ticket numbers.
+	</help>
+
+<!-- ============================================ -->
+<!--            Utilities Display test            -->
+<!-- ============================================ -->
+
+	<help id="disptest.seconds">        
+		The display test turns on all LEDs on all displays in the system (including the display on the workstation terminals). Enter the length of the test in seconds and click on Save.
+	</help>
+
+<!-- ============================================ -->
+<!--            Utilities Id code test            -->
+<!-- ============================================ -->
+
+	<help id="idtest.seconds">        
+		Show the ID code on the displays. Enter the length of the test in seconds and click on Save.
+	</help>
+
+
+
+
+
+
+
+
+	<help id="xxx">        
+		Har kommer texten for helpid buttons.maxax
+	</help>
+
+
+</help-items>

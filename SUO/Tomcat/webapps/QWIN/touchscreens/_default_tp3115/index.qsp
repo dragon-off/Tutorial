@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<head>
+   <TITLE>Button page</TITLE>
+   <link rel="stylesheet" type="text/css" href="css/style-main.css">
+   <script type='text/javascript' src='/js/qevent.js'> </script>
+   <script type="text/javascript" src="scripts/settings.js"></script>
+   <script type="text/javascript" src="scripts/main.js"></script>
+   <script type="text/javascript" src="scripts/screensaver.js"></script>
+</head>
+
+<body>
+  <div id="main" class="mainOuter">
+    <table class="mainOuter" cellspacing=0 cellpadding=0>
+      <tr>
+        <td class="mainOuter" align="center">
+         <table class="mainButtons" cellspacing=0 cellpadding=0>
+        
+          <%
+          B=1
+          WHILE (B LE (MAX_BUTTONS) AND B LE 5)
+          BEGIN
+          "  <tr><td class='button'>\n"
+          "    <div id='btn" B "' class='buttonOuter' onclick='printTicket(this," B ");'><script type='text/javascript'>setopacity(document.getElementById('btn" B "'), buttonUpOpacity);</script>\n"
+          "     <div class='buttonInner'>\n"
+          "      <div class='buttonText'>" BUTTON_NAME(B) "</div>\n"
+          "      <div id='buttonWaiting" B "' class='buttonWaiting'></div>\n"
+          "    </div>\n"
+          "   </div>\n"
+          "  </td></tr>\n"
+          B=B+1
+          END
+          %>
+        
+        </table>
+       </td>
+      </tr>
+    </table>
+  
+    <div class="logo"></div>
+  
+    <div id="splash" class="splashOuter">
+      <div class="splashInner">
+        <div id="splashText" class="splash"> </div>
+      </div>
+    </div>
+
+  </div>
+
+	<div id="splashError" class="splashOuter">
+	  <div class="splashInner">
+	    <div id="splashErrorText" class="splashError"> </div>
+	  </div>
+	</div>
+  
+  <script type="text/javascript">
+		update();
+	</script>
+	
+</body>
+</html>

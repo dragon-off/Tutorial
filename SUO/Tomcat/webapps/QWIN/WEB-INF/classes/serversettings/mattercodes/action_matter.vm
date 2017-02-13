@@ -1,0 +1,14 @@
+<grid-form version="1.0"
+    label=""
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    <field type  = "button">
+        #cdata("label" $text.getText("matter.remMatter"))
+        <name>matter.remMatter</name>
+        <params>
+              #param("action-script" "./matter/matter.removematter.action?matterId=$lineId")
+              #param("ref-type" "raw")
+
+        </params>
+    </field>
+</grid-form>

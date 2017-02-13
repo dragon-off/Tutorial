@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>Test</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="underscore.js"></script>
+</head>
+<body onload="render()">
+	<script type="text/javascript">
+	var dataObj;
+		function render(){
+			$.ajax({
+				url:"matrix_comp.qsp2",
+				success:function(resp){
+					var parse = resp.split("'").join('"');
+					dataObj = $.parseJSON(parse);
+					parseData();
+				}
+			}); 
+		}
+		var SetLoginObj = new Array();
+		function parseData(){
+			
+			_.forEach(dataObj.show_login,function(loginVal,lArrNum){
+				var activeOperationOnUser = 0;
+				_.forEach(dataObj.show_button,function(buttonVal,bArrNum){
+					if (dataObj.operation[bArrNum].charAt(loginVal-2)==1) {
+						activeOperationOnUser++;
+					};
+					//console.log("button_"+buttonVal+" login_"+(loginVal-1)+" oper: "+);
+				});
+				SetLoginObj.push({
+					login:loginVal-1,
+					activeOperation:activeOperationOnUser
+				});
+			});
+			var ToDisableUsers =_.where(SetLoginObj,{activeOperation:0});
+			_.forEach(ToDisableUsers,function(elValue){
+				//console.log(elValue);
+				$.ajax({
+					url:"save.qsp2",
+					data:"login="+elValue.login+"&value=1",
+					success:function(){
+						//console.log("done");
+					}
+				}); 
+			});
+			
+			
+			return;
+		}
+	</script>
+	<input type="button" value="go" onclick="render()"></input>
+
+
+
+</body>
+</html>
+	
+

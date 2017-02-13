@@ -1,0 +1,28 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    ##-------------------------------------------------------------------------------
+
+    <field type  = "button">
+        #cdata("name" "license.remClient")
+        #cdata("label" $text.getText("license.remClient"))
+
+      <params>
+            #param("action-script" "./license/item_rem.vm")
+      </params>
+    </field>
+
+
+    <field type="hidden">
+        #cdata("name" "section")
+        #cdata("init-value" "DEDICATED_LICS")
+    </field>
+    <field type="hidden">
+        #cdata("name" "slot")
+        #cdata("init-value" $slot)
+    </field>
+    <field type="hidden">
+        #cdata("name" "client")
+        #cdata("init-value" $client)
+    </field>
+
+</grid-form>

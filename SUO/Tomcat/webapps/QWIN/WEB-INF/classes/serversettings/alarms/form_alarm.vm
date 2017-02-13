@@ -1,0 +1,38 @@
+#loadcache2("ALARM*" true)
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    #set( $section            = "ALARM_SETTING_$item"                                        )
+
+    ##     SECTION   KEY                 LABEL_ID             TYPE        HELP_ID              MIN MAX     REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys("ALARM"    "NAME$item"         "alarm.name"         "text"      "alarm.name"         0   40      ""       )
+    #qsys($section   "NUMBER"            "alarm.number"       "number"    "alarm.number"       1   999     ""       )
+
+    #qsysunitlist ($section "VOICE_UNIT"        "VOICE"    "alarm.voiceUnit"    1        "alarm.voiceUnit"          )
+
+    #separator("alarm.trigging")
+    #qsys($section   "MIN"               "alarm.minValue"     "number"    "alarm.minValue"     0   10000   ""       )
+    #qsys($section   "MAX"               "alarm.maxValue"     "number"    "alarm.maxValue"     0   10000   ""       )
+
+    <field type="list" helpid="alarm.minType">
+        #cdata("label" $text.getText("alarm.minType"))
+        #cdata("name" "${section}_MIN_TYPE")
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" $section)
+            #param("key" "MIN_TYPE")
+        </params>
+        #cdata("init-value" $sm.getStringSetting("$section", "MIN_TYPE"))
+        <accepted-values>
+            #accepteditem("0" $text.getText("alarm.minTypeMax"))
+            #accepteditem("1" $text.getText("alarm.minTypeMin"))
+        </accepted-values>
+    </field>
+
+    #qsys($section   "INFO"             "alarm.scriptProg"    "script"    "alarm.scriptProg"   0   30000   ""       )
+
+</grid-form>

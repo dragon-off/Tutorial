@@ -1,0 +1,60 @@
+#loadcache2("CARD" true)
+#loadcache2("CARD_SETTING*" false)
+
+<tree version="1.0"
+           image = "images/cardvalidations.gif">
+    #cdata("label" $text.getText("cardvalid.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("cardvalid.generalNodeLabel")  )
+    #set( $top_node_image          = "images/cardvalidations.gif"                 )
+    #set( $item_node_image         = "images/cardvalidation.gif"                  )
+
+    #set( $section_main            = "CARD"                                       )
+
+    #set( $top_node_grid           = "./cardvalidation/form_cardvalidations.vm"   )
+    #set( $item_node_grid          = "./cardvalidation/form_cardvalidation.vm"    )
+
+    #set( $top_node_action         = "./cardvalidation/action_cardvalidations.vm" )
+    #set( $item_node_action        = "./cardvalidation/action_cardvalidation.vm"  )
+
+##------------------------------------------------------------------------------
+
+    ## Get a list with the names of all items
+
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+    #nodestart($top_node_label $top_node_image)
+
+       <grid-ref>
+          #cdata("name" $top_node_grid)
+          #param("item" "1")
+       </grid-ref>
+       <action-ref>
+           #cdata("name" $top_node_action)
+           #param("section" ${section_main})
+           #param("group" ${maxitems})
+       </action-ref>
+
+          #if( $maxitems > 0 )
+               #foreach($item in [1..$maxitems])
+                   <node image    = "$item_node_image">
+                         #set($name = $sm.getStringSetting($section_main, "NAME$item"))
+                         #cdata("label" "$item. $name")
+                         <grid-ref>
+                            #cdata("name" $item_node_grid)
+                            #param("item" ${item})
+                            #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                         </grid-ref>
+                   </node>
+                   #set($item = $item + 1)
+               #end
+          #end
+    </node>
+
+    #perf()
+
+</tree>

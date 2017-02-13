@@ -1,0 +1,436 @@
+<%
+T=${type}
+V=(${value}0)/10
+W=(${workstation}0)/10
+F=1
+
+A=20
+X=0 {GREEN CLIENT}
+Y=0 {YELLOW CLIENT}
+Z=0 {RED CLIENT}
+N=1
+WHILE(N LE A)
+BEGIN
+J=0
+IF(ARRAY(9900+N) EQ 0) BEGIN
+	WHILE(J LE (GROUP_QUEUE(N)-1))
+	BEGIN
+	E=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(N J ITEM_START)
+	IF(E LE ARRAY(490))
+		X=X+1
+	ELSE IF(E LE ARRAY(491))
+		Y=Y+1
+	ELSE
+		Z=Z+1
+	J=J+1
+	END
+END
+N=N+1
+END
+
+ IF((Z EQ 0) AND (Y EQ 0)) F=3
+ IF((Z EQ 0) AND (Y GT 0))F=2
+ IF(Z GT 0) F=1
+IF(T EQ "number_call")
+BEGIN
+"msg_top^<font style='font-size:12px' >Выберите операцию и номер клиента		<table style='font-size:12px' class=table_stton_select   cellspacing=0 cellpadding=0 border=0><tr style='border:none;'><td style='border:none;'>Операция</td><td style='border:none;'>клиенты</td></tr>"
+J=1
+WHILE (J LE 10)
+BEGIN
+	IF(ARRAY(300+J) EQ 0)
+	BEGIN
+		"<form name=loginForm"J" id=\"form1\"><TR><TD>"
+		BUTTON_LETTER(J) " " BUTTON_NAME(J) "</TD><TD>"
+		"<input type=\"hidden\" name=\"call_button\" />"
+		"<select name=\"menu1\" onchange=\"run_qwin('call_number',this.options[this.selectedIndex].value); hide_top_msg(0);\"><option selected disabled>Номер талона</option>" 
+		H=0
+		WHILE(H LE (GROUP_QUEUE(J)-1))
+		BEGIN
+			"<option value="J LEN(2)"@"GROUP_QUEUE_CUSTOMER_ITEM(J H ITEM_NUMBER) LEN(4)">" H+1 "-" BUTTON_LETTER(GROUP_QUEUE_CUSTOMER_ITEM(J H ITEM_ENTER_BUTTON)) GROUP_QUEUE_CUSTOMER_ITEM(J H ITEM_NUMBER) LEN(3)"</option>"
+			H=H+1
+		END
+		"</TD></TR></form>"
+	END
+J=J+1
+END
+"</table><table class=table_button_select  width=127 height=36 cellspacing=0 cellpadding=0  onclick=><tr height=17 style='border:none;'><td style='border:none;' class='button' onclick=hide_top_msg(0);><font color='black'>Отмена</font></td></tr></table>"
+
+
+G=33
+
+"<hr><form style='margin-top:0; padding-top:0; margin-bottom:0; margin-bottom:0;' name=form1 id=form1 TITLE='Эти отложенные клиенты доступны'>Вызвать отложенного клиента  ("
+GROUP_QUEUE(G) "):<br><select name=menu1 onchange=\"run_qwin('call_number_from_queue',this.options[this.selectedIndex].value); hide_top_msg(0);\"><option selected disabled>Выберите клиента</option>"
+H=0
+		WHILE(H LE (GROUP_QUEUE(G)-1))
+		BEGIN
+			"<option value="GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_NUMBER)">"  BUTTON_LETTER(GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_ENTER_BUTTON)) GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_NUMBER) LEN(3) " (" PRINT_CLOCK_SEC(TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_START))") " BUTTON_NAME(GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_BUTTON)) LEN (7)"</option>"
+			H=H+1
+		END
+ " </select></form>"G=35"<hr><form style='margin-top:0; padding-top:0; margin-bottom:0; margin-bottom:0;' name=form1 id=form1 TITLE='Эти сброшенные клиенты доступны'>Вызвать сброшенного клиента  ("
+GROUP_QUEUE(G) "):<br><select name=menu1 onchange=\"run_qwin('call_number_from_queue',this.options[this.selectedIndex].value); hide_top_msg(0);\"><option selected disabled>Выберите клиента</option>"
+H=0
+		WHILE(H LE (GROUP_QUEUE(G)-1))
+		BEGIN
+			"<option value="GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_NUMBER)">"  BUTTON_LETTER(GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_ENTER_BUTTON)) GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_NUMBER) LEN(3) " (" PRINT_CLOCK_SEC(TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(G H ITEM_START))")</option>"
+			H=H+1
+		END
+ " </select></form>"
+
+END
+
+
+IF(T EQ "perevod_msg")
+BEGIN
+"#msg_top^"
+IF((COUNTER_CUSTOMER_PRESENT(W) EQ 1) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 221)) BEGIN
+"Выберите операцию или окно<form name=form1 id=form1 style='margin-top:0; padding-top:0; margin-bottom:0; margin-bottom:0;'>"
+"<hr>Перевод в начало очереди:<br>  <select name=menu1 onchange=\"run_qwin('perevod',this.options[this.selectedIndex].value); sd('" BUTTON_LETTER(COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON)) COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) LEN(3)"',(this.options[this.selectedIndex].value-60),1);\"><option selected disabled>Выберите окно</option>"
+I=1
+WHILE(I LE 30)
+BEGIN
+IF((COUNTER_OPEN(I) EQ 1) AND (I NE W))  
+BEGIN
+IF(ARRAY(400+I) EQ 0  AND (COUNTER_CUSTOMER_PRESENT(I) EQ 0 OR (COUNTER_CUSTOMER_PRESENT(I) EQ 1 AND COUNTER_CUSTOMER_ITEM(I ITEM_BUTTON) LE 221)))
+BEGIN
+"<option value="I+60">"
+COUNTER_NAME(I)
+IF(COUNTER_OPEN(I) EQ 1)
+BEGIN
+"(Откр.) "
+IF(COUNTER_LOGIN_ID(I) GT 1)
+		LOGIN_NAME(COUNTER_LOGIN_ID(I))
+END
+ELSE
+"(Закр.)"
+"</option>"
+END
+END
+I=I+1
+END
+"</select></form><!--не переносить на новую строку!!!--><form name=form1 id=form1 style='margin-top:0; padding-top:0; margin-bottom:0; margin-bottom:0;'>Перевод в конец очереди: <br> <select name=menu1 onchange=\"run_qwin('perevod',this.options[this.selectedIndex].value); sd('" BUTTON_LETTER(COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON)) COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) LEN(3)"',(this.options[this.selectedIndex].value-100),1);\"><option selected disabled>Выберите окно</option>"
+I=1
+WHILE(I LE 30)
+BEGIN
+IF((COUNTER_OPEN(I) EQ 1) AND (I NE W))
+BEGIN
+IF(ARRAY(400+I) EQ 0  AND (COUNTER_CUSTOMER_PRESENT(I) EQ 0 OR (COUNTER_CUSTOMER_PRESENT(I) EQ 1 AND COUNTER_CUSTOMER_ITEM(I ITEM_BUTTON) LE 221)))
+BEGIN
+"<option value="I+100">" COUNTER_NAME(I)
+IF(COUNTER_OPEN(I) EQ 1)
+BEGIN
+"(Откр.) "
+IF(COUNTER_LOGIN_ID(I) GT 0)
+		LOGIN_NAME(COUNTER_LOGIN_ID(I))
+END
+ELSE
+"(Закр.)"
+"</option>"
+END
+END
+I=I+1
+END
+"</select></form><!--не переносить на новую строку!!!--><form name=form1 id=form1 style='margin-top:0; padding-top:0; margin-bottom:0; margin-bottom:0;'>Перевод в начало операции:<br>  <select name=menu1 onchange=\"run_qwin('perevod',this.options[this.selectedIndex].value); sd('" BUTTON_LETTER(COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON)) COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) LEN(3)"',this.options[this.selectedIndex].innerHTML.substr(0,1),0);\"><option selected disabled>Выберите операцию</option>"
+
+		
+I=1 {knopka}
+J=0
+WHILE(I LE 10) BEGIN
+U=0
+N=1 {okno}
+	WHILE(N LE 30) BEGIN
+	IF((COUNTER_OPEN(N) EQ 1) AND (ARRAY(1200+N) EQ 0)) 
+		BEGIN
+			IF((STRSUB(ARRAY(1100+I) COUNTER_LOGIN_ID(N) COUNTER_LOGIN_ID(N)) NE "0") AND (STRSUB(ARRAY(600+N) I I) NE "0")) U=1
+		END
+	N=N+1
+	END
+IF(U NE 0) BEGIN
+	"<option value="I+180">"BUTTON_LETTER(I)"&nbsp"BUTTON_NAME(I)"</option>"
+END
+
+I=I+1
+END
+		
+"</select></form>"
+END
+ELSE "<center>У вас сейчас нет клиентов!</center>"
+"<p><center><table class=table_button_select  width=127 height=36 cellspacing=0 cellpadding=0  onclick=><tr height=17 style='border:none;'><td style='border:none;' class='button' onclick=hide_top_msg(0);><font color='black'>Отмена</font></td></tr></table></center>"
+
+
+END
+
+IF(T EQ "next") 
+	BEGIN
+		U=TIME_NO-COUNTER_CUSTOMER_ITEM(W ITEM_NEXT)
+		IF(ARRAY(501) GT 0) 
+		BEGIN
+			IF((U LE (ARRAY(501)/2)) AND ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 20) OR ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 40) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 21)) OR ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 60) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 41)))) BEGIN
+				X=COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON)
+				IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 21 AND COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 40) X=X+180
+				IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 41) X=X+160
+				ELSE X=X+200
+				FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) X 0)	
+			END
+		END
+		IF(ARRAY(501) GT 0) 
+		BEGIN
+			IF((U LE (ARRAY(501)/2)) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 201))
+			BEGIN
+				X=221
+				FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) X 0)	
+			END
+		END
+		IF(ARRAY(900+W) LT ARRAY(509))
+		BEGIN
+			SETARRAY(900+W ARRAY(900+W)+1)
+		END
+		ELSE
+		BEGIN
+			SETARRAY(900+W 0)
+		END
+		FUNC_NEXT(W COUNTER_PRIORITY_NUMBER(W) 0 0 0)
+	END
+
+IF(T EQ "alert") 
+	FUNC_ALERT(W 1 0 0 0)
+IF(T EQ "walk") 
+	FUNC_WALK_DIRECT(W 39 8 0 0)
+IF(T EQ "vbuffer")
+	BEGIN
+		FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) 140+W 0)
+		IF(ARRAY(900+W) LT ARRAY(509))
+		BEGIN
+			SETARRAY(900+W ARRAY(900+W)+1)
+		END
+		ELSE
+		BEGIN
+			SETARRAY(900+W 0)
+		END
+
+		FUNC_NEXT(W COUNTER_PRIORITY_NUMBER(W) 0 0 0)
+	END
+	
+IF(T EQ "call_number")
+	BEGIN
+		J=(${value}0)/10
+		F=(${group}0)/10
+
+		P=0
+		SETARRAY(9990 J)
+		SETARRAY(9991 F)
+	WHILE (P LE (GROUP_QUEUE(F)-1))
+	BEGIN
+			IF (J EQ GROUP_QUEUE_CUSTOMER_ITEM(F P ITEM_NUMBER))
+				FUNC_CALL(W J 6 0 0)
+			P=P+1
+		END
+	END
+	
+IF(T EQ "call_number_from_queue")
+	BEGIN
+		U=TIME_NO-COUNTER_CUSTOMER_ITEM(W ITEM_NEXT)
+		IF(ARRAY(501) GT 0) 
+		BEGIN
+			IF((U LE (ARRAY(501)/2)) AND ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 20) OR ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 40) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 21)) OR ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 60) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 41)))) BEGIN
+				X=COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON)
+				IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 21 AND COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 40) X=X+180
+				IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 41) X=X+160
+				ELSE X=X+200
+				FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) X 0)	
+			END
+		END
+		IF(ARRAY(501) GT 0) 
+		BEGIN
+			IF((U LE (ARRAY(501)/2)) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 201))
+			BEGIN
+				X=221
+				FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) X 0)	
+			END
+		END		
+		FUNC_CALL(W V 7 0 0)
+	END
+	IF(T EQ "perevod")
+	FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) V 0)	
+
+
+  
+IF(T EQ "pereriv")
+	BEGIN
+         
+	IF(V EQ 0) {uhodim v pereriv}
+		BEGIN
+		U=TIME_NO-COUNTER_CUSTOMER_ITEM(W ITEM_NEXT)
+		IF (((COUNTER_CUSTOMER_PRESENT(W) EQ 1) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) NE 221+W)) OR (COUNTER_ERROR_STATE(W) EQ 3))
+		BEGIN
+			IF((U LE (ARRAY(501)/2)) AND ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 20) OR ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 40) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 21)) OR ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 60) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 41)))) 
+			BEGIN
+				X=COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON)
+				IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 21 AND COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 40) X=X+180
+				IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 41) X=X+160
+				ELSE X=X+200
+				FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) X 0)	
+			END
+			ELSE IF(COUNTER_CUSTOMER_PRESENT(W) EQ 1) FUNC_END_CUSTOMER(W 0 0 0 0) {PROVERIT}
+		END
+		ELSE
+		IF(ARRAY(501) GT 0) {CHTO ZA -- IF(ARRAY(501) GT 0) BEGIN END ELSE IF(ARRAY(501) GT 0) }
+		BEGIN
+			IF((U LE (ARRAY(501)/2)) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 201))
+			BEGIN
+				X=221
+				FUNC_INSERT_LAST(W 5 COUNTER_DISPLAY_NO(W) X 0)	
+			END
+		END
+		ELSE FUNC_END_CUSTOMER(W 0 0 0 0)
+		FUNC_COUNTER_KEY(W 1)
+		FUNC_WALK_DIRECT(W 221+W 8 0 0)
+		
+		
+		END
+		ELSE {IF(V EQ 0)}
+		BEGIN
+			
+			IF(ARRAY(900+W) LT ARRAY(509))
+			BEGIN
+				SETARRAY(900+W ARRAY(900+W)+1)
+			END
+			ELSE
+			BEGIN
+				SETARRAY(900+W 0)
+			END
+		FUNC_COUNTER_KEY(W 1)
+		{FUNC_NEXT(W COUNTER_PRIORITY_NUMBER(W) 0 0 0)}
+		FUNC_END_CUSTOMER(W 0 0 0 0)
+		END
+	END
+
+	"#display^" J=1
+K=1
+I=COUNTER_DISPLAY_NO(W)
+WHILE(I GE 1000)
+BEGIN
+	I=I-1000
+	K=K+1
+	J=J+1
+END
+
+IF ((COUNTER_CUSTOMER_PRESENT(W) EQ 1) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 221)) BEGIN
+
+		"<FONT COLOR='00ff00' >"
+	BUTTON_LETTER(COUNTER_CUSTOMER_ITEM(W ITEM_ENTER_BUTTON)) COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) LEN(3)  "  "
+END
+ELSE
+BEGIN 
+	IF(COUNTER_CUSTOMER_PRESENT(W) EQ 0)
+	BEGIN
+		COUNTER_SIGNS(W) SKIP(2) LEN(4)  
+	END
+	ELSE
+		IF((COUNTER_CUSTOMER_PRESENT(W) EQ 1) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) EQ 221+W))
+			"Перерыв"
+	END   
+"</font>"
+"#custitemcard^" 
+IF(STRSUB(ARRAY(1111) COUNTER_LOGIN_ID(W) COUNTER_LOGIN_ID(W)) EQ "1")
+	BEGIN
+		A=1
+		I=0
+		X=0
+		M=600+W
+		S=0
+		IF(STRSUB(ARRAY(M) 31 31) EQ "F")
+		BEGIN
+
+			WHILE(I LE 10)
+			BEGIN
+				IF(STRSUB(ARRAY(1100+I) COUNTER_LOGIN_ID(W) COUNTER_LOGIN_ID(W)) NE "0")
+				BEGIN
+				IF(STRSTN(STRSUB(ARRAY(M) I I)) GT 0)
+						IF(BUTTON_QUEUE(40+I) NE 0)
+							S=1
+							
+				END
+				I=I+1
+			END
+			
+			IF((S EQ 1) AND ((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 40) OR  (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 81)))
+				"VIP в очереди"
+		END
+	S=S+BUTTON_QUEUE(60+W)+BUTTON_QUEUE(100+W)
+	END
+IF((COUNTER_CUSTOMER_PRESENT(W) EQ 1) AND((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) GE 21) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) NE 39) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 60))) BEGIN
+	 COUNTER_CUSTOMER_ITEM_STR(W ITEM_CARD2)"<br>" BUTTON_NAME(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON))
+	END
+"#cst^" COUNTER_SERVED_TODAY(W)-BUTTON_TOTAL_SERVING_TIME_COUNT(221+W 1)
+"#vseg^" A=1
+					I=0
+			X=0
+			M=600+W
+			S=0
+			IF(STRSUB(ARRAY(M) 31 31) EQ "F")
+			BEGIN
+
+				WHILE(I LE 20)
+				BEGIN
+					IF(STRSUB(ARRAY(1100+I) COUNTER_LOGIN_ID(W) COUNTER_LOGIN_ID(W)) NE "0")
+					BEGIN
+					IF(STRSTN(STRSUB(ARRAY(M) I I)) GT 0)
+							S=S+BUTTON_QUEUE(I)+BUTTON_QUEUE(40+I)+BUTTON_QUEUE(180+I)
+					END
+					I=I+1
+				END
+			END
+		S=S+BUTTON_QUEUE(60+W)+BUTTON_QUEUE(100+W)	
+          
+		 S
+
+"#oper^" 
+I=1
+J=0
+M=600+W {kacheko massiva s priporitetom}			
+IF(STRSUB(ARRAY(M) 31 31) EQ "F")
+BEGIN
+	WHILE(I LE 20)
+	BEGIN
+		IF(STRSUB(ARRAY(1100+I) COUNTER_LOGIN_ID(W) COUNTER_LOGIN_ID(W)) NE "0")
+		BEGIN
+			IF(STRSTN(STRSUB(ARRAY(M) I I)) GT 0)
+			BEGIN
+				IF(J NE 0) ","
+				"<b>"BUTTON_LETTER(I) "</b>:" BUTTON_QUEUE(I)+BUTTON_QUEUE(40+I)+BUTTON_QUEUE(180+I) LEN(2)	J=1
+			END
+		END
+		I=I+1
+	END
+	IF(T LE ARRAY(491) AND COUNTER_PRIORITY_NUMBER(W) EQ A) 
+	BEGIN
+		R=1
+	END
+END	
+			
+		
+			
+"#obsl^"  IF(COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) NE 221+W) BEGIN PRINT_CLOCK_SEC(COUNTER_TRANSACTION_TIME_NOW(W)) SKIP(2) END ELSE BEGIN "00:00" END
+			
+"#ctt^"	IF((COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LE 221) AND COUNTER_CUSTOMER_PRESENT(W)) COUNTER_TRANSACTION_TIME_NOW(W)
+ELSE
+"0"
+"#es^"COUNTER_ERROR_STATE(W)
+"#cp^"COUNTER_CUSTOMER_PRESENT(W)
+"#co^"COUNTER_OPEN(W)
+"#ci_ib^"COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON)
+"#lc^"COUNTER_LOGIN_ID(W)
+
+IF(COUNTER_TRANSACTION_TIME_NOW(W) LE (ARRAY(500)/2) AND COUNTER_CUSTOMER_PRESENT(W))
+"#blink^1"
+"#att^"IF(COUNTER_SERVED_TODAY(W) GT 0) PRINT_CLOCK_SEC((COUNTER_TOTAL_TRANSACTION_TIME_TODAY(W)-BUTTON_TOTAL_SERVING_TIME(221+W 1))/(COUNTER_SERVED_TODAY(W)-BUTTON_TOTAL_SERVING_TIME_COUNT(221+W 1)))  
+"#takt^"
+IF(F EQ 1)
+	PRINT_CLOCK_SEC(ARRAY(800+W))
+ELSE IF (F EQ 2)
+	PRINT_CLOCK_SEC(ARRAY(830+W))
+ELSE
+	PRINT_CLOCK_SEC(ARRAY(860+W))
+ 
+
+ %>

@@ -1,0 +1,48 @@
+<%
+{VER. 5.7 14.04.2016}
+T=${type}
+C=GS("BUTTON" "BUTTON_LETTERS" "ÅÀÃÁÒÂØÈÏÑnnnnnnnnnnÓÊÍËÝÌÔÐÞÄnnnnnÇÇÇÇßßßßßßßßßßßnnnnnnnnnnO")
+D=STRNTS(TIME_NO/1800)+":"+STRNTS((TIME_NO-(TIME_NO/1800)*1800)/30)+":"+ STRNTS((TIME_NO-(TIME_NO/30)*30)*2)
+V=(${value}0)/10
+W=(${workstation}0)/10
+L=COUNTER_LOGIN_ID(W)
+B=COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) 
+
+IF(T EQ "in_work")
+BEGIN
+	IF(V EQ 0 )
+	BEGIN
+		IF((COUNTER_CUSTOMER_PRESENT(W) EQ 1) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LT 183))
+		BEGIN
+			U=TIME_NO-COUNTER_CUSTOMER_ITEM(W ITEM_NEXT)
+			IF((U*2) GE ((ARRAY(501)+ARRAY(500))))
+			BEGIN
+				
+			END	ELSE BEGIN
+				
+				SETARRAY(5870+W 1) {äëÿ âåðíîãî ïîäñ÷åòà ñáðîø, ñèãíàëèç. ÷òî äàííûé êëèåíò ñáðîøåí}
+				FUNC_INSERT_LAST(W 5 COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) 182 0)
+			END
+		END 
+		FUNC_WALK_DIRECT(W 185 3 0 0)		
+	END
+	ELSE BEGIN
+	
+		FUNC_NEXT(W 1 0 0 0)
+		
+		END
+END
+
+"#display^" 
+
+"#es^" 
+IF(COUNTER_CUSTOMER_PRESENT(W) EQ 1) 
+	"0"
+ELSE
+	COUNTER_ERROR_STATE(W)
+"#cp^"COUNTER_CUSTOMER_PRESENT(W)
+
+"#ci_ib^"COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON)
+
+
+%>

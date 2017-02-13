@@ -1,0 +1,238 @@
+IF(V EQ 1)
+BEGIN
+O=0 
+FUNC_NEXT(W 5 0 0 0)
+C=W
+IF(ARRAY(700+C) EQ 0)
+BEGIN
+	IF(ARRAY(351) GT (TIME_NO-5)) 
+	BEGIN
+		184
+		IF( ARRAY(351) LT (TIME_NO-6))
+			SETARRAY(350 0)
+	END ELSE 
+	BEGIN
+		L=COUNTER_LOGIN_ID(C)
+		A=ARRAY(600+C) 
+		V=STRSUB(ARRAY(1121) L L) 
+		T=0 
+		N=0 
+		S=0 
+		U=1 
+		Y=1 
+		O=0 
+		I=1
+		WHILE(I LE 20)
+		BEGIN
+			Q=STRSTN(STRSUB(A I I))*STRSTN(STRSUB(ARRAY(1100+I) L L))
+			IF(Q EQ 1)
+				Q=2
+			ELSE IF(Q EQ 2)
+				Q=1
+			IF(Q GT 0)
+			BEGIN
+				J=I
+				IF(BUTTON_QUEUE(J) GT 0)
+					IF((BUTTON_RWT(J) GT T AND Q EQ Y) OR Q GT Y)
+					BEGIN
+						Y=Q
+						T=BUTTON_RWT(J)
+						N=J
+					END
+				J=I+20
+				IF(BUTTON_QUEUE(J) GT 0)
+					IF(BUTTON_RWT(J) GT T AND ((Q+4) EQ Y) OR ((Q+4) GT Y))
+					BEGIN
+						Y=Q+4
+						T=BUTTON_RWT(J)
+						N=J
+					END
+				IF(V EQ "1")
+				BEGIN
+					J=I+40
+					IF(BUTTON_QUEUE(J) GT 0)
+						IF((BUTTON_RWT(J) GT T AND ((Q+9) EQ Y) OR ((Q+9) GT Y))  AND V EQ "1")
+						BEGIN
+							Y=Q+9
+							T=BUTTON_RWT(J)
+							N=J
+						END
+				END
+			END
+			I=I+1
+		END
+		J=0 
+		WHILE(J LT GROUP_QUEUE(38))
+		BEGIN
+		K=GROUP_QUEUE_CUSTOMER_ITEM(38 J ITEM_ENTER_BUTTON)
+		R=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(38 J ITEM_START)
+		S=GROUP_QUEUE_CUSTOMER_ITEM(38 J ITEM_BUTTON)
+		P=GROUP_QUEUE_CUSTOMER_ITEM(38 J ITEM_TRACK)
+		Q=STRSTN(STRSUB(A S-60 S-60))*STRSTN(STRSUB(ARRAY(1100+S-60) L L)) 
+		IF(Q EQ 1)
+			Q=2
+		ELSE IF(Q EQ 2)
+			Q=1
+		IF(Q GT 0)
+		BEGIN
+		IF(K GE 41 AND K LE 60  AND V EQ "1")
+		BEGIN
+			IF(((R GT T) AND  (11+Q EQ Y)) OR (11+Q GT Y))
+			BEGIN
+				Y=11+Q
+				T=R
+				N=S
+				O=P  
+			END
+		END
+		IF(K GE 21 AND K LE 40)
+		BEGIN
+		IF(((R GT T) AND  (6+Q EQ Y)) OR (6+Q GT Y))
+		BEGIN
+			Y=6+Q
+			T=R
+			N=S
+			O=P 
+		END
+		END
+		IF(K GE 1 AND K LE 20)
+		BEGIN
+			IF(((R GT T) AND  (2+Q EQ Y)) OR (2+Q GT Y))
+			BEGIN
+				Y=2+Q
+				T=R
+				N=S
+				O=P  
+			END
+		END
+		IF(K EQ 181)
+			IF(((R GT T) AND  (9 EQ Y)) OR (9 GT Y))
+			BEGIN
+				Y=9
+				T=R
+				N=S
+				O=P 
+			END
+		END
+
+		J=J+1
+		END
+		J=0 
+		WHILE(J LT GROUP_QUEUE(37))
+		BEGIN
+			IF(GROUP_QUEUE_CUSTOMER_ITEM(37 J ITEM_BUTTON) EQ (80+C))
+			BEGIN
+				K=GROUP_QUEUE_CUSTOMER_ITEM(37 J ITEM_ENTER_BUTTON)
+				R=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(37 J ITEM_START)
+				S=GROUP_QUEUE_CUSTOMER_ITEM(37 J ITEM_BUTTON)
+				P=GROUP_QUEUE_CUSTOMER_ITEM(37 J ITEM_TRACK)
+				Z=ARRAY(3000+P)
+				IF(Z EQ 0) 
+					Z=K
+				IF(Z GE 21 AND Z LE 40)
+					Z=Z-20
+				IF(Z GE 41 AND Z LE 60)
+					Z=Z-40
+				IF(Z GE 61 AND Z LE 80)
+					Z=Z-60
+				Q=STRSTN(STRSUB(A Z Z))*STRSTN(STRSUB(ARRAY(1100+Z) L L))
+				IF(Q EQ 1)
+					Q=2
+				ELSE IF(Q EQ 2)
+					Q=1
+				IF(Q GE 0)
+				BEGIN
+					IF (Q EQ 0) 
+						Q=2
+					IF((K GE 41 AND K LE 60)  AND V EQ "1")
+					BEGIN
+						IF(((R GT T) AND  (11+Q EQ Y)) OR (11+Q GT Y))
+						BEGIN
+							Y=11+Q
+							T=R
+							N=S
+							O=P 
+						END
+					END
+					IF(K GE 21 AND K LE 40)
+					BEGIN
+						IF(((R GT T) AND  (6+Q EQ Y)) OR (6+Q GT Y))
+						BEGIN
+							Y=6+Q
+							T=R
+							N=S
+							O=P 
+						END
+					END
+					IF(K GE 1 AND K LE 20)
+					BEGIN
+						IF(((R GT T) AND  (2+Q EQ Y)) OR (2+Q GT Y))
+						BEGIN
+							Y=2+Q
+							T=R
+							N=S
+							O=P 
+						END
+					END
+				END
+				IF(K EQ 181)
+					IF(((R GT T) AND  (9 EQ Y)) OR (9 GT Y))
+					BEGIN
+						Y=9
+						T=R
+						N=S
+						O=P 
+					END
+			END
+			J=J+1
+		END
+		IF(O GT 0) 
+		BEGIN
+			SETARRAY(1200+W N+10)
+			IF(N LE 60)
+				P=1
+			IF(N GT 60 AND N LE 110)
+				P=7
+			IF(N GT 110)
+				P=8
+			FUNC_CALL_TRACK(C O P 0 0)
+			184
+		END
+		ELSE
+			IF(N NE 0)
+			BEGIN
+				N
+				IF(BUTTON_QUEUE(N) GT 0)
+				BEGIN
+					SETARRAY(1200+W N+100)
+					IF(N LE 60)
+						P=1
+					IF(N GT 60 AND N LE 110)
+						P=7
+					IF(N GT 110)
+						P=8
+					FUNC_CALL_TRACK(C GROUP_QUEUE_CUSTOMER_ITEM(BUTTON_GROUP(N) 0 ITEM_TRACK) P 0 0)
+				END
+			END
+			ELSE
+				184
+	END
+END ELSE 184
+	
+END
+ELSE
+BEGIN
+	IF((COUNTER_CUSTOMER_PRESENT(W) EQ 1) AND (COUNTER_CUSTOMER_ITEM(W ITEM_BUTTON) LT 183) AND (ARRAY(700+W) EQ 0))
+	BEGIN
+		U=TIME_NO-COUNTER_CUSTOMER_ITEM(W ITEM_NEXT)
+		IF((U*2) GT (STRSTN(ARRAY(501))+STRSTN(ARRAY(500))))
+		BEGIN
+			
+		END	ELSE BEGIN
+			SETARRAY(1400+W 1)
+			FUNC_INSERT_LAST(W 5 COUNTER_CUSTOMER_ITEM(W ITEM_NUMBER) 182 0)
+		END
+	END 
+	FUNC_WALK_DIRECT(W 185 3 0 0)	
+	
+END

@@ -1,0 +1,148 @@
+<html>
+<head>
+	<title>СберБанк</title>
+	<link href="default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<LINK REL="StyleSheet" HREF="style_messages.css" TYPE="text/css">
+	<script type="text/javascript" src="/lib/ajax.js"></script>   	
+	<LINK rel=stylesheet type="text/css" href="style.css">
+	<script type="text/javascript" src="login_button.js1.js"></script>   
+	<script type="text/javascript" src="login_button.js.qsp2"></script>   
+</head>
+<body link=white alink=white vlink=white scrollwidth=100 onload="load_prior()">
+<form action="">
+<TABLE BORDER=0><TR><TD>
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+<tr><td class=boxTop>Действия</td></tr>
+<tr><td class=boxMain>
+<input onclick="location.href='/settings_admin/priority/login_button.qsp2?reset=1';" type=button value="Сброс всех настроек">
+<input onclick="save_prior(); DoScript('/lib/1.jsp?TypeId=6&ComIndex=14&Comment=0');alert('Изменения приняты!');" type=button value="Применить изменения"></td></tr>
+</tbody></table>
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+<form action="window_button.qsp2">
+<TABLE><TR><TD>
+	</TD></TR></TABLE>
+</form>
+	<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<tbody><tr><td class=boxTop rowspan=2 style="display:none;">№</td>
+<td class=boxTop width=180 rowspan=2 align=center>Клиент</td>
+<td class=boxTop colspan=10 align=center><h3 class=box>Доступные категории</h3></td>
+<td class=boxTop rowspan=2 align=center><h3 class=box>Возможность работы с VIP</h3></td>
+<td class=boxTop rowspan=2 align=center><h3 class=box>Специальная регистрация</h3></td>
+<td class=boxTop rowspan=2 align=center><h3 class=box>Вызов из очереди </h3></td>
+</tr>
+<TR>
+<%
+U=11
+I=1
+WHILE(I LT U)
+BEGIN
+	"<TD width=70 class=boxTopBlue align=center ><div ><B><FONT size=-1>"
+	ARRAY(2000+I)  
+	"</FONT></B></DIV></TD>"
+	I=I+1
+END
+{"<td width=70 align=center >Спец. регистрация</td><td width=70 align=center >Вызов из очереди</td>"}
+"</TR>"
+M=MAX_LOGINS
+IF(M GT 50)
+	M=50
+I=1
+WHILE(I LE M)
+BEGIN
+	IF(STRSUB(ARRAY(1100) I I) EQ "0")
+	BEGIN
+		IF(((I/2)*2) EQ I)
+			"<TR bgcolor=#E2E2E2>"
+		ELSE
+			"<TR>"
+		"<TD align=center style='display:none;'>"I"</TD><TD> "LOGIN_NAME(I)"</TD>"
+		P=1
+		WHILE(P LE U)
+		BEGIN
+			"<TD id=win_"P"-"I" align=center></TD>"
+			P=P+1
+		END
+		"<td id=win_12-"I" align=center></td><td id=win_13-"I" align=center></td></TR>"
+		T=0
+		C=0
+	END 
+	I=I+1
+END
+%>
+</table></TD><TD>
+</TD></TD></TABLE><table></table>
+<div id="DopElement" style="display:none;"></div>
+	<table width='100%' height='100%' id="message_box_1" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:999;">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="document.getElementById('message_box_1').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;font-size: 14px;color: #000080;" id="message_box_1_text">
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%' id="message_box_2" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:998;">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='close_error.gif' style="cursor:pointer;" onClick="document.getElementById('message_box_2').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;font-size: 14px;color: #000080;" id="message_box_2_text">
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html><script type="text/javascript" src="login_button.js2.js"></script>   

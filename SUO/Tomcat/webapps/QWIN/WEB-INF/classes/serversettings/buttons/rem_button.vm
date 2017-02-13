@@ -1,0 +1,23 @@
+
+  #set($item   = $sm.getNumericSetting( $section, $key ))
+  #set($max    = $sm.getNumericSetting( $section, $key ) - 1 )
+  #set( $limit = 0 )
+
+
+  #if( $max >= $limit.parseInt($limit_min))
+
+    #set($grp = $sm.getGroupByMember($section, "SETTINGS", $item).getGroup())
+
+    $sm.setNumericSetting($section, $key, ${max})
+
+    $sm.removeMemberFromGroup($section, "SETTINGS", ${grp}, ${item} )
+
+    #set($maxgroups = $sm.getNumericSetting( "GROUP", "MAX" ))
+    #foreach($g in [1..$maxgroups])
+        #if($sm.isMemberOfGroup($section, "GROUPS", ${g}, ${item}))
+          $sm.removeMemberFromGroup($section, "GROUPS", ${g}, ${item} )
+        #end
+    #end
+
+  #end
+

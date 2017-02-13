@@ -1,0 +1,428 @@
+<html>
+<head>
+	<title>СберБанк</title>
+	<link href="../default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<LINK REL="StyleSheet" HREF="../style_messages.css" TYPE="text/css">
+	<script type="text/javascript" src="/lib/ajax.js"></script>   	
+	<LINK rel=stylesheet type="text/css" href="../style.css">
+	<script type="text/javascript" src="matrix_comp.js"></script>   
+	<script type="text/javascript" src="matrix_comp.qsp2"></script>   
+	<script language="javascript">
+
+function reset_login() {
+mass_chenge_out ="Сброс всех настроек";
+	DoScript('/lib/1.jsp?TypeId=6&ComIndex=14&Comment=0&action='+encodeURI(mass_chenge_out)); 
+	console.log('/lib/1.jsp?TypeId=6&ComIndex=14&Comment=0&action='+encodeURI(mass_chenge_out) );
+	mass_chenge_out="";
+	for(var i=0;i<mass_chenge.length;i++)
+		{
+		mass_chenge[i]=null;
+		}
+	httpRequest('reset_login.qsp2', function(req) { document.location.reload(); }, function(req) { }, null, 20000);
+
+}
+function createXMLHttpRequest() {
+  try { return new XMLHttpRequest(); } catch(e) {}
+  try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) {}
+  try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) {}
+  throw 'XMLHttpRequest not supported';
+}
+var HTTP_TIMEOUT = 10;
+function httpRequest(url, onSuccess, onFail, postData, timeout) {
+  var req = createXMLHttpRequest();
+  var method = postData ? 'POST' : 'GET';
+  req.open(method, url, true);
+  req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
+  if (postData) {
+    req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+  }
+  var timer = null;
+  if (!timeout) timeout = HTTP_TIMEOUT;
+  if (timeout != -1) {
+    timer = setTimeout(httpTimeoutClosure(req, onFail), timeout);
+  }
+  req.onreadystatechange = httpStatusChangeClosure(req, onSuccess, onFail, timer);
+    req.send(postData);
+}
+function httpTimeoutClosure(req, onFail) {
+  return function() {
+   req.onreadystatechange = null;
+    try {req.abort()}
+   finally {if (onFail) onFail(req)}
+  }
+}
+function httpStatusChangeClosure(req, onSuccess, onFail, timer) {
+  return function() {
+    if (req.readyState != 4) return;
+    if (timer) clearTimeout(timer);
+    if (req.status != 200 && req.status != 304) {
+      if (onFail) onFail(req);
+      return;
+    }    
+    if (onSuccess) onSuccess(req);
+  }
+}
+
+
+//httpRequest('run.qsp2?type="'+command+'"&workstation='+ws+'&value='+value, function(req) { update_split(req.responseText) }, function(req) {  httpRequest('/login/login.action?username=Administrator', function(req) { }, function(req) { }, null, 20000); document.getElementById('msg_timeout').style.display='block';}, null, 20000);
+
+if (!('indexOf' in Array.prototype)) {
+    Array.prototype.indexOf= function(find, i /*opt*/) {
+        if (i===undefined) i= 0;
+        if (i<0) i+= this.length;
+        if (i<0) i= 0;
+        for (var n= this.length; i<n; i++)
+            if (i in this && this[i]===find)
+                return i;
+        return -1;
+    };
+}
+
+
+	<!-- ajax end-->
+	function explode_data(len) {
+		// type[0]-buttons, type[1]-options
+		var type;
+		var button_logins;
+		var options;
+		type = len.split('%');
+		button_logins=type[0].split('^');
+		options=type[1].split('^');
+		options[0]=options[0].split("$");
+		
+		options[1]=options[1].split(",");
+		var ar_button=new Array();
+	//	var ar_login=new Array();
+	//	ar_login=eval("["+options[3]+"]");
+//	alert(options[1]);
+		eval("ar_button=["+options[1]+"];");
+		//alert(ar_button[1]);
+		//	td[i-1] = document.createElement('td');	
+
+		var tr1=null;
+		var tr1=document.createElement('tr');
+		
+		var td1=document.createElement('td');
+		td1.setAttribute('class','boxTop');
+		td1.className ='boxTop';
+	
+		td1.setAttribute('rowspan','2');
+		td1.rowSpan=2;
+		td1.style.display='none';
+		td1.style.rowspan=2;
+		td1.setAttribute('style','display:none;');
+		td1.innerHTML='№';
+		tr1.appendChild(td1);
+		//
+		td1=null;
+		td1=document.createElement('td');
+		td1.setAttribute('class','boxTop');
+		td1.className ='boxTop';
+		td1.setAttribute('width','180');
+		td1.setAttribute('rowspan','2');
+		td1.rowSpan=2;
+		td1.style.rowspan=2;
+		td1.innerHTML='Пользователь';
+		tr1.appendChild(td1);
+		//
+		td1=null;
+		td1=document.createElement('td');
+		td1.setAttribute('class','boxTop');
+		td1.className ='boxTop';
+		td1.setAttribute('colspan',(options[1].length));
+		td1.colSpan=(options[1].length);
+		td1.style.colspan=(options[1].length);
+		td1.innerHTML='<h3 class=box>Доступные категории</h3>';
+		tr1.appendChild(td1);
+		//
+		td1=null;
+		td1=document.createElement('td');
+		td1.setAttribute('class','boxTop');
+		td1.className ='boxTop';
+		td1.setAttribute('rowspan','2');
+		td1.rowSpan=2;
+		td1.style.rowspan=2;
+		td1.innerHTML='<h3 class=box>Возможность работы с VIP</h3>';
+		tr1.appendChild(td1);
+		//
+		td1=null;
+		td1=document.createElement('td');
+		td1.setAttribute('class','boxTop');
+		td1.className ='boxTop';
+		td1.setAttribute('rowspan','2');
+		td1.rowSpan=2;
+		td1.style.rowspan=2;
+		td1.innerHTML='<h3 class=box>Специальная регистрация</h3>';
+		tr1.appendChild(td1);
+		//
+		td1=null;
+		td1=document.createElement('td');
+		td1.setAttribute('class','boxTop');
+		td1.className ='boxTop';
+		td1.setAttribute('rowspan','2');
+		td1.rowSpan=2;
+		td1.style.rowspan=2;
+		td1.innerHTML='<h3 class=box>Вызов из очереди </h3>';
+		tr1.appendChild(td1);
+		//
+		document.getElementById("table_title").appendChild(tr1);
+				
+		tr1=null;
+		tr1=document.createElement('tr');
+		var len_button="";
+		var col_button=0;
+		for(var i=0;i<=(button_logins.length-1);i++) {
+			button=button_logins[i].split("#");
+		//	alert(ar_button.indexOf(button[1]*1)+"    "+button[1]*1);
+		
+	//	alert(ar_button.indexOf(1));
+			if(i<20 & ar_button.indexOf((button[1]*1))>=0) {
+				td1=null;
+				col_button++;
+				td1=document.createElement('td');
+				td1.innerHTML=button[0];
+				mass_chenge_buttons[i] = button[0];
+				tr1.appendChild(td1)
+				len_button=len_button+"<TD>"+button[0]+"</td>";
+			};
+			
+		};
+		mass_chenge_buttons[20] = "Возможность работы с VIP";
+		mass_chenge_buttons[21] = "Специальная регистрация";
+		mass_chenge_buttons[22] = "Вызов из очереди";
+		//document.getElementById("buttons").innerHTML=len_button;
+		
+		document.getElementById("table_title").appendChild(tr1);
+		//data_logins
+	//	alert(options[0]); //spisok loginov
+	//	alert(options[1]); //spisok buttonov
+		
+		var tbody = document.createElement('tbody');
+		var tr2 = null;
+		var new_td=null;
+		
+	//	document.getElementById("buttons_cols").colspan=(options[1].length-1);
+		for(var i=0;i<=(options[0].length-2);i++) {
+			user=options[0][i].split("@");
+			tr2=document.createElement('tr');
+			for(var j=0;j<=col_button;j++) {
+				new_td=null;
+				new_td=document.createElement('td');
+				new_td.id="win_"+ar_button[j-1]+"-"+user[0];
+			
+				if(j == 0) {
+					new_td.innerHTML=user[1];
+					mass_chenge_logins[user[0]*1] = user[1]; 
+					
+				} else {
+					new_td.innerHTML="-";
+				};
+				
+				
+				tr2.appendChild(new_td);
+				
+			};
+			new_td=null;
+			new_td=document.createElement('td');
+			new_td.id="win_21-"+user[0];new_td.innerHTML="-";
+			tr2.appendChild(new_td);
+			new_td=null;
+			new_td=document.createElement('td');
+			new_td.id="win_22-"+user[0];new_td.innerHTML="-";
+			tr2.appendChild(new_td);
+			new_td=null;
+			new_td=document.createElement('td');
+			new_td.id="win_23-"+user[0];new_td.innerHTML="-";
+			tr2.appendChild(new_td);
+			document.getElementById("data_logins").appendChild(tr2);
+			tr2=null;
+		};
+		
+		load_prior();
+	//	for(var i=0;i<=(options[1].length-1);i++) {
+	//		alert(9):
+			
+	//	};
+	};
+			function load_logins() {
+				httpRequest('data_logins.qsp2', function(req) { explode_data(req.responseText); }, function(req) { }, null, 20000);
+				
+			};
+function close_salert(el)
+{
+var elem = parent.frames[0].document.getElementById('blockres');
+elem.innerHTML=elem.innerHTML*1-1;
+if(el==2) elem.innerHTML=0;
+var messages = elem.innerHTML*1;
+if(messages<0)
+	{
+	messages=0;
+	elem.innerHTML=0;
+	}
+if(messages==0)
+	parent.frames[0].document.getElementById('block').style.display = 'none';
+parent.frames[1].document.getElementById('message_box_'+el+'_text').innerHTML="";
+if(el==1)
+	parent.frames[1].document.getElementById('message_box_3_text').innerHTML="";
+}
+	</script>
+</head>
+<body link=white alink=white vlink=white scrollwidth=100 onload="load_logins()">
+<form action="">
+<TABLE BORDER=0><TR><TD>
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+<tr><td class=boxTop>Действия</td></tr>
+<tr><td class=boxMain>
+<input onclick="reset_login();" type=button value="Сброс всех настроек">
+<input onclick="save_prior(); " type=button value="Применить изменения"></td></tr>
+</tbody></table>
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+</form>
+<!---------------------------------------------->
+<!--
+buttons_cols 	количество опраций
+buttons			операции (<tr>...</tr>)
+data_logins		блок компетенции по пользователям
+
+
+-->
+
+<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<thead id="table_title">
+  </thead>
+<tbody id="data_logins">
+
+
+</tbody>
+</table>
+
+
+<!---------------------------------------------->
+
+</TD><TD>
+</TD></TD></TABLE><table></table>
+<div id="DopElement" style="display:none;"></div>
+
+<table width='100%' height='100%' id="message_box_1" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:998; background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" border=0/>
+					</td>
+					
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_1_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<div style="border-top:solid 1px #f43839;height: 38px;background-color: #fccac1;width:100%;text-align:center;">
+			<input type="button" value="OK" onClick="close_salert(1); document.getElementById('message_box_1').style.display='none';" style="height:35px;width:80%;">
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%' id="message_box_2" style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:997;background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(2); document.getElementById('message_box_2').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_2_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+<table width='100%' height='100%'  style="height:100%;width:100%;position: absolute;left:0px;top:0px;display:none;z-index:999;background-image:url('../images/halfpixel.png');">
+<tr>
+<td style="text-align:center;">
+<div class="error_box" >
+<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+	<tr height='58px'>
+		<td>
+			<div style="border-bottom:solid 1px #f43839;height: 58px;background-color: #fccac1;width:100%;">
+			<table cellpadding=0 cellspacing=0 border=0 style="height:100%;width:100%;">
+				<tr>
+					<td style="padding:9px;">
+						<img src='../images/error.gif' border=0/>
+					</td>
+					<td style="padding:9px; font-family: Arial, sans-serif;font-size:14pt;text-transform:uppercase;color:#f43839;text-align:center;">
+						Внимание!
+					</td>
+					<td style="padding:9px;text-align:right;">
+						<img src='../images/close_error.gif' style="cursor:pointer;" onClick="close_salert(3); document.getElementById('message_box_3').style.display='none';" border=0/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px;vertical-align:top;" id="message_box_3_text">
+
+		</td>
+	</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html><script type="text/javascript" src="matrix_comp.js2.js"></script>   

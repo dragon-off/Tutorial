@@ -1,0 +1,16 @@
+#loadcache2("TERMINAL" true)
+#loadcache2("TERMINAL_SETT*" false)
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("terminal.generalNode"))
+    #set( $section            = "TERMINAL"                           )
+
+    ##    SECTION  KEY              LABEL_ID                TYPE        HELP_ID               MIN MAX   REGEXP
+    ##---------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"            "terminal.max"          "number"    "terminal.max"        0   255   "" )
+    #qsys($section "ID_NO_START"    "terminal.idStart"      "number"    "terminal.idStart"    1   128   "" )
+    #qsys($section "BUNCH"          "terminal.bunch"        "number"    "terminal.bunch"      1   64    "" )
+    #qsys($section "UNPLUGGED"      "terminal.unplugged"    "text"      "terminal.unplugged"  0   100   "(^$)|^([0-9],|[0-9]|[0-9]-[0-9]|[0-9]-[0-9],)*([0-9]|[0-9]-[0-9])$" )
+
+ </grid-form>

@@ -1,0 +1,37 @@
+<%
+	{значения массива}
+I=1
+W="" {SHOW WINDOW}
+B="" {SHOW BUTTON}
+WHILE(I LE 30)
+BEGIN
+	IF(ARRAY(1000+I) EQ 0 AND I LE 10)
+	BEGIN
+		IF(B EQ "")
+			B=""+I
+		ELSE
+		BEGIN
+			B=B+","+I
+		END
+	END
+
+	IF(ARRAY(400+I) EQ 0) 
+	BEGIN
+		IF(W EQ "")
+			W=""+I
+		ELSE
+		BEGIN
+			W=W+","+I
+		END
+		"setCookie('operation_"I"', '"ARRAY(600+I)"',900);\n"
+	END
+	ELSE
+	BEGIN
+		"setCookie('operation_"I"', '',0);\n"
+	END
+	I=I+1
+END
+
+"var show_window = ["W"];\n"
+"var show_button = ["B"];"
+%>

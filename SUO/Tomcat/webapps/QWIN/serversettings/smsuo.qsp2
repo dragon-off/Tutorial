@@ -1,0 +1,137 @@
+<html>
+<head>
+ <link href="/css/default.css" rel="stylesheet" type="text/css" />
+ <%
+R=(${reset}0)/10
+IF(R EQ 1)
+BEGIN
+	SETARRAY(472 0)
+	SETARRAY(473 0)
+	SETARRAY(474 0)
+	SETARRAY(475 0)
+	SETARRAY(476 0)
+	SETARRAY(477 0)
+	SETARRAY(478 0)
+	SETARRAY(479 0)
+	SETARRAY(480 0)
+	SETARRAY(481 0)
+	SETARRAY(482 0)
+	SETARRAY(483 0)
+	SETARRAY(484 0)
+	SETARRAY(485 0)
+END
+ %>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+
+ <LINK REL="StyleSheet" HREF="/touchscreens/bossallview/style.css" TYPE="text/css">
+ <script type="text/javascript" src="/touchscreens/lib/ajax.js"></script>			  
+
+</head>
+<body>
+<div id="DopElement"></div>
+<table width="300" border="0" cellspacing="0" cellpadding="0" class="borderedbox">
+        <tr>
+            <td class="boxTop"><h3 class="box">Версии справочников СМСУО</h3></td>
+        </tr>
+        <tr>
+            <td class="boxMain">
+                <div >
+<table border=0>
+	<tr>
+	<td width="10px"></td>
+	<td>
+	<table  class=tableSection border="0" cellpadding="0" cellspacing="0" style="padding-bottom:5px;">
+	<tr>
+		<td nowrap class=tdHeaderSection align=center width=150>Название</td>
+		<td nowrap class=tdHeaderSection align=center width=100>версия</td>	
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Категории операций</td>
+	<td><center><% ARRAY(472) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Время ТАКТ</td>
+	<td><center><% ARRAY(473) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Конфигурационные параметры</td>
+	<td><center><% ARRAY(474) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Информационные сообщения</td>
+	<td><center><% ARRAY(475) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Устройств вывода сообщений</td>
+	<td><center><% ARRAY(476) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>ВСП шаговой доступности</td>
+	<td><center><% ARRAY(477) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Тактика обслуживания</td>
+	<td><center><% ARRAY(478) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Информационные события</td>
+	<td><center><% ARRAY(479) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Признаки использования карты</td>
+	<td><center><% ARRAY(480) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Статусы окна</td>
+	<td><center><% ARRAY(481) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Настройки СУО</td>
+	<td><center><% ARRAY(482) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Централизованные справочники</td>
+	<td><center><% ARRAY(483) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Справочник БИН</td>
+	<td><center><% ARRAY(484) %></center></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Справочник ДниПик</td>
+	<td><center><% ARRAY(485) %></center></td>
+	</tr>
+
+	
+	
+	<tr>
+	<td style='padding:5px;' colspan=2><hr></td>
+	</tr>
+				<form>
+	<tr>
+	<td style='padding:5px;'></td>
+	<td><center><input type="hidden" name="reset" id="button_4" value="1" >
+	
+	<input type="submit" id="button_4" value="Сбросить справочники"></center></td>
+	</tr>
+</form><form action="/serversettings/smsuo_reset.jsp">
+	<tr>
+	<td style='padding:5px;'></td>
+	<td><center><input type="hidden" name="reset" id="button_4" value="1" >
+	
+	<input type="submit" id="button_4" value="Перезапустить/запустить тестер"></center></td>
+	</tr>
+</form>
+</table></td>
+<td width="10px"></td>
+</tr>
+</table>
+                </div>
+            </td>
+        </tr>
+   
+    </table>
+
+</body>
+</html>

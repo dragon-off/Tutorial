@@ -1,0 +1,164 @@
+﻿<%@ page contentType='text/html;charset=utf-8'%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+<script type="text/JavaScript">
+<!--
+function insert_last(targ,selObj,restore){ //v3.0
+  
+eval(targ+".location='?insert_last="+selObj.options[selObj.selectedIndex].value+"&workstation=1'");
+  if (restore) selObj.selectedIndex=0;
+}
+function insert_first(targ,selObj,restore){ //v3.0
+  
+eval(targ+".location='?insert_first="+selObj.options[selObj.selectedIndex].value+"&workstation=1'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+
+
+
+function alert1()
+ {
+  if(insert_msg.style.display=='none')
+   {
+    insert_msg.style.display='block';
+    setTimeout('close()', 5000);
+   }
+  else 
+   {
+   insert_msg.style.display='none';
+   }
+ }
+function alert2()
+ {
+  if(next.style.display=='none')
+   {
+    next.style.display='block';
+   
+   }
+  else 
+   {
+   next.style.display='none';
+   }
+ }
+function close()
+ {
+  insert_msg.style.display='none';
+  next.style.display='none';
+ }
+
+</script>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Веб Пульт для того кто всегда рядом</title>
+<style>
+
+
+BODY {
+background-image: url('img/bg.jpg'); 
+}
+table_razdel {
+background:#77B618;
+background:#33CC66;
+}
+table.table_button {
+background-color:#CCCCCC;
+border-right-color:#00FF33;
+text-align:center;
+border-bottom-color:#006633;
+}
+table.table_button_select {
+background-image: url('img/b1.gif');
+text-align:center;
+}
+table.table_button_select2 {
+background-image: url('img/b2.gif');
+text-align:center;
+}
+table.table_button_select3 {
+background-image: url('img/b3.gif');
+text-align:center;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Фоновый рисунок</title>
+		<style type="text/css">
+			.fon {
+				height: 100%;
+				border: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: -1;
+			}
+		</style>
+</head>
+
+<body scroll=no>
+<center>
+
+	<table border=0 cellpadding=0 cellspacing=0>
+	<tr>
+		<td background="img/tl.gif" width=34 height=37></td>
+		<td background="img/tc.gif" height=37>
+		<a href="/sber/fl1.exe">Операционист ФЛ (окно 1)</a><br>
+		<a href="/sber/ul1.exe">Операционист ЮЛ (окно 1)</a><br>
+		<a href="/sber/admin.exe">Администратор смены</a><br>
+		<a href="/sber/moderator.exe">Модератор</a><br>
+<br></td>
+		<td background="img/tr.gif" width=34 height=37></td>
+	</tr>
+	<tr>
+		<td background="img/cl.gif" width=34></td>
+		<td bgcolor='#fefefe'>
+
+<form action="pult.qsp"  name="form1" id="form1">
+
+
+
+
+
+Выберите свое окно:
+  <select name="workstation">
+<option selected disabled>Выберите окно</option>
+
+
+<option value=1>Окно 1 </option><option value=2>Окно 2</option><option value=3>Окно 3 </option><option value=4>Окно 4 </option><option value=5>Окно 5 </option><option value=6>Окно 6 </option><option value=7>Окно 7 </option><option value=8>Окно 8 </option><option value=9>Окно 9 </option><option value=10>Окно 10 </option><option value=11>Окно 11 </option><option value=12>Окно 12 </option><option value=13>Окно 13 </option><option value=14>Окно 14 </option><option value=15>Окно 15 </option><option value=16>Окно 16 </option><option value=17>Окно 17 </option><option value=18>Окно 18 </option><option value=19>Окно 19 </option><option value=20>Окно 20 </option><option value=21>Окно 21 </option><option value=22>Окно 22 </option><option value=23>Окно 23 </option><option value=24>Окно 24 </option><option value=25>Окно 25 </option> <option value=26>Окно 26 </option><option value=27>Окно 27 </option><option value=28>Окно 28 </option>    </select>
+<br>
+
+Введите логин:
+  <input name="logincod" type="text" />
+</form>
+<br><center>
+		<table class=table_button_select  width=127 height=36 cellspacing=0 cellpadding=0 onclick=form1.submit()>
+		<tr height=17 style='border:none;'>
+			<td style='border:none;cursor:pointer;'><font color='#00000'>Войти</font></td>
+		</tr>
+		</table>
+</center>
+
+
+
+
+
+	</td>
+<td background="img/cr.gif" width=34></td>
+</tr>
+<tr>
+<td background="img/dl.gif" width=34 height=37></td>
+<td background="img/dc.gif" height=37></td>
+<td background="img/dr.gif" width=34 height=37></td>
+</tr>
+</table>
+
+
+</center>
+
+<p><img class="fon" src="img/bg.jpg"  /></p>
+</body>
+</html>

@@ -1,0 +1,1 @@
+delete from events where convert(varchar(10), Happened, 104)=convert(varchar(10), GETDATE(),104)

@@ -1,0 +1,15 @@
+#loadcache2("WLTERM*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("wterminal.generalNodeLabel"))
+
+    #set( $section            = "WLTERM"                                        )
+
+    ##    SECTION   KEY        LABEL_ID             TYPE          HELP_ID             MIN MAX REGEXP
+    ##--------------------------------------------------------------------------------------------------------
+
+    #qsys($section  "MAX"      "wterminal.max"      "number"      "wterminal.max"     0   255 "" )
+    #qsys($section  "DEBUG"    "wterminal.debug"    "checkbox"    "wterminal.debug"   0   1   "" )
+
+</grid-form>

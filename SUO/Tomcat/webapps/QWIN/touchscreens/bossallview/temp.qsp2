@@ -1,0 +1,10 @@
+<html>
+<head>
+<script type="text/javascript"> 
+    var ip = window.location.hostname; 
+    alert(ip); 
+</script> 
+</head>
+<body>
+</body>
+</html>

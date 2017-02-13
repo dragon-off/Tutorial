@@ -1,0 +1,75 @@
+<%
+{1=change priority to window}
+T=(${type}0)/10
+IF(T EQ 0)
+	T=1
+IF(T EQ 1) {change priority to window BEGIN}
+BEGIN
+	W=(${window}0)/10
+	B=(${button}0)/10
+	O=${obj}
+	P=(${priority}0)/10
+	IF(P EQ 1 OR P EQ 0)
+		P=0
+	ELSE IF(P EQ 2)
+		P=40
+	ELSE IF(P EQ 3)
+		P=60
+	ELSE IF(P EQ 4)
+		P=90
+	ELSE IF(P EQ 5)
+		P=120
+	L=STRSUB(ARRAY(600+W) B B)
+	{IF(STRSUB(ARRAY(500+W) 32 32) EQ "0")}
+	IF(0 EQ 0)
+	BEGIN
+		L=(${level}0)/10
+		IF(B EQ 1)
+			SETARRAY(600+W STRNTS(L)+STRSUB(ARRAY(600+W) 2 32))
+		ELSE
+			SETARRAY(600+W STRSUB(ARRAY(600+W) 1 B-1)+STRNTS(L)+STRSUB(ARRAY(600+W) B+1 32))
+		{"<form name=loginFormJ id=form1 >"}
+	{	"<input type=hidden name=call_button>"}
+	IF(L EQ "0")
+	BEGIN
+		"<IMG SRC=no.png border=0 onclick=setget('0','"W"','"B"','1','"G"','"O"');>"
+	END
+	ELSE
+	BEGIN
+		"<select name=menu1 onchange=\" setget_combo('0','"W"','"B"','1','"G"','"O"',this)\">"
+		I=0
+		WHILE(I LE 9)
+		BEGIN
+			J=I
+			IF(STRNTS(J) EQ L)
+			BEGIN
+				"<option selected value="I">"I"</option>"
+			END ELSE
+			BEGIN
+				"<option value="I">"I"</option>"
+			END
+			I=I+1
+		END
+		"</SELECT>"
+	END
+	{	"</form>"	}
+	END ELSE
+	BEGIN
+		IF(L EQ "0")
+			L="1"
+		ELSE
+			L="0"
+		IF(B EQ 1)
+			SETARRAY(600+W L+STRSUB(ARRAY(600+W) 2 32))
+		ELSE
+			SETARRAY(600+W STRSUB(ARRAY(600+W) 1 B-1)+L+STRSUB(ARRAY(600+W) B+1 32))
+		{VIVOD}
+	{	IF(L EQ "1")}
+	{		"<IMG SRC=yes.png border=0>"}
+	{	ELSE}
+	{		"<IMG SRC=no.png border=0>"}
+	END
+END
+{change priority to window END}
+
+%>

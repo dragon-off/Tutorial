@@ -1,0 +1,32 @@
+#loadcache2("PRINTER*" true )
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("printers.settingsHeading"))
+    #set( $section            = "PRINTER"                           )
+
+    ##    SECTION  KEY             LABEL_ID                     TYPE          HELP_ID                    MIN MAX  REGEXP
+    ##-------------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"           "printers.max"               "number"      "printers.max"             0   99   "" )
+    #qsys($section "ID_NO_START"   "printers.startingIdCode"    "number"      "printers.startingIdCode"  1   128  "" )
+
+
+    #separator("printers.advIpSettings")
+
+    #qsys($section "JAM_DETECTION"     "printers.jamDetection"         "checkbox"    "printers.jamDetection"      0   1      "" )
+    #qsys($section "HEAD_DETECTION"    "printers.headDetection"        "checkbox"    "printers.headDetection"      0   1      "" )
+
+##    #qsys($section "RECEIVE_PORT"     "printers.receivePort"         "number"      "printers.receivePort"       1   65000  "" )
+##    #qsys($section "SEND_CTRL_PORT"   "printers.sendCtrlPort"        "number"      "printers.sendCtrlPort"      1   65000  "" )
+##    #qsys($section "SEND_DATA_PORT"   "printers.sendDataPort"        "number"      "printers.sendDataPort"      1   65000  "" )
+##    #qsys($section "HEARTBEAT"        "printers.deviceHeartBeat"     "number"      "printers.deviceHeartBeat"   1   65000  "" )
+
+##    #qsys($section "CONNECT_TIME_OUT" "printers.deviceConTimeOut"    "number"      "printers.deviceConTimeOut"  10  30000  "" )
+##    #qsys($section "CONNECT_TRYS"     "printers.deviceConTrys"       "number"      "printers.deviceConTrys"     1   100    "" )
+##    #qsys($section "ANSWER_TIME_OUT"  "printers.deviceAnsTimeOut"    "number"      "printers.deviceAnsTimeOut"  10  30000  "" )
+##    #qsys($section "COMMAND_TRYS"     "printers.deviceComTrys"       "number"      "printers.deviceComTrys"     1   100    "" )
+##    #qsys($section "TIME_OUT_CORR"    "printers.deviceTimeOutCorr"   "number"      "printers.deviceTimeOutCorr" 10  10000  "" )
+
+</grid-form>

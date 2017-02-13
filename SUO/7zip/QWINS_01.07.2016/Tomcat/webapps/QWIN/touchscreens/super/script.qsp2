@@ -1,0 +1,119 @@
+var month = Array("€нвар€","феврал€","марта","апрел€","ма€","июн€","июл€","августа","сент€бр€","окт€бр€","но€бр€","декабр€");
+	var utcday = Array("понедельник","вторник","среда","четверг","п€тница","суббота","воскресенье");
+	<% 
+		"hour="HOUR";"
+		"min="MINUTE";"
+		"sec="SECOND";"
+		
+		"y="YEAR";"
+		"mo="MONTH-1";"
+		"d="DAY";"
+		"diw="DAY_IN_WEEK";"
+
+		P=(${printer}0)/10
+		IF(P EQ 0)
+		P=1
+		"prin="P";"
+		{"var today = new Date();"
+		"var rhour = hour-today.getHours();"
+		"var rmin = min-today.getMinutes();"}
+{"var rd = d-today.getDate();"
+"var rm = mo-today.getMonth();"}
+		
+	%>
+	var minus=0;
+	var prev=0;
+	var total_sec = 0;
+	function tots()
+	{
+	var t = new Date();
+	total_s = t.getSeconds()+t.getMinutes()*60+t.getHours()*3600;
+	return total_s;
+	}
+	function total()
+	{
+	//alert(hour+":"+min+":"+sec);
+	total_sec = sec+min*60+hour*3600;
+	var out=0;
+	total_s = tots();
+	prev=total_s;
+	//alert("qwin:"+total_sec+" real:"+total_s);
+	out = total_sec-total_s;
+	minus=out;
+	}
+	function plustime(a)
+	{
+	a=a+minus;
+	return a;
+	}
+	
+	function pluszero(a)
+	{
+	b="";
+	if(a<10)
+		b="0"+a;
+	else
+		b=a;
+	return b;
+	}
+	function sectohms(a)
+	{
+	//alert(a);
+	var today3 = new Date();
+	if(a>=86400)
+		{
+		d++;
+		a=a-86400;
+		}
+	/*s = a - Math.floor(a/60)*60;
+	m = Math.floor(a/60);
+	m = (m/60)*/
+	//alert(today3);
+	today3.setHours(0);
+	today3.setMinutes(0);
+	today3.setSeconds(a);
+	today3.setDate(d);
+	return today3;
+	}
+	function UpdateTime() {
+	    /*var today2 = new Date();*/
+		var InputTime = document.getElementById('MyTime');
+		var InputDate = document.getElementById('MyDate');
+		
+		
+		/*hour=today2.getHours()+rhour;
+		min=today2.getMinutes()+rmin;
+		sec=today2.getSeconds();
+		if(sec < 0) {sec=60-sec;}
+		if(min < 0) {min=60-min;}
+		if(hour < 0) {hour=24-hour;}
+		if(sec >=60){sec=sec-60;}
+		if(min>=60){min=min-60;}
+		if(hour>=24){hour=hour-24;}
+		h = hour;
+		if(h < 10)
+			h = "0" + h;
+		m = min;
+		if(m < 10)
+			m = "0" + m;
+		s = sec;
+		if(s < 10)
+			s = "0" + s;
+*/	
+		 
+		var today2 = sectohms(plustime(tots()));
+		
+	/*	md=today2.getDate() + rd;
+		mm=today2.getMonth() + rm;*/
+		outString = today2.getDate() + " ";
+		outString += month[today2.getMonth()] + " ";
+		outString += y + " года   ";
+		InputDate.innerHTML = outString;
+
+		outString =  pluszero(today2.getHours()) + ":" + pluszero(today2.getMinutes()) + ":" + pluszero(today2.getSeconds());
+		InputTime.innerHTML = outString;
+		outString = utcday[today2.getDay()];
+		
+		setTimeout("UpdateTime()",1000);
+	}
+	

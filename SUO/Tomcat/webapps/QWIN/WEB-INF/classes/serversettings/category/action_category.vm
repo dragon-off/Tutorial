@@ -1,0 +1,63 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    #set( $section          = "BUTTON"                         )
+    #set( $key              = "GROUPS"                         )
+    #set( $btn_label        = "category.moveButton"            )
+    #set( $new_grp_label    = "category.newCategory"           )
+    #set( $script           = "./category/btn_move_action.vm"  )
+    #set( $item             = $button                          )
+    #set( $create           = true                             )
+
+    <field type="hidden">
+        <name>item</name>
+        #cdata("init-value" $item)
+    </field>
+    <field type="hidden">
+        <name>section</name>
+        #cdata("init-value" $section)
+    </field>
+    <field type="hidden">
+        <name>key</name>
+        #cdata("init-value" $key)
+    </field>
+
+    <field type="list">
+        <name>list</name>
+        <label></label>
+        #cdata("init-value" $group)
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+        </params>
+
+
+
+           #set($groups = $sm.getMaxSettings($qf.getScriptManager(), $section, $key ))
+
+           <accepted-values>
+               #set($new_grp = 1)
+
+                #foreach( $grp in [1..$groups])
+                    #accepteditem($grp $sm.getStringSetting("GROUP", "NAME$grp"))
+                   ##<value value="$grp" desc= "$sm.getStringSetting("GROUP", "NAME$grp")"/>
+                   #set($new_grp = $new_grp + 1)
+               #end
+
+                #if( $create )
+                    #accepteditem($new_grp $text.getText("category.newCategory"))
+
+
+                #end
+           </accepted-values>
+    </field>
+
+    <field type = "button">
+        #cdata("label" $text.getText("$btn_label"))
+        <name>button</name>
+        <params>
+            #param("action-script" $script)
+        </params>
+    </field>
+
+</grid-form>

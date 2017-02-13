@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>
+			Босс Все видит
+		</title>
+         <script language=javascript>
+		 
+	 function whatprinter() {
+		/*alert(parent.document.getElementById('hello').getAttribute('src'));
+		alert(document.getElementById('hello').getAttribute('src'));*/
+		//window.frames.content.document.write("blah");
+		if (window!=window.top) { 
+
+		document.location.href  = 'monitoring/index.html';
+} else {
+  /* страница загружена в основное окно браузера */ 
+}
+		} 
+		var username="";
+	 </script>  
+	</head>
+	
+	<frameset frameborder="no" border="0" style="margin:0px;padding:0px;" onLoad="whatprinter();">
+	<frameset rows="*,0"  style="margin:0px;padding:0px;" leftmargin=0>
+		<frameset cols="190,*"  style="margin:0px;padding:0px;">
+			<%
+			V=${user}
+			
+			"<frame src='menu/menu.jsp?user="V"' name='menu'  style='margin:0px;padding:0px;'>" %>
+
+			<frame src="monitoring/index.html" name="content"  style="margin:0px;padding:0px;" id="hello" leftmargin=0>
+		</frameset>
+	<frame src="" name="journal"  style="margin:0px;padding:0px;height:1px;" leftmargin=0>
+	</frameset>
+
+	</frameset>
+</html>

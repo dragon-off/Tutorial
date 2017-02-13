@@ -1,0 +1,122 @@
+﻿ <html>
+<head>
+	<title>Монитор</title>
+	<LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">	
+	<script type="text/javascript" src="js/ajax.js"></script> 
+	<script type="text/javascript" src="js/script.js"></script> 	
+</head>
+<body onLoad="start_info_buttons();" style="margin:0px;padding:0px;">
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+	<tr>
+		<td id='svetofor_place' width='200px'>
+		<!--светофор-->
+		</td>
+		<td width='200px'>
+		<!--всего-->
+		Всего в очереди:&nbsp; <span style="color: black;font-weight: bold;" id="all_queue">0</span>
+		</td>
+		<td  style="width:300px;">
+		Всего за день:&nbsp; 
+		<span style="color: red;font-weight: bold;" id="queue_red">0 (0%)</span>
+		<span style="color: green;font-weight: bold;" id="queue_red">0 (0%)</span>
+		</td>
+		<td>
+		<input type="button" value="Показатели за месяц">
+		</td>
+		<td id='svetofor_eye_place' style="font-size:11px;width:100px;">
+		
+		</td>
+	</tr>
+	<tr>
+		<td colspan=5 class="title"> Журнал сообщений </td>
+	</tr>
+	<tr>
+		<td colspan=5> <!--Журнал--> </td>
+	</tr>
+	<tr>
+		<td colspan=5 class="title"> Информация по категориям </td>
+	</tr>
+	<tr>
+		<td colspan=5>
+		<table cellpadding=0 cellspacing=0 border=1 width='100%'>
+		<tr>
+		<td valign='top'>
+		<table cellpadding=0 cellspacing=0 border=0 class="info_table" style="border:1px solid #bdbdbe;width:100%;">
+		
+		<thead>
+		<tr>
+			<th width="15px">№</th>
+			<th style='min-width:250px;'>Операция</th>
+			<th width="60px" title='Максимальное время ожидания'>Время ожидания</th>
+			<th width="60px" title='Количество ожидающих клиентов'>Кол-во ожид.</th>
+			<th width="60px" title='Обслужено сегодня'>Обслуж. сегодня</th>
+			<th width="60px" title='Среднее время обслуживания'>Среднее вр. обсл.</th>
+			<th width="115px" title='Максимальное прогнозное время ожидания'>Макс. прогнозное время ожидания</th>
+			<th width="50px">Выдача талонов</th>
+			<th title='Обслуживающие операцию окна'>Окна</th>
+			<th width="30px" title='Просмотр списка талонов'>Просмотр</th>
+		</tr>
+		</thead>
+		<tfoot>
+		<tr>
+			<td class='info_table_foot' colspan=3 style="font-weight:bold;padding-left:5px;">Всего:</td>
+			<td class='info_table_foot'style="font-weight:bold;text-align:center;" id='allWaiting'>0</td>
+			<td class='info_table_foot' style="font-weight:bold;text-align:center;" id='allGood'>0</td>
+			<td class='info_table_foot' colspan=5>&nbsp;</td>
+		</tr>
+		</tfoot>
+		<tbody id="info_buttons">
+		</tbody>
+		
+		</table>
+		</td>
+		<td valign='top' width='150px'>
+		<table cellpadding=0 cellspacing=0 width='135px' border=0 class="info_table_button" style="float:left;border:1px solid #bdbdbe;">
+		<tbody>
+		<tr>
+			<th width="15px">№</th>
+			<th width="60px">Талон</th>
+			<th width="60px" title='Время ожидания'>Время</th>
+		</tr>
+		</tbody>
+		</table>
+		<div style="height:330px;overflow-y:scroll;">
+		<table cellpadding=0 cellspacing=0 width='135px' border=0 class="info_table_button" style="float:left;border:1px solid #bdbdbe;">
+		<tbody id="info_tickets">
+		
+		</tbody>
+		</table>
+		</div>
+		</td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=5 class="title"> Информация по окнам </td>
+	</tr>
+	<tr>
+		<td colspan=5>
+		<table cellpadding=0 cellspacing=0 border=0 class="info_table" style="border:1px solid #bdbdbe;width:100%;">
+		<tbody id="info_counters">
+		<tr>
+			<th width="50px">Окно</th>
+			<th>Сотрудник</th>
+			<th>Алгоритм</th>
+			<th width="30px">Тактика<br> обсл.</th>
+			<th width="50px">Статус</th>
+			<th width="60px">Время <br>простоя</th>
+			<th width="60px">Время <br>перерыва</th>
+			<th width="60px">Время ТАКТ <br>фактическое</th>
+			<th>Клиент</th>
+			<th width="60px">Сред. <br>вр. обсл.</th>
+			<th width="60px">Сумма <br>вр. обсл.</th>
+			<th width="40px">Кол. <br>обсл.</th>
+		</tr>
+		</tbody>
+		</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+I=1
+"USE [Msqms_db];"
+
+"UPDATE [suo_settings]   SET [value] = '"ARRAY(490) "' WHERE [name]='green';"
+"UPDATE [suo_settings]   SET [value] = '"ARRAY(491) "' WHERE [name]='yellow';"
+"UPDATE [suo_settings]   SET [value] = '"ARRAY(491) "' WHERE [name]='red';"
+
+I=1
+K=1
+F=""
+S=""
+T=""
+WHILE(STRSUB(ARRAY(2600) I I) NE "")
+BEGIN
+IF(STRSUB(ARRAY(2600) I I) NE "{")
+BEGIN
+IF(K EQ 1)
+F=F+STRSUB(ARRAY(2600) I I)
+IF(K EQ 2)
+S=S+STRSUB(ARRAY(2600) I I)
+IF(K EQ 3)
+T=T+STRSUB(ARRAY(2600) I I)
+END
+ELSE
+BEGIN
+K=K+1
+I=I+1
+END
+I=I+1
+END
+
+"UPDATE [suo_settings]   SET [value] = '"F ","S ","T "' WHERE [name]='NameOSB';"
+
+
+
+
+B=(ARRAY(2700)*3600)+(ARRAY(2701)*60)
+E=(ARRAY(2702)*3600)+(ARRAY(2703)*60)
+"UPDATE [suo_settings]   SET [start] =DATEADD(ss, "B", 0) ,[stop] =DATEADD(ss, "E", 0)  WHERE [name]='Monday';"
+B=(ARRAY(2704)*3600)+(ARRAY(2705)*60)
+E=(ARRAY(2706)*3600)+(ARRAY(2707)*60)
+"UPDATE [suo_settings]   SET [start] =DATEADD(ss, "B", 0) ,[stop] =DATEADD(ss, "E", 0)  WHERE [name]='Tuesday';"
+B=(ARRAY(2708)*3600)+(ARRAY(2709)*60)
+E=(ARRAY(2710)*3600)+(ARRAY(2711)*60)
+"UPDATE [suo_settings]   SET [start] =DATEADD(ss, "B", 0) ,[stop] =DATEADD(ss, "E", 0)  WHERE [name]='Wednesday';"
+B=(ARRAY(2712)*3600)+(ARRAY(2713)*60)
+E=(ARRAY(2714)*3600)+(ARRAY(2715)*60)
+"UPDATE [suo_settings]   SET [start] =DATEADD(ss, "B", 0) ,[stop] =DATEADD(ss, "E", 0)  WHERE [name]='Thursday';"
+B=(ARRAY(2716)*3600)+(ARRAY(2717)*60)
+E=(ARRAY(2718)*3600)+(ARRAY(2719)*60)
+"UPDATE [suo_settings]   SET [start] =DATEADD(ss, "B", 0) ,[stop] =DATEADD(ss, "E", 0)  WHERE [name]='Friday';"
+B=(ARRAY(2720)*3600)+(ARRAY(2721)*60)
+E=(ARRAY(2722)*3600)+(ARRAY(2723)*60)
+"UPDATE [suo_settings]   SET [start] =DATEADD(ss, "B", 0) ,[stop] =DATEADD(ss, "E", 0)  WHERE [name]='Saturday';"
+B=(ARRAY(2724)*3600)+(ARRAY(2725)*60)
+E=(ARRAY(2726)*3600)+(ARRAY(2727)*60)
+"UPDATE [suo_settings]   SET [start] =DATEADD(ss, "B", 0) ,[stop] =DATEADD(ss, "E", 0)  WHERE [name]='Sunday';"

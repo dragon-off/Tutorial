@@ -1,0 +1,41 @@
+#loadcache2("TERMINAL" true)
+#loadcache2("TERMINAL_SETT*" false)
+
+<grid-form version="1.0"
+    
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    #cdata("label" "$text.getText('terminal.groupNode') ${group}")
+
+    #set( $section   = "TERMINAL_SETTING_${group}"                         )
+
+    ##    SECTION  KEY                   LABEL_ID                  TYPE          HELP_ID                  MIN MAX   REGEXP
+    ##---------------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "KD_LIT_TIME"         "termsett.kdLitTime"      "number"      "termsett.kdLitTime"     0   1000  ""    )
+    #qsys($section "FLASH_TIME"          "termsett.kdFlashTime"    "number"      "termsett.kdFlashTime"   0   1000  ""    )
+    #qsys($section "AUTO_CLOSE_TIME"     "termsett.autoCloseTime"  "number"      "termsett.autoCloseTime" 0   1400  ""    )
+    #qsys($section "DELAY_NEXT_TIME"     "termsett.minBetwNext"    "number"      "termsett.minBetwNext"   0   1000  ""    )
+    #qsys($section "PARK_SIZE"           "termsett.numInPark"      "number"      "termsett.numInPark"     0   1000  ""    )
+    #qsys($section "CHECK_PRIORITY"      "termsett.checkPri"       "number"      "termsett.checkPri"      0   9999  ""    )
+
+    #qsysunitlist ($section "TRASH_GROUP"    "GROUP"  "termsett.trashCat"   1         "termsett.trashCat"      )
+
+    ##separator("")
+    #qsys($section "UNPLUGG_ERROR"       "termsett.reportUnplug"   "checkbox"    "termsett.reportUnplug"  0   1     ""    )
+    #qsys($section "STORE_NEXT"          "termsett.storeNext"      "checkbox"    "termsett.storeNext"     0   1     ""    )
+    #qsys($section "KD_BUFFERD"          "termsett.useAddDisp"     "checkbox"    "termsett.useAddDisp"    0   1     ""    )
+    #qsys($section "FORCE_LOGIN"         "termsett.forceLogin"     "checkbox"    "termsett.forceLogin"    0   1     ""    )
+    #qsys($section "FORCE_MATTER"        "termsett.forceMatter"    "checkbox"    "termsett.forceMatter"   0   1     ""    )
+    #qsys($section "LOGOFF_AT_CLOSE"     "termsett.logoffAtClose"  "checkbox"    "termsett.logoffAtClose" 0   1     ""    )
+    #qsys($section "LOG_USER_ERROR"      "termsett.logUserErr"     "checkbox"    "termsett.logUserErr"    0   1     ""    )
+
+</grid-form>
+
+
+
+
+
+
+
+

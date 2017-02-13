@@ -1,0 +1,14 @@
+##loadcache("/serversettings/printers/printerscache.script" true )
+
+<grid-form version="1.0"
+  writer="com.qmatic.web.serversettings.DefaultWriter">
+  #cdata("label" $name)
+
+  #set( $section            = "PRIORITY"                        )
+
+  ##    SECTION  KEY             LABEL_ID                 TYPE      HELP_ID                 MIN MAX  REGEXP
+  ##--------------------------------------------------------------------------------------------------------
+
+  #qsys($section "NAME$item"     "priority.priorityName"    "text"    "priority.priorityName"   0   40   "" )
+
+</grid-form>

@@ -1,0 +1,121 @@
+var page=0;
+var bpage=0;
+var p=2;
+
+function parseGetParam(param) { 
+		   var get_param=2;
+		   var url = window.location.search.substring(1).split("&");
+		   if(url.length>0) 
+			{
+		   for(var i=0; i<url.length; i++) 
+				{ 
+				var getVar = url[i].split("="); 
+				if(getVar[0]==param) 
+					get_param=getVar[1]*1;
+				} 
+			}
+			return get_param;
+		} 
+
+function whatprinter() {
+
+p=parseGetParam("printer");
+
+if(p<=0) p=2;
+} 
+function buttonspage() {
+
+	var list_button_en = new Array();
+	var list_button_sp = new Array();
+	<%
+	
+	
+	H=1
+	WHILE(H LE 10)
+	BEGIN
+	"list_button_en[" H-1 "]=" ARRAY(1000+H) ";\n"
+	"list_button_sp[" H-1 "]=" ARRAY(5610+H) ";\n"
+	H=H+1
+	END
+
+	%>
+for(var i=0;i<10;i++)
+		{
+		list_button_sp[i] = list_button_sp[i]*1;
+		if(list_button_sp[i] == 0 || list_button_sp[i]>10)
+			list_button_sp[i] = i+1;
+		}
+for (var r=0; r < 10; r++) 
+	{
+//alert(list_button_sp);
+	if(list_button_en[list_button_sp[r]-1]*1==1)
+		{
+		//alert(list_button_sp[r]+" "+r);
+		document.getElementById('b'+(r+1)).style.display="none";
+		}
+	}
+
+
+}
+var redbutton=1; 
+
+function printred() {
+printer(p,redbutton,0);
+setTimeout("closered()",500);	
+}
+
+function closered() {
+document.getElementById('red_vsp_1').style.display = 'none';
+document.getElementById('red_vsp_2').style.display = 'none';
+document.getElementById('red_vsp_3').style.display = 'none';
+document.getElementById('userred').style.display="none";	
+}
+
+function openred(button) {
+b="bu"+button;
+el=document.getElementById(b);
+str="Вы выбрали:<br>"+el.innerHTML;
+b="sbu"+button;
+el=document.getElementById(b);
+if(el.style.display!="none")
+	str=str+", "+el.innerHTML;
+el=document.getElementById('titlered');
+el.innerHTML=str;
+redbutton=button;
+document.getElementById('userred').style.display="block";
+setTimeout("closered()",10000);					
+}
+ 
+function buttonclick(button) {
+<%
+"var arr = \"" 
+I=2
+ARRAY(5611)
+WHILE(I LE 10)
+BEGIN
+"#"ARRAY(5610+I)
+I=I+1
+END
+"\";"
+%>
+	
+var arr_split = arr.split('#');
+for(var i=0;i<10;i++)
+	{
+	arr_split[i] = arr_split[i]*1;
+	if(arr_split[i] == 0)
+		arr_split[i] = i+1;
+	}
+	redtaktika(arr_split[button-1],"none");
+	/*if(button==1)redtaktika(1,"none");
+	if(button==2)redtaktika(2,"none");
+	if(button==3)redtaktika(3,"none");
+	if(button==4)redtaktika(4,"none");
+	if(button==5)redtaktika(5,"none");
+	if(button==6)redtaktika(6,"none");
+	if(button==7)redtaktika(7,"none");
+	if(button==8)redtaktika(8,"none");
+	if(button==9)redtaktika(9,"none");
+	if(button==10)redtaktika(10,"none");*/
+}
+ 

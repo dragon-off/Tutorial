@@ -1,0 +1,16 @@
+<actions>
+   <action name="Test" alias="test">
+      <view name="success">test.jsp</view>
+      <command name="foo" alias="test.foo">
+         <view name="success">test.jsp</view>
+      </command>
+      <command name="default">
+         <view name="success">test.jsp</view>
+      </command>
+   </action>
+
+   <action name="jdom.RssSources" alias="rss.sources">
+      <view name="input">viewer.jsp</view>
+      <view name="success">viewer.jsp</view>
+   </action>
+</actions>

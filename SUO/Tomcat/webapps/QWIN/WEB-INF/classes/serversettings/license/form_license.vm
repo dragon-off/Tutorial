@@ -1,0 +1,13 @@
+#loadcache2("DEDICATED_LICS" true)
+
+<grid-form version="1.0" writer="com.qmatic.serversettings.writer.DefaultWriter">
+    #cdata("label" $text.getText("license.generalNodeLabel"))
+
+    #set( $section            = "DEDICATED_LICS"                                )
+
+    ##    SECTION  KEY         LABEL_ID            TYPE        HELP_ID         MIN MAX REGEXP
+    ##----------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"      "license.max"        "text"      "license.max"   0   255 ""    )
+
+</grid-form>

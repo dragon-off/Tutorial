@@ -1,0 +1,75 @@
+.button {
+cursor:pointer;
+}
+.tablo {
+font-family: Geneva, Tahoma, Helvetica, sans-serif;
+font-size: 300%;
+font-weight: bolder;
+}
+form {
+padding-buttom: 0px;
+padding-top: 0px;
+}
+hr{
+margin-top:0; 
+padding-top:0; 
+margin-bottom:0;
+ margin-bottom:0; 
+}
+
+.log{
+z-index: 1;
+ position: absolute;
+ left: 0px;
+ width: 277px;
+ top: 0px;
+ height: 72px;
+ display:none;
+ background-image: url(images/pult_new_1_03.jpg);
+ text-align: center;
+ padding-top: 10px;
+ font-family: Verdana, Arial, Helvetica, sans-serif; 
+ font-size: 12pt;
+ font-weight: bold;
+ color: #00ff00;
+}
+
+BODY {
+font-size:12px;
+margin: 0;
+background-image: url('img/fon.jpg'); 
+}
+table_razdel {
+background:#77B618;
+background:#33CC66;
+}
+table {
+margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0;
+};
+table.table_button {
+background-color:#CCCCCC;
+border-right-color:#00FF33;
+text-align:center;
+border-bottom-color:#006633;
+}
+table.table_button_select {
+background-image: url('img/b1.gif');
+text-align:center;
+}
+table.table_button_select2 {
+background-image: url('img/b2.gif');
+text-align:center;
+}
+table.table_button_select3 {
+	background-image: url('img/b3.gif');
+	text-align:center;
+}
+
+			.fon {
+				width: 100%;
+				border: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: -1;
+			}

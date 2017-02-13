@@ -1,0 +1,22 @@
+#loadcache2("TRANSFER*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    #set( $section            = "TRANSFER_SETTING_$item"                          )
+
+    ##    SECTION    KEY             LABEL_ID                TYPE         HELP_ID                MIN MAX  REGEXP
+    ##-----------------------------------------------------------------------------------------------------------
+
+    #qsys("TRANSFER" "NAME$item"     "transfers.name"        "text"       "transfers.name"       0   40   "" )
+
+    #qsysunitlist ($section "GROUP_FROM" "GROUP"   "transfers.grpFrom"   0         "transfers.grpFrom"      )
+    #qsysunitlist ($section "GROUP_TO"   "GROUP"   "transfers.grpTo"     0         "transfers.grpTo"        )
+
+    #qsys($section   "LOCATION"      "transfers.location"    "number"     "transfers.location"   0   255  "" )
+    #qsys($section   "PRG_BUTTON"    "transfers.prgIsBtn"    "checkbox"   "transfers.prgIsBtn"   0   0    "" )
+    #qsys($section   "NEW_ENTRY"     "transfers.new"         "checkbox"   "transfers.new"        0   0    "" )
+    #qsys($section   "PROGRAM"       "transfers.prg"         "script"     "transfers.prg"        0   0    "" )
+
+</grid-form>

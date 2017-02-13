@@ -1,0 +1,15 @@
+#loadcache2("VOICE*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("voice.mainSettingsHeading"))
+
+    #set( $section            = "VOICE"                                    )
+
+    ##    SECTION  KEY        LABEL_ID                     TYPE          HELP_ID                     MIN MAX REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"      "voice.mainMax"              "number"      "voice.mainMax"              0  99  "" )
+    #qsys($section "ID_NO"    "voice.mainStartingIdCode"   "number"      "voice.mainStartingIdCode"   0  128 "" )
+
+</grid-form>

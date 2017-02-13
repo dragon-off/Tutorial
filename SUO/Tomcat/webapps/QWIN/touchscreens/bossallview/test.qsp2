@@ -1,0 +1,35 @@
+<%
+
+I=1
+WHILE(I LE 30)
+BEGIN
+IF(ARRAY(400+I) EQ 0)
+	BEGIN
+	IF(COUNTER_OPEN(I) EQ 1)
+		BEGIN
+		A=COUNTER_LOGIN_ID(I)
+		A=STRSTN(A)
+		IF(A NE 0)
+			BEGIN
+			B=STRSUB(ARRAY(1111) A A)	
+			B=STRSTN(B)
+			IF(B EQ 0)
+				BEGIN
+				COUNTER_NAME(I) "#"
+				END
+			END
+		ELSE
+			BEGIN
+				COUNTER_NAME(I) "#"
+			END
+		END
+		ELSE
+			BEGIN
+				COUNTER_NAME(I) "#"
+			END
+	END
+	I=I+1
+END
+"<br>"
+
+%>

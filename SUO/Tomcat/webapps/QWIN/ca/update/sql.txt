@@ -1,0 +1,6 @@
+delete from [msqms_db].[dbo].[login_name];
+INSERT INTO [msqms_db].[dbo].[login_name]
+           ([un]
+           ,[login_name]
+           ,[login_code])
+   select ('sberbank/'+name) as un, Comments, Code from qwin.dbo.STAFINFO;

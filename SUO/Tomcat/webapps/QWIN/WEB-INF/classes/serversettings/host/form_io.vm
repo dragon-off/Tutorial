@@ -1,0 +1,18 @@
+#loadcache2("HOST*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("host.protocolSettings"))
+
+    #set( $section            = "PROTOCOL"                                      )
+
+    ##    SECTION  KEY                 LABEL_ID             TYPE       HELP_ID              MIN MAX    REGEXP
+    ##-------------------------------------------------------------------------------------------------------
+
+    #qsys($section "COMMAND_TRYS"      "host.commandTrys"   "number"   "host.commandTrys"   0   100    "" )
+    #qsys($section "CONNECT_TIME_OUT"  "host.conTimeOut"    "number"   "host.conTimeOut"    10  30000  "" )
+    #qsys($section "ANSWER_TIME_OUT"   "host.ansTimeOut"    "number"   "host.ansTimeOut"    10  30000  "" )
+    #qsys($section "DATA_TRYS"         "host.dataTrys"      "number"   "host.dataTrys"      1   100    "" )
+
+</grid-form>
+

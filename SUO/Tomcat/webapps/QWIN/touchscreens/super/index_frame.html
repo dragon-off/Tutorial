@@ -1,0 +1,349 @@
+<html>
+ <head>	<!-- VER. 2.0-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Сбербанк России</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="qevent.js"></script>
+<script language="javascript" type="text/javascript" src="js/time.js"></script>
+   <script language="javascript" type="text/javascript" src="buttons.qsp2"></script>
+  <script language="javascript" type="text/javascript" src="ajax.js"></script>
+
+  <script language=javascript>
+  var time_update_smsuo=0;
+	
+ loadcardlist();
+  qwin_event.trig = function(eventType, unit, payload){
+
+  if(eventType=="10")
+		Cardholder();
+if(eventType=="200")
+{	
+payload=payload.split('#');	
+
+if((payload[0]*1)==p) {		
+	hprint=1;
+	
+	if((payload[1])=="0")
+		alertfunc(2,"BAD4",payload[2]);
+
+	}
+}	
+}
+
+qwin_event.setEvents = function(){
+	qwin_event.waitForEventTrig("10.200");
+}
+qwin_event.setEvents();
+  </script>
+ </head>
+ <body onLoad="startsession();refreshf(0);whatprinter();update('get.qsp2');buttonspage();UpdateTime();">
+	
+
+	<div class="bg">
+	<table width=100% >
+		<tr style="float: right;" >
+		<td align=center><div class="datetime" align="right">
+		<table height="60px">
+			<tr>
+				<td>
+					<span id="MyDate" class="datetimetext"></span> 
+				</td>
+				<td align="right">
+					<span id="MyTime" class="datetimetext2"></span>
+				</td>
+			</tr>
+			
+		</table>
+		</div>
+			</tr>
+			<tr>
+				<td><center><div class="logo">Выберите интересующую Вас услугу и получите талон</div></center></td>
+			</tr>
+		</table>
+
+		
+		
+		
+		<!--<div class="tplace" id="tplace" align="center">
+				
+		</div>
+		<div class="stplace" id="stplace" align="center">
+			
+		</div>-->
+		<div class="bplace">
+		<!-- Кнопка -->
+		<table width=100% cellspacing=0 cellpadding=0 height=100% valign='top'>	
+			<tr>
+			<td width=50% valign='top'>
+			<div class="button_s " id="b1">
+				<center>
+				<table class="ins_butt_s" id="ins_b1"  onClick="buttonclick(1);" border=0>
+					<tr>
+						<td  id="bu1">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu1" >
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>
+			<!-- Кнопка -->
+			<div class="button_s " id="b3">
+				<center>
+				<table class="ins_butt_s" id="ins_b3"  onClick="buttonclick(3);" border=0>
+					<tr>
+						<td  id="bu3">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu3" >
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>
+			<!-- Кнопка -->
+			<div class="button_s " id="b5">
+				<center>
+				<table class="ins_butt_s" id="ins_b5"  onClick="buttonclick(5);">
+					<tr>
+						<td  id="bu5">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu5" >
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>
+			<!-- Кнопка -->
+			<div class="button_s " id="b7">
+				<center>
+				<table class="ins_butt_s" id="ins_b7" onClick="buttonclick(7);">
+					<tr>
+						<td  id="bu7">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu7" >
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>
+			<!-- Кнопка -->
+			<div class="button_s " id="b9">
+				<center>
+				<table class="ins_butt_s" id="ins_b9"  onClick="buttonclick(9);">
+					<tr>
+						<td  id="bu9">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu9" >
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>
+			</td><td width=50% valign='top'>
+			
+			<!-- Кнопка -->
+			<div class="button_s " id="b2">
+				<center>
+				<table class="ins_butt_s" id="ins_b2"  onClick="buttonclick(2);">
+					<tr>
+						<td  id="bu2" style="text-align:right;">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu2" style="text-align:right;" >
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>
+			<!-- Кнопка -->
+			<div class="button_s " id="b4">
+				<center>
+				<table class="ins_butt_s" id="ins_b4"  onClick="buttonclick(4);">
+					<tr>
+						<td  id="bu4" style="text-align:right;">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu4" style="text-align:right;">
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>	<!-- Кнопка -->
+			<div class="button_s " id="b6">
+				<center>
+				<table class="ins_butt_s" id="ins_b6"  onClick="buttonclick(6);">
+					<tr>
+						<td  id="bu6" style="text-align:right;">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu6"  style="text-align:right;">
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>	<!-- Кнопка -->
+			<div class="button_s " id="b8">
+				<center>
+				<table class="ins_butt_s" id="ins_b8"  onClick="buttonclick(8);">
+					<tr>
+						<td  id="bu8" style="text-align:right;">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu8" style="text-align:right;" >
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>	<!-- Кнопка -->
+			<div class="button_s " id="b10">
+				<center>
+				<table class="ins_butt_s" id="ins_b10"  onClick="buttonclick(10);">
+					<tr>
+						<td  id="bu10" style="text-align:right;">
+						
+						</td>
+					</tr>
+					<tr>
+						<td class="ins_butt_ss"  id="sbu10"  style="text-align:right;">
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+			</div>
+		</div>
+		</td>
+		</tr>
+		</table>
+		<!--<div class="back" id="back" onClick="backpage();"></div>-->
+		<div class="alert1" id="alert1">
+			<table border=0 class="alertmess">
+				<tr>
+					<td id="talon">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="alert2" id="alert2">
+		<table border=0 class="alertmess2">
+				<tr>
+					<td id="bad">
+					</td>
+				</tr>
+			</table></div>
+		<div class="usercard" id="usercard">
+		<table border=0 class="usermess">
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td id="usertext" onClick="closecardfunc();"> 
+					
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+			</table></div>
+		<div class="userprint" id="mess_print">
+		<table border=0 class="usermessout">
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td id="usertext"> 
+					Подождите, идет печать талона!
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+			</table></div>
+		<div class="userred" id="userred">
+		<table border=0 class="ured">
+				<tr>
+					<td colspan=3 id="titlered">
+				
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td id="red">
+					<!--<span id='rm1'></span><span id="redprognoz">1:17:36</span><span id='rm2'></span>
+					<br><br>Перед Вами:	 <span id="redqueue">6</span> человек.
+					<br><span id="redqueue2"></span>-->
+					<div id='red_vsp_1' style="display:none;">
+					ВСП  <span id="red_vsp_num_1"></span>, по адресу: <span id="red_vsp_adres_1"></span><br><font class='redqueue_num'> 
+					<span id="red_vsp_time_1"></span>
+					</font> , в очереди <font class='redqueue_num'><span id="red_vsp_que_1"></span></font> человек(а) <br>
+					</div>
+					<div id='red_vsp_2' style="display:none;">
+					ВСП  <span id="red_vsp_num_2"></span>, по адресу: <span id="red_vsp_adres_2"></span><br><font class='redqueue_num'> 
+					<span id="red_vsp_time_2"></span>
+					</font> , в очереди <font class='redqueue_num'><span id="red_vsp_que_2"></span></font> человек(а) <br>
+					</div>
+					<div id='red_vsp_3' style="display:none;">
+					ВСП  <span id="red_vsp_num_3"></span>, по адресу: <span id="red_vsp_adres_3"></span><br><font class='redqueue_num'> 
+					<span id="red_vsp_time_3"></span>
+					</font> , в очереди <font class='redqueue_num'><span id="red_vsp_que_3"></span></font> человек(а) <br>
+					</div>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=3>
+					<img src="images/button_ticket.png" border=0 onClick="printred();" />
+					</td>
+				</tr>
+			</table></div>
+		<div style="display:none;" id="result"></div>
+	</div>
+ </body>
+</html>

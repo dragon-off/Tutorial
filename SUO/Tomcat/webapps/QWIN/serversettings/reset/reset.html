@@ -1,0 +1,150 @@
+<html>
+<head>
+ <link href="/css/default.css" rel="stylesheet" type="text/css" />
+ <LINK REL="StyleSheet" HREF="/touchscreens/bossallview/style.css" TYPE="text/css">
+ <script type="text/javascript" src="/touchscreens/lib/ajax.js"></script>			  
+ <script language="JavaScript"> 
+var result = new Array(false,false,false,false);
+function changestatus(inx,res)
+{
+var img_src = "no.png";
+if(res==true)
+	img_src = "yes.png";
+result[inx-1] = res;
+document.getElementById("status_"+inx).innerHTML = "<center><img src='/touchscreens/bossallview/images/"+img_src+"'/></center>";
+}
+function rstStatus(inx)
+{
+result[inx-1] = false;
+document.getElementById("status_"+inx).innerHTML = "&nbsp;";
+if(inx==4)
+	{
+	for(var i=1;i<=3;i++)
+		{
+		result[i-1] = false;
+		document.getElementById("status_"+i).innerHTML = "&nbsp;";
+		}
+	}
+}
+function resall()
+{
+out=true;
+for(var i=1;i<=3;i++)
+	{
+	if(result[i-1]==false)
+		out=false;
+	}
+changestatus(4,out);
+}
+function enabledbutt(inx,enab)
+{
+el = document.getElementById("button_"+inx);
+if(enab==false)
+	el.setAttribute("disabled", true);
+else
+	el.removeAttribute("disabled");
+
+}
+function resetFunc(inx)
+{
+rstStatus(inx);
+enabledbutt(inx,false);
+if(inx==1)
+	{
+	
+	httpRequest("/ca/update/reset/clear_served.qsp2", function(req) {changestatus(inx,true);enabledbutt(inx,true);}, function(req) { changestatus(inx,false);enabledbutt(inx,true);}, null, 15000);
+	}
+if(inx==2)
+	{
+	
+	httpRequest("events.jsp", function(req) {changestatus(inx,true);enabledbutt(inx,true);}, function(req) { changestatus(inx,false);enabledbutt(inx,true);}, null, 3000);
+	}
+if(inx==3)
+	{
+
+	httpRequest("/serversettings/ss.saveform.action?gridRef=2e2f7574696c69746965732f666f726d5f72657365742e766d3f&HARD_SAVE=true", function(req) {changestatus(inx,true);enabledbutt(inx,true);}, function(req) { changestatus(inx,false);enabledbutt(inx,true);}, null, 3000);
+	}
+if(inx==4)
+	{
+	resetFunc(3);
+	setTimeout(function() {resetFunc(2);},3000);
+	setTimeout(function() {resetFunc(1);},6000);
+	setTimeout(function() {resall();enabledbutt(inx,true);},21000);
+	
+	}
+} 
+ function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+
+}
+   
+   </script>			  
+</head>
+<body>
+<div id="DopElement"></div>
+<table width="300" border="0" cellspacing="0" cellpadding="0" class="borderedbox">
+        <tr>
+            <td class="boxTop"><h3 class="box">Сброс системы</h3></td>
+        </tr>
+        <tr>
+            <td class="boxMain">
+                <div >
+<table border=0>
+	<tr>
+	<td width="10px"></td>
+	<td>
+	<table  class=tableSection border="0" cellpadding="0" cellspacing="0" style="padding-bottom:5px;">
+	<tr>
+	<td nowrap class=tdHeaderSection align=center width=150>Операция</td>
+	<td nowrap class=tdHeaderSection align=center width=100>Выполнение</td>
+	<td nowrap class=tdHeaderSection align=center width=50>Статус</td>	
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Сброс <b>очереди</b></td>
+	<td><center><input type="button" id="button_3" value="Выполнить" onClick="resetFunc(3);"></center></td>
+	<td id="status_3">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Сброс <b>событий</b></td>
+	<td><center><input type="button" id="button_2" value="Выполнить" onClick="resetFunc(2);"></center></td>
+	<td id="status_2">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Сброс <b>статистики</b></td>
+	<td><center><input type="button" id="button_1" value="Выполнить" onClick="resetFunc(1);"></center></td>
+	<td id="status_1">&nbsp;</td>
+	</tr>
+	
+	
+	<tr>
+	<td style='padding:5px;' colspan=3><hr></td>
+	</tr>
+	<tr>
+	<td style='padding:5px;'>Сброс <b>всего</b></td>
+	<td><center><input type="button" id="button_4" value="Выполнить"  onClick="resetFunc(4);"></center></td>
+	<td id="status_4">&nbsp;</td>
+	</tr>
+</table></td>
+<td width="10px"></td>
+</tr>
+</table>
+                </div>
+            </td>
+        </tr>
+   
+    </table>
+
+</body>
+</html>

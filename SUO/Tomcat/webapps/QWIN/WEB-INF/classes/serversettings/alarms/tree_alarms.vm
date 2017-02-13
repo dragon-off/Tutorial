@@ -1,0 +1,54 @@
+#loadcache2("ALARM*" true)
+
+<tree version="1.0" image = "images/alarms.gif">
+    #cdata("label" $text.getText("alarms.treeHeading"))
+
+    #set( $top_node_label          = $text.getText("alarms.generalNodeLabel")   )
+    #set( $top_node_image          = "images/alarm_gen.gif"                        )
+    #set( $item_node_image         = "images/alarm.gif"                         )
+    #set( $section_main            = "ALARM"                                    )
+    #set( $top_node_grid           = "./alarms/form_alarms.vm"                  )
+    #set( $item_node_grid          = "./alarms/form_alarm.vm"                   )
+    #set( $top_node_action         = "./alarms/action_alarms.vm"                )
+
+##==============================================================================
+
+    ## Get a list with the names of all items
+    #set($items = $sm.getStringList( $section_main, "NAME"))
+
+    ## Get the number of items in the system
+    #set($maxitems = $sm.getNumericSetting( $section_main, "MAX"))
+
+
+    #nodestart($top_node_label $top_node_image)
+        <grid-ref>
+            #cdata("name" $top_node_grid)
+            #param("item" "1")
+            #param("nucm" "100")
+        </grid-ref>
+        <action-ref>
+            #cdata("name" $top_node_action)
+            #param("section" ${section_main})
+            #param("group" ${maxitems})
+        </action-ref>
+
+          ## List all items
+          #if( $maxitems > 0 )
+             #foreach($item in [1..$maxitems])
+                #set($name=$sm.getStringSetting($section_main, "NAME$item"))
+                #set($label="$item. $name")
+                #nodestart($label $item_node_image)
+                    <grid-ref>
+                        #cdata("name" $item_node_grid)
+                        #param("item" ${item})
+                        #param("name" $sm.getStringSetting($section_main, "NAME$item"))
+                    </grid-ref>
+                    <action-ref>
+                        #cdata("name" $top_node_action)
+                    </action-ref>
+                #nodeend()
+                #set($item = $item + 1)
+             #end
+          #end
+    #nodeend()
+</tree>

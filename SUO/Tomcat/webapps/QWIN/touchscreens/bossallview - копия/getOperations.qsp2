@@ -1,0 +1,87 @@
+<%
+N=(${first}0)/10		{  }
+A=(${last}0)/10			{  }
+WHILE(N LE A)
+BEGIN
+	IF(ARRAY(300+N) EQ 0)
+	BEGIN
+		GROUP_LETTER(N)																			{}
+		"#"
+		GROUP_NAME(N)																			{}
+		"#"
+		PRINT_CLOCK_SEC(GROUP_RWT(N))															{ }
+		"#"
+		GROUP_QUEUE(N)																			{- }
+		"#"
+		GROUP_SERVED_TODAY(N)																	{ }
+		"#"
+		PRINT_CLOCK_SEC(GROUP_TOTAL_SERVING_TIME(N 1)/GROUP_TOTAL_SERVING_TIME_COUNT(N 1))		{  }
+		"#"
+		Z=BUTTON_ESTW(N)
+		IF(Z LE 150) PRINT_CLOCK_SEC(150) ELSE PRINT_CLOCK_SEC(Z)								{   }
+		"#"
+		IF(ARRAY(1000+N) EQ 0)																	{ }
+		BEGIN
+			"1"
+		END
+		ELSE
+		BEGIN
+			"0"
+		END
+		"#"
+		B=N {OPERATION}
+		J=1
+		U=0
+		WHILE(J LE 30)
+		BEGIN
+			IF(STRSUB(ARRAY(600+J) 31 31) EQ "F")
+			BEGIN
+				IF(STRSTN(STRSUB(ARRAY(600+J) N N)) GT 0)
+				BEGIN
+					IF(N EQ 1)
+						E="1"+STRSUB(E 2 31)
+					ELSE
+						E=STRSUB(E 1 N-1)+"1"+STRSUB(E N+1 31)
+					IF(U GT 0) ","
+					J																			{}
+					U=U+1
+				END
+			END
+			J=J+1
+		END
+		IF(U EQ 0) "0"
+		"%"
+	END
+	N=N+1
+END
+
+N=(${first}0)/10		{  }
+X=0																								{    }
+Y=0																								{    }
+Z=0																								{    }
+WHILE(N LE A)
+BEGIN
+	J=0
+	IF(ARRAY(9900+N) EQ 0)
+	BEGIN
+		WHILE(J LE (GROUP_QUEUE(N)-1))
+		BEGIN
+			T=TIME_NO-GROUP_QUEUE_CUSTOMER_ITEM(N J ITEM_START)
+			IF(T LE ARRAY(490))
+				X=X+1
+			ELSE IF(T LE ARRAY(491))
+				Y=Y+1
+			ELSE
+				Z=Z+1
+			J=J+1
+		END
+	END
+	N=N+1
+END
+X
+"#"
+Y
+"#"
+Z
+"%"
+%>

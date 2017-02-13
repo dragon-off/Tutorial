@@ -1,0 +1,167 @@
+<html>
+	
+<head>
+   <TITLE>Button page</TITLE>
+   <link rel="stylesheet" type="text/css" href="css/style-main.css">
+   <script type='text/javascript' src='/js/qevent.js'> </script>
+   <script type="text/javascript" src="scripts/settings.js"></script>
+   <script type="text/javascript" src="scripts/main.js"></script>
+   <script type="text/javascript" src="scripts/screensaver.js"></script>
+</head>
+
+<body onLoad="javascript:redirectToStartPage.start(10);">
+
+<div id="mainbackground" class="mainbackground"></div>
+
+<div class="main">
+
+
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td colspan="3" height="140" width="100%">
+			<div class="headerStaff" id="hs1"></div>
+		</td>
+	</tr>
+
+	<tr>
+
+<%
+
+D=1 { debug }
+
+X=1
+WHILE(X LE 4)  {number of staff members to show}
+BEGIN
+	
+	SETARRAY(1001 1)  {Login id for the first staff member}
+	SETARRAY(1002 2)  {Login id for the second staff member}
+	SETARRAY(1003 3)  {Login id for the third staff member}
+	SETARRAY(1004 4)  {Login id for the fourth staff member}
+	
+	L = ARRAY(1000+X)
+	IF(L GT 0)
+	BEGIN
+		
+		A=D*RANDOM(1)
+		IF(D AND X LE 3)
+			A=1
+		
+		"<td class=\"buttonStaff\"><div class=\"buttonStaff\"" IF(LOGIN_COUNTER(L) GT 0 OR A) BEGIN " onClick=\"javascript:printTicket(this," X ",'ticket.qsp');\"" END ">"
+			"<img src=\"images/button_staff.png\">"
+			"<div class=\"buttonStaffImage\">"
+				"<img id=\"staffImage" X "\" src=\"images/staff/staff_" L LEN(3) IF(LOGIN_COUNTER(L) EQ 0 AND A EQ 0) "_dis" ".png\">"
+			"</div>"
+			"<div class=\"buttonTextStaffName\" id=\"staffName" X "\">" LOGIN_NAME(L) "</div>"
+			"<div class=\"buttonTextStaffInfo\" id=\"staffInfo" X "\">" IF(LOGIN_COUNTER(L) GT 0 OR A) BEGIN "ID_WAITINGTIME:<br>" BUTTON_RWT(X)/30 " ID_MINUTES" END ELSE BEGIN "ID_OUTOFFOFFICE" END "</div>"
+		"</div></td>"
+		
+		IF(X%3 EQ 0) "</tr><tr>"
+
+	END
+
+	X=X+1
+END
+
+W=100000
+B=5
+Q=0
+WHILE(B GE 1)
+BEGIN
+	IF(BUTTON_RWT(B) LT W)
+	BEGIN
+		W = BUTTON_RWT(B)
+		Q = B
+	END
+	B=B-1
+END
+IF(Q GT 0)
+BEGIN
+	"<td><div class=\"buttonStaff\" onClick=\"javascript:printTicket(this," Q ",'ticket.qsp');\">"
+		"<img src=\"images/button_staff.png\">"
+		"<div class=\"buttonTextShortest\" id=\"staffName" X "\"> </div>"
+		"<div class=\"buttonTextShortestInfo\" id=\"staffInfo" X "\">" "ID_WAITINGTIME: " BUTTON_RWT(Q)/30 " ID_MINUTES" "</div>"
+	"</div></td>"
+END
+
+%>
+
+	</tr>
+
+	<tr>
+		<td colspan="3" height="130">
+			<div>dfghdgh</div>
+		</td>
+	</tr>
+
+</table>
+
+
+
+
+	<script type="text/javascript">
+		//setImageByLanguage('back','images/back_##.png');
+	</script>
+	
+	<div id=popupInfo style='position: absolute; 
+                                    border: 1px #888888 solid; 
+                                    width: 30%; 
+                                    height: auto; 
+                                    left: 35%; 
+                                    top: 40%;
+                                    font-family: Verdana;
+                                    font-size: 11px;
+                                    text-align: center;
+                                    padding: 10px;
+                                    visibility: hidden;
+                                    background: #FF9999;' onClick='parent.control.hidePopup("popupInfo");'>ok</div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+	pageLoaded();
+
+	<%
+		"var lang = '" ${lang} "';"
+	%>
+	
+	if(lang == '') lang = 'en';
+
+	var divh1 = document.getElementById("hs1");
+
+	var staffName6 = document.getElementById("staffName6");
+	var staffInfo6 = document.getElementById("staffInfo6");
+
+	for(var i = 1; i <= 5; i ++) {
+		replaceStaffInfo("staffInfo"+i);
+	}
+		
+	if(lang == "en") {
+
+		divh1.innerHTML = "Please select who you want to serve you. Press \"Shortest waiting time\" to select the staff member with the shortest waiting time.";
+		staffName5.innerHTML = "Shortest waiting time";
+		
+	} else if(lang == "se") {
+
+		divh1.innerHTML = "Välj vem du vill tala med. Välj \"Kortast väntetid\" för att tala med den person med kortast väntetid.";
+		staffName5.innerHTML = "Kortast väntetid";
+
+	}
+	
+	function replaceStaffInfo(divId) {
+		var divWT = document.getElementById(divId);
+		if(lang == "en") {
+			divWT.innerHTML = divWT.innerHTML.replace("ID_WAITINGTIME","Waiting time");
+			divWT.innerHTML = divWT.innerHTML.replace("ID_MINUTES","minutes");
+			divWT.innerHTML = divWT.innerHTML.replace("ID_OUTOFFOFFICE","Out of office");
+		} else if(lang == "se") {
+			divWT.innerHTML = divWT.innerHTML.replace("ID_WAITINGTIME","Väntetid");
+			divWT.innerHTML = divWT.innerHTML.replace("ID_MINUTES","minuter");
+			divWT.innerHTML = divWT.innerHTML.replace("ID_OUTOFFOFFICE","Ej anträffbar");
+		}
+
+	}
+	
+</script>
+
+</html>

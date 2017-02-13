@@ -1,0 +1,3 @@
+WWW_DATA/qweb.htm
+WWW_DATA/Java/Webstatistic.qsphtml
+WWW_DATA/temp/query_namn.qsphtml

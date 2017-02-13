@@ -1,0 +1,8 @@
+<%
+I=1
+WHILE(I LE 10)
+BEGIN
+ARRAY(2000+I)"^"ARRAY(2020+I)"#"
+I=I+1
+END
+%>

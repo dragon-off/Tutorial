@@ -1,0 +1,35 @@
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.PolicyWriter">
+    #cdata("label" $text.getText("client.loginPolicy"))
+
+        #set($policy  = $dao.getPolicy("LOGON", "QWIN_CLIENT"));
+        #set($item  = $policy.getPolicyGroup("ENTER_USER_NAME"));
+        <field type   = "checkbox" helpid = "client.${item.getName()}">
+            #cdata("name" $item.getName())
+            #cdata("label" $text.getText("client.${item.getName()}"))
+            #cdata("init-value" "$item.isEnabled()")
+        </field>
+
+        #set($item  = $policy.getPolicyGroup("LIST_USER_NAME"));
+        <field type   = "checkbox" helpid = "client.${item.getName()}">
+            #cdata("name" $item.getName())
+            #cdata("label" $text.getText("client.${item.getName()}"))
+            #cdata("init-value" "$item.isEnabled()")
+        </field>
+
+        #set($item  = $policy.getPolicyGroup("WINDOWS_USER_NAME"));
+        <field type   = "checkbox" helpid = "client.${item.getName()}">
+            #cdata("name" $item.getName())
+            #cdata("label" $text.getText("client.${item.getName()}"))
+            #cdata("init-value" "$item.isEnabled()")
+        </field>
+
+
+        #separator("client.passwordSett")
+        #set($item  = $policy.getPolicyGroup("PSW_NEEDED"));
+        <field type   = "checkbox" helpid = "client.${item.getName()}">
+            #cdata("name" $item.getName())
+            #cdata("label" $text.getText("client.${item.getName()}"))
+            #cdata("init-value" "$item.isEnabled()")
+        </field>
+
+</grid-form>

@@ -1,0 +1,52 @@
+#loadcache2("PAGER" true)
+
+#loadcache2("PAGER_SETTING_1*" false)
+#loadcache2("PAGER_SETTING_2*" false)
+#loadcache2("PAGER_SETTING_3*" false)
+#loadcache2("PAGER_SETTING_4*" false)
+#loadcache2("PAGER_SETTING_5*" false)
+#loadcache2("PAGER_SETTING_6*" false)
+#loadcache2("PAGER_SETTING_7*" false)
+#loadcache2("PAGER_SETTING_8*" false)
+#loadcache2("PAGER_SETTING_9*" false)
+
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item $name")
+
+    #set( $section            = "PAGER_SETTING_$item"                           )
+
+    ##    SECTION  KEY               LABEL_ID              TYPE          HELP_ID               MIN MAX REGEXP
+    ##--------------------------------------------------------------------------------------------------------
+
+    #qsys("PAGER"  "NAME$item"       "pager.name"          "text"        "pager.name"          0   40  "" )
+    #qsys($section "CAP_CODE"        "pager.capCode"       "text"        "pager.capCode"       0   8   "" )
+    #qsys($section "ADR_7_LEN"       "pager.adr7Len"       "checkbox"    "pager.adr7Len"       0   1   "" )
+    #qsys($section "RF_INVERTED"     "pager.inverted"      "checkbox"    "pager.inverted"      0   1   "" )
+    #qsys($section "ALPHA_PAGER"     "pager.isAlpha"       "checkbox"    "pager.isAlpha"       0   1   "" )
+    #qsys($section "BIT_0_ALERT"     "pager.noPriNumOnly"  "checkbox"    "pager.noPriNumOnly"  0   1   "" )
+    #qsys($section "BIT_0_ALERT_P"   "pager.priNumOnly"    "checkbox"    "pager.priNumOnly"    0   1   "" )
+    #qsys($section "BIT_A_ALERT"     "pager.noPriAlpha"    "checkbox"    "pager.noPriAlpha"    0   1   "" )
+    #qsys($section "BIT_A_ALERT_P"   "pager.priAlpha"      "checkbox"    "pager.priAlpha"      0   1   "" )
+
+    <field type  = "list" helpid = "pager.baudRate">
+        #cdata("name" "${section}_RF_BAUD")
+        #cdata("label" $text.getText("pager.baudRate"))
+
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("key" "RF_BAUD")
+            #param("ns" "$section")
+        </params>
+        #cdata("init-value" $sm.getStringSetting("$section", "RF_BAUD"))
+
+        <accepted-values>
+            #accepteditem("1" $text.getText("pager.512baud"))
+            #accepteditem("2" $text.getText("pager.1200baud"))
+            #accepteditem("3" $text.getText("pager.2400baud"))            
+        </accepted-values>
+    </field>
+
+</grid-form>
+

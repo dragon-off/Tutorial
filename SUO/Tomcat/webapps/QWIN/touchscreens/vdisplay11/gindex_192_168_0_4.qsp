@@ -1,0 +1,56 @@
+
+<center>
+
+<%
+Q=5 {okna sleva}
+
+	N=DISPLAY_CACHE_NUMBER(2 0)
+	K=DISPLAY_CACHE_COUNTER(2 0)
+	L=DISPLAY_CACHE_LETTER(2 0)
+	
+	IF(K LE Q)
+		A= "&larr;"
+	ELSE
+		A="&rarr;"
+	IF(COUNTER_TRANSACTION_TIME_NOW(K) LE 10 AND COUNTER_CUSTOMER_PRESENT(K) EQ 1) 
+	BEGIN
+		"<font  color=RED style='font-size:150px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'>"
+	END
+	ELSE 
+	BEGIN
+		"<font  color=WHITE style='font-size:150px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'>"
+	END
+	IF(K NE 0)
+	BEGIN
+	 L N LEN(3) A K LEN(2)
+	END
+
+	"</font><br>"	
+	
+	{первая строка}
+
+
+	S=1
+	WHILE(S LE 5) 
+	BEGIN
+		N= DISPLAY_CACHE_NUMBER(2 S)
+		K= DISPLAY_CACHE_COUNTER(2 S)
+		L= DISPLAY_CACHE_LETTER(2 S)
+		A= " "   { No arrow }
+		IF(K LE Q)
+			A= "&larr;"
+		ELSE
+			A="&rarr;"
+		 
+		
+			"<font  color=WHITE style='font-size:150px;font-weight: bold;font-family: Geneva, Arial, Helvetica, sans-serif;'>"
+		IF(K NE 0)
+		BEGIN
+			L N LEN(3) A K LEN(2) 
+		END
+		"</font><br>"	
+		S=S+1
+	END
+
+%>
+<center>

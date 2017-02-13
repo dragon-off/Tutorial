@@ -1,0 +1,31 @@
+#loadcache2("FONT*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    #cdata("label" $text.getText("font.SettingsHeading"))
+    #set( $section            = "FONT_SETTING_$item"                            )
+
+    ##    SECTION  KEY          LABEL_ID             TYPE          HELP_ID          MIN MAX   REGEXP
+    ##-----------------------------------------------------------------------------------------------
+
+    #qsys("FONT"   "NAME$item"  "font.name"          "text"        "font.name"      0   40    ""    )
+    #qsys($section "ON"         "font.enabled"       "checkbox"    "font.enabled"   0   1     ""    )
+    #qsys($section "UNIT"       "font.bsidNo"        "number"      "font.bsidNo"    0   1000  ""    )
+    #qsys($section "ID"         "font.id"            "text"        "font.id"        0   3     ""    )
+
+    ## FIX REGEX??????????
+
+    <field type   = "file"
+           helpid = "font.file">
+        #cdata("label" $text.getText("font.file"))
+        #cdata("name" "LUNA")
+        <params>
+            #param("ns" $section)
+            #param("key" "FILE")
+        </params>
+        #cdata("init-value" $sm.getStringSetting($section, "FILE"))
+    </field>
+
+    ##qsysinistringh($section_main "FILE"  "font.file"               "text"        "font.file"     )
+</grid-form>

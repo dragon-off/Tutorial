@@ -1,0 +1,19 @@
+#loadcache2("TERMINAL" true)
+#loadcache2("TERMINAL_SETT*" false)
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$text.getText('termsett.SettingsHeading') ${item}")
+
+    #set( $section           = "TERMINAL"                    )
+
+    ##    SECTION  KEY             LABEL_ID          TYPE      HELP_ID          MIN  MAX   REGEXP
+    ##--------------------------------------------------------------------------------------------
+
+    #qsys($section "NAME$item"     "termsett.name"   "text"    "termsett.name"  0    40    ""    )
+
+    #qsyssettingslist($section  "FIXED_PRIORITY"    "PRIORITY"        "termsett.fixedPrio"  $item   1 "termsett.fixedPrio"      )
+    #qsyssettingslist($section  "KD_LOCATION"       "TERMINAL"        "termsett.kdLocation" $item   1 "termsett.kdLocation"     )
+
+</grid-form>

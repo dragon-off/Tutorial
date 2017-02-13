@@ -1,0 +1,84 @@
+var page=0;
+var bpage=0;
+var p=2;
+
+function parseGetParam(param) { 
+		   var get_param=2;
+		   var url = window.location.search.substring(1).split("&");
+		   if(url.length>0) 
+			{
+		   for(var i=0; i<url.length; i++) 
+				{ 
+				var getVar = url[i].split("="); 
+				if(getVar[0]==param) 
+					get_param=getVar[1]*1;
+				} 
+			}
+			return get_param;
+		} 
+
+function whatprinter() {
+
+p=parseGetParam("printer");
+if(p<=0) p=2;
+} 
+function buttonspage() {
+
+	<%
+
+	
+	H=0
+	IF(ARRAY(1001) EQ 1) BEGIN  "document.getElementById('b1').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b1').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1002) EQ 1) BEGIN  "document.getElementById('b2').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b2').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1003) EQ 1) BEGIN  "document.getElementById('b3').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b3').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1004) EQ 1) BEGIN  "document.getElementById('b4').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b4').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1005) EQ 1) BEGIN  "document.getElementById('b5').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b5').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1006) EQ 1) BEGIN  "document.getElementById('b6').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b6').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1007) EQ 1) BEGIN  "document.getElementById('b7').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b7').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1008) EQ 1) BEGIN  "document.getElementById('b8').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b8').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1009) EQ 1) BEGIN  "document.getElementById('b9').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b9').style.textAlign=\"right\";\n" END END
+	IF(ARRAY(1010) EQ 1) BEGIN  "document.getElementById('b10').style.display=\"none\";\n" END ELSE BEGIN H=H+1 IF((H/2)*2 EQ H) BEGIN  "document.getElementById('ins_b10').style.textAlign=\"right\";\n" END END
+	%>
+
+
+
+}
+var redbutton=1; 
+
+function printred() {
+printer(p,redbutton);
+setTimeout("closered()",500);	
+}
+
+function closered() {
+document.getElementById('userred').style.display="none";	
+}
+
+function openred(button) {
+b="bu"+button;
+el=document.getElementById(b);
+str="Вы выбрали:<br>"+el.innerHTML;
+b="sbu"+button;
+el=document.getElementById(b);
+if(el.style.display!="none")
+	str=str+", "+el.innerHTML;
+el=document.getElementById('titlered');
+el.innerHTML=str;
+redbutton=button;
+document.getElementById('userred').style.display="block";
+setTimeout("closered()",5000);					
+}
+ 
+function buttonclick(button) {
+	if(button==1)redtaktika(1,"none");
+	if(button==2)redtaktika(2,"none");
+	if(button==3)redtaktika(3,"none");
+	if(button==4)redtaktika(4,"none");
+	if(button==5)redtaktika(5,"none");
+	if(button==6)redtaktika(6,"none");
+	if(button==7)redtaktika(7,"none");
+	if(button==8)redtaktika(8,"none");
+	if(button==9)redtaktika(9,"none");
+	if(button==10)redtaktika(10,"none");
+}
+ 

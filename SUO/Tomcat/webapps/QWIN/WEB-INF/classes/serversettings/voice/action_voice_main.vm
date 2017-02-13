@@ -1,0 +1,11 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    <label></label>
+
+    ##       SECTION   KEY    LABEL_ID           SCRIPT_FILE        GROUP  MIN  MAX
+    ##-------------------------------------------------------------------------------
+
+    #button( $section  "MAX"  "voice.addVoice"   "./add_action.vm" 0      0    99 )
+    #button( $section  "MAX"  "voice.remVoice"  "./rem_action.vm"  1      0    99 )
+
+</grid-form>

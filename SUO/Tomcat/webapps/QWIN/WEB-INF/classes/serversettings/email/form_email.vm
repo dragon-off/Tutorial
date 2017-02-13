@@ -1,0 +1,28 @@
+#loadcache2("EMAIL" true)
+
+#loadcache2("EMAIL_SETTING_1*" false)
+#loadcache2("EMAIL_SETTING_2*" false)
+#loadcache2("EMAIL_SETTING_3*" false)
+#loadcache2("EMAIL_SETTING_4*" false)
+#loadcache2("EMAIL_SETTING_5*" false)
+#loadcache2("EMAIL_SETTING_6*" false)
+#loadcache2("EMAIL_SETTING_7*" false)
+#loadcache2("EMAIL_SETTING_8*" false)
+#loadcache2("EMAIL_SETTING_9*" false)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$item. $name")
+
+    #set( $section            = "EMAIL_SETTING_$item"                          )
+
+    ##    SECTION  KEY              LABEL_ID               TYPE        HELP_ID                MIN MAX    REGEXP
+    ##---------------------------------------------------------------------------------------------------------
+
+    #qsys("EMAIL"  "NAME$item"      "email.name"           "text"      "email.name"           0   40     "" )
+    #qsys($section "TO_ADR"         "email.toAdress"       "text"      "email.toAdress"       0   100    "" )
+    #qsys($section "TO_NAME"        "email.toName"         "text"      "email.toName"         0   100    "" )
+    #qsys($section "SUBJECT"        "email.subject"        "text"      "email.subject"        0   100    "" )
+    #qsys($section "PROGRAM"        "email.scriptProgram"  "script"    "email.scriptProgram"  0   30000  "" )
+
+</grid-form>

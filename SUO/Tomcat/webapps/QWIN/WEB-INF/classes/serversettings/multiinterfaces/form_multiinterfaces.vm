@@ -1,0 +1,16 @@
+#loadcache2("INTERFACE*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("intf.generalNode"))
+
+    #set( $section                = "INTERFACE"                  )
+
+    ##     SECTION  KEY               LABEL_ID              TYPE       HELP_ID             MIN MAX  REGEXP
+    ##----------------------------------------------------------------------------------------------------
+
+    #qsys($section  "MAX"             "intf.max"            "number"   "intf.max"          0   99   "" )
+    #qsys($section  "ID_NO"           "intf.startIdCode"    "number"   "intf.startIdCode"  1   128  "" )
+    #qsys($section  "UNIT_NO_START"   "intf.subIdCode"      "number"   "intf.subIdCode"    0   1000 "" )
+
+</grid-form>

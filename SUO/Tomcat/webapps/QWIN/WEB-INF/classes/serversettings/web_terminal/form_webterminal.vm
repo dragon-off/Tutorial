@@ -1,0 +1,35 @@
+<grid-form version="1.0"
+    writer="com.qmatic.serversettings.test.DefaultWriter">
+    <label>Q-MATIC Web Terminal Settings</label>
+
+    <field type="number">
+        <name>RECYCLE_POSITION</name>
+        <label>Recycle position</label>
+        <params>
+            #param("ns" "WEB_TERMINAL")
+            #param("key" "RECYCLE_POSITION")
+        </params>
+        #cdata("init-value" $sm.getStringSetting("WEB_TERMINAL", "RECYCLE_POSITION"))
+    </field>
+
+
+    <field type="number">
+        <name>RECYCLE_DELAY</name>
+        <label>Recycle delay</label>
+        <params>
+            #param("ns" "WEB_TERMINAL")
+            #param("key" "RECYCLE_DELAY")
+        </params>
+        #cdata("init-value" $sm.getStringSetting("WEB_TERMINAL", "RECYCLE_DELAY"))
+    </field>
+    <field type="number">
+        <name>RECYCLE_REPEATS</name>
+        <label>Recycle repeats</label>
+        <params>
+            #param("ns" "WEB_TERMINAL")
+            #param("key" "RECYCLE_REPEATS")
+        </params>
+        #cdata("init-value" $sm.getStringSetting("WEB_TERMINAL", "RECYCLE_REPEATS"))
+    </field>
+
+</grid-form>

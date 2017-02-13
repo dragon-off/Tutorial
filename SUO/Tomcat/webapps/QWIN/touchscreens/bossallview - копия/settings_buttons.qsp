@@ -1,0 +1,190 @@
+<%
+K=ARRAY(760)
+STRSUB(K 120 122)
+IF(STRSUB(K 121 121) NE "F")
+	SETARRAY(760 "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000F") {121=F}
+
+%> 
+ 
+<html>
+    <head>
+        <title>Монитор</title>
+        <LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">
+		<script type="text/javascript" src="/lib/ajax.js"></script>  		
+		<script language='javascript'>
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+} 		
+		</script>		
+    </head>
+    <body onLoad="startTimeout()">  
+	<div id="DopElement"></div>
+<%
+
+
+B=(${button}0)/10
+S=(${status}0)/10
+Y=(${buon}0)/10
+U=(${stus}0)/10
+IF(Y GT 0)
+BEGIN
+	SETARRAY(9900+Y U)
+END	
+IF(B GT 0 )
+BEGIN
+	SETARRAY(300+B S)
+	
+	L=(${limit}0)/10
+	L"-"B
+	IF(L GT 0)
+		IF(B GT 1)
+			SETARRAY(760+B L)	 {760 ARRAY}
+	
+		L=(${green_time}0)/10
+	IF(L GT 0)
+		SETARRAY(800+B L/2)
+
+	L=(${yellow_time}0)/10
+	IF(L GT 0)
+		SETARRAY(830+B L/2)
+
+	L=(${red_time}0)/10
+	IF(L GT 0)
+		SETARRAY(860+B L/2)	
+END
+%>
+<SCRIPT LANGUAGE="javascript"> 
+ 
+function startTimeout()
+{
+
+}
+function reloadFunc()
+{
+}
+function openPage(p) 
+{
+    parent.contents.location.href=p;
+}
+</SCRIPT>
+ 
+ 
+<form method="GET" name="changeList">
+<input type="hidden" name="useCategory" value="true">
+<input type="hidden" name="useWorkstation" value="true">
+ 
+<!-- Place this at the top
+ 
+ 
+ 
+-->
+ 
+<table class=tableMain cellpadding=5 cellspacing=0 width=10>
+	<tr>
+		<td class=headerBar align=left>
+			Отображаемые операции 
+		</td>
+		<td class=headerBar>
+			
+		</td>
+	</tr>
+ 
+	<tr>
+		<td valign="top">
+			<table class=tableSection cellpadding=0 cellspacing=0>
+				<tr>
+					<td nowrap class=tdHeaderSection>Операция</td>
+					<td nowrap class=tdHeaderSection>Статус</td>
+					<td nowrap class=tdHeaderSection>Светофор вр. обсл.(сек.)</td>
+					<td nowrap class=tdHeaderSection> Учет в тактике</td>
+	
+				</tr>
+				
+				<%
+				O=(${showtickets}0)/10
+A=10 {колличество операций}
+I=0 {summ ogid kl}
+J=0 {summ obsl kl}
+M=0
+N=1
+WHILE (N LE A)
+BEGIN
+
+	IF(N EQ ((N/2)*2))
+		"<tr class=trDataRow1>"
+	ELSE
+		"<tr class=trDataRow0>"
+	"<td nowrap class=tdDataRow>"
+	IF(N LE 30)
+	BUTTON_LETTER(N) " " BUTTON_NAME(N) "</td>"
+
+	
+	
+
+IF(ARRAY(300+N) EQ 0)
+BEGIN
+"<td nowrap class=tdDataRowC><a onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=17&Comment=0');\" href=?button="N"&status=1><IMG SRC=yes.png border=0></a>"
+END
+ELSE
+BEGIN
+"<td nowrap class=tdDataRowC><a onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=17&Comment=0');\" href=?button="N"&status=0><IMG SRC=no.png border=0></a>"
+END
+	"</td>"
+	
+		"<td><form method=GET name=workstationInfo>"
+	"<input type=hidden name=button value="N">"
+	"<input type=input name=green_time style=background:#008000 value=" ARRAY(800+N)*2 " size=3>"
+	"<input type=input name=yellow_time style=background:#ffff00 value=" ARRAY(830+N)*2 " size=3>"
+	"<input type=input name=red_time style=background:#ff0000 value=" ARRAY(860+N)*2 " size=3></TD>"
+IF(ARRAY(9900+N) EQ 0)
+BEGIN
+"<td nowrap class=tdDataRowC><a  href=?buon="N"&stus=1><IMG onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=17&Comment=0');\" SRC=yes.png border=0></a>"
+END
+ELSE
+BEGIN
+"<td nowrap class=tdDataRowC><a onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=17&Comment=0');\" href=?buon="N"&stus=0><IMG SRC=no.png border=0></a>"
+END
+	"</td>"
+	"<td><input onClick=\"javascript:DoScript('/lib/1.jsp?TypeId=6&ComIndex=17&Comment=0');\" onmouseover=\"javascript:this.className='submitOver';\" onmouseout=\"javascript:this.className='submitOut';\" type=submit value=\"   Сохранить   \"></form></td>"
+	"</tr>\n"
+
+N=N+1
+END
+
+%>
+				
+				
+ 
+										
+			
+			</table>
+		</td>
+ 
+		<td valign=top align=left>
+			
+		</td>
+	</tr>
+	<tr>
+		<td class=tdCopyright>
+			Ритейл АСП (+7(495)953-05-08, +7(495)951-68-09)
+		</td>
+		<td class=tdVersion>
+			Версия 2.0
+		</td>
+	</tr>
+</table>
+ 
+ 
+</html>

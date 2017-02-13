@@ -1,0 +1,15 @@
+#loadcache2("DISPLAY*" true)
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("dispmain.generalNodeLabel"))
+
+    #set( $section            = "DISPLAY"                                      )
+
+    ##    SECTION  KEY            LABEL_ID                 TYPE       HELP_ID                  MIN MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAX"          "dispmain.maxMainDisp"   "number"   "dispmain.maxMainDisp"   0   99   "" )
+    #qsys($section "ID_NO_START"  "dispmain.startIdCode"   "number"   "dispmain.startIdCode"   1   128  "" )
+    #qsys($section "QUEUE_LEN"    "dispmain.queueLen"      "number"   "dispmain.queueLen"      2   255  "" )
+
+</grid-form>

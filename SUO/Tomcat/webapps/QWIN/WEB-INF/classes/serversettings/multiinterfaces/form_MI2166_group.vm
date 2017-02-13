@@ -1,0 +1,35 @@
+#loadcache2("INTERFACE*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #set($name=$text.getText("intf.groupNode"))
+    #cdata("label" "$name ${group}")
+
+    #set( $section                = "INTERFACE_SETTING_$group"                  )
+
+    ##    SECTION   KEY               LABEL_ID            TYPE       HELP_ID             MIN MAX  REGEXP
+    ##---------------------------------------------------------------------------------------------
+
+    <field type  = "list"
+           helpid="intf.miType">
+           #cdata("name" "${section}_MI_TYPE")
+           #cdata("label" $text.getText("intf.miType"))
+           <params>
+                #param("multiple" "false")
+                #param("size" "1")
+                #param("ns" $section)
+                #param("key" "MI_TYPE")
+           </params>
+           #cdata("init-value" $sm.getStringSetting("$section", "MI_TYPE"))
+           <accepted-values>
+                #accepteditem("1" $text.getText("intf.typeMI2166"))
+                #accepteditem("2" $text.getText("intf.typeMI2280"))
+                #accepteditem("3" $text.getText("intf.typeSI2477"))
+           </accepted-values>
+    </field>
+
+    #qsys($section  "INPUTS"          "intf.maxInputs"     "number"   "intf.maxInputs"    0   256   "" )
+    #qsys($section  "OUTPUTS"         "intf.maxOutputs"    "number"   "intf.maxOutputs"   0   256   "" )
+    #qsys($section  "DISABLE_RADIO"   "intf.disableRadio"  "checkbox" "intf.disableRadio" 0   1     "" )
+
+</grid-form>

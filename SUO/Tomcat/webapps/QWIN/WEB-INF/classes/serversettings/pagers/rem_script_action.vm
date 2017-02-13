@@ -1,0 +1,10 @@
+
+  #set( $max2   = $sm.getNumericSetting( "PAGER", "PRG_MAX" ) - 1)
+  #set( $limit = 0 )
+  #set( $limit_max2 = 256 )
+
+
+  #if( $max2 >= $limit)
+    $sm.setNumericSetting("PAGER", "PRG_MAX", ${max2})
+  #end
+

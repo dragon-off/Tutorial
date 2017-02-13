@@ -1,0 +1,38 @@
+#loadcache2("DISPLAY*" true)
+
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #set($nodeLabel = $text.getText("dispmain.groupNodeLabel"))
+    #cdata("label" "$item. $nodeLabel $item")
+    
+
+    #set( $section              = "DISPLAY_SETTING_${item}"                            )
+
+    ##    SECTION  KEY                 LABEL_ID                    TYPE          HELP_ID                    MIN MAX   REGEXP
+    ##----------------------------------------------------------------------------------------------------------------------
+
+    #qsysunitlist ($section   "VOICE"  "VOICE"   "dispmain.voice"  1    "dispmain.voice"                                 )
+
+    #qsys($section "TIME_LIT"          "dispmain.autoTurnOff"      "number"      "dispmain.autoTurnOff"      0  1400  "" )
+    #qsys($section "TIME_UPDATE"       "dispmain.update"           "number"      "dispmain.update"           0  1000  "" )
+    #qsys($section "TIME_DELAY"        "dispmain.minDisplayed"     "number"      "dispmain.minDisplayed"     0  60    "" )
+    #qsys($section "TIME_CYCLE_DELAY"  "dispmain.timeBeforeAlt"    "number"      "dispmain.timeBeforeAlt"    0  1000  "" )
+    #qsys($section "TIME_CYCLING"      "dispmain.timeAlt"          "number"      "dispmain.timeAlt"          0  1000  "" )
+    #qsys($section "TIME_IN_CYCLING"   "dispmain.timeEndAlt"       "number"      "dispmain.timeEndAlt"       0  1000  "" )
+    #qsys($section "TIME_ARROW"        "dispmain.timeArrow"        "number"      "dispmain.timeArrow"        0  1000  "" )
+    #qsys($section "TIME_FLASH"        "dispmain.timeFlash"        "number"      "dispmain.timeFlash"        0  1000  "" )
+
+    #qsys($section "BUTTON_LETTERS"    "dispmain.useButtonLett"    "checkbox"    "dispmain.useButtonLett"    0  1     "" )
+    #qsys($section "USE_ENTER_BUTTON"  "dispmain.useEnterButt"     "checkbox"    "dispmain.useEnterButt"     0  1     "" )
+    #qsys($section "GROUPS"            "dispmain.catDisplayed"     "text"        "dispmain.catDisplayed"     0  255   "^([0-9],|[0-9]|[0-9]-[0-9]|[0-9]-[0-9],)*([0-9]|[0-9]-[0-9])$" )
+    #qsys($section "COUNTERS"          "dispmain.counterInclud"    "text"        "dispmain.counterInclud"    0  255   "(^$)|^([0-9],|[0-9]|[0-9]-[0-9]|[0-9]-[0-9],)*([0-9]|[0-9]-[0-9])$" )
+    #qsys($section "COUNTER_LEFT"      "dispmain.counterOnLeft"    "text"        "dispmain.counterOnLeft"    0  255   "(^$)|^([0-9],|[0-9]|[0-9]-[0-9]|[0-9]-[0-9],)*([0-9]|[0-9]-[0-9])$" )
+    #qsys($section "BUZZER"            "dispmain.useInternalBuzz"  "checkbox"    "dispmain.useInternalBuzz"  0  1     "" )
+
+    #qsys($section "PROGRAM"           "dispmain.optProg"          "script"      "dispmain.optProg"          0  30000 "" )
+    #qsys($section "SECONDARIES"       "dispmain.numSecondaries"   "number"      "dispmain.numSecondaries"   0  99    "" )
+    #qsys($section "SECONDARY_PRG"     "dispmain.secProg"          "script"      "dispmain.secProg"          0  30000 "" )
+
+
+</grid-form>
+
+

@@ -1,0 +1,299 @@
+<!Doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="css/top_1280_1024.css"/>
+ <!-- <link rel="stylesheet" href="css/test_style.css"/>-->
+ <title>Сбербанк: Регистратор талонов</title>
+  <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="../lib/ajax.js"></script>
+	<script type="text/javascript" src="js/pi.js"></script>
+  <script type="text/javascript" src="js/mega.js"></script>
+  <script type="text/javascript" src="js/qevent.js"></script>
+    <script language=javascript>
+  var time_update_smsuo=0;
+
+ firstsession();
+  qwin_event.trig = function(eventType, unit, payload){
+
+	if(eventType=="10") //Карточка
+		cardfunc(payload);
+	if(eventType=="200")
+		{	
+		payload=payload.split('#');	
+
+		if((payload[0]*1)==p) {		
+			hprint=1;
+			
+			if((payload[1])=="0")
+				{
+				console.warn("Бумага: ",payload[2]);
+				}
+
+			}
+		}
+}
+
+qwin_event.setEvents = function(){
+	qwin_event.waitForEventTrig("10.200.144");
+}
+qwin_event.setEvents(); 
+  </script>
+</head>
+<body id="body" onload="init();">
+
+<div class="logo"></div>
+
+<p class="page-title-text">Выберите услугу</p>
+
+<div id="wrapper" class="wrapper">
+
+    <div onmouseup="click_menu(1,this);" id="div_1" class="option">
+       
+    </div>
+    
+    <div onmouseup="click_menu(2,this);" id="div_2" class="option">
+     
+    </div>
+    
+    <div onmouseup="click_menu(3,this);" id="div_3" class="option">
+     
+    </div>
+    
+    <div onmouseup="click_menu(4,this);" id="div_4" class="option">
+       
+    </div>
+
+    <div onmouseup="click_menu(5,this);" id="div_5" class="option">
+        
+    </div>
+
+    <div onmouseup="click_menu(6,this);" id="div_6" class="option">
+        
+    </div>
+    
+    <div onmouseup="click_menu(7,this);" id="div_7" class="option">
+       
+    </div>
+    
+    <div onmouseup="click_menu(8,this);" id="div_8" class="option">
+        
+    </div>
+	
+	<div onmouseup="click_menu(9,this);" id="div_9" class="option">
+        
+    </div>
+    
+    <div onmouseup="click_menu(10,this);" id="div_10" class="option">
+        
+    </div>
+    
+    <div onmouseup="click_menu(11,this);" id="div_11" class="option">
+        
+     </div>
+    
+    <div onmouseup="click_menu(12,this);" id="div_12" class="option">
+       
+    </div>
+    
+    
+    
+    <div onmouseup="click_menu(13,this);" id="div_13" class="option">
+       
+     </div>
+     
+     <div onmouseup="click_menu(14,this);" id="div_14" class="option">
+        
+     </div>
+     
+     <div onmouseup="click_menu(15,this);" id="div_15" class="option">
+       
+     </div>  
+
+</div>
+
+<div class="talon" id="talon">
+    <div class="talon_animation">&nbsp;</div>
+    <div class="take_text" id="taketext">Пожалуйста, возьмите талон</div>
+</div>
+<div class="usercard" id="usercard">
+		<table border=0 cellpadding=0 cellspacing=0 style="width:100%;height:100%">
+				<tr>
+					<td>
+					&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td style="height:150px;">
+				<center>
+				<table border=0 class="usermess">
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td id="usertext" onClick="closecardfunc();"> 
+					
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+			</table></center>
+			</td>
+				</tr>
+				<tr>
+					<td>
+					&nbsp;
+					</td>
+				</tr>
+			</table></div>
+			
+<div class="usercard" id="bad">
+		<table border=0 cellpadding=0 cellspacing=0 style="width:100%;height:100%">
+				<tr>
+					<td>
+					&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td style="height:150px;">
+				<center>
+				<table border=0 class="usermess">
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td id="usertextbad" onClick="closebadfunc();"> 
+					
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=3>
+					</td>
+				</tr>
+			</table></center>
+			</td>
+				</tr>
+				<tr>
+					<td>
+					&nbsp;
+					</td>
+				</tr>
+			</table></div>
+			
+<div class="usercard" id="blockDo">
+	<table border=0 cellpadding=0 cellspacing=0 style="width:100%;height:100%" onClick="">
+			<tr>
+				<td>
+				&nbsp;
+				</td>
+			</tr>
+	</table>
+</div>
+<div class="RedVSP" id="RedVSP">
+	<table border=0 cellpadding=0 cellspacing=0 style="width:100%;height:100%;text-align:center;">
+			<tr>
+				<td colspan=2 style="font-size:40px;text-align:center;height:100px;padding-top:50px;">
+				Прогнозируемое время ожидания составит примерно <span id="prognoz_minut"></span> минут.
+				<td>
+			</tr>
+			<tr>
+				<td colspan=2 style="font-size:40px;text-align:center;height:100px;">	
+				Перед Вами <span id="prognoz_chel"></span> человек.
+				<td>
+			</tr>
+			<tr>
+				<td colspan=2 style="font-size:40px;text-align:center;height:100px;">
+				Вы хотите занять очередь?
+				<td>
+			</tr>
+			<tr>
+				<td colspan=2 style="font-size:40px;text-align:center;vertical-align:top;">
+				<div id="vsp_plato" style="width:100%;">
+				Примерное время ожидания в соседних филиалах:
+				<br>
+				<br>
+				<center>
+				<table cellpadding=0 cellspacing=0 width=80% border=1 style="background-color:white;">
+					<tr style="background-color:#619954;text-align:center;">
+						<td style="text-align:center;">
+						ВСП
+						</td>
+						<td width=300px  style="text-align:center;">
+						Ожидание
+						</td>
+					</tr>
+					<tr id='red_vsp_1' style="display:none;">
+						<td id="red_vsp_adres_1"  style="text-align:right;padding-right:5px;padding-left:5px;">
+						
+						</td>
+						<td id="red_vsp_time_1"  style="text-align:right;padding-right:5px;padding-left:5px;">
+						
+						</td>
+					</tr>
+					<tr id='red_vsp_2' style="display:none;">
+						<td id="red_vsp_adres_2"  style="text-align:right;padding-right:5px;padding-left:5px;">
+						
+						</td>
+						<td id="red_vsp_time_2"  style="text-align:right;padding-right:5px;padding-left:5px;">
+						
+						</td>
+					</tr>
+					<tr id='red_vsp_3' style="display:none;">
+						<td id="red_vsp_adres_3"  style="text-align:right;padding-right:5px;padding-left:5px;">
+						
+						</td>
+						<td id="red_vsp_time_3"  style="text-align:right;padding-right:5px;padding-left:5px;">
+						
+						</td>
+					</tr>
+				</table>
+				</center>
+				</div>
+				</center>
+				</td>
+			</tr>
+			<tr height=200px>
+				<td width=50% style="text-align:center;">
+				<center>
+				<div id="div_998" class="option" onmouseup="click_menu(998,this);">
+				<div class="wrap">
+				<div class="hover"></div>
+				<div class="option_title"><b>Д</b>А</div>
+				<div class="option_description"></div>
+				<div class="option_misc"></div>
+				</div>
+				</div>
+				</center>
+				</td>
+				<td width=50%>
+				<center>
+				<div id="div_997" class="option option_small" onmouseup="click_menu(997,this);">
+				<div class="wrap">
+				<div class="hover"></div>
+				<div class="option_title"><b>Н</b>ЕТ</div>
+				<div class="option_description"></div>
+				<div class="option_misc"></div>
+				</div>
+				</div>
+				</center>
+				</td>
+			</tr>
+			
+	</table>
+</div>
+<div style="display:none;" id="result"></div>
+</body>
+</html>

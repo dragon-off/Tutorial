@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding='UTF-8' ?><%
+
+"<personCompetence>\r\n"
+J=1
+WHILE(J LE MAX_LOGINS)
+BEGIN
+	L=J {LOGIN_ID???? STAFF_LOGIN_ID}
+	V=STRSUB(ARRAY(1121) L L) {VIP}
+	S=STRSUB(ARRAY(1122) L L) {SPECREG}
+	"	<pc un=\"Installadmin\" vf=\""V "\" sr=\""S"\" uc=\""LOGIN_NAME(J)"\" df=\"0\">\r\N"
+	I=1
+	WHILE(I LE 20)
+	BEGIN
+		IF((ARRAY(5630+I) GT 0) AND (ARRAY(1000+I) EQ 0)) BEGIN
+		"		<oc cc=\"" ARRAY(5630+I) "\" vl=\"" STRSUB(ARRAY(1100+I) L L) "\"/>\r\N" END
+		I=I+1
+	END
+	"	</pc>\r\N"
+	J=J+1
+END
+"</personCompetence>"
+%>

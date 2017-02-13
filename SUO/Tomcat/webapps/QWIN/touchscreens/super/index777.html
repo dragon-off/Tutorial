@@ -1,0 +1,38 @@
+<html>
+	<head>
+	<!-- VER. 2.0-->
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+		<title>Сбербанк России</title>
+		<script language=javascript>
+		function parseGetParam(param) { 
+		   var get_param=2;
+		   var url = window.location.search.substring(1).split("&");
+		   
+		   if(url.length>0) 
+			{
+		   for(var i=0; i<url.length; i++) 
+				{ 
+				var getVar = url[i].split("="); 
+				
+				if(getVar[0]==param) 
+					get_param=getVar[1]*1;
+				} 
+			}
+			return get_param;
+		} 
+
+		function whatprinter() {
+		
+		window.frames.MainFrame.document.location.href='index_frame.html?printer='+parseGetParam("printer");
+		} 
+		</script>
+	</head>
+	<script language=javascript>
+		whatprinter();
+		</script>
+	<frameset rows="*,80" cols="*" border=0 onLoad="whatprinter();">
+		<frame  name="MainFrame" scrolling="no" noresize>
+		<frame src="marquee.html" name="BottomFrame" scrolling="no" noresize>
+	</frameset>
+
+</html>

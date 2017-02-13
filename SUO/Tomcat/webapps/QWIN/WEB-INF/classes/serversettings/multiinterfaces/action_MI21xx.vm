@@ -1,0 +1,93 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    <label></label>
+
+    #set( $sett_section = "${section}_SETTING_${group}" )
+
+    ##       SECTION                      KEY        LABEL_ID          SCRIPT_FILE        GROUP  MIN  MAX
+    ##----------------------------------------------------------------------------------------------------
+
+    #button( $section                     "MAX"      "intf.addIntf"    "./add_action.vm"  $group 0    99 )
+
+    ##------------------------------------------------------------------------------------------------------
+    ## Add / Remove Input buttons
+
+    <field type="hidden">
+        <label></label>
+        <name>section2</name>
+        #cdata("init-value" $sett_section)
+    </field>
+    <field type="hidden">
+        <label></label>
+        <name>key2</name>
+        #cdata("init-value" "INPUTS")
+    </field>
+    <field type="hidden">
+        <label></label>
+        <name>limit_max2</name>
+        <init-value>16</init-value>
+    </field>
+    <field type="hidden">
+        <label></label>
+        <name>limit_min2</name>
+        <init-value>0</init-value>
+    </field>
+
+    <field type  = "button">
+           #cdata("label" $text.getText("intf.addInputs"))
+           #cdata("name" "intf.addInputs")
+      <params>
+            #param("action-script" "./multiinterfaces/add_inputs_action.vm")
+      </params>
+    </field>
+
+    <field type  = "button">
+           #cdata("label" $text.getText("intf.remInputs"))
+           #cdata("name" "intf.remInputs")
+      <params>
+            #param("action-script" "./multiinterfaces/rem_inputs_action.vm")
+      </params>
+    </field>
+
+    ##------------------------------------------------------------------------------------------------------
+    ## Add / Remove Outputs buttons
+
+    <field type="hidden">
+        <label></label>
+        <name>section3</name>
+        #cdata("init-value" $sett_section)
+    </field>
+    <field type="hidden">
+        <label></label>
+        <name>key3</name>
+        <init-value>OUTPUTS</init-value>
+    </field>
+    <field type="hidden">
+        <label></label>
+        <name>limit_max3</name>
+        <init-value>16</init-value>
+    </field>
+    <field type="hidden">
+        <label></label>
+        <name>limit_min3</name>
+        <init-value>0</init-value>
+    </field>
+
+    <field type  = "button">
+           #cdata("label" $text.getText("intf.addOutputs"))
+           #cdata("name" "intf.addOutputs")
+      <params>
+            #param("action-script" "./multiinterfaces/add_outputs_action.vm")
+      </params>
+    </field>
+
+    <field type  = "button">
+           #cdata("label" $text.getText("intf.remOutputs"))
+           #cdata("name" "intf.remOutputs")
+      <params>
+            #param("action-script" "./multiinterfaces/rem_outputs_action.vm")
+      </params>
+    </field>
+
+</grid-form>
+

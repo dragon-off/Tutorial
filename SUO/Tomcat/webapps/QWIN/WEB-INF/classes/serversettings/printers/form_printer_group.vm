@@ -1,0 +1,55 @@
+#loadcache2("PRINTER*" true )
+
+<grid-form version="1.0"
+
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" "$text.getText('printer.groupEntry') ${item}")
+
+    #set( $section            = "PRINTER_SETTING_$item"                        )
+
+    ##    SECTION  KEY                 LABEL_ID                      TYPE          HELP_ID                        MIN MAX   REGEXP
+    ##-----------------------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "TICKET_LESS"       "printerGroup.ticketLess"     "checkbox"    "printerGroup.ticketLess"      0   1     "" )
+    #qsys($section "TICKETS"           "printerGroup.tickets"        "number"      "printerGroup.tickets"         1   10000 "" )
+    #qsys($section "LOW_TICKETS"       "printerGroup.lowTickets"     "number"      "printerGroup.lowTickets"      0   10000 "" )
+    #qsys($section "TIME_DELAY"        "printerGroup.timeDelay"      "number"      "printerGroup.timeDelay"       0   60    "" )
+    #qsys($section "TIME_BUTTON_INFO"  "printerGroup.timeButtonInfo" "number"      "printerGroup.timeButtonInfo"  0   1000  "" )
+    #qsys($section "UNPLUGG_ERROR"     "printerGroup.unplugError"    "checkbox"    "printerGroup.unplugError"     0   1     "" )
+    #qsys($section "CHECK_TICKETS"     "printerGroup.checkTickets"   "checkbox"    "printerGroup.checkTickets"    0   1     "" )
+    #qsys($section "BUTTON_PROGRAM"    "printerGroup.buttonProgram"  "script"      "printerGroup.buttonProgram"   0   0     "" )
+
+    #separator("printerGroup.cardReaderSep")
+    #qsys($section "TIME_CARD_LED"     "printerGroup.timeCardLed"    "number"      "printerGroup.timeCardLed"     1   1000  "" )
+
+    <field type  = "list"
+         helpid  = "printerGroup.track">
+         #cdata("name" "${section}_TRACK")
+         #cdata("label" $text.getText("printerGroup.track"))
+
+        <params>
+            #param("multiple" "false")
+            #param("size" "1")
+            #param("ns" $section)
+            #param("key" "TRACK")
+        </params>
+        #cdata("init-value" $sm.getStringSetting($section, "TRACK"))
+
+        <accepted-values>
+            #accepteditem("1" $text.getText("printerGroup.track1"))
+            #accepteditem("2" $text.getText("printerGroup.track2"))
+            #accepteditem("3" $text.getText("printerGroup.track3"))
+        </accepted-values>
+    </field>
+
+    #qsys($section "TIME_CARD_BUTTON"  "printerGroup.timeCardButton" "number"      "printerGroup.timeCardButton"  0   1000  "" )
+    #qsys($section "CARD_RESET"      "printerGroup.cardReset"     "checkbox"    "printerGroup.cardReset"          0   1     "" )
+    #qsys($section "PRG_GOOD_CARD"   "printerGroup.prgGoodCard"   "script"      "printerGroup.prgGoodCard"        0   0     "" )
+    #qsys($section "PRG_WRONG_CARD"  "printerGroup.prgWrongCard"  "script"      "printerGroup.prgWrongCard"       0   0     "" )
+
+    #separator("printerGroup.appointSep")
+    #qsys($section "CHECK_APPOINTS"  "printerGroup.checkAppoints" "checkbox"    "printerGroup.checkAppoints"      0   1     "" )
+    #qsys($section "PRG_WRONG_APPT"  "printerGroup.prgWrongAppt"  "script"      "printerGroup.prgWrongAppt"       0   0     "" )
+
+</grid-form>
+

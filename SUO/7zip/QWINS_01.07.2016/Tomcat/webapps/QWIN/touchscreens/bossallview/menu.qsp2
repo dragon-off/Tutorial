@@ -1,0 +1,52 @@
+<html>
+ 
+ 
+ 
+ 
+    <head>
+        <LINK REL="StyleSheet" HREF="style.css" TYPE="text/css">
+ 
+    </head>
+ 
+
+<body>
+ 
+<table class=tableMain width=170 cellpadding=4 cellspacing=0>
+	<tr>
+		<td class=headerBar>
+			Онлайн мониторинг
+		</td>
+	</tr>
+ 
+    
+    
+        <tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=content.qsp2 target=content>Онлайн мониторинг</a></td></tr>
+    
+        <tr><td  class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=/settings_admin/priority/window_button.qsp2 target=content>Матрица приоритетов(1-15)</a></td></tr>
+		<tr><td  class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=/settings_admin/priority/window_button_w.qsp2 target=content>Матрица приоритетов(15-30)</a></td></tr>
+		
+		<tr><td onClick="var subWindow = window.open('http://'+window.location.hostname+':8080/','ind')" class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';" style="color: blue;">Статистика</td></tr>
+	
+        <tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=/settings_admin/priority/login_button.qsp2 target=content>Матрица пользователей(1-50)</a></td></tr>
+		<tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=/settings_admin/priority/login_button_2.qsp2 target=content>Матрица пользователей(50-xxx)</a></td></tr>
+	
+		
+ 
+    
+        
+    
+	<tr>
+		<td class=headerBar>
+			Настройка площадки
+		</td>
+	</tr>
+ 
+	<tr><td  class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=settings_buttons.qsp2 target=content>Отображаемые операции</a></td></tr>
+		<tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=settings_windows.qsp2 target=content>Отображаемые окна</a></td></tr>
+	<tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=settings_svetofor.qsp2 target=content>Светофор</a></td></tr>
+	<tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=settings_time.qsp2 target=content>Настройка времени  и чередования</a></td></tr>
+		<tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=settings_vsp.qsp2 target=content>Настройка ВСП</a></td></tr>
+		<tr><td class=tdMenuItem onmouseover="javascript:this.className='tdMenuItemOver';" onmouseout="javascript:this.className='tdMenuItem';"><a href=/settings_admin/priority/pred_window_button.qsp2 target=content>Прогнозное время</a></td></tr>
+</table>
+</body>
+</html>

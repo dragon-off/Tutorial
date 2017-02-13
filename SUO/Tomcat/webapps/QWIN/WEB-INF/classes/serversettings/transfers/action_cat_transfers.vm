@@ -1,0 +1,13 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    <label></label>
+    #set( $grp = 0 )
+    #set( $grp = 1 + $grp.parseInt($group))
+
+    ##       SECTION   KEY    LABEL_ID                 SCRIPT_FILE        GROUP  MIN  MAX
+    ##------------------------------------------------------------------------------------
+
+    #button( $section  "MAX"  "transfers.addCatTrans"  "./add_action.vm"  0      0    255 )
+    #button( $section  "MAX"  "transfers.remCatTrans"  "./rem_action.vm"  0      0    255 )
+
+</grid-form>

@@ -1,0 +1,14 @@
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.writer.DefaultWriter">
+    #cdata("label" "")
+
+    <field type="button">
+      <name>Remove</name>
+      #cdata("label" $text.getText("activity.remove"))
+      <params>
+          #param("action-script" "scheduler.removetset.action?itemId=${itemId}&setId=${setId}")
+          #param("ref-type" "raw")
+      </params>
+    </field>
+
+</grid-form>

@@ -1,0 +1,14 @@
+INI_GET_SECTION("CARD")
+
+A=INI_GET_MAX_SETTINGS("CARD" "SETTINGS")
+X=1
+
+WHILE(X LE A)
+BEGIN
+     Y = X
+     T = "CARD_SETTING_" + Y
+
+     INI_GET_SECTION(T)
+
+     X = X+1
+END

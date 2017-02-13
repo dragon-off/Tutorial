@@ -1,0 +1,35 @@
+<grid-form version="1.0" writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("calendar.newNotifyHeading"))
+
+    #set( $section            = "APPOINTMENT"                                    )
+
+    <field type  = "list" helpid = "calendar.usePrinter">
+         #cdata("name" "${section}_MAKE_OFFICE_PRN")
+         #cdata("label" $text.getText("calendar.usePrinter"))
+
+        <params>
+            #param("ns" $section)
+            #param("key" "MAKE_OFFICE_PRN")
+            #param("multiple" "false")
+            #param("size" "1")
+        </params>
+        #cdata("init-value" $sm.getStringSetting($section, "MAKE_OFFICE_PRN"))
+
+        <accepted-values>
+            #accepteditem(" " $text.getText("calendar.noOfficePrnNew"))
+            #accepteditem("1" $text.getText("calendar.staffOfficePrnNew"))
+            #accepteditem("2" $text.getText("calendar.defaultOfficePrnNew"))
+        </accepted-values>
+    </field>
+
+    ##    SECTION  KEY                    LABEL_ID                  TYPE          HELP_ID                  MIN  MAX   REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section "MAKE_EMAIL"           "calendar.sendEmail"      "checkbox"    "calendar.sendEmail"     0    1     "" )
+    #qsys($section "MAKE_KT_ALARM"        "calendar.sendWSAlarm"    "checkbox"    "calendar.sendWSAlarm"   0    1     "" )
+    #qsys($section "MAKE_PAGER"           "calendar.sendPager"      "checkbox"    "calendar.sendPager"     0    1     "" )
+    #qsys($section "MAKE_EMAIL_PRG"       "calendar.emailScript"    "script"      "calendar.emailScript"   0    30000 "" )
+    #qsys($section "MAKE_PAGER_PRG"       "calendar.pagerScript"    "script"      "calendar.pagerScript"   0    30000 "" )
+    #qsys($section "MAKE_LAYOUT_PRG"      "calendar.layoutScript"   "script"      "calendar.layoutScript"  0    30000 "" )
+
+</grid-form>

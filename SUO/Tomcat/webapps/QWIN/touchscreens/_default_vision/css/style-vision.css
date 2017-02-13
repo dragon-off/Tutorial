@@ -1,0 +1,185 @@
+/* -------------------------------------- */
+/*                                        */
+/* Custom css for sand demo page          */
+/*                                        */
+/* -------------------------------------- */
+
+div.buttonLeft, div.buttonCenter, div.buttonCenterTop, div.buttonRight, div.flag, div.back,
+div.buttonStaff1, div.buttonStaff2, div.buttonStaff3,
+div.buttonStaff4, div.buttonStaff5, div.buttonStaff6 {
+	position: absolute;
+}
+
+/* -------------------------------------- */
+/* Main                                   */
+/* -------------------------------------- */
+
+div.mainbackground {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+table.mainOuter {
+  width: 1024px;
+  height: 768px;
+}
+td.mainOuter {
+  vertical-align: bottom;
+}
+
+/* -------------------------------------- */
+/* Buttons                                */
+/* -------------------------------------- */
+
+table.mainButtons {
+  height: 660px;
+}
+div.buttonOuter {
+  background: url(../images/background.png) no-repeat;
+}
+
+div.buttonLeft {
+	top: 237px;
+	left: 53px;
+}
+div.buttonRight {
+	top: 237px;
+	left: 513px;
+}
+div.buttonImage {
+	position: absolute;
+	top: 30px;
+	left: 36px;
+	z-index: 5;
+}
+div.buttonCenter {
+	top: 260px;
+	left: 283px;
+}
+div.buttonCenterTop {
+	top: 17px;
+	left: 283px;
+}
+
+div.buttonText1, div.buttonText2, div.buttonText3, div.buttonImageText1, div.buttonImageText2 {
+	position: absolute;
+	left: 174px;
+	font-family: Verdana;
+	width: 256px;
+}
+div.buttonText1 {
+	top: 32px;
+	font-size: 22pt;
+	color: #BA1D42;
+}
+div.buttonText2 {
+	top: 64px;
+	font-size: 10pt;
+	color: #252525;
+}
+div.buttonText3 {
+	top: 104px;
+	font-size: 10pt;
+	color: #252525;
+}
+
+div.buttonTextStaffName, div.buttonTextStaffInfo {
+	position: absolute;
+	left: 144px;
+	font-family: Verdana;
+}
+div.buttonTextShortest, div.buttonTextShortestInfo {
+	position: absolute;
+	left: 40px;
+	font-family: Verdana;
+}
+div.buttonTextStaffName, div.buttonTextShortest {
+	top: 32px;
+	font-size: 12pt;
+	color: #BA1D42;
+}
+div.buttonTextStaffInfo, div.buttonTextShortestInfo {
+	top: 64px;
+	font-size: 10pt;
+	color: #252525;
+}
+
+/* -------------------------------------- */
+/* Logo                                   */
+/* -------------------------------------- */
+
+div.logo {
+  background: url(../images/logo-sand.png) no-repeat;
+  top: 10px;
+  left: 40px;
+  width: 400px;
+  height: 120px;
+}
+
+/* -------------------------------------- */
+/* Ticket splash                          */
+/* -------------------------------------- */
+
+div.splashOuter {
+  width: 1024px;
+  height: 768px;
+}
+div.splash {
+  border: solid 3px #966F38;
+}
+
+/* -------------------------------------- */
+/* -------------------------------------- */
+
+div.header1, div.header2, div.headerStaff {
+	position: absolute;
+	font-family: Verdana;
+}
+div.header1 {
+	top: 84px;
+	font-size: 32pt;
+	color: #3D3D3D;
+}
+div.header2 {
+	top: 142px;
+	font-size: 20pt;
+	color: #3D3D3D;
+}
+div.headerStaff {
+	top: 32px;
+	font-size: 20pt;
+	color: #3D3D3D;
+	text-align: center;
+	padding-left: 200px;
+	padding-right: 200px;
+}
+div.flag {
+	top: 24px;
+	left: 810px;
+	text-align: right;
+}
+div.buttonStaffImage {
+	position: absolute;
+	top: 11px;
+	left: 12px;
+}
+div.buttonStaff {
+	position: relative;
+	width: 302px;
+	margin:0 auto;
+}
+td.buttonStaff {
+	text-align: center;
+}
+div.buttonImageText1 {
+	left: 284px;
+	top: 32px;
+	font-size: 18pt;
+	color: #BA1D42;
+}
+div.buttonImageText2 {
+	left: 324px;
+	top: 64px;
+	font-size: 10pt;
+	color: #252525;
+}

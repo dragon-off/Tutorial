@@ -1,0 +1,369 @@
+<html>
+<head>
+	<title>СберБанк</title>
+	<link href="default.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Language" content="en-ru">
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<META http-equiv="pragma" content="no-cache">
+	<META http-equiv="expires" content="0">
+	<script type="text/javascript" src="/lib/ajax.js"></script>   	
+	<LINK rel=stylesheet type="text/css" href="style.css">
+	<script language="Javascript" type="text/javascript">
+	
+				function setCookie(c_name, value, expiredays){
+				var exdate = new Date();
+				exdate.setDate(exdate.getDate() + expiredays);
+				document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toUTCString());
+			}
+			function getCookie(name){
+				var cookie = " " + document.cookie;
+				var search = " " + name + "=";
+				var setStr = null;
+				var offset = 0;
+				var end = 0;
+				if (cookie.length > 0) {
+					offset = cookie.indexOf(search);
+					if (offset != -1) {
+						offset += search.length;
+						end = cookie.indexOf(";", offset)
+						if (end == -1) {
+							end = cookie.length;
+						}
+						setStr = unescape(cookie.substring(offset, end));
+					}
+				}
+				return(setStr);
+			}
+			
+			
+			function change_kletka(adres,value) {
+				counter=adres.substring(4,adres.length);
+				counter=counter.split('-');		// 0 - counter
+												// 1 - button
+				len=getCookie('operation_'+counter[0]);
+				counter[1]=counter[1]*1;
+				setCookie('operation_'+counter[0], len.substring(0,(counter[1]-1))+value+len.substring(counter[1],len.length),900);
+				len=getCookie('operation_'+counter[0]);
+				kletka(adres,value);
+			}
+			//отображение содержимого клетки
+			function kletka(adres,value) {
+					var str="";
+					if(value==0) {
+						str+="<IMG SRC=no.png border=0 onclick=change_kletka('"+adres+"',1)>"
+					} else {
+						str+="<select name=menu1 onchange=change_kletka('"+adres+"',this.options[this.selectedIndex].value)>";
+						for(var i=0	; i<4; i++) {
+							if(i==value.toString()) {
+								str+="<option selected value="+i+">"+i+"</option>";
+							} else {
+								str+="<option value="+i+">"+i+"</option>"
+							};
+						};
+						str+="</select>";
+						};
+						document.getElementById(adres).innerHTML=str;
+				return str;
+			}
+			
+			
+			function save_prior() {
+				i=0;
+				var array="";
+				var value="";
+				while (len=getCookie('operation_'+show_window[i])) {
+					value+=""+len+"|";
+					array+=""+(1100+show_window[i]*1)+"|";	
+					i++;
+				};
+				array+="@"
+				value+="@"	
+				rawsend('/ca/!setarray.qsp2?array="'+array+'"&value="'+value+'"');
+				return;
+			}
+	function load_prior() {
+		i=0;
+		while (len=getCookie('operation_'+show_window[i])) {
+				for (var j = 0; j < show_button.length; j++) {
+					kletka("win_"+show_window[i]+"-"+show_button[j],len[show_button[j]-1]);
+				}
+		
+			i += 1;
+		} ;
+	
+		return;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//задаем установки значений массива в куки
+	<%
+	{значения массива}
+I=1
+W="" {SHOW WINDOW}
+B="" {SHOW BUTTON}
+WHILE(I LE 30)
+BEGIN
+	IF(ARRAY(300+I) EQ 0 AND I LE 10)
+	BEGIN
+		IF(B EQ "")
+			B=""+I
+		ELSE
+		BEGIN
+			B=B+","+I
+		END
+	END
+
+	IF(ARRAY(400+I) EQ 0) 
+	BEGIN
+		IF(W EQ "")
+			W=""+I
+		ELSE
+		BEGIN
+			W=W+","+I
+		END
+		"setCookie('operation_"I"', '"ARRAY(1100+I)"',900);\n"
+	END
+	ELSE
+	BEGIN
+		"setCookie('operation_"I"', '',0);\n"
+	END
+	I=I+1
+END
+
+"var show_window = ["W"];\n"
+"var show_button = ["B"];"
+%>	 
+//старое
+function alert1()
+	{
+  		if(q.style.display=='none')
+		{
+			q.style.display='block';
+			setTimeout('close()', 5000);
+		}
+  		else 
+   		{
+			q.style.display='none';
+   		}
+ 	}
+function PrintPage(val, ObjName)
+{
+ var PrintedDiv;
+ PrintedDiv = document.getElementById(ObjName);
+ PrintedDiv.innerHTML = '';
+// AddHTMLAjax(PrintedDiv,val);
+}
+function DoScript(href)
+{
+alert(1);
+ var PrintedDiv;
+ PrintedDiv = document.getElementById("DopElement");
+PrintedDiv.innerHTML = '';
+ AddHTMLAjax(PrintedDiv,href);
+alert(2);
+
+}
+	function close()
+ 	{
+		q.style.display='none';
+		qq.style.display='none';
+	}
+	</script>
+
+<%
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+IF(G EQ 1)
+	Q=0
+IF(G EQ 2)
+	Q=40
+IF(G EQ 3)
+	Q=60
+IF(G EQ 4)
+	Q=90
+IF(G EQ 5)
+	Q=120
+	
+
+W=(${window}0)/10
+B=(${button}0)/10
+V=(${level}0)/10
+W=STRSTN(W)
+G=(${priority}0)/10
+IF(G EQ 0)
+	G=1
+
+R=(${reset}0)/10
+IF(R EQ 0)
+	R=0
+
+IF(R EQ 1)
+BEGIN
+	I=1
+	WHILE(I LE 30)
+	BEGIN				
+		SETARRAY(1100+I "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000F0")
+		I=I+1
+	END
+END
+
+Z=P
+%>
+</head>
+<body link=white alink=white vlink=white scrollwidth=100 onload="load_prior()">
+
+
+<form action="">
+<TABLE BORDER=0><TR><TD>
+	
+
+<table class=borderedbox  border=0 cellpadding=0 cellspacing=0>
+<tbody>
+<tr><td class=boxTop>Действия</td></tr>
+<tr><td class=boxMain>
+<input onclick="location.href='/settings_admin/priority/login_button.qsp2?reset=1';" type=button value="Сброс всех настроек">
+<input onclick="save_prior(); alert('изменения приняты!');" type=button value="Применить изменения"></td></tr>
+</tbody></table>
+
+
+</TD></TR></TABLE>
+<TABLE><TR VALIGN=TOP><TD>
+
+<form action="window_button.qsp2">
+<TABLE><TR><TD>
+	</TD></TR></TABLE>
+</form>
+
+	<table class=borderedbox  border=1 cellpadding=0 cellspacing=0 bordercolor="#000000">
+<tbody><tr><td class=boxTop rowspan=2>№</td>
+<td class=boxTop width=180 rowspan=2>Название операции</td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Кол. ожид. кл.</h3></td>
+<td class=boxTop width=50 rowspan=2 align=center><h3 class=box>Время ожид.</h3></td>
+<td class=boxTop colspan=15 align=center><h3 class=box>Окна<BR>(нажмите на окно которое хотите изменить)</h3></td></tr>
+<%
+W=30
+I=1
+"<TR>"
+WHILE(I LE W)
+BEGIN
+	IF(ARRAY(400+I) EQ 0)
+	BEGIN
+			"<TD class=boxMain style='background-color:#0099FF;' align=center width=32>"
+		"<div id=link_1_1 class=listItem ><B><FONT size=+1>"
+		I
+		"</FONT></B></DIV></TD>\n"
+	END
+	I=I+1
+END
+"</TR>"
+M=10 {MAX GROUPS}
+I=1
+WHILE(I LE M)
+BEGIN
+	IF(ARRAY(300+I) EQ 0)
+	BEGIN
+		IF(((I/2)*2) EQ I)
+			"<TR bgcolor=#E2E2E2>"
+		ELSE
+			"<TR>"
+	"<TD align=center>"I"</TD><TD>"BUTTON_LETTER(I)" "BUTTON_NAME(I)"</TD><TD align=center>"BUTTON_QUEUE(I)"</TD><TD align=center>" 
+	PRINT_CLOCK_SEC(BUTTON_RWT(I))"</TD>"
+	P=1
+	{+prior to array}
+
+	
+	WHILE(P LE W)
+	BEGIN
+		K=ARRAY(600+P)
+		{PROVERKA STROKI}
+		L=STRSUB(K 31 31)+"F"
+		
+		IF(L NE "FF")
+		BEGIN
+			SETARRAY(600+P "000000000000000000000000000000F0") {31=F}
+			K=ARRAY(600+P)
+		END
+		L=STRSUB(K I I)
+		IF(ARRAY(400+P) EQ 0)
+		BEGIN
+			"<TD id=win_"P"-"I" align=center title='" BUTTON_NAME(I)" (Окно №" P")'>"
+		"</TD>"
+	END
+	P=P+1
+	END
+	"</TR>\n"
+	T=0
+	
+	C=0
+	
+	END {IF VIEW BUTTON}
+	I=I+1
+END
+""
+
+"</table></TD><TD>"
+%>
+</TD></TD></TABLE><table></table>
+<div id="DopElement"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+		var updating = false;
+		function GetXmlHttpObject() {
+		   var xmlHttp = null;
+		   try {
+		      // Firefox, Opera 8.0+, Safari
+		      xmlHttp = new XMLHttpRequest();
+		   } catch (e) {
+		      // Internet Explorer
+		      try {
+		         xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+		      } catch (e) {
+		         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+		      }
+		   }
+		   if (xmlHttp.overrideMimeType) {
+		      xmlHttp.overrideMimeType('text');
+		   }
+		   return xmlHttp;
+		}
+		function createXMLHttpRequest() {
+		  if(navigator.appName == "Microsoft Internet Explorer"){
+		      req = new ActiveXObject("Microsoft.XMLHTTP");
+		  }else{
+		      req = new XMLHttpRequest();
+		  }
+		  return req;  
+		}
+		function rawsend(url,cb) {
+		
+		  var req = createXMLHttpRequest();
+		  req.onreadystatechange = function () {                
+		      if(req.readyState == 4) {        
+		        if( req.status == 200) {
+
+		          if(cb!=null) cb(req.responseText);	
+		        } else if (req.readyState == 4  && req.status != 200) {                     
+		     
+		      }
+		    }
+		  }
+		  req.open("get",  url, true);
+		  req.send(null);
+		}
+		
+		function getInt(arg) {
+		  var n=parseInt(arg);
+		  if(isNaN(n)) return 0; else return n;
+		}
+	</script>

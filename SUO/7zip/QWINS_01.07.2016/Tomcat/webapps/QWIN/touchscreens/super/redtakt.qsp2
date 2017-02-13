@@ -1,0 +1,50 @@
+<%
+	{Проверка ограничения по времени работы офиса	}
+	{Время начала - конца рабочего дня в массиве:	}
+	{503	часы начала				}
+	{504	минуты начала				}
+	{505	часы конца				}
+	{506	минуты конца				}
+
+	IF( (HOUR GE ARRAY(503)) AND (MINUTE GE ARRAY(504)) )
+	BEGIN
+		{Тачскрин - Сбербанк. Массив 492 содержит время красной тактики (админка).	}
+		{Если оно больше, чем прогнозируемое, то возвращаем 1 в функцию red()		}
+		IF( (HOUR GE ARRAY(505)) AND (MINUTE GE ARRAY(506)) )
+			"2"
+		T = (${but}0)/10
+
+		IF(BUTTON_RWT(T) GE ARRAY(492) AND STRSTN(ARRAY(499)) EQ 1)
+		BEGIN
+				"1^"IF(BUTTON_ESTW(T) LE 150) PRINT_CLOCK(150) ELSE PRINT_CLOCK(BUTTON_ESTW(T))"^"BUTTON_QUEUE(T)"^"ARRAY(2603)
+				
+		END
+		ELSE
+			"0"
+	END
+	ELSE
+		"2"
+		"^good"
+		T = (${but}0)/10
+		IF(STRSTN(ARRAY(2591)) NE 0) BEGIN
+		"^" "ВСП " ARRAY(2597) ", по адресу: " ARRAY(2594) "<br>""<font class='redqueue_num'>" 
+		S=ARRAY(2510+T)/2
+		
+		PRINT_CLOCK(S)
+		
+		"</font> , в очереди " "<font class='redqueue_num'>" ARRAY(2500+T) "</font> человек(а) <br>"
+		END
+		
+		IF(STRSTN(ARRAY(2592)) NE 0) BEGIN
+		"^" "ВСП " ARRAY(2598) ", по адресу: " ARRAY(2595) "<br>""<font class='redqueue_num'>" 
+		S=ARRAY(2540+T)/2
+		PRINT_CLOCK(S)
+		"</font> , в очереди " "<font class='redqueue_num'>" ARRAY(2530+T) "</font> человек(а) <br>"
+		END
+		IF(STRSTN(ARRAY(2593)) NE 0) BEGIN
+		"^" "ВСП " ARRAY(2599) ", по адресу: " ARRAY(2596) "<br>""<font class='redqueue_num'>" 
+		S=ARRAY(2570+T)/2
+		PRINT_CLOCK(S)
+		"</font> , в очереди " "<font class='redqueue_num'>" ARRAY(2560+T) "</font> человек(а) <br>"
+		END
+%>

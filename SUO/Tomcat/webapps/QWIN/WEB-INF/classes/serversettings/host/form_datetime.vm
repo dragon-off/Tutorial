@@ -1,0 +1,85 @@
+#loadcache2("HOST*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+    #cdata("label" $text.getText("host.dateSettingsHeading"))
+
+    #set( $section            = "CLOCK"                                         )
+
+    ##    SECTION  KEY                LABEL_ID              TYPE         HELP_ID                MIN MAX REGEXP
+    ##---------------------------------------------------------------------------------------------------------
+
+    #qsys($section "AM_PM"            "host.am_pm"          "checkbox"   "host.am_pm"           0   1      "" )
+
+    <field type   = "list"
+           helpid = "host.dateType">
+           #cdata("name" "${section}_DATE_TYPE")
+           #cdata("label" $text.getText("host.dateType"))
+           <params>
+                #param("multiple" "false")
+                #param("size" "1")
+                #param("ns" $section)
+                #param("key" "DATE_TYPE")
+           </params>
+           #cdata("init-value" $sm.getStringSetting("$section", "DATE_TYPE"))
+           <accepted-values>
+                #accepteditem("0" $text.getText("host.DMYYYY"))
+                #accepteditem("1" $text.getText("host.YYMMDD"))
+                #accepteditem("2" $text.getText("host.MMDDYY"))
+           </accepted-values>
+    </field>
+
+    #qsys($section "TIME_DISPLAY_ON"  "host.allDisplOff"    "number"     "host.allDisplOff"     0   1400   "" )
+    #qsys($section "TIME_BACK_UP"     "host.backupInterval" "number"     "host.backupInterval"  0   1000   "" )
+
+    <field type   = "list"
+           helpid = "host.newDayHour">
+           #cdata("name" "${section}_TIME_DAY_BREAK")
+           #cdata("label" $text.getText("host.newDayHour"))
+           <params>
+                   #param("multiple" "false")
+                   #param("size" "1")
+                   #param("ns" $section)
+                   #param("key" "TIME_DAY_BREAK")
+           </params>
+           #cdata("init-value" $sm.getNumericSetting("$section", "TIME_DAY_BREAK"))
+           <accepted-values>
+                   #accepteditem("0" $text.getText("host.newDayHourOff"))
+                   #accepteditem("24" "00:00")
+                   #accepteditem("1" "01:00")
+                   #accepteditem("2" "02:00")
+                   #accepteditem("3" "03:00")
+                   #accepteditem("4" "04:00")
+                   #accepteditem("5" "05:00")
+                   #accepteditem("6" "06:00")
+                   #accepteditem("7" "07:00")
+                   #accepteditem("8" "08:00")
+                   #accepteditem("9" "09:00")
+                   #accepteditem("10" "10:00")
+                   #accepteditem("11" "11:00")
+                   #accepteditem("12" "12:00")
+                   #accepteditem("13" "13:00")
+                   #accepteditem("14" "14:00")
+                   #accepteditem("15" "15:00")
+                   #accepteditem("16" "16:00")
+                   #accepteditem("17" "17:00")
+                   #accepteditem("18" "18:00")
+                   #accepteditem("19" "19:00")
+                   #accepteditem("20" "20:00")
+                   #accepteditem("21" "21:00")
+                   #accepteditem("22" "22:00")
+                   #accepteditem("23" "23:00")
+           </accepted-values>
+    </field>
+
+    <field type="button">
+      <name>Learn</name>
+      #cdata("label" $text.getText("host.newDayTest"))
+      <params>
+          #param("action-script" "utils.newdayreset.action")
+          #param("ref-type" "raw")
+      </params>
+    </field>
+</grid-form>
+
+

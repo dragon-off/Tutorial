@@ -1,0 +1,13 @@
+<%
+S=(${state}0)/10
+IF(S GT 1)
+BEGIN
+	SETARRAY(521 1)
+	"goodon"
+END
+ELSE
+BEGIN
+	SETARRAY(521 0)
+	"goodoff"
+END
+%>

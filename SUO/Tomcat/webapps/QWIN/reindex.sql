@@ -1,0 +1,1 @@
+DBCC DBREINDEX (Events, '') 

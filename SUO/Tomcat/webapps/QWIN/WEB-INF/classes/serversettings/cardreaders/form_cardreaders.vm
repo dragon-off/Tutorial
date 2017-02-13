@@ -1,0 +1,17 @@
+#loadcache2("CARD_READER*" true)
+
+<grid-form version="1.0"
+    writer="com.qmatic.web.serversettings.DefaultWriter">
+
+    #cdata("label" $text.getText("card.generalNodeLabel"))
+
+    #set( $section            = "CARD_READER"                                   )
+
+    ##    SECTION   KEY               LABEL_ID          TYPE       HELP_ID           MIN   MAX  REGEXP
+    ##--------------------------------------------------------------------------------------------------------------
+
+    #qsys($section  "MAX"             "card.max"        "number"   "card.max"        0     99   "" )
+    #qsys($section  "ID_NO"           "card.idCode"     "number"   "card.idCode"     1     128  "" )
+    #qsys($section  "UNIT_NO_START"   "card.subIdCode"  "number"   "card.subIdCode"  0     15   "" )
+
+</grid-form>
